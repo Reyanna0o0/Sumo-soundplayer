@@ -1,0 +1,3 @@
+// Interface text only. Generated from tools/localization/translations.json.
+"NSMotionUsageDescription" = "Move the call background image with gentle device tilts to add depth. Motion data is used only on this device, in real time.";
+"NSPhotoLibraryAddUsageDescription" = "Save the listening report image you choose to Photos.";

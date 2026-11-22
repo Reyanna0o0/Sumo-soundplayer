@@ -1,0 +1,7 @@
+Depth Anything V2 Small
+Original model authors: Lihe Yang et al.
+Core ML conversion published by Apple.
+https://huggingface.co/apple/coreml-depth-anything-v2-small
+Revision: cfef6f6f2a70783dedc0bfae40cecbc2052285d3
+Unmodified F16 model, Apache License 2.0.
+Image depth is processed entirely on device.

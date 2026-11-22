@@ -1,0 +1,4 @@
+# Preserve the exact upstream bytes recorded in provenance and resource checks.
+ThirdParty/Lame/lame-4.0/** -text
+ThirdParty/FFmpeg/*.tar.gz binary
+SituationVoicePlayer/Sources/Resources/DepthAnythingV2SmallF16.mlpackage/** -text

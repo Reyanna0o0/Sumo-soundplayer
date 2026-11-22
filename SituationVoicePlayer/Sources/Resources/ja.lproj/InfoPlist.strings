@@ -1,0 +1,3 @@
+// Interface text only. Generated from tools/localization/translations.json.
+"NSMotionUsageDescription" = "端末の軽い傾きに合わせて通話の背景画像を動かし、奥行きを表現します。モーションデータはこの端末内で、その場でのみ使用します。";
+"NSPhotoLibraryAddUsageDescription" = "選んだ再生レポートの画像を写真に保存します。";

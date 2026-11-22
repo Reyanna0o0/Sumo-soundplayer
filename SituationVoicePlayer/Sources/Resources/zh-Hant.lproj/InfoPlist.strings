@@ -1,0 +1,3 @@
+// Interface text only. Generated from tools/localization/translations.json.
+"NSMotionUsageDescription" = "根據手機輕微傾斜移動通話背景圖片，呈現空間感；動作資料僅在本機即時使用。";
+"NSPhotoLibraryAddUsageDescription" = "將你選擇的收聽報告圖片儲存至相簿。";

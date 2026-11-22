@@ -1,0 +1,167 @@
+{
+  "sourceSize": [
+    1086,
+    1448
+  ],
+  "screenSize": [
+    390,
+    844
+  ],
+  "background": "#FAF8F2",
+  "duration": 2.2,
+  "placement": {
+    "scale": 0.458,
+    "x": -52.212,
+    "y": 92
+  },
+  "tracks": [
+    {
+      "id": "heart",
+      "start": 0,
+      "end": 0.49,
+      "width": 38,
+      "d": "M 112 1362 C 238 1350 416 1234 491 1075 C 533 999 533 946 500 919 C 465 886 425 910 398 966 C 368 924 325 920 291 950 C 241 997 268 1067 317 1107 C 357 1140 401 1160 437 1166 C 554 1201 684 1085 727 984 C 733 969 736 948 737 933"
+    },
+    {
+      "id": "junction-left-side",
+      "d": "M 737 934 Q 735 906 716 865",
+      "start": 0.49,
+      "end": 0.526,
+      "width": 14
+    },
+    {
+      "id": "junction-right-side",
+      "d": "M 737 934 L 779 864",
+      "start": 0.49,
+      "end": 0.526,
+      "width": 14
+    },
+    {
+      "id": "junction-left-top",
+      "d": "M 716 865 L 747.5 864.5",
+      "start": 0.526,
+      "end": 0.557,
+      "width": 12
+    },
+    {
+      "id": "junction-right-top",
+      "d": "M 779 864 L 747.5 864.5",
+      "start": 0.526,
+      "end": 0.557,
+      "width": 12
+    },
+    {
+      "id": "left-wire",
+      "start": 0.56,
+      "end": 0.85,
+      "width": 38,
+      "d": "M 738 865 C 738 762 688 631 613 583 C 525 523 470 589 409 590 C 331 591 278 540 265 477 C 250 421 274 389 314 382 C 336 376 363 387 377 378 C 397 364 392 337 375 322 C 364 312 351 319 341 327"
+    },
+    {
+      "id": "left-outline",
+      "start": 0.83,
+      "end": 0.93,
+      "width": 23,
+      "d": "M 341 327 C 313 302 287 316 272 338 C 244 374 242 413 262 451"
+    },
+    {
+      "id": "left-cap-outer",
+      "start": 0.86,
+      "end": 0.9158,
+      "width": 20,
+      "d": "M 359 316 C 390 287 420 307 425 327 C 434 353 414 367 389 372"
+    },
+    {
+      "id": "left-cap-inner",
+      "start": 0.9158,
+      "end": 0.95,
+      "width": 20,
+      "d": "M 365 318 C 389 322 403 353 384 377"
+    },
+    {
+      "id": "right-wire",
+      "start": 0.56,
+      "end": 0.75219151,
+      "width": 40,
+      "d": "M 751 865 C 790 772 860 650 871 522 C 887 430 860.76 345.68 821.976 286.96",
+      "clipBelowY": 286.5
+    }
+  ],
+  "crossingGuard": {
+    "center": [
+      437,
+      1166
+    ],
+    "radius": 34,
+    "strokeWidth": 14,
+    "activeUntil": 0.49,
+    "track": "heart"
+  },
+  "revision": 5,
+  "timeMap": [
+    {
+      "time": 0,
+      "drawing": 0
+    },
+    {
+      "time": 0.17,
+      "drawing": 0.175
+    },
+    {
+      "time": 0.250212766,
+      "drawing": 0.2185
+    },
+    {
+      "time": 0.293404255,
+      "drawing": 0.235269950432
+    },
+    {
+      "time": 0.336595745,
+      "drawing": 0.252
+    },
+    {
+      "time": 0.453829787,
+      "drawing": 0.315
+    },
+    {
+      "time": 0.564893617,
+      "drawing": 0.365447091654
+    },
+    {
+      "time": 0.595744681,
+      "drawing": 0.371
+    },
+    {
+      "time": 0.75,
+      "drawing": 0.49
+    },
+    {
+      "time": 1,
+      "drawing": 1
+    }
+  ],
+  "penHolds": [],
+  "motionEmphasis": {
+    "heartNotch": "continuous gentle slowdown, no stationary hold",
+    "heartExit": "brief soft slowdown without a stop",
+    "heartTrackEndAtSeconds": 1.65,
+    "rightEarphoneTimingCompression": 0.92,
+    "rightHead": "one continuous bottom-to-top reveal of the original head, including all contour and inner lines",
+    "heartShareOfTotal": 0.75,
+    "earphoneAndJunctionSeconds": 0.55
+  },
+  "areaReveals": [
+    {
+      "id": "right-head",
+      "direction": "bottom-up",
+      "x": 500,
+      "y": 110,
+      "width": 350,
+      "height": 177,
+      "start": 0.75219151,
+      "end": 0.9648
+    }
+  ],
+  "durationSelectionSource": "Latest user preview selection at acceptance: 2.2 seconds",
+  "sourceFile": "splash-original.png"
+}

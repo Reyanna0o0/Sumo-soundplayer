@@ -1,0 +1,3 @@
+// Interface text only. Generated from tools/localization/translations.json.
+"NSMotionUsageDescription" = "휴대폰의 가벼운 기울임에 따라 통화 배경 이미지를 움직여 공간감을 표현합니다. 동작 데이터는 기기 안에서 실시간으로만 사용합니다.";
+"NSPhotoLibraryAddUsageDescription" = "선택한 청취 보고서 이미지를 사진 앱에 저장합니다.";

@@ -1,0 +1,17 @@
+.DS_Store
+!ThirdParty/Lame/lame-4.0/mac/.DS_Store
+.build-support/
+dist/
+/qa/
+hibiki/.build/
+hibiki/.swiftcache/
+.swiftpm/
+**/xcuserdata/
+SituationVoicePlayer/VideoSupport/lib/
+*.ipa
+*.xcarchive
+*.mobileprovision
+*.p12
+*.p8
+*.key
+__pycache__/

@@ -1,0 +1,4 @@
+module SimoAVI {
+    header "SimoAVI.h"
+    export *
+}
