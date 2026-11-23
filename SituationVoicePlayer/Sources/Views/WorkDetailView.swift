@@ -530,6 +530,11 @@ struct WorkDetailView: View {
     // MARK: - 逻辑
 
     private func handleFileImport(_ result: Result<[URL], Error>) {
+        // Do not flash the importing overlay or validate a subtitle target on cancel.
+        if case .failure(let error) = result, (error as? CocoaError)?.code == .userCancelled {
+            if fileImportKind == .subtitle { subtitlePickerTrack = nil }
+            return
+        }
         if fileImportKind == .subtitle { importSubtitleFile(result); return }
         Task {
             isImportingAsset = true

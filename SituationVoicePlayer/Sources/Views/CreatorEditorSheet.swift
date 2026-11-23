@@ -1,5 +1,4 @@
 import SwiftUI
-import PhotosUI
 import UniformTypeIdentifiers
 
 /// Edits one creator. New image files belong to this draft until Save succeeds.
@@ -13,10 +12,7 @@ struct CreatorEditorSheet: View {
     @State private var avatar: String?
     @State private var coverMode: CreatorCoverMode
     @State private var cover: String?
-    @State private var avatarPhoto: PhotosPickerItem?
-    @State private var coverPhoto: PhotosPickerItem?
-    @State private var fileTarget: ImageTarget = .avatar
-    @State private var showFilePicker = false
+    @StateObject private var mediaPicker = MediaPickerPresenter()
     @State private var loading = false
     @State private var message: String?
     @State private var draftAssets = Set<String>()
@@ -50,9 +46,10 @@ struct CreatorEditorSheet: View {
             AppForm {
                 Section("头像") {
                     HStack { Spacer(); CreatorAvatarView(path: avatar.flatMap(WorkAssetImporter.path), name: name, size: 96); Spacer() }
-                    PhotosPicker(selection: $avatarPhoto, matching: .images) {
+                    Button { choosePhoto(.avatar) } label: {
                         Label("从照片选择头像", systemImage: "photo")
                     }.disabled(loading)
+                        .accessibilityIdentifier("creatorAvatarFromPhotos")
                     Button("从文件选择头像", systemImage: "folder") { chooseFile(.avatar) }.disabled(loading)
                         .accessibilityIdentifier("creatorAvatarFromFiles")
                     if avatar != nil {
@@ -81,9 +78,10 @@ struct CreatorEditorSheet: View {
                         if let cover, let path = WorkAssetImporter.path(for: cover) {
                             CoverImageView(path: path, contentMode: .fit).frame(maxHeight: 170)
                         }
-                        PhotosPicker(selection: $coverPhoto, matching: .images) {
+                        Button { choosePhoto(.cover) } label: {
                             Label("从照片选择封面", systemImage: "photo")
                         }.disabled(loading)
+                            .accessibilityIdentifier("creatorCoverFromPhotos")
                         Button("从文件选择封面", systemImage: "folder") { chooseFile(.cover) }.disabled(loading)
                             .accessibilityIdentifier("creatorCoverFromFiles")
                         if cover == nil { Text("请选择一张封面图片。").font(.caption).foregroundStyle(AppTheme.secondaryText) }
@@ -106,15 +104,6 @@ struct CreatorEditorSheet: View {
                         .accessibilityIdentifier("saveCreator")
                 }
             }
-            .fileImporter(isPresented: $showFilePicker, allowedContentTypes: [.image]) { result in
-                switch result {
-                case .success(let url): loadFile(url, target: fileTarget)
-                case .failure(let error):
-                    if (error as? CocoaError)?.code != .userCancelled { message = error.localizedDescription }
-                }
-            }
-            .onChange(of: avatarPhoto) { _, item in if let item { loadPhoto(item, target: .avatar) } }
-            .onChange(of: coverPhoto) { _, item in if let item { loadPhoto(item, target: .cover) } }
             .onDisappear {
                 imageTask?.cancel()
                 for relative in draftAssets { WorkAssetImporter.remove(relative) }
@@ -122,9 +111,16 @@ struct CreatorEditorSheet: View {
                 callDraft.cancel()
             }
         }
+        .mediaPickerPresentation(mediaPicker)
     }
 
-    private func chooseFile(_ target: ImageTarget) { fileTarget = target; showFilePicker = true }
+    private func chooseFile(_ target: ImageTarget) {
+        mediaPicker.present(.file(types: [.image]) { loadFile($0, target: target) })
+    }
+
+    private func choosePhoto(_ target: ImageTarget) {
+        mediaPicker.present(.photo { loadPhoto($0, target: target) })
+    }
 
     private func loadFile(_ url: URL, target: ImageTarget) {
         imageTask?.cancel()
@@ -141,13 +137,13 @@ struct CreatorEditorSheet: View {
         }
     }
 
-    private func loadPhoto(_ item: PhotosPickerItem, target: ImageTarget) {
+    private func loadPhoto(_ item: LibraryPhotoSelection, target: ImageTarget) {
         imageTask?.cancel()
         loading = true; message = nil
         imageTask = Task {
-            defer { loading = false; avatarPhoto = nil; coverPhoto = nil }
+            defer { loading = false }
             do {
-                guard let data = try await item.loadTransferable(type: Data.self) else { throw WorkAssetImportError.unreadableImage }
+                let data = try await item.loadData()
                 try Task.checkCancellation()
                 let relative = try await Task.detached(priority: .userInitiated) {
                     try WorkAssetImporter.copyCover(data: data)

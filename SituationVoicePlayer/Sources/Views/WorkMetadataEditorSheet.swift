@@ -1,5 +1,4 @@
 import SwiftUI
-import PhotosUI
 import UniformTypeIdentifiers
 
 struct WorkMetadataEditorSheet: View {
@@ -17,9 +16,7 @@ struct WorkMetadataEditorSheet: View {
     @State private var cover: WorkCoverUpdate = .unchanged
     @State private var playerCoverMode: PlayerCoverMode
     @State private var cropInput: CoverCropInput?
-    @State private var selectedPhoto: PhotosPickerItem?
-    @State private var showCoverPhotos = false
-    @State private var showCoverImporter = false
+    @StateObject private var mediaPicker = MediaPickerPresenter()
     @State private var isLoadingCover = false
     @State private var coverTask: Task<Void, Never>?
     @State private var creatorID: Int64?
@@ -122,17 +119,6 @@ struct WorkMetadataEditorSheet: View {
                     .accessibilityIdentifier("saveMetadata")
                 }
             }
-            .photosPicker(isPresented: $showCoverPhotos, selection: $selectedPhoto, matching: .images)
-            .fileImporter(isPresented: $showCoverImporter, allowedContentTypes: [.image]) { result in
-                switch result {
-                case .success(let url): prepareCover { try WorkAssetImporter.copyCover(from: url) }
-                case .failure(let error):
-                    let nsError = error as NSError
-                    if nsError.domain != NSCocoaErrorDomain || nsError.code != NSUserCancelledError {
-                        errorMessage = L10n.text("无法选择封面：\(error.localizedDescription)")
-                    }
-                }
-            }
             .sheet(item: $cropInput) { input in
                 CoverCropSheet(input: input, onUse: acceptCoverDraft)
             }
@@ -147,16 +133,13 @@ struct WorkMetadataEditorSheet: View {
             } message: {
                 Text(errorMessage ?? "")
             }
-            .onChange(of: selectedPhoto) { _, photo in
-                guard let photo else { return }
-                loadPhoto(photo)
-            }
             .onDisappear {
                 coverTask?.cancel()
                 discardCoverDraft()
                 callDraft.cancel()
             }
         }
+        .mediaPickerPresentation(mediaPicker)
     }
 
     private var publicationRowInsets: EdgeInsets {
@@ -303,8 +286,11 @@ struct WorkMetadataEditorSheet: View {
         guard let source = pendingCoverSource else { return }
         pendingCoverSource = nil
         switch source {
-        case .photos: showCoverPhotos = true
-        case .files: showCoverImporter = true
+        case .photos: mediaPicker.present(.photo(loadPhoto))
+        case .files:
+            mediaPicker.present(.file(types: [.image]) { url in
+                prepareCover { try WorkAssetImporter.copyCover(from: url) }
+            })
         case .existing(let path):
             let original = WorkAssetImporter.originalImageForCropping(at: path)
             prepareCover { try WorkAssetImporter.copyCover(from: original) }
@@ -342,16 +328,14 @@ struct WorkMetadataEditorSheet: View {
         }
     }
 
-    private func loadPhoto(_ photo: PhotosPickerItem) {
+    private func loadPhoto(_ photo: LibraryPhotoSelection) {
         coverTask?.cancel()
         isLoadingCover = true
         errorMessage = nil
         coverTask = Task {
-            defer { isLoadingCover = false; selectedPhoto = nil }
+            defer { isLoadingCover = false }
             do {
-                guard let data = try await photo.loadTransferable(type: Data.self) else {
-                    throw WorkAssetImportError.unreadableImage
-                }
+                let data = try await photo.loadData()
                 try Task.checkCancellation()
                 let relative = try await Task.detached(priority: .userInitiated) {
                     try WorkAssetImporter.copyCover(data: data)

@@ -2,9 +2,9 @@
 
 这一页会带你找到正确的下载位置，并把安装包保存下来。完成后，你的电脑里会有一个名字以 **`.ipa` 结尾**的文件，下一步安装时会用到它。
 
-> **当前版本：v0.1.0（build 33）。只想安装使用，选择名字以 `.ipa` 结尾的文件即可。** 已确认 Mac 下载 IPA、经 Sideloadly 安装并成功打开，以及 build 33 更新后此前导入数据仍在；Windows 和续签仍待验证。
+> **照片修补预发布：v0.1.1（build 34）；正式最新版仍为 v0.1.0（build 33）。只想安装使用，选择名字以 `.ipa` 结尾的文件即可。** 已确认 Mac 下载 IPA、经 Sideloadly 安装并成功打开，以及 build 33 更新后此前导入数据仍在；Windows 和续签仍待验证。
 
-**[直接打开最新版本下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)**。如果已经打开了版本介绍，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
+**[直接打开 build 34 修补预发布下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.1)**。如果已经打开了版本介绍，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
 
 请先在 **Windows 或 Mac 电脑**上打开这篇教程。后面的安装步骤需要电脑。如果现在用手机阅读，可以把本页链接发到自己的电脑，稍后从电脑继续。
 
@@ -26,9 +26,9 @@
 
 ## 2. 找到要下载的正式版本
 
-在版本下载页，寻找旁边标有 **`Latest`（最新正式版）**的版本标题，点击标题进入该版本；如果说明和附件已经显示在当前页面，也可以直接往下看。
+本页以照片修补预发布 build 34 为例：找到 **v0.1.1**，旁边会标有 **`Pre-release`（预发布）**。`Latest` 仍指向已正式发布的 build 33。如果说明和附件已经显示在当前页面，直接往下看。
 
-先读这一版说明开头的系统要求。v0.1.0 要求 **iOS / iPadOS 18 或更新版本**；手机上可以在“设置 → 通用 → 关于本机”查看系统版本。
+先读这一版说明开头的系统要求。v0.1.1 要求 **iOS / iPadOS 18 或更新版本**；手机上可以在“设置 → 通用 → 关于本机”查看系统版本。
 
 **做对后：** 页面上能看到版本标题、这一版的说明，以及往下可找到的附件区域。
 
@@ -40,23 +40,23 @@
 
 如果只看到 `Assets`、一个小三角和旁边的数字，却看不到文件名，**点一下 `Assets` 或它左边的小三角**，把列表展开。已经能看到文件名就不用再点。
 
-**做对后：** 下方会出现一行行可以点击的文件名。v0.1.0 的文件名如下；以后版本号会变：
+**做对后：** 下方会出现一行行可以点击的文件名。v0.1.1 的文件名如下；以后版本号会变：
 
 ```text
-simo-0.1.0-build33-unsigned.ipa         ← 安装包，选这一项
-simo-0.1.0-build33-unsigned.ipa.json    ← 构建信息
-simo-0.1.0-build33-unsigned.ipa.sha256  ← 下载校验信息
+simo-0.1.1-build34-unsigned.ipa         ← 安装包，选这一项
+simo-0.1.1-build34-unsigned.ipa.json    ← 构建信息
+simo-0.1.1-build34-unsigned.ipa.sha256  ← 下载校验信息
 ```
 
-附件还包含 `simo-0.1.0-build33-source.zip`、`LICENSE.txt` 和 `SHA256SUMS.txt`，分别是对应源码、许可和全部附件的校验清单。GitHub 也会显示 `Source code (zip)` 和 `Source code (tar.gz)`。**第一次安装时只需选 IPA。**
+附件还包含 `simo-0.1.1-build34-source.zip`、`LICENSE.txt` 和 `SHA256SUMS.txt`，分别是对应源码、许可和全部附件的校验清单。GitHub 也会显示 `Source code (zip)` 和 `Source code (tar.gz)`。**第一次安装时只需选 IPA。**
 
-<img src="images/github-release-assets.jpg" width="354" alt="GitHub 的 Assets 附件列表，第 4 行是 simo-0.1.0-build33-unsigned.ipa">
+<img src="images/github-release-assets.jpg" width="354" alt="GitHub 的历史 Assets 附件列表示例，第 4 行是 simo-0.1.0-build33-unsigned.ipa">
 
-*这是 v0.1.0 的 GitHub 窄屏截图。图中第 4 行、名字到 `.ipa` 就结束的文件是安装包。电脑上也可以用这个文件名辨认。*
+*这是 v0.1.0 的历史窄屏截图，用于说明附件位置；当前请按上方的 build 34 文件名选择。名字到 `.ipa` 就结束的文件是安装包。*
 
 ## 4. 点击以 .ipa 结尾的那个文件
 
-当前示例中，应点击完整文件名 **`simo-0.1.0-build33-unsigned.ipa`**。
+当前示例中，应点击完整文件名 **`simo-0.1.1-build34-unsigned.ipa`**。
 
 认文件时，看名字的**最后一段**：
 

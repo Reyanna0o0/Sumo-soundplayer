@@ -1,5 +1,4 @@
 import SwiftUI
-import PhotosUI
 import UniformTypeIdentifiers
 import Combine
 
@@ -25,11 +24,9 @@ final class CallProfileDraft: ObservableObject {
         }
     }
 
-    func importPhoto(_ item: PhotosPickerItem, target: CallProfileAssetTarget) {
+    func importPhoto(_ item: LibraryPhotoSelection, target: CallProfileAssetTarget) {
         beginImport(target: target, kind: .image) {
-            guard let data = try await item.loadTransferable(type: Data.self) else {
-                throw WorkAssetImportError.unreadableImage
-            }
+            let data = try await item.loadData()
             try Task.checkCancellation()
             return try await Task.detached(priority: .userInitiated) {
                 try WorkAssetImporter.copyCover(data: data)
@@ -111,9 +108,7 @@ struct CallProfileFields: View {
     var inheritedBackgroundKind: CallBackgroundKind = .image
     var inheritedAvatarFraming: CallFraming?
     var inheritedBackgroundFraming: CallFraming?
-    @State private var avatarPhoto: PhotosPickerItem?
-    @State private var backgroundPhoto: PhotosPickerItem?
-    @State private var fileTarget: CallProfileAssetTarget?
+    @Environment(\.presentMediaPicker) private var presentMediaPicker
     @State private var framingTarget: FramingTarget?
 
     private enum FramingTarget: String, Identifiable {
@@ -160,17 +155,12 @@ struct CallProfileFields: View {
                         .frame(maxWidth: .infinity).padding(.vertical, 8)
                 }
                 if draft.profile.avatarMode == .custom || ownerKind == .localUser {
-                    PhotosPicker(selection: $avatarPhoto, matching: .images) {
+                    Button { choosePhoto(.avatar) } label: {
                         Label("从照片选择图片", systemImage: "photo")
                     }.disabled(draft.isLoading)
-                    .onChange(of: avatarPhoto) { _, item in
-                        if let item { draft.importPhoto(item, target: .avatar); avatarPhoto = nil }
-                    }
+                        .accessibilityIdentifier("callAvatarFromPhotos")
                     Button("从文件选择图片", systemImage: "folder") { chooseFile(.avatar) }
                         .disabled(draft.isLoading).accessibilityIdentifier("callAvatarFromFiles")
-                        .fileImporter(isPresented: filePresentation(for: .avatar), allowedContentTypes: fileTypes(for: .avatar)) {
-                            handleFileImport($0, target: .avatar)
-                        }
                 }
                 if avatarURL != nil && !(ownerKind == .work && !inheritsWorkCover && draft.profile.avatarMode == .inherit) {
                     Button("放大预览与调整", systemImage: "crop.rotate") { framingTarget = .avatar }
@@ -204,17 +194,12 @@ struct CallProfileFields: View {
                         .frame(maxWidth: 170).frame(maxWidth: .infinity).padding(.vertical, 8)
                 }
                 if draft.profile.backgroundMode == .custom {
-                    PhotosPicker(selection: $backgroundPhoto, matching: .images) {
+                    Button { choosePhoto(.background) } label: {
                         Label("从照片选择背景图片", systemImage: "photo")
                     }.disabled(draft.isLoading)
-                    .onChange(of: backgroundPhoto) { _, item in
-                        if let item { draft.importPhoto(item, target: .background); backgroundPhoto = nil }
-                    }
+                        .accessibilityIdentifier("callBackgroundFromPhotos")
                     Button("从文件选择图片或视频", systemImage: "folder") { chooseFile(.background) }
                         .disabled(draft.isLoading).accessibilityIdentifier("callBackgroundFromFiles")
-                        .fileImporter(isPresented: filePresentation(for: .background), allowedContentTypes: fileTypes(for: .background)) {
-                            handleFileImport($0, target: .background)
-                        }
                 }
                 if backgroundURL != nil && (draft.profile.backgroundMode != .inherit || inheritsWorkCover) {
                     if backgroundKind == .image {
@@ -293,30 +278,22 @@ struct CallProfileFields: View {
                          previewKind: target == .background ? .background : (ownerKind == .localUser ? .local : .avatar))
     }
 
-    private func filePresentation(for target: CallProfileAssetTarget) -> Binding<Bool> {
-        Binding(get: { fileTarget == target }, set: { shown in
-            if shown { fileTarget = target }
-            else if fileTarget == target { fileTarget = nil }
-        })
-    }
-
     private func fileTypes(for target: CallProfileAssetTarget) -> [UTType] {
         if target == .avatar { return [.image] }
         return [.image, .movie, .video] + [UTType(filenameExtension: "avi")].compactMap { $0 }
     }
 
-    private func handleFileImport(_ result: Result<URL, Error>, target: CallProfileAssetTarget) {
-        switch result {
-        case .success(let url):
+    private func chooseFile(_ target: CallProfileAssetTarget) {
+        presentMediaPicker(.file(types: fileTypes(for: target)) { url in
             if target == .background && MediaExtensions.video.contains(url.pathExtension.lowercased()) {
                 draft.importVideo(from: url)
             } else { draft.importImage(from: url, target: target) }
-        case .failure(let error):
-            if (error as? CocoaError)?.code != .userCancelled { draft.error = error.localizedDescription }
-        }
+        })
     }
 
-    private func chooseFile(_ target: CallProfileAssetTarget) { fileTarget = target }
+    private func choosePhoto(_ target: CallProfileAssetTarget) {
+        presentMediaPicker(.photo { draft.importPhoto($0, target: target) })
+    }
 }
 
 struct CallProfileEditorSheet: View {
@@ -329,6 +306,7 @@ struct CallProfileEditorSheet: View {
     var inheritedBackgroundFraming: CallFraming?
     let onSave: (CallProfile) throws -> Void
     @StateObject private var draft: CallProfileDraft
+    @StateObject private var mediaPicker = MediaPickerPresenter()
     @Environment(\.dismiss) private var dismiss
 
     init(title: String, ownerKind: CallProfileOwnerKind, profile: CallProfile,
@@ -367,5 +345,6 @@ struct CallProfileEditorSheet: View {
             }
             .onDisappear { draft.cancel() }
         }
+        .mediaPickerPresentation(mediaPicker)
     }
 }

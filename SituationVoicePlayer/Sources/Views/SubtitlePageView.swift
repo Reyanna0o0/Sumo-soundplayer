@@ -1304,6 +1304,9 @@ struct SubtitlePageView: View {
 
     /// 导入用户选的字幕文件（Mac 生成后 AirDrop 过来的那种）
     private func handleSubtitleImport(_ result: Result<[URL], Error>) {
+        // Dismissing Files is not an import attempt, even if playback moved to
+        // another track while the browser was open.
+        if case .failure(let error) = result, (error as? CocoaError)?.code == .userCancelled { return }
         guard let repository = store.subtitleRepository else {
             importMessage = L10n.text("字幕存储未就绪")
             return
