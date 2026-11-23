@@ -9,6 +9,8 @@
 - App 部署目标 iOS / iPadOS 18.0，核心 Swift package 使用 Swift tools 6.0。
 - 首次构建需要网络获取锁定的 ZIPFoundation 0.9.20；LAME、FFmpeg 完整源码和 Core ML 模型已随仓库提供。
 
+本项目目前在同一台 Mac 的独立候选目录完成了核心自检、依赖重建及 App 构建，尚未在另一台干净电脑上复建。跨机器验证不作为本次发布的前置条件；其他环境遇到问题时，请反馈 macOS / Xcode 版本、执行步骤和报错，以便修复构建说明或脚本。
+
 ## 克隆与核验
 
 ```bash
