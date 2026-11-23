@@ -50,6 +50,10 @@ simo-0.1.0-build33-unsigned.ipa.sha256  ← 下载校验信息
 
 附件还包含 `simo-0.1.0-build33-source.zip`、`LICENSE.txt` 和 `SHA256SUMS.txt`，分别是对应源码、许可和全部附件的校验清单。GitHub 也会显示 `Source code (zip)` 和 `Source code (tar.gz)`。**第一次安装时只需选 IPA。**
 
+<img src="images/github-release-assets.jpg" width="354" alt="GitHub 的 Assets 附件列表，第 4 行是 simo-0.1.0-build33-unsigned.ipa">
+
+*这是 v0.1.0 的 GitHub 窄屏截图。图中第 4 行、名字到 `.ipa` 就结束的文件是安装包。电脑上也可以用这个文件名辨认。*
+
 ## 4. 点击以 .ipa 结尾的那个文件
 
 当前示例中，应点击完整文件名 **`simo-0.1.0-build33-unsigned.ipa`**。

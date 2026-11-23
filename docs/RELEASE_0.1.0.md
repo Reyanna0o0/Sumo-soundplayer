@@ -1,13 +1,13 @@
 # 厮磨播放器 v0.1.0 · build 33
 
-首个公开版本，面向个人音声收藏与收听。支持 **iOS / iPadOS 18 或更新版本**，不附带音声作品。下载安装需要 Mac 或 Windows 电脑，以及自己的 Apple 账户。
+首个公开版本。把自己收藏的音声、台本和想反复听的片段放在一处。支持 **iOS / iPadOS 18 或更新版本**，不附带音声作品。下载安装需要 Mac 或 Windows 电脑，以及自己的 Apple 账户。
 
 ## 下载与安装
 
 **[下载厮磨 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.0/simo-0.1.0-build33-unsigned.ipa)**
 
 1. 下载 `simo-0.1.0-build33-unsigned.ipa`。普通用户只需要这一个文件，无需下载或编译源码。
-2. 按[从 GitHub 下载的逐步说明](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.0/docs/DOWNLOAD.md)找到文件，再按[安装教程](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.0/docs/INSTALL.md)使用 Sideloadly 签名安装。
+2. 按下载教程中的截图认准 IPA 文件，再按安装教程用 Sideloadly 签名。[从 GitHub 下载](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/codex/release-preparation/docs/DOWNLOAD.md) · [安装教程](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.0/docs/INSTALL.md)
 3. 手机首次打开后，先导入一份可重新取得的音频，确认自己的设备上能够播放。
 
 `unsigned` 表示需要自行签名。下载 IPA 本身不等于安装，不能在 Safari 下载后直接点开安装；免费开发签名需要定期续签，具体操作见安装教程。
@@ -16,14 +16,18 @@
 
 ## 这个版本可以做什么
 
-- 整理社团作品和个人音声，管理创作者、声优、社团、封面、收藏与分类。
-- 播放、队列、循环、倍速、变调、均衡、睡眠定时，以及后台和锁屏控制。
-- 配合字幕、双语字幕与台本收听，调整时间、编辑并保存字幕版本。
-- 保存摘选、拼接片段，导出 MP3 / WAV；播放列表和摘选可拖动排序、更改分类，创作者 / 声优 / 社团列表可各自排序。
-- 使用模拟语音 / 视频通话外观、图片空间效果，查看收听统计、月度与年度报告。
-- 四种外观，支持简体中文、繁体中文、日文、英文和韩文界面。
+- **两个库和作品资料。** 把多轨作品按社团、声优整理，把独立音声按创作者整理。名称、封面显示、归属和通话角色都能在「编辑作品资料」中调整。
+- **导入本地文件和指定网页。** 导入音视频、文件夹或普通 ZIP。Soundgasm 入口下载音频，Scriptbin 入口为已有作品添加台本。
+- **普通播放、全屏字幕、模拟通话。** 调整队列、循环、倍速、音调和睡眠定时，也可打开全屏台本或模拟语音 / 视频通话界面。模拟通话只用于播放，另有视频文件播放入口。
+- **台本和字幕。** 有可识别时间标记的台本能跟着音轨走。无时间的台本可直接读或逐句打轴，编辑后能保存版本。有原文和译文时可导入配对，App 不提供自动翻译。
+- **列表和摘选。** 把整曲排进播放列表，把想再听的几秒保存为摘选。条目可拖动或换分类，摘选可拼接并导出 MP3 或 WAV。
+- **开屏和统计。** 可用自己选的音频设置开屏语音。查看收听时长、趋势、时段和排行，回顾每月或每年的记录，并导出报告长图。提供四种外观和五种界面语言。
 
-模拟通话是播放外观，不提供真实通话服务；普通 ZIP、视频格式和链接导入的具体范围见[使用说明](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.0/docs/USAGE.md)。
+仓库首页按模块介绍这些功能，使用手册配有台本导入、文件重新关联和列表排序图解。[功能介绍](https://github.com/Reyanna0o0/Sumo-soundplayer#主要功能) · [图文使用手册](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/codex/release-preparation/docs/USAGE.md)
+
+## 文件与隐私
+
+作品资料、文件位置引用、字幕和收听记录保存在设备上。厮磨无需账户，没有项目方的云端媒体库或跨设备同步。链接导入时会访问你选择的第三方站点。以文件夹方式导入的作品从原位置读取，文件移动或改名后可以在作品菜单重新关联。[完整声明](https://github.com/Reyanna0o0/Sumo-soundplayer#数据隐私与内容声明)
 
 ## 已验证与尚待验证
 
