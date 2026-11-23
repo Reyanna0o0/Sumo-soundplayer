@@ -1,6 +1,6 @@
 # IPA 安装、续签与更新
 
-**已验证：2026-11-23，用户确认在 Mac 上下载 IPA、通过 Sideloadly 安装到手机，并成功打开厮磨。** Windows 和 AltStore 路线尚未实测；应用功能、续签和覆盖更新的数据保留仍需分别验证。详细范围见[发布准备状态](RELEASE_STATUS.md)。
+**已验证：2026-11-23，用户确认 Mac 下载、Sideloadly 安装与首次打开，并确认 build 33 手动测试通过，覆盖更新后此前导入的数据仍在。** Windows、AltStore 和续签尚未实测；其他功能场景仍需分别验证。详细范围见[发布准备状态](RELEASE_STATUS.md)。
 
 **还没下载到安装包？先看[第 1 步：把厮磨安装包下载到电脑](DOWNLOAD.md)。** 那一页从打开 GitHub 开始，说明在哪里点下载、该选哪个文件，以及下载后去哪里找。拿到 `.ipa` 文件后再回到这里。
 
@@ -35,6 +35,8 @@
 在设备下载 IPA 后，进入 AltStore 的 `My Apps`，通过 `+` 选择文件并签名安装。续签时确保 AltServer 在电脑运行且设备能连接到它，必要时点 `Refresh All`。免费账户下 AltStore 自己也占一个安装名额。[AltStore 使用说明](https://faq.altstore.io/altstore-classic/your-altstore)
 
 ## 更新和保留数据
+
+2026-11-23 的 build 33 更新已获用户手动确认：版本更新成功，之前导入的数据仍在。这是本次实际安装环境的反馈，续签及其他环境仍待验证。
 
 更新时下载新版 IPA，用**同一 Apple 账户、同一工具、同一应用标识**覆盖现有 App。不要先卸载。使用相同标识是覆盖更新的前提，仍需在首次试用阶段确认自己的安装环境能保留数据。[Sideloadly 更新说明](https://sideloadly.io/faq.html)
 
