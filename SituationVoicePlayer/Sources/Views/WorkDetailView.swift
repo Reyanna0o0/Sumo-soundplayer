@@ -515,7 +515,7 @@ struct WorkDetailView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("文件位置").font(.footnote).foregroundStyle(AppTheme.secondaryText)
                 .padding(.horizontal, 16)
-            Text(currentWork.folderPath)
+            Text(URL(fileURLWithPath: currentWork.folderPath).lastPathComponent)
                 .accessibilityIdentifier("workPathValue")
                 .font(.caption.monospaced())
                 .foregroundStyle(AppTheme.secondaryText)
@@ -646,12 +646,12 @@ struct WorkDetailView: View {
         let minutes = currentWork.totalDurationMS / 60_000
         if minutes >= 60 { return L10n.text("\(minutes / 60) 小时 \(minutes % 60) 分") }
         if minutes > 0 { return L10n.text("\(minutes) 分") }
-        let seconds = currentWork.totalDurationMS / 1000
+        let seconds = Int((Double(currentWork.totalDurationMS) / 1000).rounded())
         return seconds > 0 ? L10n.text("\(seconds) 秒") : "—"
     }
 
     private func format(_ ms: Int) -> String {
-        let totalSeconds = ms / 1000
+        let totalSeconds = Int((Double(ms) / 1000).rounded())
         let minutes = totalSeconds / 60
         let seconds = totalSeconds % 60
         if minutes >= 60 {

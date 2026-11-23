@@ -27,6 +27,35 @@ final class LibraryStore: ObservableObject {
         var trackCount: Int = 0
         var videoCount: Int = 0
         var titles: [String] = []
+        var subtitleCount = 0
+        var coverCount = 0
+        var subtitleFiles: [String] = []
+        var unmatchedFiles: [String] = []
+
+        mutating func describeFiles(in works: [ScannedWork]) {
+            coverCount = works.filter { $0.coverRelativePath != nil }.count
+            var imported = Set<String>(), all = Set<String>()
+            for work in works {
+                all.formUnion(work.subtitlePaths)
+                let paths = work.tracks.flatMap { $0.variants.map(\.filePath) }
+                let matches = SubtitleSidecarFinder.importMatches(audioPaths: paths,
+                    subtitlePaths: work.subtitlePaths, selectedAudioPaths: Set(work.tracks.map(\.filePath)))
+                for selected in matches.values {
+                    let pair = SubtitleSidecarFinder.importPair(for: selected, subtitlePaths: work.subtitlePaths)
+                    for match in [pair.primary, pair.secondary].compactMap({ $0 }) {
+                        let url = URL(fileURLWithPath: match.path)
+                        guard let size = try? url.resourceValues(forKeys: [.fileSizeKey]).fileSize,
+                              size <= 32 * 1024 * 1024,
+                              let data = try? Data(contentsOf: url), let text = SubtitleTextDecoder.decode(data: data),
+                              !SubtitleParser.parse(text, formatHint: match.format).cues.isEmpty else { continue }
+                        imported.insert(match.path)
+                    }
+                }
+            }
+            subtitleCount = imported.count
+            subtitleFiles = imported.sorted().map { URL(fileURLWithPath: $0).lastPathComponent }
+            unmatchedFiles = all.subtracting(imported).sorted().map { URL(fileURLWithPath: $0).lastPathComponent }
+        }
         var errorMessage: String?
 
         var isEmpty: Bool { workCount == 0 }
@@ -1328,7 +1357,9 @@ final class LibraryStore: ObservableObject {
             .reduce(0) { $0 + $1.filter { $0.kind == .video }.count }
         let trackCount = media.filter { !$0.isVideo }.count
         let titles = planned.prefix(5).map { $0.title }
-        return ImportPreview(workCount: planned.count, trackCount: trackCount, videoCount: videoCount, titles: titles)
+        var preview = ImportPreview(workCount: planned.count, trackCount: trackCount, videoCount: videoCount, titles: titles)
+        preview.describeFiles(in: planned)
+        return preview
     }
 
     /// 使用本次扫描的路径，按作品匹配。未选用的音频版本也参与辨认，避免串用字幕。
@@ -1347,7 +1378,9 @@ final class LibraryStore: ObservableObject {
         )
         var trackIDs: Set<Int64> = []
         for track in tracks {
-            guard let match = matches[track.filePath] else { continue }
+            guard let selected = matches[track.filePath] else { continue }
+            let pair = SubtitleSidecarFinder.importPair(for: selected, subtitlePaths: work.subtitlePaths)
+            let match = pair.primary
             let label = (match.path as NSString).lastPathComponent
             let existing = try repository.tracks(forTrackID: track.id)
             if existing.contains(where: { $0.kind == .sidecar && $0.label == label }) {
@@ -1365,12 +1398,24 @@ final class LibraryStore: ObservableObject {
                     DebugLog.write("没有可读的字幕时间行：\(match.path)")
                     continue
                 }
+                var cues = parsed.cues
+                var translationPath: String?
+                if let secondary = pair.secondary,
+                   let bytes = try? Data(contentsOf: URL(fileURLWithPath: secondary.path)),
+                   let text = SubtitleTextDecoder.decode(data: bytes) {
+                    let translation = SubtitleParser.parse(text, formatHint: secondary.format).cues
+                    if !translation.isEmpty {
+                        cues = SubtitleTranslationMerger.merge(primary: cues, secondary: translation)
+                        translationPath = secondary.path
+                    }
+                }
                 try repository.createTrack(
                     trackID: track.id, kind: .sidecar, language: match.languageHint, label: label,
-                    cues: parsed.cues, note: "导入作品时自动配对", activate: repository.shouldActivateNewSidecar(alongside: existing)
+                    cues: cues, note: "导入作品时自动配对", activate: repository.shouldActivateNewSidecar(alongside: existing)
                 )
                 trackIDs.insert(track.id)
                 remaining.remove(match.path)
+                if let translationPath { remaining.remove(translationPath) }
                 DebugLog.write("已写入 \(parsed.cues.count) 行：\(match.path) → \(track.fileName)")
             } catch {
                 DebugLog.write("字幕读取或保存失败：\(match.path)，\(error.localizedDescription)")

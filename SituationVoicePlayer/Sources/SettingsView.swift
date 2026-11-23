@@ -279,10 +279,18 @@ private struct LanguageSettingsPicker: View {
     var body: some View {
         @Bindable var language = AppLanguageSelection.shared
         @Bindable var appearance = AppearanceSelection.shared
-        Picker("App 语言", selection: $language.language) {
-            ForEach(AppLanguage.allCases) { choice in
-                Text(verbatim: choice.name).tag(choice)
+        Menu {
+            Picker("App 语言", selection: $language.language) {
+                ForEach(AppLanguage.allCases) { choice in Text(verbatim: choice.name).tag(choice) }
             }
+        } label: {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("App 语言")
+                Text(verbatim: language.language.name).foregroundStyle(AppTheme.secondaryText)
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+            .contentShape(Rectangle())
         }
         .tint(AppTheme.ink)
         // 原生菜单选择器会缓存已解析的 tint。只重建这个无草稿控件，

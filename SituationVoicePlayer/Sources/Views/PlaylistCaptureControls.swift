@@ -21,6 +21,8 @@ struct PlaylistCaptureControls: View {
                         }
                         .disabled(player.positionMS <= start)
                         .accessibilityIdentifier("saveClip")
+                        .accessibilityLabel("标记终点")
+                        .frame(minWidth: 44, minHeight: 44)
 
                         Button {
                             player.clearClipStart()
@@ -36,6 +38,8 @@ struct PlaylistCaptureControls: View {
                         }
                         .disabled(player.durationMS <= 0 || player.positionMS >= player.durationMS)
                         .accessibilityIdentifier("markClipStart")
+                        .accessibilityLabel("标记起点")
+                        .frame(minWidth: 44, minHeight: 44)
                     }
                 }
                 .font(.subheadline)

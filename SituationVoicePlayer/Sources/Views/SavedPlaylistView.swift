@@ -14,7 +14,7 @@ struct PlaylistDestinationSheet: View {
             AppList {
                 Section {
                     Text(item.trackTitle).font(.subheadline).foregroundStyle(AppTheme.secondaryText)
-                } header: { Text("选择播放列表") }
+                } header: { Text("选择播放列表").foregroundStyle(AppTheme.secondaryText) }
                 ForEach(store.playlistGroups.filter { !$0.isClips }) { group in
                     let entries = store.playlistEntries.filter { $0.groupID == group.id }
                     let contains = entries.contains { item.mediaID != nil && $0.wholeMediaID == item.mediaID }

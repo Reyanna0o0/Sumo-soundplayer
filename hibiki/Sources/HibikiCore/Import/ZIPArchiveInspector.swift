@@ -88,7 +88,9 @@ public enum ZIPArchiveInspector {
             guard total <= limits.maximumUncompressedBytes else { throw ZIPImportError.resourceLimit(InterfaceLocalization.text("展开后的文件总量过大")) }
 
             let archivePath = try decodeName(rawName, flags: flags)
-            var path = archivePath
+            // Keep archivePath in ZIPFoundation's decoding for entry identity checks.
+            // macOS archives often omit bit 11 despite using valid UTF-8 bytes.
+            var path = String(data: rawName, encoding: .utf8) ?? archivePath
             if let unicode = extra[0x7075] {
                 guard unicode.count >= 5 else { throw invalid(InterfaceLocalization.text("Unicode 文件名字段被截断")) }
                 if unicode[0] == 1, try unicode.u32(1) == ZIPImportCRC32.checksum(rawName) {

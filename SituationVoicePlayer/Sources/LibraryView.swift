@@ -32,6 +32,7 @@ struct LibraryView: View {
     @State private var selectedWork: WorkRecord?
     @StateObject private var workDrag = MediaWorkDragSession()
     @StateObject private var collectionArrangement = CollectionWorkArrangement()
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var collectionGridFrames: [Int: CGRect] = [:]
     @AppStorage(CollectionWorkDisplay.preferenceKey) private var collectionDisplayRaw = CollectionWorkDisplay.covers.rawValue
     private var collectionDisplay: CollectionWorkDisplay { .resolved(collectionDisplayRaw) }
@@ -57,6 +58,7 @@ struct LibraryView: View {
     }
 
     private var columns: [GridItem] {
+        if dynamicTypeSize.isAccessibilitySize { return [GridItem(.flexible())] }
         if horizontalSizeClass == .compact {
             return Array(repeating: GridItem(.flexible(minimum: 0), spacing: 16, alignment: .top), count: 2)
         }
@@ -129,11 +131,6 @@ struct LibraryView: View {
             }
             .safeAreaInset(edge: .bottom) {
                 progressBar
-            }
-            .task(id: store.phase) {
-                guard case .done(let works, _, _, 0, 0) = store.phase, works > 0 else { return }
-                do { try await Task.sleep(for: .seconds(2.5)) } catch { return }
-                withAnimation(.easeOut(duration: 0.2)) { store.clearPhase() }
             }
             .porcelainSheet(isPresented: $showImport) {
                 LibraryImportSheet(store: store, initialLibrary: store.currentLibrary)
@@ -288,14 +285,17 @@ struct LibraryView: View {
     /// Only the home screen owns this header. Pushed screens keep their native
     /// navigation bar and safe-area geometry, without inheriting the 8pt inset.
     private var libraryHomeHeader: some View {
-        HStack(spacing: 12) {
+        let layout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
+            : AnyLayout(HStackLayout(spacing: 12))
+        return layout {
             libraryMenu
-            Spacer(minLength: 0)
+            if !dynamicTypeSize.isAccessibilitySize { Spacer(minLength: 0) }
             libraryHeaderActions
                 .fixedSize(horizontal: true, vertical: false)
                 .layoutPriority(1)
         }
-        .frame(height: 44)
+        .frame(minHeight: 44)
         .padding(.leading, 24)
         .padding(.trailing, 20)
         .padding(.top, 8)
@@ -376,7 +376,7 @@ struct LibraryView: View {
                 Text(store.currentLibrary.displayName)
                     .font(.title.bold())
                     .foregroundStyle(AppTheme.textStyle(.primary, AppTheme.libraryTitleInk))
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.6)
                 Image(systemName: "chevron.down")
                     .font(.system(size: 11, weight: .regular))
@@ -630,6 +630,7 @@ struct LibraryView: View {
     // MARK: - 空状态
 
     private var emptyState: some View {
+        ScrollView {
         ContentUnavailableView {
             Label("还没有导入作品", systemImage: "music.note.list")
         } description: {
@@ -637,6 +638,7 @@ struct LibraryView: View {
         } actions: {
             Button("导入作品") { showImport = true }
             .buttonStyle(.borderedProminent)
+            .frame(minHeight: 44)
 
             #if DEBUG
             NavigationLink("运行内核自检") {
@@ -645,6 +647,8 @@ struct LibraryView: View {
             }
             .font(.footnote)
             #endif
+        }
+        .padding(.bottom, 32)
         }
     }
 
@@ -698,6 +702,7 @@ struct LibraryView: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
+                .frame(maxWidth: 1000)
                 .frame(maxWidth: .infinity, minHeight: viewport.size.height, alignment: .top)
                 .contentShape(Rectangle())
                 .coordinateSpace(name: CollectionWorkArrangement.coordinateSpace)
@@ -763,14 +768,18 @@ struct LibraryView: View {
                 Image(systemName: tint == .red ? "exclamationmark.triangle.fill" : "checkmark.circle.fill")
                     .foregroundStyle(tint)
             }
-            Text(text)
-                .font(.footnote)
-                .fixedSize(horizontal: false, vertical: true)
+            ScrollView { Text(text).font(.footnote).fixedSize(horizontal: false, vertical: true) }
+                .frame(maxHeight: 120)
             Spacer(minLength: 0)
+            if !spinner {
+                Button { store.clearPhase() } label: {
+                    Image(systemName: "xmark").frame(width: 44, height: 44)
+                }.accessibilityLabel("关闭")
+            }
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 10)
-        .background(.thinMaterial, in: Capsule())
+        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16))
         .padding(.horizontal, 16)
         .padding(.bottom, 8)
     }

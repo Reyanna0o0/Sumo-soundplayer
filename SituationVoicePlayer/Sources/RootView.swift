@@ -48,6 +48,11 @@ struct RootView: View {
                 .tabItem { tabLabel("设置", systemImage: "gearshape") }
                 .tag(Tab.settings)
         }
+        .task(id: store.phase) {
+            guard case .done = store.phase else { return }
+            do { try await Task.sleep(for: .seconds(5)) } catch { return }
+            withAnimation(.easeOut(duration: 0.2)) { store.clearPhase() }
+        }
         .tint(AppTheme.isPurple ? AppTheme.purplePlaybackIndicator : AppTheme.optionalTint)
         .preferredColorScheme(AppearanceSelection.shared.palette.preferredColorScheme)
         .overlay {

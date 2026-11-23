@@ -23,7 +23,7 @@ struct WorkCardView: View {
 
                 Text(work.subtitle.replacingOccurrences(of: "、", with: "/"))
                     .font(.caption2)
-                    .lineLimit(1, reservesSpace: true)
+                    .lineLimit(2, reservesSpace: true)
                     .foregroundStyle(AppTheme.secondaryText)
 
                 HStack(spacing: 4) {
@@ -72,7 +72,9 @@ struct WorkCardView: View {
     }
 
     private var formattedDuration: String {
-        let totalMinutes = work.totalDurationMS / 60_000
+        let seconds = Int((Double(work.totalDurationMS) / 1000).rounded())
+        if seconds < 60 { return L10n.text("\(seconds) 秒") }
+        let totalMinutes = seconds / 60
         if totalMinutes >= 60 {
             return L10n.text("\(totalMinutes / 60) 小时 \(totalMinutes % 60) 分")
         }

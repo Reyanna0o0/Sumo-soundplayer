@@ -191,7 +191,10 @@ struct AppForm<Content: View>: View {
 
 struct AppList<Content: View>: View {
     @ViewBuilder var content: () -> Content
-    var body: some View { List { content().appListRows() }.appListSurface() }
+    var body: some View {
+        List { content().appListRows() }.appListSurface()
+            .frame(maxWidth: 860).frame(maxWidth: .infinity)
+    }
 }
 
 /// 原生 List 可能保留上一轮背景配置；常驻 UIKit 背景直接跟随最新皮肤，

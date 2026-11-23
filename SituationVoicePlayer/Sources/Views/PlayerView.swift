@@ -27,7 +27,7 @@ struct PlayerView: View {
     var body: some View {
         NavigationStack {
             GeometryReader { proxy in
-                if proxy.size.width > proxy.size.height && proxy.size.width >= 560 {
+                if proxy.size.width >= 800 || (proxy.size.width > proxy.size.height && proxy.size.width >= 560) {
                     landscapePlayer(in: proxy.size)
                 } else {
                     ScrollView {
@@ -380,11 +380,7 @@ struct PlayerView: View {
 
 private extension View {
     @ViewBuilder func playerToolbarTarget() -> some View {
-        if AppTheme.isPurple {
-            labelStyle(.iconOnly).frame(width: 44, height: 44).contentShape(Rectangle())
-        } else {
-            self
-        }
+        labelStyle(.iconOnly).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
     }
 
     @ViewBuilder func playerToolbarCapsule() -> some View {
@@ -447,6 +443,7 @@ private struct PortraitPlayerLayout: Layout {
 }
 
 struct PlayerOptionsRow: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @EnvironmentObject private var player: PlayerController
     let favoriteWork: WorkRecord?
     let onFavorite: (WorkRecord) -> Void
@@ -461,7 +458,7 @@ struct PlayerOptionsRow: View {
     var labelInk: Color? = nil
 
     var body: some View {
-        HStack(spacing: 0) {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: dynamicTypeSize.isAccessibilitySize ? 2 : 3), spacing: 12) {
             if let onCallSpatialToggle {
                 Button(action: onCallSpatialToggle) {
                     Label("空间效果", systemImage: callSpatialEnabled ? "square.3.layers.3d.down.right" : "square.3.layers.3d")
@@ -554,7 +551,8 @@ private struct PlayerOptionLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
         let label = VStack(spacing: 4) {
             configuration.icon.font(.system(size: 18))
-            configuration.title.font(.caption2).lineLimit(1)
+            configuration.title.font(.caption).multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity, minHeight: 44)
         .contentShape(Rectangle())

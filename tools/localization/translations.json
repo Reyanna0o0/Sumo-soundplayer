@@ -57,7 +57,7 @@
     "context": [
       "LibraryView"
     ],
-    "en": " subtitles not imported",
+    "en": " subtitle/script file(s) not imported",
     "ja": "件の字幕は未追加",
     "ko": "개 자막을 가져오지 못함",
     "zh-Hant": " 份字幕未收錄"
@@ -12355,5 +12355,23 @@
     "zh-Hant": "頭像縮放",
     "ja": "アバターの拡大・縮小",
     "ko": "아바타 확대/축소"
+  },
+  "未自动收录的文件": {
+    "zh-Hant": "未自動收錄的檔案",
+    "en": "Files not imported automatically",
+    "ja": "自動で取り込まれないファイル",
+    "ko": "자동으로 가져오지 못한 파일"
+  },
+  "未找到唯一匹配的音轨或可读取的时间字幕；台本可在作品中手动配对。": {
+    "zh-Hant": "未找到唯一匹配的音軌或可讀取的時間字幕；台本可在作品中手動配對。",
+    "en": "No unique track match or readable timed subtitles. Scripts can be paired manually in the work.",
+    "ja": "一致する音声または読み取り可能な時間付き字幕がありません。台本は作品内で手動で関連付けできます。",
+    "ko": "일치하는 트랙 또는 읽을 수 있는 시간 자막이 없습니다. 대본은 작품에서 직접 연결할 수 있습니다."
+  },
+  "播放已结束，模拟通话已结束。": {
+    "zh-Hant": "播放已結束，模擬通話已結束。",
+    "en": "Playback has finished. The simulated call has ended.",
+    "ja": "再生が終了したため、模擬通話が終了しました。",
+    "ko": "재생이 완료되어 모의 통화가 종료되었습니다."
   }
 }

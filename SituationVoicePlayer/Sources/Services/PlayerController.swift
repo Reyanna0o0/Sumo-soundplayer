@@ -17,6 +17,7 @@ final class PlayerController: ObservableObject {
     @Published private(set) var callWorkID: Int64?
     @Published private(set) var audioOutputName = InterfaceLocalization.text("音频输出")
     @Published var callUsesVideo = false
+    @Published var callCompletionMessage: String?
     @Published var callShowsLocalImage = false
     private var callConnection: Task<Void, Never>?
     private var callGeneration = UUID()
@@ -34,6 +35,7 @@ final class PlayerController: ObservableObject {
         let expected = callGeneration
         callWorkID = item.workID
         callUsesVideo = false
+        callCompletionMessage = nil
         callShowsLocalImage = false
         callPhase = .connecting
         isPlayerSheetPresented = true
@@ -822,6 +824,7 @@ final class PlayerController: ObservableObject {
                   candidate.current?.isSavedClip == false else {
                 positionMS = durationMS
                 endCall()
+                callCompletionMessage = InterfaceLocalization.text("播放已结束，模拟通话已结束。")
                 return
             }
             candidate.repeatMode = queue.repeatMode

@@ -5,7 +5,7 @@
 " · 时长 {#0}" = " · Duration {#0}";
 " · 时长不足 1 秒" = " · Less than 1 sec";
 " 份字幕" = " subtitles";
-" 份字幕未收录" = " subtitles not imported";
+" 份字幕未收录" = " subtitle/script file(s) not imported";
 " 分钟" = " min";
 " 请重新选择 ZIP 后再试。" = " Please select the ZIP again and retry.";
 "%@ · %lld 个版本" = "%@ · Versions: %lld";
@@ -640,6 +640,7 @@
 "播放列表尚未就绪。" = "The playlist is not ready yet.";
 "播放和导出都用预计结束时间。每句最多显示 5 秒，遇到下一句或音频结尾会提前结束。" = "Playback and export both use the estimated end time. Each line is shown for up to 5 seconds, ending earlier at the next line or the end of the audio.";
 "播放器封面" = "Player Cover";
+"播放已结束，模拟通话已结束。" = "Playback has finished. The simulated call has ended.";
 "播放曲目或字幕已切换。文字草稿仍保留，可复制文字或取消后返回。" = "The track or subtitles have changed. Your text draft is kept. Copy the text, or cancel to return.";
 "播放视频" = "Play Video";
 "播放这部作品；更多菜单可查看作品信息、字幕与附件" = "Play this work. The More menu contains work details, subtitles, and attachments.";
@@ -814,6 +815,7 @@
 "未打轴" = "Untimed";
 "未打轴，%@" = "Untimed, %@";
 "未找到 Scriptbin 正文，尚未导入。" = "Scriptbin text was not found. Nothing has been imported.";
+"未找到唯一匹配的音轨或可读取的时间字幕；台本可在作品中手动配对。" = "No unique track match or readable timed subtitles. Scripts can be paired manually in the work.";
 "未知错误" = "Unknown Error";
 "未能保存报告长图，请检查可用空间后重试。" = "Unable to save the report image. Check your available storage and try again.";
 "未能切换字幕版本，请重试。" = "Unable to switch subtitle versions. Please try again.";
@@ -824,6 +826,7 @@
 "未能清理图片缓存" = "Couldn’t Clear Image Cache";
 "未能清理字幕历史" = "Could Not Clear Subtitle History";
 "未能绘制报告长图，请稍后重试。" = "Unable to render the report image. Please try again later.";
+"未自动收录的文件" = "Files not imported automatically";
 "未设置通话头像" = "No Call Avatar Set";
 "未选" = "Not Selected";
 "未选择" = "Not Selected";

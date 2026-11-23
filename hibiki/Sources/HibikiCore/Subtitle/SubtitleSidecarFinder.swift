@@ -258,6 +258,27 @@ public enum SubtitleSidecarFinder {
         return pairs
     }
 
+    /// Only pair an unambiguous same-directory, same-format language sibling.
+    /// Ownership is still decided by importMatches, including audio variant rules.
+    public static func importPair(for selected: SidecarSubtitleMatch, subtitlePaths: [String])
+        -> (primary: SidecarSubtitleMatch, secondary: SidecarSubtitleMatch?) {
+        let selectedURL = URL(fileURLWithPath: selected.path)
+        let selectedName = subtitleName(selectedURL.lastPathComponent)
+        guard selectedName.language != nil else { return (selected, nil) }
+        let siblings = subtitlePaths.compactMap { path -> SidecarSubtitleMatch? in
+            let url = URL(fileURLWithPath: path)
+            let name = subtitleName(url.lastPathComponent)
+            guard url.deletingLastPathComponent() == selectedURL.deletingLastPathComponent(),
+                  name.base == selectedName.base, name.language != nil,
+                  url.pathExtension.lowercased() == selectedURL.pathExtension.lowercased() else { return nil }
+            return SidecarSubtitleMatch(path: path, format: selected.format,
+                languageHint: name.language, confidence: selected.confidence)
+        }
+        guard siblings.count == 2, Set(siblings.compactMap(\.languageHint)).count == 2,
+              let pair = pair(siblings).first else { return (selected, nil) }
+        return pair
+    }
+
     // MARK: - 内部
 
     /// 归一化文件名：去掉标点空格、全角转半角、小写

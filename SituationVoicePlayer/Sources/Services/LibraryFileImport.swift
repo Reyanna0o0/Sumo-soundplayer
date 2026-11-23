@@ -219,12 +219,27 @@ private struct PreparedArchiveLibrary: Sendable {
             var sidecars: [Sidecar] = [], matched = Set<String>()
             for track in tracks {
                 try Task.checkCancellation()
-                guard let match = matches[track.filePath] else { continue }
+                guard let selected = matches[track.filePath] else { continue }
+                let pair = SubtitleSidecarFinder.importPair(for: selected, subtitlePaths: scan.subtitlePaths)
+                let match = pair.primary
                 let url = URL(fileURLWithPath: match.path)
                 guard let size = try url.resourceValues(forKeys: [.fileSizeKey]).fileSize, size <= 32 * 1024 * 1024,
                       let text = SubtitleTextDecoder.decode(data: try Data(contentsOf: url)) else { continue }
-                let cues = SubtitleParser.parse(text, formatHint: match.format).cues
+                var cues = SubtitleParser.parse(text, formatHint: match.format).cues
                 guard !cues.isEmpty else { continue }
+                if let secondary = pair.secondary {
+                    let secondaryURL = URL(fileURLWithPath: secondary.path)
+                    if let size = try? secondaryURL.resourceValues(forKeys: [.fileSizeKey]).fileSize,
+                       size <= 32 * 1024 * 1024,
+                       let data = try? Data(contentsOf: secondaryURL),
+                       let text = SubtitleTextDecoder.decode(data: data) {
+                        let translation = SubtitleParser.parse(text, formatHint: secondary.format).cues
+                        if !translation.isEmpty {
+                            cues = SubtitleTranslationMerger.merge(primary: cues, secondary: translation)
+                            matched.insert(secondary.path)
+                        }
+                    }
+                }
                 sidecars.append(Sidecar(temporaryTrackID: track.id, label: url.lastPathComponent, language: match.languageHint, cues: cues))
                 matched.insert(match.path)
             }
@@ -244,9 +259,11 @@ extension LibraryStore {
             let (_, works) = try await Task.detached(priority: .userInitiated) {
                 try PreparedArchiveLibrary.scan(root: root, originalName: name, grouping: grouping)
             }.value
-            return ImportPreview(workCount: works.count, trackCount: works.flatMap(\.tracks).filter { !$0.isVideo }.count,
+            var preview = ImportPreview(workCount: works.count, trackCount: works.flatMap(\.tracks).filter { !$0.isVideo }.count,
                 videoCount: works.flatMap(\.tracks).filter(\.isVideo).count, titles: works.prefix(8).map(\.title),
                 errorMessage: works.isEmpty ? InterfaceLocalization.text("没有找到可导入的音频或视频，请调整作品划分方式。") : nil)
+            preview.describeFiles(in: works)
+            return preview
         } catch { return ImportPreview(errorMessage: error.localizedDescription) }
     }
 }

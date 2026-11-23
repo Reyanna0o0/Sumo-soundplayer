@@ -112,6 +112,20 @@ struct LibraryImportSheet: View {
                                 LabeledContent("作品", value: "\(preview.workCount)")
                                 LabeledContent("音轨", value: "\(preview.trackCount)")
                                 if preview.videoCount > 0 { LabeledContent("视频", value: "\(preview.videoCount)") }
+                                LabeledContent("字幕", value: "\(preview.subtitleCount)")
+                                LabeledContent("封面", value: "\(preview.coverCount)")
+                                if !preview.subtitleFiles.isEmpty {
+                                    DisclosureGroup("字幕") {
+                                        ForEach(Array(preview.subtitleFiles.enumerated()), id: \.offset) { _, name in Text(name) }
+                                    }
+                                }
+                                if !preview.unmatchedFiles.isEmpty {
+                                    DisclosureGroup("未自动收录的文件") {
+                                        Text("未找到唯一匹配的音轨或可读取的时间字幕；台本可在作品中手动配对。")
+                                            .font(.footnote).foregroundStyle(AppTheme.secondaryText)
+                                        ForEach(Array(preview.unmatchedFiles.enumerated()), id: \.offset) { _, name in Text(name) }
+                                    }
+                                }
                                 ForEach(Array(preview.titles.enumerated()), id: \.offset) { _, title in
                                     Text(title).font(.caption).lineLimit(2)
                                 }
@@ -128,10 +142,10 @@ struct LibraryImportSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("取消") { operation?.cancel(); dismiss() }.disabled(importing && kind == .folder)
+                    Button("取消") { operation?.cancel(); dismiss() }.frame(minHeight: 44).disabled(importing && kind == .folder)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("确认导入", action: submit).disabled(!ready)
+                    Button("确认导入", action: submit).frame(minHeight: 44).disabled(!ready)
                         .accessibilityIdentifier("libraryImportConfirm")
                 }
             }

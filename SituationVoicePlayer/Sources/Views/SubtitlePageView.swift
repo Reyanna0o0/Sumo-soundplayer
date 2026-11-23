@@ -807,6 +807,10 @@ struct SubtitlePageView: View {
                 .accessibilityIdentifier("exitSubtitleEditing")
                 .disabled(quickEditing != nil)
             }
+            Menu { displayToggles } label: {
+                Label("显示内容", systemImage: "character.bubble")
+                    .frame(minWidth: 44, minHeight: 44)
+            }.accessibilityLabel("显示内容")
             subtitlesMenu
         }
         .labelStyle(.iconOnly)
@@ -820,24 +824,18 @@ struct SubtitlePageView: View {
                 Button("从头阅读", systemImage: "arrow.up.to.line") { readFromBeginning() }
                     .accessibilityIdentifier("readScriptFromBeginning")
             }
-            displayToggles
+            Menu { displayToggles; styleButton } label: { Label("字幕样式", systemImage: "textformat.size") }
             Divider()
-            styleButton
             Button("字幕浮窗", systemImage: "pip") { pictureInPicture.isSubtitleSheetPresented = true }
                 .accessibilityIdentifier("subtitlePiPEntry")
             if !isSavedClip {
-                editButton
-                versionsButton
+                Menu { editButton; versionsButton; importButton; clearButton } label: { Label("字幕", systemImage: "text.bubble") }
             }
             Divider()
             exportMenu
             shareButton
 
-            if !isSavedClip {
-                Divider()
-                importButton
-                clearButton
-            }
+
         } label: {
             Label("字幕工具", systemImage: "ellipsis")
                 .frame(minWidth: 44, minHeight: 44)

@@ -10,6 +10,12 @@ struct PlaybackPresentationView: View {
             else { PlayerView().porcelainSurface() }
         }
         .background(CallOrientationWindowBridge(player: player).allowsHitTesting(false))
+        .alert("模拟通话", isPresented: Binding(
+            get: { player.callCompletionMessage != nil },
+            set: { if !$0 { player.callCompletionMessage = nil } }
+        )) {
+            Button("好") { player.callCompletionMessage = nil }
+        } message: { Text(player.callCompletionMessage ?? "") }
         .playlistAdditionFeedback()
     }
 }
