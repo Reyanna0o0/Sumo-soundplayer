@@ -373,8 +373,10 @@
 "天" = "days";
 "头像" = "Avatar";
 "头像取景" = "Avatar Framing";
+"头像取景框" = "Avatar crop area";
 "头像和封面统一在创作者资料中设置。修改作品归属会保留音轨、字幕、分类和阅读位置。" = "Set the avatar and cover in the creator profile. Changing the assigned creator preserves tracks, subtitles, categories, and reading positions.";
 "头像暂不可用" = "Avatar is temporarily unavailable";
+"头像缩放" = "Avatar zoom";
 "好" = "OK";
 "媒体库" = "Library";
 "媒体库分类" = "Library Categories";
@@ -1116,6 +1118,7 @@
 "至" = "To";
 "至少选择两个摘选。" = "Select at least two clips.";
 "裁剪失败：{#0}" = "Cropping failed: {#0}";
+"裁剪头像" = "Crop avatar";
 "裁剪封面" = "Crop Cover";
 "视频" = "Video";
 "视频导入失败：{#0}" = "Video import failed: {#0}";

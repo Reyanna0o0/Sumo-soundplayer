@@ -10,7 +10,13 @@ final class CoverCropInput: Identifiable {
 }
 
 struct CoverCropSheet: View {
+    enum Purpose {
+        case cover, avatar
+        var aspectRatio: CGFloat { self == .avatar ? 1 : 4 / 3 }
+    }
+
     let input: CoverCropInput
+    var purpose: Purpose = .cover
     let onUse: (String) -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var image: UIImage?
@@ -26,17 +32,27 @@ struct CoverCropSheet: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 18) {
-                    Color.clear.aspectRatio(4 / 3, contentMode: .fit)
+                    Color.clear.aspectRatio(purpose.aspectRatio, contentMode: .fit)
                         .overlay {
                             if let image {
                                 GeometryReader { frame in viewport(image, size: frame.size) }
                             } else if errorMessage == nil { ProgressView() }
                         }
                         .background(.black).clipped()
-                        .accessibilityLabel("封面取景框").accessibilityIdentifier("cropViewport")
+                        .overlay {
+                            if purpose == .avatar {
+                                AvatarCropMask().fill(.black.opacity(0.5), style: FillStyle(eoFill: true))
+                                    .allowsHitTesting(false)
+                                Circle().stroke(.white.opacity(0.9), lineWidth: 1)
+                                    .allowsHitTesting(false)
+                            }
+                        }
+                        .accessibilityLabel(L10n.text(purpose == .avatar ? "头像取景框" : "封面取景框"))
+                        .accessibilityIdentifier("cropViewport")
                     HStack {
                         Image(systemName: "minus.magnifyingglass")
-                        Slider(value: $zoom, in: 1...5).accessibilityLabel("封面缩放")
+                        Slider(value: $zoom, in: 1...5)
+                            .accessibilityLabel(L10n.text(purpose == .avatar ? "头像缩放" : "封面缩放"))
                             .accessibilityIdentifier("cropZoom")
                         Image(systemName: "plus.magnifyingglass")
                     }
@@ -52,7 +68,8 @@ struct CoverCropSheet: View {
             }
             .appPageBackground(AppTheme.painted(.clear, AppTheme.background))
             .tint(AppTheme.usesCustomPalette ? AppTheme.accent : nil)
-            .appNavigationColors().navigationTitle(L10n.text("裁剪封面")).navigationBarTitleDisplayMode(.inline)
+            .appNavigationColors().navigationTitle(L10n.text(purpose == .avatar ? "裁剪头像" : "裁剪封面"))
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
@@ -94,7 +111,7 @@ struct CoverCropSheet: View {
 
     private func save() {
         guard let image, !saving else { return }
-        let ratio: CGFloat = 4 / 3
+        let ratio = purpose.aspectRatio
         let width = min(image.size.width, image.size.height * ratio) / zoom
         let height = width / ratio
         let rect = CGRect(x: (image.size.width - width) * (1 - pan.width) / 2,
@@ -102,15 +119,27 @@ struct CoverCropSheet: View {
                           width: width, height: height)
         saving = true
         let inputPath = input.relativePath
+        // Avatar consumers must receive the selected region, including when a
+        // call or creator cover inherits it. Covers still retain their source.
+        let preserveOriginal = purpose == .cover
         Task {
             defer { saving = false }
             do {
                 let file = try await Task.detached(priority: .userInitiated) {
-                    try WorkAssetImporter.croppedCover(from: inputPath, rect: rect)
+                    try WorkAssetImporter.croppedCover(from: inputPath, rect: rect, preserveOriginal: preserveOriginal)
                 }.value
                 onUse(file)
                 dismiss()
             } catch { errorMessage = L10n.text("裁剪失败：\(error.localizedDescription)") }
         }
+    }
+}
+
+private struct AvatarCropMask: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.addRect(rect)
+        path.addEllipse(in: rect)
+        return path
     }
 }

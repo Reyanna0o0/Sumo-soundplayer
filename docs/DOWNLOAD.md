@@ -2,9 +2,9 @@
 
 这一页会带你找到正确的下载位置，并把安装包保存下来。完成后，你的电脑里会有一个名字以 **`.ipa` 结尾**的文件，下一步安装时会用到它。
 
-> **照片修补预发布：v0.1.1（build 34）；正式最新版仍为 v0.1.0（build 33）。只想安装使用，选择名字以 `.ipa` 结尾的文件即可。** 已确认 Mac 下载 IPA、经 Sideloadly 安装并成功打开，以及 build 33 更新后此前导入数据仍在；Windows 和续签仍待验证。
+> **头像裁剪与图库修补预发布：v0.1.2（build 35）；正式最新版仍为 v0.1.0（build 33）。只想安装使用，选择名字以 `.ipa` 结尾的文件即可。** 已确认 Mac 下载 IPA、经 Sideloadly 安装并成功打开，以及 build 33 更新后此前导入数据仍在；Windows 和续签仍待验证。
 
-**[直接打开 build 34 修补预发布下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.1)**。如果已经打开了版本介绍，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
+**[直接打开 build 35 预发布下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.2)**。如果已经打开了版本介绍，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
 
 请先在 **Windows 或 Mac 电脑**上打开这篇教程。后面的安装步骤需要电脑。如果现在用手机阅读，可以把本页链接发到自己的电脑，稍后从电脑继续。
 
@@ -16,23 +16,23 @@
 
 打开后，看网页上方是否有 **`Reyanna0o0 / Sumo-soundplayer`**。这是这个项目在 GitHub 上的名字。下面出现很多英文文件夹和文件名是正常的。
 
-往下滚动，直到看到大标题 **“厮磨播放器 · Sumo Sound Player”**。在下面的“下载与安装”中，点击 **“照片图库修补预发布：下载 build 34”**。
+往下滚动，直到看到大标题 **“厮磨播放器 · Sumo Sound Player”**。在下面的“下载与安装”中，点击 **“头像裁剪与图库修补预发布：下载 build 35”**。
 
 **做对后：** 你会进入一个写着 `Releases` 的页面。这个英文在这里指“版本下载页”。
 
-如果找不到首页入口，可以直接点 **[build 34 预发布下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.1)**，从下一步继续。电脑宽屏网页通常也能在项目文件列表右侧找到 `Releases`；窄屏布局可能不同，直接用上面的链接即可。
+如果找不到首页入口，可以直接点 **[build 35 预发布下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.2)**，从下一步继续。电脑宽屏网页通常也能在项目文件列表右侧找到 `Releases`；窄屏布局可能不同，直接用上面的链接即可。
 
 **这里容易点错：** 首页绿色的 `Code` 按钮里有 `Download ZIP`，它下载的是程序源码。要安装厮磨，请继续去版本下载页，不用下载那份 ZIP。
 
 ## 2. 确认要下载的版本
 
-本页以照片修补预发布 build 34 为例：找到 **v0.1.1**，旁边会标有 **`Pre-release`（预发布）**。`Latest` 仍指向已正式发布的 build 33。如果说明和附件已经显示在当前页面，直接往下看。
+本页以头像裁剪与图库修补预发布 build 35 为例：找到 **v0.1.2**，旁边会标有 **`Pre-release`（预发布）**。`Latest` 仍指向已正式发布的 build 33。如果说明和附件已经显示在当前页面，直接往下看。
 
-先读这一版说明开头的系统要求。v0.1.1 要求 **iOS / iPadOS 18 或更新版本**；手机上可以在“设置 → 通用 → 关于本机”查看系统版本。
+先读这一版说明开头的系统要求。v0.1.2 要求 **iOS / iPadOS 18 或更新版本**；手机上可以在“设置 → 通用 → 关于本机”查看系统版本。
 
 **做对后：** 页面上能看到版本标题、这一版的说明，以及往下可找到的附件区域。
 
-本页的 build 34 是 `Pre-release`，用于复测照片图库问题；这不是误入页面。如果只想使用已验收的正式版，请选择[build 33 正式版](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)，并按它的实际文件名下载。公开版本不会标为 `Draft`。
+本页的 build 35 是 `Pre-release`，新增头像裁剪，并用于继续复测照片图库问题；这不是误入页面。如果只想使用已验收的正式版，请选择[build 33 正式版](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)，并按它的实际文件名下载。公开版本不会标为 `Draft`。
 
 ## 3. 展开附件列表
 
@@ -40,23 +40,23 @@
 
 如果只看到 `Assets`、一个小三角和旁边的数字，却看不到文件名，**点一下 `Assets` 或它左边的小三角**，把列表展开。已经能看到文件名就不用再点。
 
-**做对后：** 下方会出现一行行可以点击的文件名。v0.1.1 的文件名如下；以后版本号会变：
+**做对后：** 下方会出现一行行可以点击的文件名。v0.1.2 的文件名如下；以后版本号会变：
 
 ```text
-simo-0.1.1-build34-unsigned.ipa         ← 安装包，选这一项
-simo-0.1.1-build34-unsigned.ipa.json    ← 构建信息
-simo-0.1.1-build34-unsigned.ipa.sha256  ← 下载校验信息
+simo-0.1.2-build35-unsigned.ipa         ← 安装包，选这一项
+simo-0.1.2-build35-unsigned.ipa.json    ← 构建信息
+simo-0.1.2-build35-unsigned.ipa.sha256  ← 下载校验信息
 ```
 
-附件还包含 `simo-0.1.1-build34-source.zip`、`LICENSE.txt` 和 `SHA256SUMS.txt`，分别是对应源码、许可和全部附件的校验清单。GitHub 也会显示 `Source code (zip)` 和 `Source code (tar.gz)`。**第一次安装时只需选 IPA。**
+附件还包含 `simo-0.1.2-build35-source.zip`、`LICENSE.txt` 和 `SHA256SUMS.txt`，分别是对应源码、许可和全部附件的校验清单。GitHub 也会显示 `Source code (zip)` 和 `Source code (tar.gz)`。**第一次安装时只需选 IPA。**
 
 <img src="images/github-release-assets.jpg" width="354" alt="GitHub 的历史 Assets 附件列表示例，第 4 行是 simo-0.1.0-build33-unsigned.ipa">
 
-*这是 v0.1.0 的历史窄屏截图，用于说明附件位置；当前请按上方的 build 34 文件名选择。名字到 `.ipa` 就结束的文件是安装包。*
+*这是 v0.1.0 的历史窄屏截图，用于说明附件位置；当前请按上方的 build 35 文件名选择。名字到 `.ipa` 就结束的文件是安装包。*
 
 ## 4. 点击以 .ipa 结尾的那个文件
 
-当前示例中，应点击完整文件名 **`simo-0.1.1-build34-unsigned.ipa`**。
+当前示例中，应点击完整文件名 **`simo-0.1.2-build35-unsigned.ipa`**。
 
 认文件时，看名字的**最后一段**：
 

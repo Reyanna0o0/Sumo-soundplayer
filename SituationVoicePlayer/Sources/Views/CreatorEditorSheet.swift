@@ -13,6 +13,7 @@ struct CreatorEditorSheet: View {
     @State private var coverMode: CreatorCoverMode
     @State private var cover: String?
     @StateObject private var mediaPicker = MediaPickerPresenter()
+    @State private var avatarCropInput: CoverCropInput?
     @State private var loading = false
     @State private var message: String?
     @State private var draftAssets = Set<String>()
@@ -100,9 +101,12 @@ struct CreatorEditorSheet: View {
                 ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("保存", action: save)
-                        .disabled(loading || callDraft.isLoading || callProfileLoadError != nil || name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || (coverMode == .image && cover == nil))
+                        .disabled(loading || avatarCropInput != nil || callDraft.isLoading || callProfileLoadError != nil || name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || (coverMode == .image && cover == nil))
                         .accessibilityIdentifier("saveCreator")
                 }
+            }
+            .sheet(item: $avatarCropInput) { input in
+                CoverCropSheet(input: input, purpose: .avatar) { replaceDraft($0, for: .avatar) }
             }
             .onDisappear {
                 imageTask?.cancel()
@@ -132,7 +136,7 @@ struct CreatorEditorSheet: View {
                     try WorkAssetImporter.copyCover(from: url)
                 }.value
                 if Task.isCancelled { WorkAssetImporter.remove(relative); return }
-                replaceDraft(relative, for: target)
+                receiveImage(relative, for: target)
             } catch { if !Task.isCancelled { message = L10n.text("无法读取图片：\(error.localizedDescription)") } }
         }
     }
@@ -149,8 +153,18 @@ struct CreatorEditorSheet: View {
                     try WorkAssetImporter.copyCover(data: data)
                 }.value
                 if Task.isCancelled { WorkAssetImporter.remove(relative); return }
-                replaceDraft(relative, for: target)
+                receiveImage(relative, for: target)
             } catch { if !Task.isCancelled { message = L10n.text("无法读取图片：\(error.localizedDescription)") } }
+        }
+    }
+
+    private func receiveImage(_ relative: String, for target: ImageTarget) {
+        if target == .avatar {
+            // The temporary source belongs to the crop sheet. Cancelling it
+            // leaves the current avatar and the editor's saved draft alone.
+            avatarCropInput = CoverCropInput(relativePath: relative)
+        } else {
+            replaceDraft(relative, for: target)
         }
     }
 

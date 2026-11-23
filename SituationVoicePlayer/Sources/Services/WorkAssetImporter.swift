@@ -134,12 +134,13 @@ enum WorkAssetImporter {
         return FileManager.default.fileExists(atPath: original.path) ? original : url
     }
 
-    static func croppedCover(from relative: String, rect: CGRect) throws -> String {
+    static func croppedCover(from relative: String, rect: CGRect, preserveOriginal: Bool = true) throws -> String {
         guard let path = path(for: relative), let image = UIImage(contentsOfFile: path),
               rect.width > 0, rect.height > 0 else { throw WorkAssetImportError.unreadableImage }
-        // Render the preview's exact rectangle. A multiple of four keeps the saved file 4:3.
+        // Render the preview's aspect ratio: square for avatars, 4:3 for covers.
+        // A multiple of four preserves integral dimensions for both formats.
         let width = max(4, (rect.width / 4).rounded() * 4)
-        let size = CGSize(width: width, height: width * 0.75)
+        let size = CGSize(width: width, height: max(1, (width * rect.height / rect.width).rounded()))
         let format = UIGraphicsImageRendererFormat()
         format.scale = 1
         format.opaque = true
@@ -152,7 +153,9 @@ enum WorkAssetImporter {
         let result = "Covers/\(UUID().uuidString).jpg"
         let output = try destination(for: result)
         do {
-            try FileManager.default.copyItem(at: URL(fileURLWithPath: path), to: sourceImageURL(for: output))
+            if preserveOriginal {
+                try FileManager.default.copyItem(at: URL(fileURLWithPath: path), to: sourceImageURL(for: output))
+            }
             try data.write(to: output, options: .atomic)
         } catch { remove(result); throw error }
         return result
