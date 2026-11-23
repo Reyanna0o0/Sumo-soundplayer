@@ -44,6 +44,8 @@ IPA 文件名中的 `unsigned` 表示需要重新签名，不能在 Safari 下�
 
 ## 许可
 
-本项目自有源码、构建脚本和文档采用[厮磨播放器非商业源码许可协议 1.0](LICENSE)：**个人非商业使用免费，允许非商业修改和免费分享；所有商业使用须事先取得 Gloriaguuuu 的书面同意。** 分享修改版须提供完整对应源码、保留许可与署名，并标明非官方版本。仅供自己使用的修改不必公开。
+本项目自有源码、构建脚本、文档及[明确纳入许可的视觉素材](docs/ASSETS.md)采用[厮磨播放器非商业源码许可协议 1.0](LICENSE)：**个人非商业使用免费，允许非商业修改和免费分享；所有商业使用须事先取得 Gloriaguuuu 的书面同意。** 分享修改版须提供完整对应源码、保留许可与署名，并标明非官方版本。仅供自己使用的修改不必公开。
 
-这是源码公开的非商业授权项目。具体场景与申请入口见[使用许可与商业授权](docs/COMMERCIAL_USE.md)。第三方组件保留原有许可及 LGPL 要求的修改、替换和重新链接权利，见[第三方材料与重建说明](docs/THIRD_PARTY.md)。图标、开屏与动效另见[素材来源及授权状态](docs/ASSETS.md)；素材确认和开发者邮箱仍在整理中。
+这是源码公开的非商业授权项目。具体场景与申请入口见[使用许可与商业授权](docs/COMMERCIAL_USE.md)。第三方组件保留原有许可及 LGPL 要求的修改、替换和重新链接权利，见[第三方材料与重建说明](docs/THIRD_PARTY.md)。图标、开屏与动效的来源和范围见[素材说明](docs/ASSETS.md)。
+
+商业授权与项目联系：[GitHub 申请](https://github.com/Gloriaguuuu/simo/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。
