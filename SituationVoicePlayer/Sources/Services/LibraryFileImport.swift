@@ -100,6 +100,7 @@ extension LibraryStore {
             try repository.db.transaction {
                 let sourceID = try repository.saveSource(LibrarySource(name: originalName, rootPath: final.path,
                     bookmark: bookmark, grouping: grouping))
+                var reservedTitles = Set(try repository.works(libraryKind: library).map(\.title))
                 for (index, work) in prepared.works.enumerated() {
                     let scan = work.scan
                     let workIdentity = LibraryPathResolver.join(root: final.path, relative: scan.folderRelativePath)
@@ -118,6 +119,23 @@ extension LibraryStore {
                         return copy
                     }
                     try repository.replaceTracks(workID: workID, tracks: tracks)
+                    if importIndependentCopy, let imported = try repository.work(id: workID) {
+                        // Use the same metadata overrides as manual renaming, so rescans
+                        // preserve the name (including personal-library single-track titles).
+                        var number = 1
+                        var copyTitle = InterfaceLocalization.text("\(imported.title) · 副本 \(number)")
+                        while reservedTitles.contains(copyTitle) {
+                            number += 1
+                            copyTitle = InterfaceLocalization.text("\(imported.title) · 副本 \(number)")
+                        }
+                        reservedTitles.insert(copyTitle)
+                        if library == .personal {
+                            try repository.savePersonalWorkMetadata(workID: workID, title: copyTitle, creatorID: creatorID)
+                        } else {
+                            try repository.updateWorkMetadata(workID: workID, title: copyTitle,
+                                circleName: imported.circleName ?? "", seiyuuNames: imported.seiyuuNames)
+                        }
+                    }
                     try repository.replaceScannedAttachments(workID: workID, files: attachmentGroups[scan.folderRelativePath] ?? [])
                     let persisted = try repository.tracks(workID: workID)
                     let byRelativePath = Dictionary(uniqueKeysWithValues: persisted.map { ($0.relativePath ?? $0.fileName, $0.id) })

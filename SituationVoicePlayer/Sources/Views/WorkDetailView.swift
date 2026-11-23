@@ -15,6 +15,8 @@ struct WorkDetailView: View {
 
     @State private var sections: [WorkMediaSection] = []
     @State private var pendingRemoval: TrackRecord?
+    @State private var showWorkRemoval = false
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var allCategories: [WorkCategory] = []
     @StateObject private var dragSession = WorkMediaDragSession()
@@ -129,6 +131,17 @@ struct WorkDetailView: View {
         } message: { track in
             Text("「\(track.displayTitle)」会从作品和播放列表移除。原文件和独立摘选会保留。")
         }
+        .confirmationDialog("从媒体库移除作品？", isPresented: $showWorkRemoval, titleVisibility: .visible) {
+            Button("移除作品", role: .destructive) {
+                do {
+                    try store.removeWorkFromLibrary(currentWork)
+                    dismiss()
+                } catch { assetMessage = error.localizedDescription }
+            }
+            Button("取消", role: .cancel) {}
+        } message: {
+            Text("移除「\(currentWork.title)」及其库内资料。购买的原文件和已经保存的独立摘选会保留。")
+        }
         .onChange(of: store.contentRevision) { _, _ in dragSession.invalidate(); reloadSections() }
         .onChange(of: scenePhase) { _, phase in if phase != .active { dragSession.invalidate() } }
         .onDisappear { dragSession.invalidate() }
@@ -208,6 +221,11 @@ struct WorkDetailView: View {
                         Label("新建分组", systemImage: "folder.badge.plus")
                     }
                 }
+                Divider()
+                Button(role: .destructive) { showWorkRemoval = true } label: {
+                    Label("从媒体库移除", systemImage: "trash")
+                }
+                .accessibilityIdentifier("removeWorkFromLibrary")
             } label: {
                 Image(systemName: "ellipsis.circle")
             }

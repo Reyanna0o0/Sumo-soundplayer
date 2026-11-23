@@ -52,6 +52,12 @@ struct LibraryImportSheet: View {
     var body: some View {
         NavigationStack {
             AppForm {
+                if duplicateZIP {
+                    Section {
+                        Text("新副本会添加编号；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。")
+                            .font(.footnote).foregroundStyle(AppTheme.secondaryText)
+                    }
+                }
                 Section {
                     Button("从 Soundgasm 链接导入", systemImage: "link") { showSoundgasm = true }
                         .accessibilityIdentifier("chooseSoundgasm")
@@ -117,7 +123,7 @@ struct LibraryImportSheet: View {
                                 LabeledContent("字幕文件", value: "\(preview.subtitleCount)")
                                 LabeledContent("封面", value: "\(preview.coverCount)")
                                 if !preview.subtitleFiles.isEmpty {
-                                    DisclosureGroup("字幕") {
+                                    DisclosureGroup("字幕文件") {
                                         ForEach(Array(preview.subtitleFiles.enumerated()), id: \.offset) { _, name in Text(name) }
                                     }
                                 }
@@ -138,13 +144,6 @@ struct LibraryImportSheet: View {
                         }
                     }
                 }
-                if duplicateZIP {
-                    Section("这个 ZIP 已导入") {
-                        Toggle("另存为新作品", isOn: $importIndependentCopy)
-                        Text("建立名称正常的新副本；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。")
-                            .font(.footnote).foregroundStyle(AppTheme.secondaryText)
-                    }.disabled(busy)
-                }
                 if let errorText { Section { Text(errorText).font(.callout).foregroundStyle(.orange) } }
             }
             .appNavigationColors().navigationTitle(L10n.text("导入作品"))
@@ -152,13 +151,25 @@ struct LibraryImportSheet: View {
             .toolbar(.hidden, for: .navigationBar)
             .safeAreaInset(edge: .top, spacing: 0) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("导入作品").font(.headline)
+                    Text(duplicateZIP ? L10n.text("这个 ZIP 已导入") : L10n.text("导入作品"))
+                        .font(.headline).fixedSize(horizontal: false, vertical: true)
                     ViewThatFits(in: .horizontal) {
                         HStack { cancelButton; Spacer(); importButton }
                         VStack(alignment: .leading) { cancelButton; importButton }
                     }
+                    if duplicateZIP {
+                        Toggle("另存为新作品", isOn: $importIndependentCopy)
+                            .font(.subheadline).disabled(busy || loadingPreview)
+                            .accessibilityIdentifier("libraryImportIndependentCopy")
+                    }
                 }.padding(16).frame(maxWidth: .infinity, alignment: .leading)
                     .background(AppTheme.background)
+                    .overlay(alignment: .bottom) {
+                        LinearGradient(colors: [AppTheme.background, AppTheme.background.opacity(0)],
+                                       startPoint: .top, endPoint: .bottom)
+                            .frame(height: 18).offset(y: 18)
+                            .allowsHitTesting(false).accessibilityHidden(true)
+                    }
             }
             .interactiveDismissDisabled(busy)
             .fileImporter(isPresented: $showPicker, allowedContentTypes: allowedTypes,

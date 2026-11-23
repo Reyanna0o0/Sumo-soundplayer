@@ -21,6 +21,7 @@ struct PlaylistCaptureControls: View {
                         }
                         .disabled(player.positionMS <= start)
                         .accessibilityIdentifier("saveClip")
+                        .accessibilityElement(children: .ignore)
                         .accessibilityLabel("标记终点")
                         .frame(minWidth: 44, minHeight: 44)
 
@@ -38,6 +39,7 @@ struct PlaylistCaptureControls: View {
                         }
                         .disabled(player.durationMS <= 0 || player.positionMS >= player.durationMS)
                         .accessibilityIdentifier("markClipStart")
+                        .accessibilityElement(children: .ignore)
                         .accessibilityLabel("标记起点")
                         .frame(minWidth: 44, minHeight: 44)
                     }

@@ -12409,5 +12409,23 @@
     "en": "ZIP copy stored in the app",
     "ja": "アプリ内の ZIP コピー",
     "ko": "앱에 저장된 ZIP 사본"
+  },
+  "新副本会添加编号；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。": {
+    "zh-Hant": "新副本會加上編號；舊作品、字幕編輯和統計保留在原作品中，不會轉移或覆蓋。會額外佔用儲存空間。",
+    "en": "New copies are numbered. Existing works, subtitle edits and statistics stay with the original; they are not transferred or overwritten. Copies use additional storage.",
+    "ja": "新しいコピーには番号が付きます。既存の作品・字幕編集・統計は元の作品に残り、移行や上書きはされません。追加の保存容量を使用します。",
+    "ko": "새 사본에는 번호가 붙습니다. 기존 작품, 자막 편집 내용과 통계는 원본에 남으며 이전되거나 덮어쓰이지 않습니다. 추가 저장 공간을 사용합니다."
+  },
+  "{#0} · 副本 {#1}": {
+    "zh-Hant": "{#0} · 副本 {#1}",
+    "en": "{#0} · Copy {#1}",
+    "ja": "{#0} · コピー {#1}",
+    "ko": "{#0} · 사본 {#1}"
+  },
+  "从媒体库移除": {
+    "zh-Hant": "從媒體庫移除",
+    "en": "Remove from Library",
+    "ja": "ライブラリから削除",
+    "ko": "라이브러리에서 삭제"
   }
 }

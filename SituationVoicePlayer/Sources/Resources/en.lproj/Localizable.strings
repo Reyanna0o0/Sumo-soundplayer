@@ -70,6 +70,7 @@
 "ZIP64 目录范围错误" = "ZIP64 directory range is invalid";
 "ZIPFoundation 项目" = "ZIPFoundation Project";
 "v{#0} · {#1} 句" = "v{#0} · Lines: {#1}";
+"{#0} · 副本 {#1}" = "{#0} · Copy {#1}";
 "{#0} · 拼接" = "{#0} · Merged";
 "{#0} 个" = "Items: {#0}";
 "{#0} 个作品 / {#1} 首曲目" = "Works: {#0} / Tracks: {#1}";
@@ -161,6 +162,7 @@
 "从列表移除整首" = "Remove Full Track from List";
 "从列表移除视频" = "Remove Video from List";
 "从头阅读" = "Read from Beginning";
+"从媒体库移除" = "Remove from Library";
 "从媒体库移除作品？" = "Remove this work from the library?";
 "从库中移除" = "Remove from Library";
 "从文件选择" = "Choose from Files";
@@ -711,6 +713,7 @@
 "文字草稿暂时无法保存，当前输入仍保留在这里。请先保存字幕，或复制文字后再离开。" = "The text draft could not be saved. Your current input is still here. Save the subtitles or copy the text before leaving.";
 "文字需点「保存文字」；取消放弃本次文字修改" = "Tap “Save Text” to save; Cancel discards these text changes";
 "文本约占 {#0}" = "Text: about {#0}";
+"新副本会添加编号；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。" = "New copies are numbered. Existing works, subtitle edits and statistics stay with the original; they are not transferred or overwritten. Copies use additional storage.";
 "新增 " = "Added ";
 "新增空间" = "Additional Storage";
 "新增：{#0}" = "Added: {#0}";

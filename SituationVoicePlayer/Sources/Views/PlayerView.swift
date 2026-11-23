@@ -502,6 +502,7 @@ struct PlayerOptionsRow: View {
                 }
                 .foregroundStyle(player.sleepTimer == .off ? AnyShapeStyle(.primary) : AnyShapeStyle(.tint))
                 .disabled(player.currentItem == nil)
+                .accessibilityElement(children: .ignore)
                 .accessibilityLabel("睡眠定时")
                 .accessibilityValue(player.sleepTimer == .off ? L10n.text("已关闭") : L10n.text("已开启"))
                 .accessibilityIdentifier("playerSleepTimer")
