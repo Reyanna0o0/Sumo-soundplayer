@@ -1,0 +1,45 @@
+name: 商业授权申请
+description: 申请商业使用厮磨播放器；提交申请不代表已取得授权。
+title: "[商业授权] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        商业使用须事先取得维护者的明确书面同意。
+        本 Issue 在仓库公开后可见，请勿填写私密合同、身份证件、密钥或账户信息。
+        如需私下沟通，可先只说明计划用途，详见 docs/COMMERCIAL_USE.md。
+  - type: input
+    id: applicant
+    attributes:
+      label: 申请人或机构
+      description: 可公开的个人、团队或机构名称。
+    validations:
+      required: true
+  - type: textarea
+    id: planned-use
+    attributes:
+      label: 计划用途与版本
+      description: 使用哪个版本或提交？是否修改、集成到其他产品或提供相关服务？
+    validations:
+      required: true
+  - type: textarea
+    id: commercial-model
+    attributes:
+      label: 商业方式
+      description: 说明收费、会员、广告、赞助回报或其他经营用途。
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 范围与期限
+      description: 预计用户或分发规模、平台、地区、期限；尚未确定的可注明。
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgment
+    attributes:
+      label: 授权确认
+      options:
+        - label: 我理解提交申请不构成授权，开始商业使用前须取得明确书面同意。
+          required: true
