@@ -1,5 +1,7 @@
 # 下载厮磨安装包
 
+**简体中文** · [繁體中文](i18n/zh-Hant/DOWNLOAD.md) · [English](i18n/en/DOWNLOAD.md) · [日本語](i18n/ja/DOWNLOAD.md) · [한국어](i18n/ko/DOWNLOAD.md)
+
 **[点击下载 IPA · v0.1.2（build 35）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)**
 
 适用于 **iOS / iPadOS 18 或更新版本**。在 Windows 或 Mac 电脑上下载，无需登录 GitHub。

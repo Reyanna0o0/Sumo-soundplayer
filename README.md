@@ -1,5 +1,7 @@
 # 厮磨播放器 · Sumo Sound Player
 
+**简体中文** · [繁體中文](docs/i18n/zh-Hant/README.md) · [English](docs/i18n/en/README.md) · [日本語](docs/i18n/ja/README.md) · [한국어](docs/i18n/ko/README.md)
+
 **正式版 v0.1.2（build 35）** · **iOS / iPadOS 18 或更新版本** · **个人非商业使用免费**
 
 ## 下载与安装

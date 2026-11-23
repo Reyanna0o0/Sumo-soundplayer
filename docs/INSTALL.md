@@ -1,5 +1,7 @@
 # IPA 安装、续签与更新
 
+**简体中文** · [繁體中文](i18n/zh-Hant/INSTALL.md) · [English](i18n/en/INSTALL.md) · [日本語](i18n/ja/INSTALL.md) · [한국어](i18n/ko/INSTALL.md)
+
 **[直接下载 IPA · v0.1.2（build 35）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)** · [下载帮助](DOWNLOAD.md)
 
 第一次安装从下方「先准备」开始；已经装过厮磨可直接看[更新和保留数据](#更新和保留数据)。已经安装 build 35 的用户无需重装。

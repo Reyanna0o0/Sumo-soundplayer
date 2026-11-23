@@ -1,5 +1,7 @@
 # 厮磨播放器 v0.1.2 · build 35（正式版）
 
+**简体中文** · [繁體中文](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/codex/release-preparation/docs/i18n/zh-Hant/RELEASE_0.1.2.md) · [English](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/codex/release-preparation/docs/i18n/en/RELEASE_0.1.2.md) · [日本語](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/codex/release-preparation/docs/i18n/ja/RELEASE_0.1.2.md) · [한국어](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/codex/release-preparation/docs/i18n/ko/RELEASE_0.1.2.md)
+
 编辑创作者头像时，选图后现在可以调整取景范围。本版也包含照片图库稳定性修补，现已设为正式最新版。
 
 ## 下载与更新
