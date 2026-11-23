@@ -1,5 +1,11 @@
 # Sumo Sound Player · 厮磨播放器
 
+> **💛 개발 응원하기**
+>
+> 개발에는 많은 시간과 노력이 필요합니다. 팁으로 응원해 주시면 감사하겠습니다!
+>
+> **[Stripe로 팁 보내기](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00)**
+
 [简体中文](../../../README.md) · [繁體中文](../zh-Hant/README.md) · [English](../en/README.md) · [日本語](../ja/README.md) · **한국어**
 
 **정식 버전 v0.1.2 (build 35)** · **iOS / iPadOS 18 이상** · **개인의 비상업적 이용은 무료**

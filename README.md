@@ -1,5 +1,11 @@
 # 厮磨播放器 · Sumo Sound Player
 
+> **💛 支持开发**
+>
+> 开发不易，欢迎支持打赏！
+>
+> **[Stripe 打赏](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00) · [爱发电打赏](https://afdian.com/a/Reyanna0o0)**
+
 **简体中文** · [繁體中文](docs/i18n/zh-Hant/README.md) · [English](docs/i18n/en/README.md) · [日本語](docs/i18n/ja/README.md) · [한국어](docs/i18n/ko/README.md)
 
 **正式版 v0.1.2（build 35）** · **iOS / iPadOS 18 或更新版本** · **个人非商业使用免费**
