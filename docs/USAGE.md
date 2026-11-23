@@ -149,3 +149,15 @@ build 35 起，编辑创作者时，从照片或文件选择头像后会打开�
 “设置 → App 缓存”可以清理可清理的字幕旧版本和图片空间效果缓存。字幕清理保留原始、当前、固定和未完成编辑引用的版本；确认删除的其他历史版本不能恢复。图片空间缓存可重建，原图与取景设置保留。
 
 请另行保留原始媒体、字幕和重要导出文件。续签、更新时保留原 App，用原账户与应用标识覆盖更新。整库备份与恢复暂未验收。[安装与更新说明](INSTALL.md)
+
+**换机提示**　厮磨暂未内置数据迁移功能，播放器依赖本地文件，更换 iPhone 或 iPad 时请使用系统的整机数据迁移，并确认新设备能打开原媒体文件。[Apple 换机指南](https://support.apple.com/zh-cn/119967)
+
+<details>
+<summary>繁體中文 · English · 日本語 · 한국어</summary>
+
+- **繁體中文**　廝磨目前沒有內建資料移轉功能，播放器仰賴本機檔案，更換 iPhone 或 iPad 時請使用系統的整機資料移轉，並確認新裝置能開啟原始媒體檔案。
+- **English**　Sumo Sound Player does not yet have built-in data migration. It plays local files, so when switching to a new iPhone or iPad, use Apple's device data transfer and check that your original media files open on the new device.
+- **日本語**　Sumo Sound Player には、アプリ内でデータを移行する機能がまだありません。端末内のファイルを再生するため、iPhone や iPad の機種変更時は端末全体のデータを移行し、新しい端末で元のメディアファイルを開けることを確認してください。
+- **한국어**　Sumo Sound Player에는 아직 앱 자체의 데이터 이전 기능이 없습니다. 로컬 파일을 재생하므로 iPhone 또는 iPad를 바꿀 때는 기기의 전체 데이터 이전 기능을 사용하고, 새 기기에서 원본 미디어 파일을 열 수 있는지 확인해 주세요.
+
+</details>
