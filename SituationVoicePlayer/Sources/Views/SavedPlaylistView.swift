@@ -277,56 +277,73 @@ private struct SavedCollectionDetail: View {
     @State private var pendingRemoval: SavedPlaylistEntry?
     @State private var merging = false
     @State private var exportEntry: SavedPlaylistEntry?
+    @State private var movingEntry: SavedPlaylistEntry?
+    @State private var ordering = false
 
     private var entries: [SavedPlaylistEntry] { store.playlistEntries.filter { $0.groupID == group.id } }
 
     var body: some View {
-        Group {
+        let displayed = entries
+        return Group {
             if entries.isEmpty {
                 ContentUnavailableView(group.isClips ? L10n.text("这个摘选集还是空的") : L10n.text("这个播放列表还是空的"),
                     systemImage: group.isClips ? "scissors" : "music.note.list",
                     description: Text(group.isClips ? L10n.text("在播放页标记起点，再保存片段到这里。") : L10n.text("在播放页将喜欢的整首音频加入这里。")))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
-                List(entries) { entry in
-                    HStack(spacing: 12) {
-                        Button { play(entry) } label: {
-                            HStack(spacing: 12) {
-                                CollectionArtwork(entry: entry, clips: group.isClips)
-                                EntryLabel(entry: entry)
-                                Spacer()
-                                Image(systemName: "play.circle")
-                                    .font(.system(size: 22))
-                                    .foregroundStyle(AppTheme.painted(.white.opacity(0.65), AppTheme.isPurple ? AppTheme.iconTint : AppTheme.secondary))
+                List {
+                    ForEach(displayed) { entry in
+                        HStack(spacing: 12) {
+                            Button { play(entry) } label: {
+                                HStack(spacing: 12) {
+                                    CollectionArtwork(entry: entry, clips: group.isClips)
+                                    EntryLabel(entry: entry)
+                                    Spacer()
+                                    Image(systemName: "play.circle")
+                                        .font(.system(size: 22))
+                                        .foregroundStyle(AppTheme.painted(.white.opacity(0.65), AppTheme.isPurple ? AppTheme.iconTint : AppTheme.secondary))
+                                }
+                                .contentShape(Rectangle())
                             }
-                            .contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityIdentifier("playEntry-\(entry.id)")
-                        if entry.isClip {
+                            .buttonStyle(.plain)
+                            .accessibilityIdentifier("playEntry-\(entry.id)")
                             Menu {
-                                Button("导出音频…", systemImage: "square.and.arrow.up") { exportEntry = entry }
-                                    .accessibilityIdentifier("exportClip-\(entry.id)")
+                                Button("更改分类", systemImage: "folder") { movingEntry = entry }
+                                    .accessibilityIdentifier("moveEntry-\(entry.id)")
+                                if entry.isClip {
+                                    Button("导出音频…", systemImage: "square.and.arrow.up") { exportEntry = entry }
+                                        .accessibilityIdentifier("exportClip-\(entry.id)")
+                                }
                                 Button("移除", systemImage: "trash", role: .destructive) { pendingRemoval = entry }
                             } label: {
                                 Image(systemName: "ellipsis").frame(width: 44, height: 44).contentShape(Rectangle())
                             }
                             .accessibilityLabel("\(entry.title)的操作")
-                            .accessibilityIdentifier("clipOptions-\(entry.id)")
+                            .accessibilityIdentifier(entry.isClip ? "clipOptions-\(entry.id)" : "trackOptions-\(entry.id)")
                         }
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(EdgeInsets(top: group.isClips ? 12 : 4, leading: 20,
+                                                 bottom: group.isClips ? 12 : 4, trailing: 20))
+                        .alignmentGuide(.listRowSeparatorLeading) { _ in 92 }
+                        .listRowSeparatorTint(AppTheme.painted(.white.opacity(0.15), AppTheme.separator))
+                        .swipeActions {
+                            Button("移除", role: .destructive) { pendingRemoval = entry }
+                        }
+
                     }
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets(top: group.isClips ? 12 : 4, leading: 20,
-                                             bottom: group.isClips ? 12 : 4, trailing: 20))
-                    .alignmentGuide(.listRowSeparatorLeading) { _ in 92 }
-                    .listRowSeparatorTint(AppTheme.painted(.white.opacity(0.15), AppTheme.separator))
-                    .swipeActions {
-                        Button("移除", role: .destructive) { pendingRemoval = entry }
+                    .onMove { source, destination in
+                        let original = displayed.map(\.id)
+                        var ids = original
+                        ids.move(fromOffsets: source, toOffset: destination)
+                        do { try store.orderPlaylistEntries(groupID: group.id, ids: ids, expectedIDs: original) }
+                        catch { message = error.localizedDescription }
                     }
                 }
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
                 .modifier(ScrollContentEdges())
+                .environment(\.editMode, .constant(ordering ? .active : .inactive))
+                .accessibilityIdentifier("savedCollectionEntries")
             }
         }
         .foregroundStyle(AppTheme.painted(.white, AppTheme.ink))
@@ -336,6 +353,11 @@ private struct SavedCollectionDetail: View {
         .toolbar(.visible, for: .navigationBar)
         .toolbarColorScheme(AppTheme.isPorcelain ? .light : .dark, for: .navigationBar)
         .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(ordering ? L10n.text("完成") : L10n.text("调整顺序")) { ordering.toggle() }
+                    .disabled(entries.count < 2 && !ordering)
+                    .accessibilityIdentifier("playlistEntryOrderToggle")
+            }
             if group.isClips {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("拼接摘选") { merging = true }
@@ -348,6 +370,10 @@ private struct SavedCollectionDetail: View {
         .porcelainSheet(item: $exportEntry) { entry in
             SavedClipExportSheet(entry: entry)
         }
+        .porcelainSheet(item: $movingEntry) { entry in
+            PlaylistEntryGroupPicker(entry: entry)
+        }
+        .onDisappear { ordering = false }
         .alert("播放列表", isPresented: Binding(get: { message != nil }, set: { if !$0 { message = nil } })) {
             Button("好") { message = nil }
         } message: { Text(message ?? "") }
@@ -377,6 +403,51 @@ private struct SavedCollectionDetail: View {
         player.play(items: items, startingAt: selected, collection: group)
         if player.currentItem != nil { player.isPlayerSheetPresented = true }
         else { message = player.errorMessage ?? L10n.text("无法开始播放") }
+    }
+}
+
+private struct PlaylistEntryGroupPicker: View {
+    let entry: SavedPlaylistEntry
+    @EnvironmentObject private var store: LibraryStore
+    @Environment(\.dismiss) private var dismiss
+    @State private var message: String?
+
+    var body: some View {
+        NavigationStack {
+            AppList {
+                Section {
+                    Text(entry.title).font(.headline)
+                }
+                Section {
+                    ForEach(store.playlistGroups.filter { $0.isClips == entry.isClip }) { destination in
+                        Button {
+                            do {
+                                try store.movePlaylistEntry(entry, to: destination.id)
+                                dismiss()
+                            } catch { message = error.localizedDescription }
+                        } label: {
+                            HStack {
+                                Text(destination.name)
+                                Spacer()
+                                if destination.id == entry.groupID { Image(systemName: "checkmark") }
+                            }
+                        }
+                        .disabled(destination.id == entry.groupID)
+                        .accessibilityIdentifier("moveEntryTarget-\(destination.id)")
+                    }
+                } header: {
+                    Text("移动到")
+                } footer: {
+                    Text("选择目标分类，原有内容和记录会保留。")
+                }
+            }
+            .appNavigationColors().navigationTitle(L10n.text("更改分类"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } } }
+            .alert("更改分类", isPresented: Binding(get: { message != nil }, set: { if !$0 { message = nil } })) {
+                Button("好") { message = nil }
+            } message: { Text(message ?? "") }
+        }
     }
 }
 

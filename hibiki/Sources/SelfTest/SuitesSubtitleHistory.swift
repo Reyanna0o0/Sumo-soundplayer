@@ -58,7 +58,7 @@ func runSubtitleHistorySuites(_ h: Harness) {
             old.close()
 
             let upgraded = try SQLiteDatabase(path: path)
-            h.expectEqual(try upgraded.migrate(Schema.migrations), 1, "只执行新增迁移")
+            h.expectEqual(try upgraded.migrate(Schema.migrations), Schema.currentVersion - 24, "只执行新增迁移")
             let current = SubtitleRepository(database: upgraded)
             h.expectEqual(try current.versions(subtitleTrackID: a.track).map(\.isPinned), [false, false], "旧版本默认不固定")
             h.expectEqual(try upgraded.query("SELECT \(oldColumns) FROM subtitle_version ORDER BY id"), versionsBefore, "全部原版本字段保持")

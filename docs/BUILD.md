@@ -31,7 +31,7 @@ bash scripts/build.sh ipa
 
 产物位于 `dist/`：
 
-- `simo-0.1.0-build32-unsigned.ipa`
+- `simo-0.1.0-build33-unsigned.ipa`
 - 同名 `.sha256` 文件，供下载校验。
 - 同名 `.json` 文件，记录版本、构建号、标识、工具链与源码提交。
 

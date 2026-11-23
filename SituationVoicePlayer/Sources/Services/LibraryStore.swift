@@ -36,6 +36,7 @@ final class LibraryStore: ObservableObject {
     @Published private(set) var currentLibrary: MediaLibraryKind
     @Published private(set) var creators: [CreatorRecord] = []
     @Published private(set) var recentCreators: [CreatorRecord] = []
+    @Published private(set) var directoryOrderRevision: UInt = 0
     @Published private(set) var otherLibraryMatchCount = 0
     @Published private(set) var sources: [LibrarySource] = []
     @Published private(set) var favoriteGroups: [NamedCollection] = []
@@ -84,12 +85,14 @@ final class LibraryStore: ObservableObject {
     private var resolvedRoots: [Int64: String] = [:]
     private let defaults: UserDefaults
     private let workOrderPreferences: WorkOrderPreferences
+    private let directoryOrderPreferences: DirectoryOrderPreferences
     private var isRestoringLibrarySort = false
     private var customSeedSort: [MediaLibraryKind: WorkSortOrder] = [:]
     private var customCatalogs: [MediaLibraryKind: [WorkRecord]] = [:]
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
+        self.directoryOrderPreferences = DirectoryOrderPreferences(defaults: defaults)
         let ordering = WorkOrderPreferences(defaults: defaults)
         self.workOrderPreferences = ordering
         let library = MediaLibraryKind(rawValue: defaults.string(forKey: "selectedMediaLibrary") ?? "") ?? .collection
@@ -182,7 +185,7 @@ final class LibraryStore: ObservableObject {
             rebuildRootCache()
             favoriteGroups = try playlist?.collections(.favorites) ?? []
             favoriteMemberships = try playlist?.favoriteMemberships() ?? [:]
-            creators = try repository.creators()
+            creators = orderedCreators(try repository.creators())
             recentCreators = try repository.recentCreators(limit: 12)
             if sortOrder == .custom, let complete = try loadCustomCatalog(for: currentLibrary) {
                 favoriteWorks = complete.filter(\.favorite)
@@ -274,6 +277,38 @@ final class LibraryStore: ObservableObject {
         guard let target = reordered.firstIndex(of: targetID) else { return false }
         reordered.insert(workID, at: target + (after ? 1 : 0))
         return reorderWorks(reordered, visibleIDs: visibleIDs, library: library)
+    }
+
+    func directoryOrder(_ ids: [String], scope: DirectoryOrderScope) -> [String] {
+        directoryOrderPreferences.resolved(ids, scope: scope)
+    }
+
+    private func orderedCreators(_ values: [CreatorRecord]) -> [CreatorRecord] {
+        let byID = Dictionary(uniqueKeysWithValues: values.map { (String($0.id), $0) })
+        return directoryOrder(values.map { String($0.id) }, scope: .creators).compactMap { byID[$0] }
+    }
+
+    func orderDirectory(_ scope: DirectoryOrderScope, ids: [String], visibleIDs: [String]) throws {
+        guard let repository else { throw DirectoryOrderError.staleOrder }
+        let allIDs: [String]
+        if scope == .creators {
+            allIDs = try repository.creators().map { String($0.id) }
+        } else {
+            let section: LibrarySection = scope == .circles ? .circles : .performers
+            let complete = try repository.works(filter: .all, sort: .title, libraryKind: .collection)
+            var names = Set<String>()
+            var hasMissing = false
+            for work in complete {
+                let values = LibraryTag.names(for: work, section: section)
+                if values.isEmpty { hasMissing = true }
+                names.formUnion(values)
+            }
+            allIDs = names.sorted { NaturalSort.compare($0, $1) }.map { LibraryTag.orderID(name: $0) }
+                + (hasMissing ? [LibraryTag.orderID(name: nil)] : [])
+        }
+        try directoryOrderPreferences.reorder(ids, visibleIDs: visibleIDs, allIDs: allIDs, scope: scope)
+        if scope == .creators { creators = orderedCreators(try repository.creators()) }
+        directoryOrderRevision &+= 1
     }
 
     func creator(id: Int64?) -> CreatorRecord? { id.flatMap { id in creators.first { $0.id == id } } }
@@ -730,6 +765,18 @@ final class LibraryStore: ObservableObject {
             let url = try clipsDirectory().appendingPathComponent(name)
             if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }
         }
+    }
+
+    func orderPlaylistEntries(groupID: Int64, ids: [Int64], expectedIDs: [Int64]) throws {
+        guard let playlist else { throw PlaylistError.unavailable }
+        try playlist.orderEntries(groupID: groupID, ids: ids, expectedIDs: expectedIDs)
+        playlistEntries = try playlist.entries()
+    }
+
+    func movePlaylistEntry(_ entry: SavedPlaylistEntry, to groupID: Int64) throws {
+        guard let playlist else { throw PlaylistError.unavailable }
+        try playlist.moveEntry(id: entry.id, from: entry.groupID, to: groupID)
+        playlistEntries = try playlist.entries()
     }
 
     func prepareClipExport(_ entry: SavedPlaylistEntry, format: SavedClipExportFormat = .mp3,

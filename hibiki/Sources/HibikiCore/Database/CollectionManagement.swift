@@ -101,7 +101,7 @@ extension PlaylistRepository {
                             (SELECT track_id FROM playlist_entry WHERE group_id = ?)
                         """, [source, target])
                 }
-                try db.execute("UPDATE playlist_entry SET group_id = ? WHERE group_id = ?", [target, source])
+                try appendEntries(entryIDs(groupID: id), to: kind.defaultID)
             }
             try db.execute("DELETE FROM \(kind.table) WHERE id = ? AND \(kind.condition)", [source])
         }

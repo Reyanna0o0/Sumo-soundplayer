@@ -8,6 +8,8 @@ struct LibraryView: View {
     @State private var isSearching = false
     @FocusState private var searchFocused: Bool
     @State private var showCreatorEditor = false
+    @State private var orderingCreators = false
+    @State private var creatorOrderError: String?
     private enum HeaderMenu {
         case library, sort
     }
@@ -544,9 +546,18 @@ struct LibraryView: View {
     }
 
     private var creatorList: some View {
-        List {
-            Button("新建创作者", systemImage: "person.badge.plus") { showCreatorEditor = true }
-                .accessibilityIdentifier("newCreator")
+        let displayed = store.creators
+        return List {
+            HStack {
+                Button("新建创作者", systemImage: "person.badge.plus") { showCreatorEditor = true }
+                    .disabled(orderingCreators)
+                    .accessibilityIdentifier("newCreator")
+                Spacer()
+                Button(orderingCreators ? L10n.text("完成") : L10n.text("调整顺序")) { orderingCreators.toggle() }
+                    .disabled(displayed.count < 2 && !orderingCreators)
+                    .accessibilityIdentifier("creatorOrderToggle")
+            }
+                .buttonStyle(.borderless)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .alignmentGuide(.listRowSeparatorLeading) { dimensions in
                     dimensions[.leading] + 48
@@ -555,7 +566,7 @@ struct LibraryView: View {
                     dimensions[.trailing] - 8
                 }
                 .porcelainPlainRow()
-            ForEach(store.creators) { creator in
+            ForEach(displayed) { creator in
                 NavigationLink {
                     CreatorProfileView(creatorID: creator.id, store: store)
                         .toolbar(.visible, for: .navigationBar)
@@ -579,8 +590,20 @@ struct LibraryView: View {
                 }
                 .porcelainPlainRow()
             }
+            .onMove { source, destination in
+                let original = displayed.map { String($0.id) }
+                var ids = original
+                ids.move(fromOffsets: source, toOffset: destination)
+                do { try store.orderDirectory(.creators, ids: ids, visibleIDs: original) }
+                catch { creatorOrderError = error.localizedDescription }
+            }
         }.listStyle(.plain)
             .porcelainListBackground(AppTheme.card)
+            .environment(\.editMode, .constant(orderingCreators ? .active : .inactive))
+            .onDisappear { orderingCreators = false }
+            .alert("调整顺序", isPresented: Binding(get: { creatorOrderError != nil }, set: { if !$0 { creatorOrderError = nil } })) {
+                Button("好") { creatorOrderError = nil }
+            } message: { Text(creatorOrderError ?? "") }
     }
 
     private var personalWorks: some View {

@@ -2412,6 +2412,16 @@
     "ko": "오디오 출력 변경",
     "zh-Hant": "切換音訊輸出"
   },
+  "列表内容已变化，请重新调整。": {
+    "context": [
+      "PlaylistOrdering",
+      "LibraryDirectoryOrdering"
+    ],
+    "en": "The list has changed. Please try again.",
+    "ja": "リストの内容が変更されました。もう一度調整してください。",
+    "ko": "목록이 변경되었습니다. 다시 조정해 주세요.",
+    "zh-Hant": "列表內容已變化，請重新調整。"
+  },
   "列表循环": {
     "context": [
       "PlaybackQueue"
@@ -7279,6 +7289,16 @@
     "ko": "트랙이 바뀌었습니다. 미리 들으려면 원래 트랙으로 돌아가세요.",
     "zh-Hant": "曲目已切換，請回到原曲目試聽。"
   },
+  "更改分类": {
+    "context": [
+      "PlaylistOrdering",
+      "LibraryDirectoryOrdering"
+    ],
+    "en": "Move to another collection",
+    "ja": "分類を変更",
+    "ko": "분류 변경",
+    "zh-Hant": "更改分類"
+  },
   "最多 12 小时；暂停或锁屏时倒计时继续。": {
     "context": [
       "SleepTimerSheet"
@@ -8987,6 +9007,16 @@
     "ko": "디렉터리 항목 수와 인덱스 길이가 일치하지 않습니다",
     "zh-Hant": "目錄項目數量與索引長度不一致"
   },
+  "目标分类中已存在这首曲目或视频。": {
+    "context": [
+      "PlaylistOrdering",
+      "LibraryDirectoryOrdering"
+    ],
+    "en": "This track or video is already in the destination collection.",
+    "ja": "移動先には同じ曲または動画が既にあります。",
+    "ko": "대상 분류에 이미 같은 트랙 또는 동영상이 있습니다.",
+    "zh-Hant": "目標分類中已存在這首曲目或影片。"
+  },
   "直接关联所选文件夹中的原文件。以后改名或移动，可在作品菜单重新关联。": {
     "context": [
       "LibraryImportSheet"
@@ -9162,6 +9192,16 @@
     "ja": "グループに移動",
     "ko": "그룹으로 이동",
     "zh-Hant": "移至分組"
+  },
+  "移动到": {
+    "context": [
+      "PlaylistOrdering",
+      "LibraryDirectoryOrdering"
+    ],
+    "en": "Move to",
+    "ja": "移動先",
+    "ko": "이동할 위치",
+    "zh-Hant": "移動到"
   },
   "移除": {
     "context": [
@@ -10758,6 +10798,16 @@
     "ko": "자르기 조정",
     "zh-Hant": "調整裁切"
   },
+  "调整顺序": {
+    "context": [
+      "PlaylistOrdering",
+      "LibraryDirectoryOrdering"
+    ],
+    "en": "Reorder",
+    "ja": "順序を変更",
+    "ko": "순서 변경",
+    "zh-Hant": "調整順序"
+  },
   "跟随播放位置": {
     "context": [
       "SubtitlePageView"
@@ -11526,6 +11576,16 @@
     "ja": "選んだファイルは別の場所に移動されています。フォルダを選び直してください。",
     "ko": "선택한 파일이 다른 위치로 이동되었습니다. 폴더를 다시 선택하세요.",
     "zh-Hant": "所選檔案已移到其他位置，請重新選擇資料夾。"
+  },
+  "选择目标分类，原有内容和记录会保留。": {
+    "context": [
+      "PlaylistOrdering",
+      "LibraryDirectoryOrdering"
+    ],
+    "en": "Choose a destination. Your content and records will be preserved.",
+    "ja": "移動先を選択してください。内容と記録は保持されます。",
+    "ko": "이동할 분류를 선택하세요. 기존 콘텐츠와 기록은 유지됩니다.",
+    "zh-Hant": "選擇目標分類，原有內容和記錄會保留。"
   },
   "选择第一句": {
     "context": [

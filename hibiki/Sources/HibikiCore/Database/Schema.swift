@@ -11,11 +11,24 @@ import Foundation
 /// - 时间一律存**毫秒整数**，避免时区/浮点问题
 public enum Schema {
 
-    public static let currentVersion = 25
+    public static let currentVersion = 26
 
     public static var migrations: [Migration] {
-        [migration1, migration2, migration3, migration4, migration5, migration6, migration7, migration8, migration9, migration10, migration11, migration12, migration13, migration14, migration15, migration16, migration17, migration18, migration19, migration20, migration21, migration22, migration23, migration24, migration25]
+        [migration1, migration2, migration3, migration4, migration5, migration6, migration7, migration8, migration9, migration10, migration11, migration12, migration13, migration14, migration15, migration16, migration17, migration18, migration19, migration20, migration21, migration22, migration23, migration24, migration25, migration26]
     }
+
+    /// Keep each collection's existing insertion order; new items append after custom ordering.
+    static let migration26 = Migration(version: 26, sql: """
+    ALTER TABLE playlist_entry ADD COLUMN sort_order INTEGER NOT NULL DEFAULT 0;
+    UPDATE playlist_entry SET sort_order = id;
+    CREATE INDEX playlist_entry_order ON playlist_entry(group_id, sort_order, id);
+    CREATE TRIGGER playlist_entry_append AFTER INSERT ON playlist_entry BEGIN
+        UPDATE playlist_entry SET sort_order = (
+            SELECT COALESCE(MAX(sort_order), -1) + 1 FROM playlist_entry
+            WHERE group_id = NEW.group_id AND id <> NEW.id
+        ) WHERE id = NEW.id;
+    END;
+    """)
 
     /// 固定只影响历史保留，不改变来源、版本编号或当前生效版本。
     static let migration25 = Migration(version: 25, sql: """

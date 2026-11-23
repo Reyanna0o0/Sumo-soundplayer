@@ -265,6 +265,7 @@
 "切换视频" = "Switch to Video";
 "切换语音" = "Switch to Voice";
 "切换音频输出" = "Change Audio Output";
+"列表内容已变化，请重新调整。" = "The list has changed. Please try again.";
 "列表循环" = "Repeat All";
 "创作者" = "Creator";
 "创作者 #{#0}" = "Creator #{#0}";
@@ -792,6 +793,7 @@
 "暂未定位到上次阅读处；手动翻阅后会记住新位置。" = "Your last reading position could not be found. Scrolling manually will save a new position.";
 "曲目列表已有变化，请重新整理。" = "The track list has changed. Please rearrange it again.";
 "曲目已切换，请回到原曲试听。" = "The track has changed. Return to the original track to preview.";
+"更改分类" = "Move to another collection";
 "最多 12 小时；暂停或锁屏时倒计时继续。" = "Up to 12 hours. The countdown continues while paused or the screen is locked.";
 "最常听" = "Top ";
 "最常收听　%02d:00–%02d:00" = "Most listened　%02d:00–%02d:00";
@@ -980,6 +982,7 @@
 "目录文件名不一致" = "Directory filenames do not match";
 "目录条目包含数据" = "A directory entry contains data";
 "目录条目数量与索引长度不一致" = "Directory entry count and index length do not match";
+"目标分类中已存在这首曲目或视频。" = "This track or video is already in the destination collection.";
 "直接关联所选文件夹中的原文件。以后改名或移动，可在作品菜单重新关联。" = "Link directly to original files in the selected folder. If they are renamed or moved, relink them from the work menu.";
 "直接拖动或双指缩放取景。铺满会裁去边缘，完整显示可保留整张图片；原文件不变。" = "Drag or pinch to adjust the framing. Fill crops the edges; Fit keeps the whole image visible. The original file is unchanged.";
 "相同路径或唯一同名文件已预选，请确认它们确实是原文件。改名后的文件请点进对应条目手动选择。" = "Files with the same path or a unique matching name are preselected. Confirm they are the original files. For renamed files, open the corresponding entry and select the file manually.";
@@ -999,6 +1002,7 @@
 "移到「{#0}」之前" = "Move Before “{#0}”";
 "移到「{#0}」之后" = "Move After “{#0}”";
 "移到分组" = "Move to Group";
+"移动到" = "Move to";
 "移除" = "Remove";
 "移除「%@」及其库内资料。购买的原文件和已经保存的独立摘选会保留。" = "Remove “%@” and its library data. Purchased original files and saved standalone clips will be kept.";
 "移除「%@」？" = "Remove “%@”?";
@@ -1173,6 +1177,7 @@
 "调整%@的分组顺序" = "Change the Group Order of %@";
 "调整组件顺序与显示" = "Arrange Widget Order and Visibility";
 "调整裁剪" = "Adjust Crop";
+"调整顺序" = "Reorder";
 "跟随播放位置" = "Follow Playback";
 "跟随系统" = "Follow System";
 "跳过这段" = "Skip This Section";
@@ -1258,6 +1263,7 @@
 "选择的 ZIP 无法作为普通文件读取" = "The selected ZIP cannot be read as a regular file";
 "选择的文件不在这个文件夹内，请重新选择。" = "The selected file is not in this folder. Please select again.";
 "选择的文件已移到其他位置，请重新选择文件夹。" = "The selected file has moved. Please select the folder again.";
+"选择目标分类，原有内容和记录会保留。" = "Choose a destination. Your content and records will be preserved.";
 "选择第一句" = "Select First Line";
 "选择类型" = "Select Type";
 "选择系统提供的音频输出设备" = "Choose an audio output device provided by the system";

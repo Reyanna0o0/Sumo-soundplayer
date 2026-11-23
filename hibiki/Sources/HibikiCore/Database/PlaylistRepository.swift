@@ -35,13 +35,15 @@ public struct SavedPlaylistEntry: Identifiable, Equatable, Sendable {
 }
 
 public enum PlaylistCollectionError: LocalizedError {
-    case blankName, invalidGroup, invalidSelection
+    case blankName, invalidGroup, invalidSelection, staleEntries, duplicateEntry
 
     public var errorDescription: String? {
         switch self {
         case .blankName: return InterfaceLocalization.text("请输入名称。")
         case .invalidGroup: return InterfaceLocalization.text("请选择对应类型的收藏夹。")
         case .invalidSelection: return InterfaceLocalization.text("请至少选择两段已保存的摘选。")
+        case .staleEntries: return InterfaceLocalization.text("列表内容已变化，请重新调整。")
+        case .duplicateEntry: return InterfaceLocalization.text("目标分类中已存在这首曲目或视频。")
         }
     }
 }
@@ -84,6 +86,7 @@ public final class PlaylistRepository {
         let trackTitle = version >= 21 ? "COALESCE(t.title_override, e.title)" : "e.title"
         let attachmentJoin = version >= 23 ? "LEFT JOIN work_attachment v ON v.id = e.attachment_id" : ""
         let sourceWorkID = version >= 23 ? "COALESCE(t.work_id, v.work_id)" : "t.work_id"
+        let ordering = version >= 26 ? "e.group_id, e.sort_order, e.id" : "e.id"
         return try db.query("""
             SELECT e.*, COALESCE(\(sourceWorkID), e.cover_work_id) AS work_id,
                    CASE WHEN e.clip_filename IS NULL THEN \(trackTitle) ELSE e.title END AS display_title,
@@ -92,7 +95,7 @@ public final class PlaylistRepository {
               LEFT JOIN track t ON t.id = e.track_id
               \(attachmentJoin)
               LEFT JOIN work w ON w.id = \(sourceWorkID)
-             ORDER BY e.id
+             ORDER BY \(ordering)
             """).map { row in
             SavedPlaylistEntry(
                 id: row.int64("id")!, groupID: row.int64("group_id")!,
