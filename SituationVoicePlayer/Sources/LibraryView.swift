@@ -702,7 +702,7 @@ struct LibraryView: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
-                .frame(maxWidth: 1000)
+                .frame(maxWidth: collectionDisplay == .covers ? 1000 : 860)
                 .frame(maxWidth: .infinity, minHeight: viewport.size.height, alignment: .top)
                 .contentShape(Rectangle())
                 .coordinateSpace(name: CollectionWorkArrangement.coordinateSpace)
@@ -735,7 +735,7 @@ struct LibraryView: View {
     /// 导入完成的提示文字（ViewBuilder 里不能写语句，所以拆到这里）
     static func summaryText(works: Int, tracks: Int, subtitles: Int, unmatched: Int, pdfSummary: String) -> String {
         var parts = [L10n.text("\(works) 个作品 / \(tracks) 首曲目")]
-        if subtitles > 0 { parts.append(L10n.text("新增 ") + String(subtitles) + L10n.text(" 份字幕")) }
+        if subtitles > 0 { parts.append(L10n.text("字幕记录") + ": " + String(subtitles)) }
         if unmatched > 0 { parts.append(String(unmatched) + L10n.text(" 份字幕未收录")) }
         if !pdfSummary.isEmpty { parts.append(pdfSummary) }
         return parts.joined(separator: " · ")

@@ -208,7 +208,7 @@ struct PlayerView: View {
             }
             .padding(.vertical, 6)
             .frame(width: width)
-            .frame(maxWidth: .infinity, minHeight: size.height)
+            .frame(maxWidth: .infinity, minHeight: size.height, alignment: size.width >= 800 ? .top : .center)
         }
         .scrollBounceBehavior(.basedOnSize)
     }
@@ -550,7 +550,7 @@ private struct PlayerOptionLabelStyle: LabelStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         let label = VStack(spacing: 4) {
-            configuration.icon.font(.system(size: 18))
+            configuration.icon.font(.system(size: 18)).accessibilityHidden(true)
             configuration.title.font(.caption).multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
         }

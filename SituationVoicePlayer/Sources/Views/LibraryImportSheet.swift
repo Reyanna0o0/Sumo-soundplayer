@@ -5,6 +5,8 @@ struct LibraryImportSheet: View {
     @ObservedObject var store: LibraryStore
     let initialLibrary: MediaLibraryKind
     @Environment(\.dismiss) private var dismiss
+    @State private var duplicateZIP = false
+    @State private var importIndependentCopy = false
     private enum InputKind: String, CaseIterable { case audio = "音频文件", video = "视频文件", folder = "文件夹", zip = "ZIP 压缩包" }
     @State private var library: MediaLibraryKind
     @State private var kind: InputKind
@@ -36,7 +38,7 @@ struct LibraryImportSheet: View {
     }
     private var ready: Bool {
         !busy && !loadingPreview && !selectedURLs.isEmpty && preview != nil
-            && preview?.errorMessage == nil && (preview?.workCount ?? 0) > 0 && !hasUnsupportedVideo
+            && (!duplicateZIP || importIndependentCopy) && preview?.errorMessage == nil && (preview?.workCount ?? 0) > 0 && !hasUnsupportedVideo
     }
     private var allowedTypes: [UTType] {
         switch kind {
@@ -112,7 +114,7 @@ struct LibraryImportSheet: View {
                                 LabeledContent("作品", value: "\(preview.workCount)")
                                 LabeledContent("音轨", value: "\(preview.trackCount)")
                                 if preview.videoCount > 0 { LabeledContent("视频", value: "\(preview.videoCount)") }
-                                LabeledContent("字幕", value: "\(preview.subtitleCount)")
+                                LabeledContent("字幕文件", value: "\(preview.subtitleCount)")
                                 LabeledContent("封面", value: "\(preview.coverCount)")
                                 if !preview.subtitleFiles.isEmpty {
                                     DisclosureGroup("字幕") {
@@ -136,18 +138,27 @@ struct LibraryImportSheet: View {
                         }
                     }
                 }
+                if duplicateZIP {
+                    Section("这个 ZIP 已导入") {
+                        Toggle("另存为新作品", isOn: $importIndependentCopy)
+                        Text("建立名称正常的新副本；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。")
+                            .font(.footnote).foregroundStyle(AppTheme.secondaryText)
+                    }.disabled(busy)
+                }
                 if let errorText { Section { Text(errorText).font(.callout).foregroundStyle(.orange) } }
             }
             .appNavigationColors().navigationTitle(L10n.text("导入作品"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("取消") { operation?.cancel(); dismiss() }.frame(minHeight: 44).disabled(importing && kind == .folder)
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("确认导入", action: submit).frame(minHeight: 44).disabled(!ready)
-                        .accessibilityIdentifier("libraryImportConfirm")
-                }
+            .toolbar(.hidden, for: .navigationBar)
+            .safeAreaInset(edge: .top, spacing: 0) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("导入作品").font(.headline)
+                    ViewThatFits(in: .horizontal) {
+                        HStack { cancelButton; Spacer(); importButton }
+                        VStack(alignment: .leading) { cancelButton; importButton }
+                    }
+                }.padding(16).frame(maxWidth: .infinity, alignment: .leading)
+                    .background(AppTheme.background)
             }
             .interactiveDismissDisabled(busy)
             .fileImporter(isPresented: $showPicker, allowedContentTypes: allowedTypes,
@@ -164,14 +175,28 @@ struct LibraryImportSheet: View {
             .sheet(isPresented: $showSoundgasm) {
                 SoundgasmImportSheet(store: store) { dismiss() }
             }
-            .task(id: "\(revision)-\(grouping.rawValue)") { await refreshPreview() }
+            .task(id: "\(revision)-\(grouping.rawValue)-\(library.rawValue)") { await refreshPreview() }
             .onDisappear { operation?.cancel(); if !importing { try? archive?.dispose() } }
         }
+    }
+
+    private var cancelButton: some View {
+        Button { operation?.cancel(); dismiss() } label: {
+            Text("取消").fixedSize(horizontal: false, vertical: true)
+                .padding(.horizontal, 12).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+        }.disabled(importing && kind == .folder)
+    }
+    private var importButton: some View {
+        Button(action: submit) {
+            Text("确认导入").fixedSize(horizontal: false, vertical: true)
+                .padding(.horizontal, 12).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+        }.disabled(!ready).accessibilityIdentifier("libraryImportConfirm")
     }
 
     private func resetSelection() {
         operation?.cancel(); operation = nil
         try? archive?.dispose(); archive = nil
+        duplicateZIP = false; importIndependentCopy = false
         selectedURLs = []; preview = nil; errorText = nil; preparing = false
         revision = UUID()
     }
@@ -202,6 +227,7 @@ struct LibraryImportSheet: View {
     private func refreshPreview() async {
         guard !selectedURLs.isEmpty, !preparing else { return }
         loadingPreview = true
+        duplicateZIP = false; importIndependentCopy = false
         let result: LibraryStore.ImportPreview
         switch kind {
         case .audio:
@@ -214,6 +240,7 @@ struct LibraryImportSheet: View {
             result = await store.makePreview(url: selectedURLs[0], grouping: grouping)
         case .zip:
             guard let archive else { loadingPreview = false; return }
+            duplicateZIP = (try? store.hasImportedZIP(archive.archiveSHA256, library: library)) ?? false
             result = await store.makeZIPPreview(archive, grouping: grouping)
         }
         guard !Task.isCancelled else { return }
@@ -235,14 +262,15 @@ struct LibraryImportSheet: View {
                     store.setCurrentLibrary(library)
                 case .zip:
                     guard let archive else { throw WorkRelinkError.message(L10n.text("请重新选择 ZIP。")) }
-                    try await store.importZIP(archive, grouping: grouping, library: library, creatorID: creatorID)
+                    try await store.importZIP(archive, grouping: grouping, library: library, creatorID: creatorID, importIndependentCopy: importIndependentCopy)
                 }
                 importing = false; dismiss()
             } catch {
                 importing = false
                 if kind == .zip {
                     try? archive?.dispose(); archive = nil
-                    selectedURLs = []; preview = nil; revision = UUID()
+                    duplicateZIP = false; importIndependentCopy = false
+        selectedURLs = []; preview = nil; revision = UUID()
                 }
                 if !(error is CancellationError) {
                     errorText = error.localizedDescription + (kind == .zip ? L10n.text(" 请重新选择 ZIP 后再试。") : "")

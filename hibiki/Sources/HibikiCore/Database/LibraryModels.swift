@@ -155,6 +155,9 @@ public struct WorkRecord: Identifiable, Equatable, Hashable, Sendable {
     }
     /// 总时长毫秒（查询时聚合得到，不落库）
     public var totalDurationMS: Int = 0
+    /// Sum of rounded track seconds, used only for visible durations.
+    public var roundedTrackDurationMS: Int?
+    public var durationForDisplayMS: Int { roundedTrackDurationMS ?? totalDurationMS }
     /// 解析后的封面绝对路径（运行时算出来，不落库）
     public var resolvedCoverPath: String?
     /// 解析后的台本绝对路径（运行时算出来，不落库）

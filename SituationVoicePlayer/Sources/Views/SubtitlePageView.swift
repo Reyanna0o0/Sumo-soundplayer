@@ -216,14 +216,13 @@ struct SubtitlePageView: View {
                     setDivision(layout.value(at: (dividerDragStart ?? layout.boundary) + movement), landscape: layout.landscape)
                 }
                 .onEnded { _ in finishDividerDrag() })
-            .accessibilityElement()
-            .accessibilityLabel("封面与台词分界")
-            .accessibilityValue("封面空间 \(Int((layout.value + 1) * 50))%")
-            .accessibilityIdentifier("subtitleDivider")
-            .accessibilityAdjustableAction { direction in
-                let change: CGFloat = direction == .increment ? 0.1 : -0.1
-                setDivision(min(1, max(-1, layout.value + change)), landscape: layout.landscape)
-                revealDivider()
+            .accessibilityRepresentation {
+                Slider(value: Binding(
+                    get: { Double((layout.value + 1) * 50) },
+                    set: { setDivision(CGFloat($0 / 50 - 1), landscape: layout.landscape); revealDivider() }
+                ), in: 0...100, step: 5) { Text("封面与台词分界") }
+                .accessibilityValue(Text(verbatim: "\(Int((layout.value + 1) * 50))%"))
+                .accessibilityIdentifier("subtitleDivider")
             }
     }
 

@@ -186,7 +186,8 @@ struct WorkFavoritePicker: View {
                 }
             }
             .porcelainListBackground(AppTheme.background)
-            .appNavigationColors().navigationTitle(L10n.text("收藏整部作品"))
+            .appNavigationColors().navigationTitle(L10n.text("收藏夹"))
+            .safeAreaInset(edge: .top) { Text("收藏整部作品").font(.headline).fixedSize(horizontal: false, vertical: true).padding().frame(maxWidth: .infinity).background(AppTheme.background) }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }

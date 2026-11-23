@@ -318,7 +318,7 @@ struct WorkDetailView: View {
             return false
         }.count
         if videos > 0 { facts.append(L10n.text("\(videos) 个视频")) }
-        if currentWork.totalDurationMS > 0 { facts.append(totalDurationText) }
+        if currentWork.durationForDisplayMS > 0 { facts.append(totalDurationText) }
         return facts.joined(separator: " · ")
     }
 
@@ -515,7 +515,7 @@ struct WorkDetailView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("文件位置").font(.footnote).foregroundStyle(AppTheme.secondaryText)
                 .padding(.horizontal, 16)
-            Text(URL(fileURLWithPath: currentWork.folderPath).lastPathComponent)
+            Text(currentWork.folderPath.contains("/ImportedArchives/") ? L10n.text("App 内的 ZIP 副本") : URL(fileURLWithPath: currentWork.folderPath).lastPathComponent)
                 .accessibilityIdentifier("workPathValue")
                 .font(.caption.monospaced())
                 .foregroundStyle(AppTheme.secondaryText)
@@ -643,10 +643,10 @@ struct WorkDetailView: View {
     }
 
     private var totalDurationText: String {
-        let minutes = currentWork.totalDurationMS / 60_000
+        let minutes = Int((Double(currentWork.durationForDisplayMS) / 1000).rounded()) / 60
         if minutes >= 60 { return L10n.text("\(minutes / 60) 小时 \(minutes % 60) 分") }
         if minutes > 0 { return L10n.text("\(minutes) 分") }
-        let seconds = Int((Double(currentWork.totalDurationMS) / 1000).rounded())
+        let seconds = Int((Double(currentWork.durationForDisplayMS) / 1000).rounded())
         return seconds > 0 ? L10n.text("\(seconds) 秒") : "—"
     }
 

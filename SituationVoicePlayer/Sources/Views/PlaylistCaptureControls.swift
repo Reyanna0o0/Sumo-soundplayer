@@ -17,7 +17,7 @@ struct PlaylistCaptureControls: View {
                             onClipRequest(SubtitleClipDraft(item: item, durationMS: player.durationMS,
                                 startMS: start, endMS: end))
                         } label: {
-                            Label("标记终点", systemImage: "scissors")
+                            Label { Text("标记终点") } icon: { Image(systemName: "scissors").accessibilityHidden(true) }
                         }
                         .disabled(player.positionMS <= start)
                         .accessibilityIdentifier("saveClip")
@@ -34,7 +34,7 @@ struct PlaylistCaptureControls: View {
                             status = nil
                             player.markClipStart()
                         } label: {
-                            Label("标记起点", systemImage: "scissors")
+                            Label { Text("标记起点") } icon: { Image(systemName: "scissors").accessibilityHidden(true) }
                         }
                         .disabled(player.durationMS <= 0 || player.positionMS >= player.durationMS)
                         .accessibilityIdentifier("markClipStart")

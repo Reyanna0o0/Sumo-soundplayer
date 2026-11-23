@@ -31,6 +31,7 @@
 "AES 密码 ZIP" = "AES-encrypted ZIP";
 "AI 识别" = "AI Transcription";
 "AVI 兼容：FFmpeg" = "AVI Support: FFmpeg";
+"App 内的 ZIP 副本" = "ZIP copy stored in the app";
 "App 缓存" = "App Cache";
 "App 语言" = "App Language";
 "Big5（繁体）" = "Big5 (Traditional Chinese)";
@@ -321,6 +322,7 @@
 "取消收藏这部作品" = "Remove This Work from Favorites";
 "取消转换" = "Cancel Conversion";
 "取消这次选择" = "Cancel This Selection";
+"另存为新作品" = "Import as new works";
 "另有 {#0} 项未导入。" = "Additional items not imported: {#0}.";
 "另有台本也可能对应这首，请确认。" = "Another script may also match this track. Please check.";
 "只更新文件位置，不导入额外文件。此前单独添加的内部副本无需重新配对。" = "Only file locations are updated; no additional files are imported. Internal copies added separately do not need to be matched again.";
@@ -399,6 +401,7 @@
 "字幕已保存为新版本" = "Subtitles Saved as a New Version";
 "字幕已隐藏" = "Subtitles Hidden";
 "字幕提示" = "Subtitle Notice";
+"字幕文件" = "Subtitle files";
 "字幕文件放在音频同目录、文件名相同即可自动加载。日文原文 + 中文译文两个文件会自动配对。" = "Subtitle files load automatically when placed beside the audio with the same filename. Separate Japanese original and Chinese translation files are paired automatically.";
 "字幕文字" = "Subtitle Text";
 "字幕显示" = "Subtitle Display";
@@ -415,6 +418,7 @@
 "字幕版本编号必须递增，请刷新后重试。" = "Subtitle version numbers must increase. Refresh and try again.";
 "字幕移到中间" = "Move Subtitles to Center";
 "字幕移到底部" = "Move Subtitles to Bottom";
+"字幕记录" = "Subtitle records";
 "字段被截断" = "A field is truncated";
 "存在重复轨道号，请选择对应曲目" = "Duplicate track numbers found. Choose the matching track.";
 "完全模拟通话按键名称" = "Use Call-Style Button Names";
@@ -521,6 +525,7 @@
 "应用名称" = "App Name";
 "应用图标" = "App Icon";
 "底部" = "Bottom";
+"建立名称正常的新副本；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。" = "Create a new copy with corrected names. Existing works, subtitle edits and statistics stay with the original and are not transferred or overwritten. This uses additional storage.";
 "开发" = "Development";
 "开启字幕浮窗" = "Open Floating Subtitles";
 "开始" = "Start";
@@ -1208,6 +1213,7 @@
 "这个 PDF 是扫描图片，需要 OCR。先做识别，或换一份带文字的台本。" = "This PDF contains scanned images and needs OCR. Run text recognition first, or use a script with selectable text.";
 "这个 Scriptbin 链接已保存到本作品，已有台本和编辑版本保持原样。" = "This Scriptbin link is already saved to this work. Existing scripts and edited versions are unchanged.";
 "这个 Soundgasm 链接已在所选媒体库中，已有作品保持原样。" = "This Soundgasm link is already in the selected library. The existing work is unchanged.";
+"这个 ZIP 已导入" = "This ZIP is already imported";
 "这个 ZIP 已导入当前媒体库，已有作品没有改动。" = "This ZIP is already imported into the current library. Existing works are unchanged.";
 "这个位置已经关联到其他作品或音频，请选择尚未关联的位置。" = "This location is already linked to another work or audio file. Choose an unlinked location.";
 "这个分组已不存在，请重新选择。" = "This group no longer exists. Select again.";

@@ -295,6 +295,7 @@ public final class LibraryRepository {
         return """
             SELECT w.*, \(Self.displayedWorkTitleSQL(version: version)) AS display_work_title, \(videoCount) AS video_count,
                    (SELECT COUNT(*) FROM track t WHERE t.work_id = w.id AND t.is_video = 0) AS track_count,
+                   (SELECT COALESCE(SUM(CAST((t.duration_ms + 500) / 1000 AS INTEGER) * 1000), 0) FROM track t WHERE t.work_id = w.id AND t.is_video = 0) AS rounded_duration,
                    (SELECT COALESCE(SUM(t.duration_ms), 0) FROM track t WHERE t.work_id = w.id AND t.is_video = 0) AS total_duration
               FROM work w
             """
@@ -793,6 +794,7 @@ public final class LibraryRepository {
         work.trackCount = row.int("track_count") ?? 0
         work.videoCount = row.int("video_count") ?? 0
         work.totalDurationMS = row.int("total_duration") ?? 0
+        work.roundedTrackDurationMS = row.int("rounded_duration")
         if let circle = row.string("circle_name_override") { work.circleName = circle }
         if let encoded = row.string("seiyuu_names_override"),
            let names = try? JSONDecoder().decode([String].self, from: Data(encoded.utf8)) {

@@ -28,7 +28,7 @@ struct WorkCardView: View {
 
                 HStack(spacing: 4) {
                     Text(work.mediaCountText)
-                    if work.totalDurationMS > 0 {
+                    if work.durationForDisplayMS > 0 {
                         Text("·")
                         Text(formattedDuration)
                     }
@@ -72,7 +72,7 @@ struct WorkCardView: View {
     }
 
     private var formattedDuration: String {
-        let seconds = Int((Double(work.totalDurationMS) / 1000).rounded())
+        let seconds = Int((Double(work.durationForDisplayMS) / 1000).rounded())
         if seconds < 60 { return L10n.text("\(seconds) 秒") }
         let totalMinutes = seconds / 60
         if totalMinutes >= 60 {

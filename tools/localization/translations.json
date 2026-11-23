@@ -12373,5 +12373,41 @@
     "en": "Playback has finished. The simulated call has ended.",
     "ja": "再生が終了したため、模擬通話が終了しました。",
     "ko": "재생이 완료되어 모의 통화가 종료되었습니다."
+  },
+  "这个 ZIP 已导入": {
+    "zh-Hant": "這個 ZIP 已匯入",
+    "en": "This ZIP is already imported",
+    "ja": "この ZIP は取り込み済みです",
+    "ko": "이미 가져온 ZIP입니다"
+  },
+  "另存为新作品": {
+    "zh-Hant": "另存為新作品",
+    "en": "Import as new works",
+    "ja": "新しい作品として取り込む",
+    "ko": "새 작품으로 가져오기"
+  },
+  "建立名称正常的新副本；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。": {
+    "zh-Hant": "建立名稱正常的新副本；舊作品、字幕編輯和統計保留在原作品中，不會轉移或覆蓋。會額外佔用儲存空間。",
+    "en": "Create a new copy with corrected names. Existing works, subtitle edits and statistics stay with the original and are not transferred or overwritten. This uses additional storage.",
+    "ja": "名前を修正した新しいコピーを作成します。既存の作品・字幕編集・統計は元の作品に残り、移行や上書きは行いません。保存容量が追加で必要です。",
+    "ko": "올바른 이름의 새 사본을 만듭니다. 기존 작품, 자막 편집 및 통계는 원본에 남으며 이전되거나 덮어써지지 않습니다. 저장 공간이 추가로 필요합니다."
+  },
+  "字幕文件": {
+    "zh-Hant": "字幕檔案",
+    "en": "Subtitle files",
+    "ja": "字幕ファイル",
+    "ko": "자막 파일"
+  },
+  "字幕记录": {
+    "zh-Hant": "字幕記錄",
+    "en": "Subtitle records",
+    "ja": "字幕データ",
+    "ko": "자막 기록"
+  },
+  "App 内的 ZIP 副本": {
+    "zh-Hant": "App 內的 ZIP 副本",
+    "en": "ZIP copy stored in the app",
+    "ja": "アプリ内の ZIP コピー",
+    "ko": "앱에 저장된 ZIP 사본"
   }
 }

@@ -1376,6 +1376,14 @@ final class LibraryStore: ObservableObject {
         let matches = SubtitleSidecarFinder.importMatches(
             audioPaths: audioPaths, subtitlePaths: work.subtitlePaths, selectedAudioPaths: selectedPaths
         )
+        func readSidecar(_ match: SidecarSubtitleMatch) -> [SubtitleCue]? {
+            let url = URL(fileURLWithPath: match.path)
+            guard let size = try? url.resourceValues(forKeys: [.fileSizeKey]).fileSize,
+                  size <= 32 * 1024 * 1024,
+                  let data = try? Data(contentsOf: url), let text = SubtitleTextDecoder.decode(data: data) else { return nil }
+            let cues = SubtitleParser.parse(text, formatHint: match.format).cues
+            return cues.isEmpty ? nil : cues
+        }
         var trackIDs: Set<Int64> = []
         for track in tracks {
             guard let selected = matches[track.filePath] else { continue }
@@ -1383,27 +1391,31 @@ final class LibraryStore: ObservableObject {
             let match = pair.primary
             let label = (match.path as NSString).lastPathComponent
             let existing = try repository.tracks(forTrackID: track.id)
-            if existing.contains(where: { $0.kind == .sidecar && $0.label == label }) {
+            if let previous = existing.first(where: { $0.kind == .sidecar && $0.label == label }) {
                 remaining.remove(match.path)
+                // Count an already imported translation without rewriting any edited version.
+                if let secondary = pair.secondary, let primaryCues = readSidecar(match),
+                   let secondaryCues = readSidecar(secondary) {
+                    let expected = SubtitleTranslationMerger.merge(primary: primaryCues, secondary: secondaryCues)
+                    let versions = try repository.versions(subtitleTrackID: previous.id)
+                    for version in versions {
+                        let saved = try repository.cues(versionID: version.id)
+                        if saved.count == expected.count && zip(saved, expected).allSatisfy({
+                            $0.text == $1.text && $0.translatedText == $1.translatedText &&
+                            $0.startMS == $1.startMS && $0.endMS == $1.endMS
+                        }) {
+                            remaining.remove(secondary.path)
+                            break
+                        }
+                    }
+                }
                 continue
             }
             do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: match.path))
-                guard let text = SubtitleTextDecoder.decode(data: data) else {
-                    DebugLog.write("字幕编码无法读取：\(match.path)")
-                    continue
-                }
-                let parsed = SubtitleParser.parse(text, formatHint: match.format)
-                guard !parsed.cues.isEmpty else {
-                    DebugLog.write("没有可读的字幕时间行：\(match.path)")
-                    continue
-                }
-                var cues = parsed.cues
+                guard let parsedCues = readSidecar(match) else { continue }
+                var cues = parsedCues
                 var translationPath: String?
-                if let secondary = pair.secondary,
-                   let bytes = try? Data(contentsOf: URL(fileURLWithPath: secondary.path)),
-                   let text = SubtitleTextDecoder.decode(data: bytes) {
-                    let translation = SubtitleParser.parse(text, formatHint: secondary.format).cues
+                if let secondary = pair.secondary, let translation = readSidecar(secondary) {
                     if !translation.isEmpty {
                         cues = SubtitleTranslationMerger.merge(primary: cues, secondary: translation)
                         translationPath = secondary.path
@@ -1416,7 +1428,7 @@ final class LibraryStore: ObservableObject {
                 trackIDs.insert(track.id)
                 remaining.remove(match.path)
                 if let translationPath { remaining.remove(translationPath) }
-                DebugLog.write("已写入 \(parsed.cues.count) 行：\(match.path) → \(track.fileName)")
+                DebugLog.write("已写入 \(cues.count) 行：\(match.path) → \(track.fileName)")
             } catch {
                 DebugLog.write("字幕读取或保存失败：\(match.path)，\(error.localizedDescription)")
             }

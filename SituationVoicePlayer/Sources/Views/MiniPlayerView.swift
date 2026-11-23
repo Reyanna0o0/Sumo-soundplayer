@@ -3,6 +3,7 @@ import SwiftUI
 /// 三个区域一起铺满圆角栏，标题后的空白也能展开播放器。
 struct MiniPlayerView: View {
     @EnvironmentObject private var player: PlayerController
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var showQueue = false
     @ScaledMetric(relativeTo: .subheadline) private var trackTitleSize: CGFloat = 14
     private let controlSize: CGFloat = 44
@@ -21,11 +22,11 @@ struct MiniPlayerView: View {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(item.trackTitle)
                                 .font(.system(size: trackTitleSize, weight: .semibold))
-                                .lineLimit(1)
+                                .lineLimit(dynamicTypeSize.isAccessibilitySize ? 2 : 1)
                             Text(player.currentWorkTitle)
                                 .font(.caption)
                                 .foregroundStyle(AppTheme.secondaryText)
-                                .lineLimit(1)
+                                .lineLimit(dynamicTypeSize.isAccessibilitySize ? 2 : 1)
                             progressLine
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)

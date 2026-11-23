@@ -3,6 +3,7 @@ import UIKit
 
 /// 导入已经落库时，在当前页面中央短暂提示，下面的控件仍可点按。
 struct ImportSuccessToast: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     var title: LocalizedStringKey = "导入成功"
     var detail: String? = nil
 
@@ -11,12 +12,14 @@ struct ImportSuccessToast: View {
             Label(title, systemImage: "checkmark.circle.fill")
                 .font(.headline)
                 .multilineTextAlignment(.center)
-            if let detail, !detail.isEmpty {
+                .lineLimit(2).minimumScaleFactor(0.8)
+            if !dynamicTypeSize.isAccessibilitySize, let detail, !detail.isEmpty {
                 Text(detail)
                     .font(.footnote)
                     .multilineTextAlignment(.center)
             }
         }
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
         .foregroundStyle(.white)
         .padding(.horizontal, 20)
         .padding(.vertical, 13)

@@ -64,17 +64,21 @@ extension LibraryStore {
     }
 
     func hasImportedZIP(_ digest: String, library: MediaLibraryKind) throws -> Bool {
-        guard let repository, let value = try repository.setting("importedZIP.\(library.rawValue).\(digest)"),
-              let sourceID = Int64(value) else { return false }
-        return try !repository.works(sourceID: sourceID).isEmpty
+        guard let repository else { return false }
+        let original = try repository.setting("importedZIP.\(library.rawValue).\(digest)") ?? ""
+        let copies = try repository.setting("importedZIPCopies.\(library.rawValue).\(digest)") ?? ""
+        for sourceID in Set((original + "," + copies).split(separator: ",").compactMap { Int64($0) }) {
+            if try !repository.works(sourceID: sourceID).isEmpty { return true }
+        }
+        return false
     }
 
     /// File copying, decoding and script parsing finish before the one DB transaction.
     func importZIP(_ archive: PreparedZIPImport, grouping: ScanOptions.Grouping,
-                   library: MediaLibraryKind, creatorID: Int64?) async throws {
+                   library: MediaLibraryKind, creatorID: Int64?, importIndependentCopy: Bool = false) async throws {
         guard !phase.isBusy else { throw WorkRelinkError.message(InterfaceLocalization.text("请等待当前导入完成。")) }
         guard let repository, let subtitleRepository else { throw LibraryEditingError.unavailable }
-        guard try !hasImportedZIP(archive.archiveSHA256, library: library) else {
+        guard try importIndependentCopy || !hasImportedZIP(archive.archiveSHA256, library: library) else {
             throw WorkRelinkError.message(InterfaceLocalization.text("这个 ZIP 已导入当前媒体库，已有作品没有改动。"))
         }
         setImportPhase(.scanning(found: 0))
@@ -141,7 +145,12 @@ extension LibraryStore {
                     pendingPDFs += work.pdfs.forReview.count
                     setImportPhase(.saving(current: index + 1, total: prepared.works.count))
                 }
-                try repository.setSetting("importedZIP.\(library.rawValue).\(archive.archiveSHA256)", String(sourceID))
+                let key = "importedZIPCopies.\(library.rawValue).\(archive.archiveSHA256)"
+                let old = try repository.setting(key) ?? ""
+                try repository.setSetting(key, old.isEmpty ? String(sourceID) : old + "," + String(sourceID))
+                if try repository.setting("importedZIP.\(library.rawValue).\(archive.archiveSHA256)") == nil {
+                    try repository.setSetting("importedZIP.\(library.rawValue).\(archive.archiveSHA256)", String(sourceID))
+                }
             }
             // retain is an in-memory ownership transfer after a successful commit.
             archive.retain()

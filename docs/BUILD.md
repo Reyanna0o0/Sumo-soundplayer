@@ -20,6 +20,7 @@ python3 scripts/verify-resources.py
 python3 tools/localization/build_resources.py --check
 bash scripts/test-core.sh
 bash scripts/test-media-picker.sh
+bash scripts/test-import-regression.sh
 ```
 
 也可以从 [v0.1.2 下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.2) 获取 `simo-0.1.2-build35-source.zip`，解压后在 `Sumo-soundplayer-0.1.2/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。

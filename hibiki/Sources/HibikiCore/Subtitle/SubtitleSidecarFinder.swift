@@ -180,7 +180,11 @@ public enum SubtitleSidecarFinder {
             guard let first = sorted.first else { continue }
             // 跨目录出现两份同样可信的字幕，保留给用户手选。
             if directory(first.path) != directory(audio),
-               sorted.dropFirst().first?.confidence == first.confidence { continue }
+               sorted.dropFirst().first?.confidence == first.confidence {
+                let tied = sorted.filter { $0.confidence == first.confidence }
+                let pair = importPair(for: first, subtitlePaths: tied.map(\.path))
+                guard tied.count == 2, pair.secondary != nil else { continue }
+            }
             result[audio] = first
         }
 
@@ -249,9 +253,9 @@ public enum SubtitleSidecarFinder {
             }
 
             // 找首选语言作为原文
-            let primaryMatch = sorted.first { $0.languageHint == primary } ?? sorted[0]
+            let primaryMatch = sorted.first { $0.languageHint.map(languageIdentity) == primary.map(languageIdentity) } ?? sorted[0]
             let secondaryMatch = sorted.first {
-                $0.path != primaryMatch.path && $0.languageHint != primaryMatch.languageHint
+                $0.path != primaryMatch.path && $0.languageHint.map(languageIdentity) != primaryMatch.languageHint.map(languageIdentity)
             }
             pairs.append((primaryMatch, secondaryMatch))
         }
@@ -274,9 +278,19 @@ public enum SubtitleSidecarFinder {
             return SidecarSubtitleMatch(path: path, format: selected.format,
                 languageHint: name.language, confidence: selected.confidence)
         }
-        guard siblings.count == 2, Set(siblings.compactMap(\.languageHint)).count == 2,
+        guard siblings.count == 2, Set(siblings.compactMap(\.languageHint).map(languageIdentity)).count == 2,
               let pair = pair(siblings).first else { return (selected, nil) }
         return pair
+    }
+
+    private static func languageIdentity(_ language: String) -> String {
+        switch language.lowercased() {
+        case "ja", "jp", "jpn": return "ja"
+        case "zh", "cn", "chs", "cht", "zh-cn", "zh-tw": return "zh"
+        case "en", "eng": return "en"
+        case "ko", "kor": return "ko"
+        default: return language.lowercased()
+        }
     }
 
     // MARK: - 内部
