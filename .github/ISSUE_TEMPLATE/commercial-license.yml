@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         商业使用须事先取得维护者的明确书面同意。
-        本 Issue 在仓库公开后可见，请勿填写私密合同、身份证件、密钥或账户信息。
+        本 Issue 公开可见，请勿填写私密合同、身份证件、密钥或账户信息。
         如需私下沟通，请发邮件至 [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。
         使用范围详见 docs/COMMERCIAL_USE.md。
   - type: input

@@ -2,25 +2,25 @@
 
 这一页会带你找到正确的下载位置，并把安装包保存下来。完成后，你的电脑里会有一个名字以 **`.ipa` 结尾**的文件，下一步安装时会用到它。
 
-> **当前进度（2026-11-23）：厮磨还在发布准备阶段，仓库私有，安装包是草稿。普通访客现在可能看到 404 或看不到版本，这是尚未开放下载。** 用户已确认 Mac 下载 IPA、经 Sideloadly 安装并成功打开，以及 build 33 更新后此前导入数据仍在；Windows 和续签仍待验证。下面的普通用户步骤供公开发布后使用；目前查看草稿的方法放在本页末尾。
+> **当前版本：v0.1.0（build 33）。只想安装使用，选择名字以 `.ipa` 结尾的文件即可。** 已确认 Mac 下载 IPA、经 Sideloadly 安装并成功打开，以及 build 33 更新后此前导入数据仍在；Windows 和续签仍待验证。
 
-目前有草稿查看权限的维护者，可以打开[版本下载页](https://github.com/Reyanna0o0/Sumo-sound-player/releases)，找到“厮磨 0.1.0 · build 33 自签验收候选”，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
+**[直接打开最新版本下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)**。如果已经打开了版本介绍，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
 
 请先在 **Windows 或 Mac 电脑**上打开这篇教程。后面的安装步骤需要电脑。如果现在用手机阅读，可以把本页链接发到自己的电脑，稍后从电脑继续。
 
-公开发布后，下载公开的安装包通常不需要注册或登录 GitHub。页面上出现 `Sign up`（注册）或 `Sign in`（登录），不用把它们当作下载步骤。目前私有仓库的访问要求见页末说明。
+下载公开的安装包不需要注册或登录 GitHub。页面上出现 `Sign up`（注册）或 `Sign in`（登录），不用把它们当作下载步骤。
 
 ## 1. 打开厮磨的项目首页
 
-点击这个链接：**[打开厮磨播放器项目首页](https://github.com/Reyanna0o0/Sumo-sound-player)**。
+点击这个链接：**[打开厮磨播放器项目首页](https://github.com/Reyanna0o0/Sumo-soundplayer)**。
 
-打开后，看网页上方是否有 **`Reyanna0o0 / Sumo-sound-player`**。这是这个项目在 GitHub 上的名字。下面出现很多英文文件夹和文件名是正常的。
+打开后，看网页上方是否有 **`Reyanna0o0 / Sumo-soundplayer`**。这是这个项目在 GitHub 上的名字。下面出现很多英文文件夹和文件名是正常的。
 
-往下滚动，直到看到大标题 **“厮磨播放器 · Sumo Sound Player”**。在下面的“下载与安装”中，点击 **“下载 IPA（打开版本下载页）”**。
+往下滚动，直到看到大标题 **“厮磨播放器 · Sumo Sound Player”**。在下面的“下载与安装”中，点击 **“下载 IPA（打开最新版本页）”**。
 
 **做对后：** 你会进入一个写着 `Releases` 的页面。这个英文在这里指“版本下载页”。
 
-如果找不到首页入口，可以直接点 **[厮磨版本下载页](https://github.com/Reyanna0o0/Sumo-sound-player/releases)**，从下一步继续。电脑宽屏网页通常也能在项目文件列表右侧找到 `Releases`；窄屏布局可能不同，直接用上面的链接即可。
+如果找不到首页入口，可以直接点 **[厮磨版本下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)**，从下一步继续。电脑宽屏网页通常也能在项目文件列表右侧找到 `Releases`；窄屏布局可能不同，直接用上面的链接即可。
 
 **这里容易点错：** 首页绿色的 `Code` 按钮里有 `Download ZIP`，它下载的是程序源码。要安装厮磨，请继续去版本下载页，不用下载那份 ZIP。
 
@@ -28,11 +28,11 @@
 
 在版本下载页，寻找旁边标有 **`Latest`（最新正式版）**的版本标题，点击标题进入该版本；如果说明和附件已经显示在当前页面，也可以直接往下看。
 
-先读这一版说明开头的系统要求。当前候选版要求 **iOS / iPadOS 18 或更新版本**；手机上可以在“设置 → 通用 → 关于本机”查看系统版本。
+先读这一版说明开头的系统要求。v0.1.0 要求 **iOS / iPadOS 18 或更新版本**；手机上可以在“设置 → 通用 → 关于本机”查看系统版本。
 
 **做对后：** 页面上能看到版本标题、这一版的说明，以及往下可找到的附件区域。
 
-如果只看到 `Pre-release`（测试版）或 `Draft`（草稿），或者页面没有版本，说明这里还没有你要找的正式版。等正式开放后再继续；明确参加测试的人按维护者指定的版本下载。目前维护者查看 build 33 草稿的方法在页末。
+如果误进了标有 `Pre-release`（测试版）或 `Draft`（草稿）的页面，请回到[最新正式版本](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)。普通使用者选择正式版；参加测试的人按维护者指定的版本操作。
 
 ## 3. 展开附件列表
 
@@ -40,7 +40,7 @@
 
 如果只看到 `Assets`、一个小三角和旁边的数字，却看不到文件名，**点一下 `Assets` 或它左边的小三角**，把列表展开。已经能看到文件名就不用再点。
 
-**做对后：** 下方会出现一行行可以点击的文件名。当前候选包的名字示例如下；以后版本号会变：
+**做对后：** 下方会出现一行行可以点击的文件名。v0.1.0 的文件名如下；以后版本号会变：
 
 ```text
 simo-0.1.0-build33-unsigned.ipa         ← 安装包，选这一项
@@ -48,7 +48,7 @@ simo-0.1.0-build33-unsigned.ipa.json    ← 构建信息
 simo-0.1.0-build33-unsigned.ipa.sha256  ← 下载校验信息
 ```
 
-正式发布页还可能显示 `Source code (zip)` 和 `Source code (tar.gz)`，它们是源码压缩包。
+附件还包含 `simo-0.1.0-build33-source.zip`、`LICENSE.txt` 和 `SHA256SUMS.txt`，分别是对应源码、许可和全部附件的校验清单。GitHub 也会显示 `Source code (zip)` 和 `Source code (tar.gz)`。**第一次安装时只需选 IPA。**
 
 ## 4. 点击以 .ipa 结尾的那个文件
 
@@ -61,6 +61,8 @@ simo-0.1.0-build33-unsigned.ipa.sha256  ← 下载校验信息
 | `.ipa` | **选择这一项，这是安装包** |
 | `.ipa.json` | 这一步不用下载，它是构建信息 |
 | `.ipa.sha256` | 可选，用于核对文件是否完整，之后也能下载 |
+| `-source.zip` | 这一步不用下载，它是给开发者和再分发者的对应源码 |
+| `LICENSE.txt` / `SHA256SUMS.txt` | 许可与全部附件校验清单；安装时不需要选择 |
 | `Source code (zip)` / `Source code (tar.gz)` | 这一步不用下载，它们是源码 |
 
 名字中的 `unsigned` 表示“还需要签名”，这是我们当前提供的正常安装包。签名会在后面的安装教程里完成。
@@ -102,7 +104,7 @@ simo-0.1.0-build33-unsigned.ipa.sha256  ← 下载校验信息
 
 | 你看到的情况 | 接下来怎么做 |
 | --- | --- |
-| 页面写着 `404` 或 `Page not found` | 先核对网址是不是本页给出的链接。当前仓库未公开，普通访客遇到 404 属于访问状态；已有权限的维护者要登录对应账户。公开后仍打不开，可把所点链接反馈给维护者 |
+| 页面写着 `404` 或 `Page not found` | 先回到本页提供的项目首页或最新版本链接，避免使用旧草稿地址；仍打不开时，把所点链接反馈给维护者 |
 | 找不到 `Releases` | 直接点本页第 1 步的“厮磨版本下载页”链接，不需要在文件夹里翻找 |
 | 有版本介绍，没有下载文件 | 继续往下滚动，找到 `Assets`；如果列表收起，点击展开 |
 | 展开 `Assets` 后还是没有 `.ipa` | 这个版本没有提供可下载的 IPA，先不要拿源码压缩包代替；确认是否打开了正确版本，或等维护者补齐 |
@@ -115,23 +117,10 @@ simo-0.1.0-build33-unsigned.ipa.sha256  ← 下载校验信息
 反馈问题时，说明“卡在第几步”，附上报错文字或截图即可。不要在反馈里附 Apple 账户密码或验证码。
 
 <details>
-<summary>目前是项目维护者：怎样查看私有草稿？</summary>
-
-目前仓库私有，Release 也是草稿。仓库所有者或拥有写入权限的协作者，登录相应 GitHub 账户后才能查看草稿；只有仓库读取权限不代表能看到草稿。公开正式版后，普通用户不需要经过这段。
-
-1. 在电脑浏览器登录有权限的 GitHub 账户。
-2. 打开[版本下载页](https://github.com/Reyanna0o0/Sumo-sound-player/releases)，找到“厮磨 0.1.0 · build 33 自签验收候选”。
-3. 标题旁显示 `Draft` 是当前的正常状态。往下找到 `Assets`，从本页第 3 步继续。查看和下载草稿不需要点发布按钮。
-
-当前 IPA 的精确文件名为 `simo-0.1.0-build33-unsigned.ipa`，精确大小和 SHA-256 见同一版本的 `.json` / `.sha256` 附件。网页或系统采用不同显示单位时，看到的 MB / MiB 数字可能略有差异；以后版本的文件大小也会改变。
-
-</details>
-
-<details>
 <summary>可选：核对文件有没有下载损坏</summary>
 
 版本附件中的 `.sha256` 用于核对文件完整性。愿意进一步核对时，下载与 IPA 同名的校验文件，按[文件校验说明](INSTALL.md#可选核对下载文件)操作。首次下载的主步骤不要求输入命令。
 
 </details>
 
-页面路径参考 [GitHub 官方下载页说明](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)；草稿访问范围参考 [GitHub 官方 Release 说明](https://docs.github.com/en/rest/releases/releases#list-releases)。当前私有草稿网页已核对，Mac 下载及 Sideloadly 安装、首次打开已获用户确认；未登录访客的公开下载流程仍待发布前验收。
+页面路径参考 [GitHub 官方下载页说明](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)。如果步骤与实际页面不一致，请通过[问题反馈](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)告诉维护者。

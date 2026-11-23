@@ -2,13 +2,13 @@
 
 面向个人音声收藏的 iPhone / iPad 播放器：整理本地作品，配合字幕和台本收听，保存摘选，并查看自己的收听报告。
 
-**当前是私有发布准备仓库，当前候选为 0.1.0（build 33），新增列表拖动排序与更改分类。用户已验证 Mac 下载、Sideloadly 安装与首次打开，并确认 build 33 手动测试通过、覆盖更新后此前导入的数据仍在。续签尚待验证，尚未公开发布。**
+**当前版本：v0.1.0（build 33），首个公开版本。** 个人非商业使用免费，支持 iOS / iPadOS 18 或更新版本。播放器不附带音声作品。
 
 ## 下载与安装
 
-**[下载 IPA（打开版本下载页）](https://github.com/Reyanna0o0/Sumo-sound-player/releases)** · **[第一次用 GitHub？从这里一步一步下载](docs/DOWNLOAD.md)**
+**[下载 IPA（打开最新版本页）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)** · **[第一次用 GitHub？从这里一步一步下载](docs/DOWNLOAD.md)**
 
-建议在 Windows 或 Mac 电脑上开始。先下载安装包，再按教程签名安装到 iPhone / iPad；要求 iOS / iPadOS 18 或更新版本。当前仍是私有草稿，普通访客尚不能下载。
+建议在 Windows 或 Mac 电脑上开始。打开上方版本页，找到 `Assets`（附件），下载名字以 **`.ipa` 结尾**的文件，再按教程签名安装到 iPhone / iPad。下载公开文件不需要注册 GitHub。
 
 IPA 文件名中的 `unsigned` 表示需要重新签名，不能在 Safari 下载后直接打开安装。普通用户不需要编译源码。
 
@@ -16,9 +16,10 @@ IPA 文件名中的 `unsigned` 表示需要重新签名，不能在 Safari 下�
 - [第 2 步：签名安装、续签与覆盖更新](docs/INSTALL.md)：Mac + Sideloadly 安装与首次打开、build 33 覆盖更新及此前导入数据保留已由用户确认；Windows、AltStore 和续签仍待验证。
 - [使用说明](docs/USAGE.md)：导入、字幕、播放、摘选、报告与文件保留。
 - [从源码构建](docs/BUILD.md)：Mac + Xcode，生成未签名 IPA 或用自己的账户安装。
+- [v0.1.0 发布说明](docs/RELEASE_0.1.0.md)：首版功能、安装要求与附件用途。
 - [验证状态与待办](docs/RELEASE_STATUS.md)：哪些已经验证、哪些仍待实机确认。
 
-候选安装包已放在 [Releases](https://github.com/Reyanna0o0/Sumo-sound-player/releases) 的草稿中，仓库所有者和有写入权限的协作者可查看。普通用户的公开下载入口会在验收完成、正式发布后开放。
+已验证 Mac + Sideloadly 的下载安装、首次打开及 build 33 覆盖更新后此前导入的数据仍在。Windows、AltStore、续签到期表现及更多设备仍待验证；详细范围见上方验证记录。
 
 ## 功能
 
@@ -48,4 +49,6 @@ IPA 文件名中的 `unsigned` 表示需要重新签名，不能在 Safari 下�
 
 这是源码公开的非商业授权项目。具体场景与申请入口见[使用许可与商业授权](docs/COMMERCIAL_USE.md)。第三方组件保留原有许可及 LGPL 要求的修改、替换和重新链接权利，见[第三方材料与重建说明](docs/THIRD_PARTY.md)。图标、开屏与动效的来源和范围见[素材说明](docs/ASSETS.md)。
 
-商业授权与项目联系：[GitHub 申请](https://github.com/Reyanna0o0/Sumo-sound-player/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。
+商业授权与项目联系：[GitHub 申请](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。
+
+遇到使用问题，可提交[问题反馈](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)，说明版本、设备系统、安装方式及复现步骤。

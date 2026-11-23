@@ -14,14 +14,16 @@
 ## 克隆与核验
 
 ```bash
-git clone https://github.com/Reyanna0o0/Sumo-sound-player.git
-cd Sumo-sound-player
+git clone https://github.com/Reyanna0o0/Sumo-soundplayer.git
+cd Sumo-soundplayer
 python3 scripts/verify-resources.py
 python3 tools/localization/build_resources.py --check
 bash scripts/test-core.sh
 ```
 
-仓库私有时需要当前 GitHub 账户具有访问权限。资源检查覆盖 LAME 上游文件、FFmpeg 归档、模型、三份许可副本和 ZIPFoundation 锁定版本。
+也可以从 [v0.1.0 下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.0) 获取 `simo-0.1.0-build33-source.zip`，解压后在 `Sumo-soundplayer-0.1.0/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。
+
+资源检查覆盖 LAME 上游文件、FFmpeg 归档、模型、三份许可副本和 ZIPFoundation 锁定版本。
 
 ## 生成未签名 IPA
 

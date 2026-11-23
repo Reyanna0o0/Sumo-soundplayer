@@ -1,0 +1,43 @@
+name: 使用问题与错误反馈
+description: 安装、导入、播放或更新遇到问题时，从这里反馈。
+title: "[反馈] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请说明遇到的问题。此处公开可见，请隐藏个人信息，不要提供账户密码或私人音声文件。
+        需要私下沟通可发邮件至 [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。
+  - type: input
+    id: version
+    attributes:
+      label: 厮磨版本或下载的 IPA 文件名
+      placeholder: 例如 v0.1.0 / build 33
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 设备、系统和安装方式
+      description: 手机或平板型号、iOS / iPadOS 版本，以及安装所用的电脑系统和工具。
+      placeholder: 例如 iPhone、iOS 版本、Mac + Sideloadly。
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 遇到了什么问题
+      description: 写出实际表现；如有错误提示，请抄下文字。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 操作步骤
+      description: 从打开应用或安装工具开始，说明点击或操作的顺序。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待的表现及补充说明
+      description: 可选。导入问题可说明文件格式和来源方式，无需上传原作品。
