@@ -6,7 +6,7 @@
 
 **[照片图库修补预发布：下载 build 34](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.1)**。照片回归、核心与构建检查已通过；完整文件浏览仍需真机复核。正式最新版仍为 v0.1.0 / build 33。
 
-**[下载 IPA（打开最新版本页）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)** · **[第一次用 GitHub？从这里一步一步下载](docs/DOWNLOAD.md)**
+**[下载正式版 IPA（build 33）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)** · **[第一次用 GitHub？从这里一步一步下载](docs/DOWNLOAD.md)**
 
 在电脑上打开版本页，下载 `Assets`（附件）里文件名以 **`.ipa` 结尾**的文件，再用自己的 Apple 账户签名安装。下载不用登录 GitHub，普通使用也不用编译源码。文件名里的 `unsigned` 表示安装前还需要签名。
 

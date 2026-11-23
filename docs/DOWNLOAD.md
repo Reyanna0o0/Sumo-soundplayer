@@ -16,15 +16,15 @@
 
 打开后，看网页上方是否有 **`Reyanna0o0 / Sumo-soundplayer`**。这是这个项目在 GitHub 上的名字。下面出现很多英文文件夹和文件名是正常的。
 
-往下滚动，直到看到大标题 **“厮磨播放器 · Sumo Sound Player”**。在下面的“下载与安装”中，点击 **“下载 IPA（打开最新版本页）”**。
+往下滚动，直到看到大标题 **“厮磨播放器 · Sumo Sound Player”**。在下面的“下载与安装”中，点击 **“照片图库修补预发布：下载 build 34”**。
 
 **做对后：** 你会进入一个写着 `Releases` 的页面。这个英文在这里指“版本下载页”。
 
-如果找不到首页入口，可以直接点 **[厮磨版本下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)**，从下一步继续。电脑宽屏网页通常也能在项目文件列表右侧找到 `Releases`；窄屏布局可能不同，直接用上面的链接即可。
+如果找不到首页入口，可以直接点 **[build 34 预发布下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.1)**，从下一步继续。电脑宽屏网页通常也能在项目文件列表右侧找到 `Releases`；窄屏布局可能不同，直接用上面的链接即可。
 
 **这里容易点错：** 首页绿色的 `Code` 按钮里有 `Download ZIP`，它下载的是程序源码。要安装厮磨，请继续去版本下载页，不用下载那份 ZIP。
 
-## 2. 找到要下载的正式版本
+## 2. 确认要下载的版本
 
 本页以照片修补预发布 build 34 为例：找到 **v0.1.1**，旁边会标有 **`Pre-release`（预发布）**。`Latest` 仍指向已正式发布的 build 33。如果说明和附件已经显示在当前页面，直接往下看。
 
@@ -32,7 +32,7 @@
 
 **做对后：** 页面上能看到版本标题、这一版的说明，以及往下可找到的附件区域。
 
-如果误进了标有 `Pre-release`（测试版）或 `Draft`（草稿）的页面，请回到[最新正式版本](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)。普通使用者选择正式版；参加测试的人按维护者指定的版本操作。
+本页的 build 34 是 `Pre-release`，用于复测照片图库问题；这不是误入页面。如果只想使用已验收的正式版，请选择[build 33 正式版](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)，并按它的实际文件名下载。公开版本不会标为 `Draft`。
 
 ## 3. 展开附件列表
 
