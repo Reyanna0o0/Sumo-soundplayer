@@ -4,6 +4,8 @@
 
 这是从正式源码整理的独立发布副本。移除了个人签名 Team，默认应用标识改为 `io.github.gloriaguuuu.simo`；在 build 32 基线上继续完善。用户媒体、数据库、设备备份、QA 目录、证书与旧构建产物不在仓库中。
 
+GitHub 当前账户与仓库为 [Reyanna0o0/Sumo-sound-player](https://github.com/Reyanna0o0/Sumo-sound-player)。账户及仓库改名后，应用 Bundle Identifier 和相关内部类型标识沿用已验证的值，以保持现有覆盖更新路径；它们不需要与 GitHub 用户名相同。
+
 ## build 33：列表排序与分类补齐
 
 - 播放列表与摘选分类内新增“调整顺序”，右侧把手可拖动；整曲与摘选均有“更多 → 更改分类”。
@@ -63,7 +65,7 @@
 
 自有源码许可已按维护者决定写入 [LICENSE](../LICENSE)：个人非商业使用和修改免费，原版和修改版可免费分享，修改版提供完整对应源码、保留许可与署名并标注非官方；所有商业使用须事先书面同意。GitHub 商业授权申请模板已准备。
 
-素材创意由 Gloriaguuuu 提出，朋友协助手绘修改并给予完整授权，底图与动效由 ChatGPT 辅助生成；四项视觉素材的来源、校验值与非商业许可范围已写入 [ASSETS.md](ASSETS.md)。
+素材创意由 Reyanna0o0 提出，朋友协助手绘修改并给予完整授权，底图与动效由 ChatGPT 辅助生成；四项视觉素材的来源、校验值与非商业许可范围已写入 [ASSETS.md](ASSETS.md)。
 
 开发者邮箱为 [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。用户已完成注册，本轮已在浏览器核实账户地址及收件箱可打开；未发送测试邮件，不将此记录表述为完整收发测试。
 

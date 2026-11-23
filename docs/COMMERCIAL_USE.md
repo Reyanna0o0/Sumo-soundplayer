@@ -1,6 +1,6 @@
 # 使用许可与商业授权
 
-厮磨采用自定义的[非商业源码许可](../LICENSE)。个人非商业使用免费；允许非商业修改和免费分享。商业使用须事先得到 **Gloriaguuuu 的明确书面同意**。
+厮磨采用自定义的[非商业源码许可](../LICENSE)。个人非商业使用免费；允许非商业修改和免费分享。商业使用须事先得到 **Reyanna0o0 的明确书面同意**。
 
 | 场景 | 是否需要另行申请 |
 | --- | --- |
@@ -18,7 +18,7 @@
 
 可以通过以下任一方式联系维护者：
 
-- [GitHub 商业授权申请](https://github.com/Gloriaguuuu/simo/issues/new?template=commercial-license.yml)。仓库仍为私有准备状态时，仅有仓库访问权限的人可以使用此入口；公开发布后对访客开放。
+- [GitHub 商业授权申请](https://github.com/Reyanna0o0/Sumo-sound-player/issues/new?template=commercial-license.yml)。仓库仍为私有准备状态时，仅有仓库访问权限的人可以使用此入口；公开发布后对访客开放。
 - 开发者邮箱：[sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。邮件主题建议为“厮磨商业授权申请 — 计划用途”。
 
 请说明申请人或机构、使用的版本、计划怎样使用或修改、怎样收费或获利、预计分发范围，以及所需期限。GitHub Issue 会在仓库公开后可见，不要在其中填写私密合同、身份证件或账户信息；需要私下沟通时请使用邮箱。

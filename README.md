@@ -6,7 +6,7 @@
 
 ## 下载与安装
 
-**[下载 IPA（打开版本下载页）](https://github.com/Gloriaguuuu/simo/releases)** · **[第一次用 GitHub？从这里一步一步下载](docs/DOWNLOAD.md)**
+**[下载 IPA（打开版本下载页）](https://github.com/Reyanna0o0/Sumo-sound-player/releases)** · **[第一次用 GitHub？从这里一步一步下载](docs/DOWNLOAD.md)**
 
 建议在 Windows 或 Mac 电脑上开始。先下载安装包，再按教程签名安装到 iPhone / iPad；要求 iOS / iPadOS 18 或更新版本。当前仍是私有草稿，普通访客尚不能下载。
 
@@ -18,7 +18,7 @@ IPA 文件名中的 `unsigned` 表示需要重新签名，不能在 Safari 下�
 - [从源码构建](docs/BUILD.md)：Mac + Xcode，生成未签名 IPA 或用自己的账户安装。
 - [验证状态与待办](docs/RELEASE_STATUS.md)：哪些已经验证、哪些仍待实机确认。
 
-候选安装包已放在 [Releases](https://github.com/Gloriaguuuu/simo/releases) 的草稿中，仓库所有者和有写入权限的协作者可查看。普通用户的公开下载入口会在验收完成、正式发布后开放。
+候选安装包已放在 [Releases](https://github.com/Reyanna0o0/Sumo-sound-player/releases) 的草稿中，仓库所有者和有写入权限的协作者可查看。普通用户的公开下载入口会在验收完成、正式发布后开放。
 
 ## 功能
 
@@ -44,8 +44,8 @@ IPA 文件名中的 `unsigned` 表示需要重新签名，不能在 Safari 下�
 
 ## 许可
 
-本项目自有源码、构建脚本、文档及[明确纳入许可的视觉素材](docs/ASSETS.md)采用[厮磨播放器非商业源码许可协议 1.0](LICENSE)：**个人非商业使用免费，允许非商业修改和免费分享；所有商业使用须事先取得 Gloriaguuuu 的书面同意。** 分享修改版须提供完整对应源码、保留许可与署名，并标明非官方版本。仅供自己使用的修改不必公开。
+本项目自有源码、构建脚本、文档及[明确纳入许可的视觉素材](docs/ASSETS.md)采用[厮磨播放器非商业源码许可协议 1.0](LICENSE)：**个人非商业使用免费，允许非商业修改和免费分享；所有商业使用须事先取得 Reyanna0o0 的书面同意。** 分享修改版须提供完整对应源码、保留许可与署名，并标明非官方版本。仅供自己使用的修改不必公开。
 
 这是源码公开的非商业授权项目。具体场景与申请入口见[使用许可与商业授权](docs/COMMERCIAL_USE.md)。第三方组件保留原有许可及 LGPL 要求的修改、替换和重新链接权利，见[第三方材料与重建说明](docs/THIRD_PARTY.md)。图标、开屏与动效的来源和范围见[素材说明](docs/ASSETS.md)。
 
-商业授权与项目联系：[GitHub 申请](https://github.com/Gloriaguuuu/simo/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。
+商业授权与项目联系：[GitHub 申请](https://github.com/Reyanna0o0/Sumo-sound-player/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)。

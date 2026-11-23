@@ -14,8 +14,8 @@
 ## 克隆与核验
 
 ```bash
-git clone https://github.com/Gloriaguuuu/simo.git
-cd simo
+git clone https://github.com/Reyanna0o0/Sumo-sound-player.git
+cd Sumo-sound-player
 python3 scripts/verify-resources.py
 python3 tools/localization/build_resources.py --check
 bash scripts/test-core.sh
