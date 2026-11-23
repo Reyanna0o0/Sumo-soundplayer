@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-23",
+  "source_sha256": "fd818c03b684668a141c1558cb488da96c0801658a555d3df639ba740d72493b",
+  "custom_palettes": [
+    {
+      "token": "background",
+      "name": "页面背景",
+      "porcelain": "#FAF8F2",
+      "graphite": "#27282B",
+      "purple": "#1D224A"
+    },
+    {
+      "token": "card",
+      "name": "卡片",
+      "porcelain": "#FFFDF8",
+      "graphite": "#353639",
+      "purple": "#2D2A45"
+    },
+    {
+      "token": "surface",
+      "name": "次级表面",
+      "porcelain": "#ECE9DE",
+      "graphite": "#2F3033",
+      "purple": "#373249"
+    },
+    {
+      "token": "ink",
+      "name": "正文",
+      "porcelain": "#292924",
+      "graphite": "#F1EDEA",
+      "purple": "#F6F3FA"
+    },
+    {
+      "token": "secondary",
+      "name": "次要文字",
+      "porcelain": "#666456",
+      "graphite": "#C5BEBB",
+      "purple": "#D4CFE0"
+    },
+    {
+      "token": "tertiary",
+      "name": "辅助文字",
+      "porcelain": "#666456",
+      "graphite": "#AAA4A2",
+      "purple": "#BEB8CB"
+    },
+    {
+      "token": "emphasisInk",
+      "name": "重点文字",
+      "porcelain": "#A52332",
+      "graphite": "#EDEBE6",
+      "purple": "#FFFFFF"
+    },
+    {
+      "token": "iconTint",
+      "name": "图标",
+      "porcelain": "#9A322A",
+      "graphite": "#DAD7D0",
+      "purple": "#D8BDF3"
+    },
+    {
+      "token": "separator",
+      "name": "分隔线",
+      "porcelain": "#D9D5C8",
+      "graphite": "#4B4A4C",
+      "purple": "#50485F"
+    },
+    {
+      "token": "start",
+      "name": "统计渐变起点",
+      "porcelain": "#F4DFD9",
+      "graphite": "#4A494B",
+      "purple": "#574262"
+    },
+    {
+      "token": "end",
+      "name": "统计渐变终点",
+      "porcelain": "#FFF7F2",
+      "graphite": "#333538",
+      "purple": "#373552"
+    },
+    {
+      "token": "emptyListeningHour",
+      "name": "空闲时段",
+      "porcelain": "#F8E9E4",
+      "graphite": "#414246",
+      "purple": "#423D55"
+    },
+    {
+      "token": "peakListeningHour",
+      "name": "高峰时段",
+      "porcelain": "#A52332",
+      "graphite": "#DFD9CD",
+      "purple": "#9D83BA"
+    },
+    {
+      "token": "shadow",
+      "name": "阴影",
+      "porcelain": "#695443",
+      "graphite": "#0E0E10",
+      "purple": "#090916"
+    }
+  ],
+  "extra_colors": [
+    {
+      "source": "static var groupedCard: Color { isPorcelain ? rgb(0xFFFEFC) : card }",
+      "colors": [
+        "#FFFEFC"
+      ]
+    },
+    {
+      "source": "purpleGradient((0x7D4F87, 0x1D224A, 0x080B18), from: .topTrailing, to: .bottomLeading)",
+      "colors": [
+        "#7D4F87",
+        "#1D224A",
+        "#080B18"
+      ]
+    },
+    {
+      "source": "purpleGradient((0x855A8F, 0x2C3057, 0x181A28), from: .bottomLeading, to: .topTrailing)",
+      "colors": [
+        "#855A8F",
+        "#2C3057",
+        "#181A28"
+      ]
+    },
+    {
+      "source": "static var purplePlayerButton: Color { rgb(0x302044) }",
+      "colors": [
+        "#302044"
+      ]
+    },
+    {
+      "source": "LinearGradient(colors: [rgb(0x3D3866), rgb(0x5C4B80)], startPoint: .leading, endPoint: .trailing)",
+      "colors": [
+        "#3D3866",
+        "#5C4B80"
+      ]
+    },
+    {
+      "source": "static var purplePlaybackIndicator: Color { rgb(0xE7E2F2) }",
+      "colors": [
+        "#E7E2F2"
+      ]
+    },
+    {
+      "source": "static var purpleTabSurface: Color { rgb(0x201E32) }",
+      "colors": [
+        "#201E32"
+      ]
+    },
+    {
+      "source": "return selected ? AnyShapeStyle(rgb(0xF3E5FF)) : AnyShapeStyle(LinearGradient(",
+      "colors": [
+        "#F3E5FF"
+      ]
+    },
+    {
+      "source": "colors: [rgb(0xC9B5E0), rgb(0x9684A9)], startPoint: .top, endPoint: .bottom))",
+      "colors": [
+        "#C9B5E0",
+        "#9684A9"
+      ]
+    },
+    {
+      "source": "colors: [rgb(0xBDB8AE), rgb(0x97948C)], startPoint: .top, endPoint: .bottom))",
+      "colors": [
+        "#BDB8AE",
+        "#97948C"
+      ]
+    }
+  ],
+  "report_story": [
+    {
+      "token": "paper",
+      "hex": "#FAF8F2"
+    },
+    {
+      "token": "ink",
+      "hex": "#292924"
+    },
+    {
+      "token": "subtle",
+      "hex": "#666456"
+    },
+    {
+      "token": "accent",
+      "hex": "#9A322A"
+    },
+    {
+      "token": "rule",
+      "hex": "#D9D5C8"
+    }
+  ],
+  "native": "原生使用 iOS 动态语义色，随系统明暗变化，不是固定 HEX 色板。"
+}
