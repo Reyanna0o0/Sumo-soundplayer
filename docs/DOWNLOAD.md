@@ -2,7 +2,7 @@
 
 这一页会带你找到正确的下载位置，并把安装包保存下来。完成后，你的电脑里会有一个名字以 **`.ipa` 结尾**的文件，下一步安装时会用到它。
 
-> **当前进度（2026-11-23）：厮磨还在发布准备阶段，仓库私有，安装包是草稿。普通访客现在可能看到 404 或看不到版本，这是尚未开放下载。** 下面的普通用户步骤供公开发布后使用；目前查看草稿的方法放在本页末尾。下载、签名和安装的整套流程仍待实机验收。
+> **当前进度（2026-11-23）：厮磨还在发布准备阶段，仓库私有，安装包是草稿。普通访客现在可能看到 404 或看不到版本，这是尚未开放下载。** 用户已确认 Mac 下载 IPA、经 Sideloadly 安装到手机并成功打开；Windows、续签和覆盖更新仍待验证。下面的普通用户步骤供公开发布后使用；目前查看草稿的方法放在本页末尾。
 
 目前有草稿查看权限的维护者，可以打开[版本下载页](https://github.com/Gloriaguuuu/simo/releases)，找到“厮磨 0.1.0 · build 32 自签验收候选”，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
 
@@ -94,7 +94,7 @@ simo-0.1.0-build32-unsigned.ipa.sha256  ← 下载校验信息
 - 下载的是名字以 **`.ipa` 结尾**的安装包，不是 `.json`、`.sha256` 或源码 ZIP。
 - 你能找到文件所在的文件夹，下一步可以从这里选择或拖动它。
 
-**到这里，下载就完成了。** 保留这个文件，下一步按[签名安装说明](INSTALL.md#方式一sideloadlywindows--mac)准备电脑上的安装工具。后续说明目前仍是待实机验证的候选流程。
+**到这里，下载就完成了。** 保留这个文件，下一步按[签名安装说明](INSTALL.md#方式一sideloadlywindows--mac)准备电脑上的安装工具。Mac + Sideloadly 的安装与首次打开已由用户验证，其他路线和续签、更新仍待验证。
 
 这个文件不用解压，也不用改名字。双击后如果出现“选择用什么应用打开”，关闭那个窗口即可；安装时会把它交给 Sideloadly。现在下载完成，并不表示手机上已经装好了厮磨。
 
@@ -134,4 +134,4 @@ simo-0.1.0-build32-unsigned.ipa.sha256  ← 下载校验信息
 
 </details>
 
-页面路径参考 [GitHub 官方下载页说明](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)；草稿访问范围参考 [GitHub 官方 Release 说明](https://docs.github.com/en/rest/releases/releases#list-releases)。当前私有草稿网页已核对，公开页面及完整自签安装仍待发布前验收。
+页面路径参考 [GitHub 官方下载页说明](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)；草稿访问范围参考 [GitHub 官方 Release 说明](https://docs.github.com/en/rest/releases/releases#list-releases)。当前私有草稿网页已核对，Mac 下载及 Sideloadly 安装、首次打开已获用户确认；未登录访客的公开下载流程仍待发布前验收。
