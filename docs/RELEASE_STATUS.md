@@ -1,12 +1,14 @@
 # 发布与验证状态
 
-记录日期：2026-11-23。当前预发布 v0.1.2（build 35），目标 iOS / iPadOS 18 起。v0.1.0 / build 33 仍为正式最新版。
+记录日期：2026-11-23。当前正式最新版为 v0.1.2（build 35），目标 iOS / iPadOS 18 起。
 
 这是从正式源码整理的独立发布副本。移除了个人签名 Team，默认应用标识改为 `io.github.gloriaguuuu.simo`；在 build 32 基线上继续完善。用户媒体、数据库、设备备份、QA 目录、证书与旧构建产物不在仓库中。
 
 GitHub 当前账户与仓库为 [Reyanna0o0/Sumo-soundplayer](https://github.com/Reyanna0o0/Sumo-soundplayer)。账户及仓库改名后，应用 Bundle Identifier 和相关内部类型标识沿用已验证的值，以保持现有覆盖更新路径；它们不需要与 GitHub 用户名相同。
 
 ## build 35：创作者头像范围调整
+
+2026-11-23，维护者决定将 build 35 转为正式最新版（Latest）。沿用预发布时的同一个 IPA、源码 tag 与六个附件，只更新发行状态和下载说明；已经安装 build 35 的用户无需重装。此决定不增加新的真机测试结论，以下验证记录与尚未覆盖的范围保持原样。
 
 - 从照片或文件选择创作者头像后进入裁剪页；圆形预览，支持拖动、双指缩放、滑块和复位。确认「使用」后才替换编辑草稿，最终「保存」才写入创作者资料。
 - 裁剪结果保存为正方形图片。继承创作者头像的通话外观和封面使用该范围；原作品封面的 4:3 裁剪与保留原图机制不变。
@@ -92,15 +94,15 @@ GitHub 当前账户与仓库为 [Reyanna0o0/Sumo-soundplayer](https://github.com
 
 ## v0.1.2 发行材料
 
-- build 35 以 Pre-release 提供未签名 IPA、构建信息、对应源码 ZIP、许可和 SHA-256 清单；精确源码提交与校验值随附件记录。
+- build 35 已由 Pre-release 转为正式 Latest，继续提供原有未签名 IPA、构建信息、对应源码 ZIP、许可和 SHA-256 清单；精确源码提交与校验值随附件记录。
 - [v0.1.2 版本页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.2)说明头像裁剪的使用方法及验证范围。继续使用原签名账户与应用标识覆盖安装，保留原 App。
-- 正式 Latest 保留 v0.1.0 / build 33；已公开的 build 33 和 build 34 附件不替换。
+- 六个 build 35 附件不替换，源码 tag 仍为最初发布的提交。下载说明随后在默认分支更新；首页、下载帮助和发行说明均提供 IPA 直接下载链接。build 33 和 build 34 仍保留在历史版本中。
 
 ## v0.1.1 发行材料
 
 - 新增 build 34 未签名 IPA、构建信息、对应源码 ZIP、许可和 SHA-256 清单；构建提交与精确校验值见附件。
 - [v0.1.1 版本页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.1)列明修补及验证边界。build 34 尚未由用户在手机上验收；沿用原签名账户与应用标识覆盖安装，保留原 App。
-- 本版标记为 Pre-release，保留 v0.1.0 / build 33 为 Latest；其历史附件不变。
+- build 34 仍标记为 Pre-release，历史附件不变；Latest 现为 v0.1.2 / build 35。
 
 ## v0.1.0 发行材料
 

@@ -1,8 +1,10 @@
 # IPA 安装、续签与更新
 
-**已验证：2026-11-23，用户确认 Mac 下载、Sideloadly 安装与首次打开，并确认 build 33 手动测试通过，覆盖更新后此前导入的数据仍在。** Windows、AltStore 和续签尚未实测；其他功能场景仍需分别验证。详细范围见[发布准备状态](RELEASE_STATUS.md)。
+**[直接下载 IPA · v0.1.2（build 35）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)** · [下载帮助](DOWNLOAD.md)
 
-**还没下载到安装包？先看[第 1 步：把厮磨安装包下载到电脑](DOWNLOAD.md)。** 那一页从打开 GitHub 开始，说明在哪里点下载、该选哪个文件，以及下载后去哪里找。拿到 `.ipa` 文件后再回到这里。
+第一次安装从下方「先准备」开始；已经装过厮磨可直接看[更新和保留数据](#更新和保留数据)。已经安装 build 35 的用户无需重装。
+
+Mac + Sideloadly 安装与 build 33 覆盖更新已有实测记录；Windows、AltStore 和续签仍待验证。详见[验证范围](RELEASE_STATUS.md)。
 
 ## 先准备
 

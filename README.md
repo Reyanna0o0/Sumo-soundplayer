@@ -1,16 +1,18 @@
 # 厮磨播放器 · Sumo Sound Player
 
-**修补预发布 v0.1.2（build 35）** · **iOS / iPadOS 18 或更新版本** · **个人非商业使用免费**
+**正式版 v0.1.2（build 35）** · **iOS / iPadOS 18 或更新版本** · **个人非商业使用免费**
 
 ## 下载与安装
 
-**[头像裁剪与图库修补预发布：下载 build 35](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.2)**。新增创作者头像范围调整，并包含上一版图库稳定性修补；完整文件浏览仍需真机复核。正式最新版仍为 v0.1.0 / build 33。
+### [直接下载厮磨 IPA · v0.1.2（build 35）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)
 
-**[下载正式版 IPA（build 33）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest)** · **[第一次用 GitHub？从这里一步一步下载](docs/DOWNLOAD.md)**
+1. **在电脑上点击上方链接**，等待下载完成。下载无需登录 GitHub。
+2. **在「下载 / Downloads」文件夹找到 IPA**，文件名为 `simo-0.1.2-build35-unsigned.ipa`。
+3. **用 Sideloadly 签名安装**。第一次安装请按[安装教程](docs/INSTALL.md#方式一sideloadlywindows--mac)操作；更新时沿用原账户和签名设置覆盖安装，**不要先卸载旧版**。
 
-在电脑上打开版本页，下载 `Assets`（附件）里文件名以 **`.ipa` 结尾**的文件，再用自己的 Apple 账户签名安装。下载不用登录 GitHub，普通使用也不用编译源码。文件名里的 `unsigned` 表示安装前还需要签名。
+已经安装 build 35 的用户无需重装。本版新增创作者头像裁剪，并包含照片图库稳定性修补。
 
-Mac + Sideloadly 的安装、首次打开和 build 33 覆盖更新已由用户验证。Windows、AltStore 和到期续签仍待验证。[签名安装与更新](docs/INSTALL.md) · [v0.1.2 预发布说明](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.2) · [验证范围](docs/RELEASE_STATUS.md)
+[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [版本说明](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest) · [验证范围](docs/RELEASE_STATUS.md)
 
 ## 主要功能
 
