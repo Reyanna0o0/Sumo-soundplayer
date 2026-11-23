@@ -1,9 +1,5 @@
 # 厮磨播放器 · Sumo Sound Player
 
-<img src="SituationVoicePlayer/Sources/Assets.xcassets/AppIcon.appiconset/app-icon-1024.png" width="80" alt="厮磨播放器图标">
-
-把收藏的音声整理好，边听边看台本，遇到想反复听的一句就存成摘选。厮磨是为这些日常用法做的 iPhone / iPad 本地播放器。
-
 **v0.1.0（build 33）** · **iOS / iPadOS 18 或更新版本** · **个人非商业使用免费**
 
 ## 下载与安装
