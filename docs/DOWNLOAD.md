@@ -4,7 +4,7 @@
 
 > **当前进度（2026-11-23）：厮磨还在发布准备阶段，仓库私有，安装包是草稿。普通访客现在可能看到 404 或看不到版本，这是尚未开放下载。** 下面的普通用户步骤供公开发布后使用；目前查看草稿的方法放在本页末尾。下载、签名和安装的整套流程仍待实机验收。
 
-目前有草稿查看权限的维护者，可以直接打开[build 32 草稿](https://github.com/Gloriaguuuu/simo/releases/tag/untagged-4fec6a84c3d5c5473ca4)，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
+目前有草稿查看权限的维护者，可以打开[版本下载页](https://github.com/Gloriaguuuu/simo/releases)，找到“厮磨 0.1.0 · build 32 自签验收候选”，从[第 3 步：展开附件列表](#3-展开附件列表)继续。
 
 请先在 **Windows 或 Mac 电脑**上打开这篇教程。后面的安装步骤需要电脑。如果现在用手机阅读，可以把本页链接发到自己的电脑，稍后从电脑继续。
 
@@ -120,7 +120,7 @@ simo-0.1.0-build32-unsigned.ipa.sha256  ← 下载校验信息
 目前仓库私有，Release 也是草稿。仓库所有者或拥有写入权限的协作者，登录相应 GitHub 账户后才能查看草稿；只有仓库读取权限不代表能看到草稿。公开正式版后，普通用户不需要经过这段。
 
 1. 在电脑浏览器登录有权限的 GitHub 账户。
-2. 打开[当前 build 32 草稿](https://github.com/Gloriaguuuu/simo/releases/tag/untagged-4fec6a84c3d5c5473ca4)，或从[版本下载页](https://github.com/Gloriaguuuu/simo/releases)找到“厮磨 0.1.0 · build 32 自签验收候选”。
+2. 打开[版本下载页](https://github.com/Gloriaguuuu/simo/releases)，找到“厮磨 0.1.0 · build 32 自签验收候选”。
 3. 标题旁显示 `Draft` 是当前的正常状态。往下找到 `Assets`，从本页第 3 步继续。查看和下载草稿不需要点发布按钮。
 
 当前 IPA 的精确文件名为 `simo-0.1.0-build32-unsigned.ipa`，大小 53,142,515 字节。网页或系统采用不同显示单位时，看到的 MB / MiB 数字可能略有差异；以后版本的文件大小也会改变。
