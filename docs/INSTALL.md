@@ -2,11 +2,12 @@
 
 本文是候选安装流程。已核对官方工具说明，尚未使用本仓库 IPA 在 Windows / Mac 上完成 Sideloadly 或 AltStore 的整套实机验收。
 
+**还没下载到安装包？先看[第 1 步：把厮磨安装包下载到电脑](DOWNLOAD.md)。** 那一页从打开 GitHub 开始，说明在哪里点下载、该选哪个文件，以及下载后去哪里找。拿到 `.ipa` 文件后再回到这里。
+
 ## 先准备
 
 - iOS / iPadOS 18 或更新版本的设备，一台 Windows 或 Mac 电脑，首次连接使用数据线。
-- 自己的 Apple 账户，以及从本仓库 Releases 下载的 `simo-版本-build编号-unsigned.ipa`。不要误下 GitHub 自动生成的 `Source code.zip`，那是源码。
-- 下载同名 `.sha256` 校验文件。Mac 可在下载目录运行 `shasum -a 256 -c 文件名.ipa.sha256`；Windows PowerShell 使用 `Get-FileHash .\文件名.ipa -Algorithm SHA256`，与校验文件中的值对照。
+- 自己的 Apple 账户，以及按[下载教程](DOWNLOAD.md)保存到电脑的 `.ipa` 文件。
 
 免费账户的开发签名通常有效 7 天，设备同时可安装的此类 App 通常最多 3 个，还受 App ID 等限额约束；具体以 Apple 账户和签名工具返回为准。到期需要重新签名，不需要先卸载 App。[Apple 账户说明](https://developer.apple.com/help/account/basics/about-your-developer-account/)、[Sideloadly FAQ](https://sideloadly.io/faq.html)
 
@@ -52,3 +53,25 @@
 | 电脑找不到手机 | 先使用数据线、解锁、信任电脑，确认 Apple 驱动可识别设备 |
 | 更新后出现两个厮磨 | 检查是否换了账户或应用标识，先保留原 App 与原数据 |
 | 无开发者模式选项 | 按 Apple 文档完成连接与开发签名安装步骤后再检查，记录系统版本和提示 |
+
+## 可选：核对下载文件
+
+这一步用于检查下载得到的文件是否与发布附件一致，属于额外核对。先从同一个版本下载 `.ipa.sha256` 文件，把它与 IPA 放在同一个文件夹。
+
+下面命令以当前 build 32 为例，适合已经会使用终端或 PowerShell 的读者；使用其他版本时需替换成实际文件名。打开对应文件夹中的终端 / PowerShell 后运行：
+
+Mac：
+
+```bash
+shasum -a 256 -c simo-0.1.0-build32-unsigned.ipa.sha256
+```
+
+看到该文件名后跟着 `OK` 表示通过。若显示 `FAILED`，先重新下载 IPA 和同一版本的校验文件再核对。
+
+Windows PowerShell：
+
+```powershell
+Get-FileHash .\simo-0.1.0-build32-unsigned.ipa -Algorithm SHA256
+```
+
+用记事本打开 `.sha256` 文件，将开头那串字符与命令输出中的 `Hash` 比较，忽略英文字母大小写，其余字符应完全相同。若不同，先确认两个文件来自同一版本，再重新下载核对。

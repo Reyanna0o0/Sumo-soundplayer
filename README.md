@@ -6,16 +6,19 @@
 
 ## 下载与安装
 
-分发路线为 **GitHub Releases 下载 IPA → 在 Windows 或 Mac 上自行签名 → 安装到 iPhone / iPad**。要求 iOS / iPadOS 18 或更新版本。
+**[下载 IPA（打开版本下载页）](https://github.com/Gloriaguuuu/simo/releases)** · **[第一次用 GitHub？从这里一步一步下载](docs/DOWNLOAD.md)**
+
+建议在 Windows 或 Mac 电脑上开始。先下载安装包，再按教程签名安装到 iPhone / iPad；要求 iOS / iPadOS 18 或更新版本。当前仍是私有草稿，普通访客尚不能下载。
 
 IPA 文件名中的 `unsigned` 表示需要重新签名，不能在 Safari 下载后直接打开安装。普通用户不需要编译源码。
 
-- [安装、续签与覆盖更新](docs/INSTALL.md)：Sideloadly 为主，AltStore Classic 为备选。
+- [第 1 步：下载正确的 IPA 文件](docs/DOWNLOAD.md)：打开项目首页、找到下载文件、保存到电脑。
+- [第 2 步：签名安装、续签与覆盖更新](docs/INSTALL.md)：Sideloadly 为主，AltStore Classic 为备选；候选流程尚待实机验收。
 - [使用说明](docs/USAGE.md)：导入、字幕、播放、摘选、报告与文件保留。
 - [从源码构建](docs/BUILD.md)：Mac + Xcode，生成未签名 IPA 或用自己的账户安装。
 - [验证状态与待办](docs/RELEASE_STATUS.md)：哪些已经验证、哪些仍待实机确认。
 
-准备完成后，安装包会放在本仓库的 [Releases](https://github.com/Gloriaguuuu/simo/releases) 中。私有仓库和草稿内容仅对有权限的账户可见；该页面目前不代表已有可下载的公开版本。
+候选安装包已放在 [Releases](https://github.com/Gloriaguuuu/simo/releases) 的草稿中，仓库所有者和有写入权限的协作者可查看。普通用户的公开下载入口会在验收完成、正式发布后开放。
 
 ## 功能
 
