@@ -2,9 +2,11 @@
 
 **简体中文** · [繁體中文](i18n/zh-Hant/INSTALL.md) · [English](i18n/en/INSTALL.md) · [日本語](i18n/ja/INSTALL.md) · [한국어](i18n/ko/INSTALL.md)
 
-**[直接下载 IPA · v0.1.2（build 35）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)** · [下载帮助](DOWNLOAD.md)
+**[直接下载 IPA · v0.1.3（build 36）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)** · [下载帮助](DOWNLOAD.md)
 
-第一次安装从下方「先准备」开始；已经装过厮磨可直接看[更新和保留数据](#更新和保留数据)。已经安装 build 35 的用户无需重装。
+本次重新构建仍使用 **0.1.3 / build 36**，直接更新发布页 **`v0.1.3`** 的安装包。请以同页新 SHA-256 校验文件及构建 JSON 内的源码提交区分，版本号与文件名本身不足以区分。沿用原 Apple 账户、签名设置和应用标识覆盖安装，**不要先卸载旧版**。[重建说明](RELEASE_BUILD36.md)
+
+第一次安装从下方「先准备」开始；已经装过厮磨可直接看[更新和保留数据](#更新和保留数据)。
 
 Mac + Sideloadly 安装与 build 33 覆盖更新已有实测记录；Windows、AltStore 和续签仍待验证。详见[验证范围](RELEASE_STATUS.md)。
 
@@ -64,12 +66,12 @@ Mac + Sideloadly 安装与 build 33 覆盖更新已有实测记录；Windows、A
 
 这一步用于检查下载得到的文件是否与发布附件一致，属于额外核对。先从同一个版本下载 `.ipa.sha256` 文件，把它与 IPA 放在同一个文件夹。
 
-下面命令以 build 35 为例，适合已经会使用终端或 PowerShell 的读者；使用其他版本时需替换成实际文件名。打开对应文件夹中的终端 / PowerShell 后运行：
+下面命令以 build 36 为例，适合已经会使用终端或 PowerShell 的读者；使用其他版本时需替换成实际文件名。打开对应文件夹中的终端 / PowerShell 后运行：
 
 Mac：
 
 ```bash
-shasum -a 256 -c simo-0.1.2-build35-unsigned.ipa.sha256
+shasum -a 256 -c simo-0.1.3-build36-unsigned.ipa.sha256
 ```
 
 看到该文件名后跟着 `OK` 表示通过。若显示 `FAILED`，先重新下载 IPA 和同一版本的校验文件再核对。
@@ -77,7 +79,7 @@ shasum -a 256 -c simo-0.1.2-build35-unsigned.ipa.sha256
 Windows PowerShell：
 
 ```powershell
-Get-FileHash .\simo-0.1.2-build35-unsigned.ipa -Algorithm SHA256
+Get-FileHash .\simo-0.1.3-build36-unsigned.ipa -Algorithm SHA256
 ```
 
 用记事本打开 `.sha256` 文件，将开头那串字符与命令输出中的 `Hash` 比较，忽略英文字母大小写，其余字符应完全相同。若不同，先确认两个文件来自同一版本，再重新下载核对。

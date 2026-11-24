@@ -2,11 +2,13 @@
 
 [简体中文](../../INSTALL.md) · [繁體中文](../zh-Hant/INSTALL.md) · **English** · [日本語](../ja/INSTALL.md) · [한국어](../ko/INSTALL.md)
 
-**[Download the IPA · v0.1.2 (build 35)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)** · [Download help](DOWNLOAD.md)
+**[Download the IPA · v0.1.3 (build 36)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)** · [Download help](DOWNLOAD.md)
 
-For a first installation, start below. If the app is already installed, see [Updating without removing your data](#update). Build 35 users do not need to reinstall.
+This rebuild keeps app version **0.1.3 / build 36** and replaces the files in release **`v0.1.3`**. Identify the new package by the matching SHA-256 file and the source commit in its build JSON; the app version and filename alone do not distinguish it. Install over the existing app with the same Apple Account, signing settings and app identifier; **do not uninstall first**. [Rebuild notes — Simplified Chinese](../../RELEASE_BUILD36.md)
 
-Mac installation with Sideloadly and updating to build 33 have been tested. Windows, AltStore and signature renewal remain unverified. See the [release notes](RELEASE_0.1.2.md) and [detailed verification record — Simplified Chinese](../../RELEASE_STATUS.md).
+For a first installation, start below. If the app is already installed, see [Updating without removing your data](#update).
+
+Mac installation with Sideloadly and updating to build 33 have been tested. Windows, AltStore and signature renewal remain unverified. See the [release notes](../../RELEASE_BUILD36.md) and [detailed verification record — Simplified Chinese](../../RELEASE_STATUS.md).
 
 ## Before you start
 
@@ -65,12 +67,12 @@ Download the new IPA and install over the existing app using **the same Apple Ac
 <a id="verify"></a>
 ## Optional: verify the downloaded file
 
-Download the matching `.ipa.sha256` from the same release and place it beside the IPA. Open Terminal or PowerShell in that folder. These commands use build 35; substitute the actual filename for another version.
+Download the matching `.ipa.sha256` from the same release and place it beside the IPA. Open Terminal or PowerShell in that folder. These commands use build 36; substitute the actual filename for another version.
 
 Mac:
 
 ```bash
-shasum -a 256 -c simo-0.1.2-build35-unsigned.ipa.sha256
+shasum -a 256 -c simo-0.1.3-build36-unsigned.ipa.sha256
 ```
 
 `OK` means the check passed. If it says `FAILED`, download both files from the same release again.
@@ -78,7 +80,7 @@ shasum -a 256 -c simo-0.1.2-build35-unsigned.ipa.sha256
 Windows PowerShell:
 
 ```powershell
-Get-FileHash .\simo-0.1.2-build35-unsigned.ipa -Algorithm SHA256
+Get-FileHash .\simo-0.1.3-build36-unsigned.ipa -Algorithm SHA256
 ```
 
 Open the `.sha256` file in a text editor and compare its first string with `Hash`. Letter case may differ; all other characters must match.

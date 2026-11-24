@@ -138,9 +138,9 @@ struct LibraryView: View {
             .porcelainSheet(isPresented: $showCreatorEditor) {
                 CreatorEditorSheet(creator: nil, store: store) { _ in }
             }
-            .confirmationDialog("从媒体库移除作品？", isPresented: Binding(
+            .alert("从媒体库移除作品？", isPresented: Binding(
                 get: { pendingRemoval != nil }, set: { if !$0 { pendingRemoval = nil } }
-            ), titleVisibility: .visible, presenting: pendingRemoval) { work in
+            ), presenting: pendingRemoval) { work in
                 Button("移除作品", role: .destructive) {
                     do { try store.removeWorkFromLibrary(work) }
                     catch { store.reportError(error.localizedDescription) }
@@ -285,17 +285,15 @@ struct LibraryView: View {
     /// Only the home screen owns this header. Pushed screens keep their native
     /// navigation bar and safe-area geometry, without inheriting the 8pt inset.
     private var libraryHomeHeader: some View {
-        let layout = dynamicTypeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
-            : AnyLayout(HStackLayout(spacing: 12))
-        return layout {
+        HStack(spacing: 12) {
             libraryMenu
-            if !dynamicTypeSize.isAccessibilitySize { Spacer(minLength: 0) }
+            Spacer(minLength: 0)
             libraryHeaderActions
                 .fixedSize(horizontal: true, vertical: false)
                 .layoutPriority(1)
         }
-        .frame(minHeight: 44)
+        .frame(height: 44)
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
         .padding(.leading, 24)
         .padding(.trailing, 20)
         .padding(.top, 8)
@@ -376,7 +374,7 @@ struct LibraryView: View {
                 Text(store.currentLibrary.displayName)
                     .font(.title.bold())
                     .foregroundStyle(AppTheme.textStyle(.primary, AppTheme.libraryTitleInk))
-                    .lineLimit(2)
+                    .lineLimit(1)
                     .minimumScaleFactor(0.6)
                 Image(systemName: "chevron.down")
                     .font(.system(size: 11, weight: .regular))
@@ -629,16 +627,26 @@ struct LibraryView: View {
 
     // MARK: - 空状态
 
-    private var emptyState: some View {
-        ScrollView {
+    @ViewBuilder private var emptyState: some View {
+        if dynamicTypeSize.isAccessibilitySize {
+            ScrollView { emptyStateContent.padding(.bottom, 32) }
+        } else {
+            // Keep the original centered empty-state geometry at ordinary sizes.
+            emptyStateContent
+        }
+    }
+
+    private var emptyStateContent: some View {
         ContentUnavailableView {
             Label("还没有导入作品", systemImage: "music.note.list")
+                .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
         } description: {
             Text(isPersonal ? L10n.text("选择单个音频、文件夹或 ZIP，保存作品并指定创作者。") : L10n.text("选择作品文件夹或 ZIP，App 会扫描曲目、封面和台本。"))
         } actions: {
             Button("导入作品") { showImport = true }
             .buttonStyle(.borderedProminent)
-            .frame(minHeight: 44)
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+            .frame(minHeight: dynamicTypeSize.isAccessibilitySize ? 44 : nil)
 
             #if DEBUG
             NavigationLink("运行内核自检") {
@@ -647,8 +655,6 @@ struct LibraryView: View {
             }
             .font(.footnote)
             #endif
-        }
-        .padding(.bottom, 32)
         }
     }
 

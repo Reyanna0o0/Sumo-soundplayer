@@ -5,7 +5,6 @@ struct MiniPlayerView: View {
     @EnvironmentObject private var player: PlayerController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var showQueue = false
-    @ScaledMetric(relativeTo: .subheadline) private var trackTitleSize: CGFloat = 14
     private let controlSize: CGFloat = 44
     private let endInset: CGFloat = 8
 
@@ -20,13 +19,12 @@ struct MiniPlayerView: View {
                             .frame(width: 48, height: 36)
                             .frame(height: 38)
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(item.trackTitle)
-                                .font(.system(size: trackTitleSize, weight: .semibold))
-                                .lineLimit(dynamicTypeSize.isAccessibilitySize ? 2 : 1)
-                            Text(player.currentWorkTitle)
-                                .font(.caption)
-                                .foregroundStyle(AppTheme.secondaryText)
-                                .lineLimit(dynamicTypeSize.isAccessibilitySize ? 2 : 1)
+                            MiniPlayerTitles(
+                                trackTitle: item.trackTitle,
+                                workTitle: player.currentWorkTitle,
+                                lineLimit: dynamicTypeSize.isAccessibilitySize ? 2 : 1
+                            )
+                            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                             progressLine
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -104,5 +102,25 @@ struct MiniPlayerView: View {
         }
         .frame(height: 2)
         .accessibilityHidden(true)
+    }
+}
+
+/// 限制迷你播放器的短标题字号，正文和完整播放器继续使用各自的字号设置。
+private struct MiniPlayerTitles: View {
+    let trackTitle: String
+    let workTitle: String
+    let lineLimit: Int
+    @ScaledMetric(relativeTo: .subheadline) private var trackTitleSize: CGFloat = 14
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(trackTitle)
+                .font(.system(size: trackTitleSize, weight: .semibold))
+                .lineLimit(lineLimit)
+            Text(workTitle)
+                .font(.caption)
+                .foregroundStyle(AppTheme.secondaryText)
+                .lineLimit(lineLimit)
+        }
     }
 }

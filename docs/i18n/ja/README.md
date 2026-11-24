@@ -8,19 +8,19 @@
 
 [简体中文](../../../README.md) · [繁體中文](../zh-Hant/README.md) · [English](../en/README.md) · **日本語** · [한국어](../ko/README.md)
 
-**正式版 v0.1.2（build 35）** · **iOS / iPadOS 18 以降** · **個人の非商用利用は無料**
+**正式版 v0.1.3（build 36）** · **iOS / iPadOS 18 以降** · **個人の非商用利用は無料**
 
 ## ダウンロードとインストール
 
-### [IPA を直接ダウンロード · v0.1.2（build 35）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)
+### [IPA を直接ダウンロード · v0.1.3（build 36）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)
 
 1. **パソコンで上のリンクを開き**、ダウンロードが終わるまで待ちます。GitHub アカウントは不要です。
-2. **「ダウンロード」フォルダで IPA を確認します**：`simo-0.1.2-build35-unsigned.ipa`。
+2. **「ダウンロード」フォルダで IPA を確認します**：`simo-0.1.3-build36-unsigned.ipa`。
 3. **Sideloadly で署名してインストールします**。初回は[インストール手順](INSTALL.md)を参照してください。更新時は同じ Apple Account と署名設定で上書きし、**先に旧版を削除しないでください**。
 
-すでに build 35 をインストールしている場合、再インストールは不要です。この版ではクリエイターのアバター切り抜きと、写真選択画面の安定性改善を提供します。
+今回の再ビルドもアプリのバージョンは **0.1.3 / build 36** で、リリース **`v0.1.3`** の配布ファイルを置き換えます。同じリリースの SHA-256 とビルド JSON 内のソースコミットで識別してください。バージョン番号やファイル名だけでは区別できません。同じ Apple Account・署名設定・アプリ識別子で上書きし、**先に旧版を削除しないでください**。[再ビルドの内容（簡体字中国語）](../../RELEASE_BUILD36.md)
 
-[ダウンロードの案内](DOWNLOAD.md) · [インストール・署名の更新・アップデート](INSTALL.md) · [リリースノート](RELEASE_0.1.2.md)
+[ダウンロードの案内](DOWNLOAD.md) · [インストール・署名の更新・アップデート](INSTALL.md) · [リリースノート](../../RELEASE_BUILD36.md)
 
 ## 主な機能
 

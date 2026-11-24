@@ -11,9 +11,9 @@ struct ListeningReportStory: View {
     let onDone: () -> Void
     let onShowRanking: (ListeningRanking) -> Void
     var onShare: ((ListeningRanking) -> Void)? = nil
-    // Export draws these same page contents in their completed state, without
-    // starting the story's timeline or mounting an interactive pager.
-    var exportPage: Int? = nil
+    // A share image lays out the completed content as one continuous report,
+    // without the interactive pager's repeated header, controls or record footer.
+    var exportsLongImage = false
     var exportSoundRanking: ListeningRanking = .voices
     var exportImages: [String: UIImage] = [:]
 
@@ -31,7 +31,7 @@ struct ListeningReportStory: View {
 
     private func rankingKind(on index: Int) -> ListeningRanking {
         if index == 2 { return .works }
-        return report.scope == .personal ? .creators : (exportPage == nil ? soundRanking : exportSoundRanking)
+        return report.scope == .personal ? .creators : (!exportsLongImage ? soundRanking : exportSoundRanking)
     }
 
     private struct SequenceCue: Equatable {
@@ -100,15 +100,15 @@ struct ListeningReportStory: View {
     }
 
     private func visible(_ group: Int, on index: Int) -> Bool {
-        if exportPage != nil { return true }
+        if exportsLongImage { return true }
         if index == page { return group <= shownGroups }
         if let departure, departure.index == index { return group <= departure.shownGroups }
         return false
     }
 
     var body: some View {
-        if let exportPage {
-            exportBoard(exportPage)
+        if exportsLongImage {
+            exportLongBoard
         } else {
             animatedBody
         }
@@ -160,22 +160,54 @@ struct ListeningReportStory: View {
             .frame(width: 428 * scale, height: 926 * scale, alignment: .topLeading)
     }
 
-    private func exportBoard(_ index: Int) -> some View {
-        ZStack(alignment: .topLeading) {
-            ReportPaint.paper
-            pageContents(index)
-            ReportVinyl().position(x: 214, y: 926)
-            ReportTonearm().offset(x: 304, y: 729)
-            header
-            Text(String(format: "%02d   /   04", index + 1)).tracking(2)
-                .font(.system(size: 13, weight: .medium)).monospacedDigit()
-                .foregroundStyle(ReportPaint.subtle)
-                .frame(width: 404, height: 50).offset(x: 12, y: 649)
+    private var exportLongBoard: some View {
+        VStack(spacing: 0) {
+            header.frame(width: 428, height: 154, alignment: .topLeading)
+            ZStack(alignment: .topLeading) {
+                Image("LaunchArtwork").resizable()
+                    .frame(width: 1086 * 0.449, height: 1448 * 0.449)
+                    .offset(x: -5.288, y: -60).opacity(0.4)
+                    .frame(width: 428, height: 300, alignment: .topLeading)
+                    .mask(LinearGradient(stops: [
+                        .init(color: .black, location: 0),
+                        .init(color: .black, location: 0.60),
+                        .init(color: .clear, location: 1)
+                    ], startPoint: .top, endPoint: .bottom))
+                duration.offset(y: -100)
+            }
+            .frame(width: 428, height: 300, alignment: .topLeading)
+            .clipped()
+            footprint.frame(width: 428, height: 410, alignment: .topLeading)
+            ForEach(2..<4) { index in
+                ranking(on: index)
+                    .frame(width: 428, height: exportRankingHeight(on: index), alignment: .topLeading)
+                    .padding(.top, 24)
+            }
+            ZStack(alignment: .topLeading) {
+                ReportVinyl().position(x: 214, y: 250)
+                ReportTonearm().offset(x: 304, y: 53)
+            }
+            .frame(width: 428, height: 250, alignment: .topLeading)
+            .clipped()
+            .accessibilityHidden(true)
         }
-        .frame(width: 428, height: 926, alignment: .topLeading)
-        .clipped()
+        .frame(width: 428)
+        .fixedSize(horizontal: false, vertical: true)
+        .background(ReportPaint.paper)
         .foregroundStyle(ReportPaint.ink)
         .transaction { $0.disablesAnimations = true }
+    }
+
+    private func exportRankingHeight(on index: Int) -> CGFloat {
+        let type = rankingKind(on: index)
+        let count = min(report.ranks[type]?.count ?? 0, report.kind.previewLimit(for: type))
+        guard count > 0 else { return 180 }
+        return (type == .works ? 74 : 111) + CGFloat(count) * rankingRowHeight(for: type) + 16
+    }
+
+    private func rankingRowHeight(for type: ListeningRanking) -> CGFloat {
+        if report.kind == .annual && type == .works { return 37 }
+        return type != .works && report.kind == .monthly ? 94 : 67
     }
 
     private var board: some View {
@@ -229,7 +261,7 @@ struct ListeningReportStory: View {
         ZStack(alignment: .topLeading) {
             if index == 0 {
                 Group {
-                    if exportPage != nil {
+                    if exportsLongImage {
                         Image("LaunchArtwork").resizable()
                             .frame(width: 1086 * 0.449, height: 1448 * 0.449).opacity(0.4)
                     } else {
@@ -251,7 +283,7 @@ struct ListeningReportStory: View {
             .offset(y: 164)
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("storyPage\(index + 1)")
-            if index >= 2 && exportPage == nil {
+            if index >= 2 && !exportsLongImage {
                 Button { onShowRanking(rankingKind(on: index)) } label: {
                     HStack(spacing: 5) {
                         Text("查看完整排行")
@@ -295,7 +327,7 @@ struct ListeningReportStory: View {
 
     private var header: some View {
         ZStack(alignment: .topLeading) {
-            if exportPage == nil {
+            if !exportsLongImage {
             HStack(spacing: 6) {
                 ForEach(0..<4) { index in
                     Button { changePage(index) } label: {
@@ -320,7 +352,7 @@ struct ListeningReportStory: View {
             Text(report.scope == .combined ? L10n.text("合并统计") : report.scope.displayName)
                 .font(.system(size: 12)).foregroundStyle(ReportPaint.subtle)
                 .offset(x: 27, y: 122)
-            if page == 3, exportPage == nil, let onShare {
+            if page == 3, !exportsLongImage, let onShare {
                 Button { onShare(rankingKind(on: 3)) } label: {
                     Label("生成长图分享", systemImage: "square.and.arrow.up")
                         .font(.system(size: 13, weight: .medium))
@@ -397,7 +429,7 @@ struct ListeningReportStory: View {
         let entries = Array((report.ranks[type] ?? []).prefix(report.kind.previewLimit(for: type)))
         let isWorks = type == .works
         let compact = report.kind == .annual && isWorks
-        let rowHeight: CGFloat = compact ? 37 : (!isWorks && report.kind == .monthly ? 94 : 67)
+        let rowHeight = rankingRowHeight(for: type)
         return ZStack(alignment: .topLeading) {
             Text(isWorks ? L10n.text("常听作品排行") : L10n.text("常听声音排行"))
                 .font(.system(size: 34, weight: .semibold)).offset(x: 27, y: 8)
@@ -412,7 +444,7 @@ struct ListeningReportStory: View {
                 VStack(spacing: 0) {
                     ForEach(entries.indices, id: \.self) { i in
                         ReportRankingRow(index: i, entry: entries[i], kind: type, compact: compact,
-                                         exportImage: exportImages[entries[i].id], isExport: exportPage != nil)
+                                         exportImage: exportImages[type.rawValue + "|" + entries[i].id], isExport: exportsLongImage)
                             .frame(height: rowHeight)
                             .overlay(alignment: .top) { Rectangle().fill(ReportPaint.rule).frame(height: 0.8) }
                             .reportGroup(visible(i + (isWorks ? 2 : 3), on: index))
@@ -429,7 +461,7 @@ struct ListeningReportStory: View {
             } else {
                 ForEach([ListeningRanking.voices, .circles], id: \.self) { type in
                     if type == .circles { Rectangle().fill(ReportPaint.rule).frame(width: 1, height: 16) }
-                    if exportPage != nil {
+                    if exportsLongImage {
                         Text(L10n.key(type.rawValue))
                             .foregroundStyle(exportSoundRanking == type ? ReportPaint.accent : ReportPaint.subtle)
                             .frame(minWidth: 39, minHeight: 44, alignment: .leading)

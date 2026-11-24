@@ -5,6 +5,7 @@ struct LibraryImportSheet: View {
     @ObservedObject var store: LibraryStore
     let initialLibrary: MediaLibraryKind
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var duplicateZIP = false
     @State private var importIndependentCopy = false
     @State private var showNameConflictConfirmation = false
@@ -57,51 +58,58 @@ struct LibraryImportSheet: View {
                     Section {
                         Text("新副本会添加编号；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。")
                             .font(.footnote).foregroundStyle(AppTheme.secondaryText)
+                            .environment(\.dynamicTypeSize, dynamicTypeSize)
                     }
                 }
                 if let titles = preview?.conflictingTitles, !titles.isEmpty, !loadingPreview {
-                    Section("存在同名作品") {
+                    Section {
                         Text("其他来源或本批次中有同名作品。继续导入会保留同名，不会合并或覆盖已有作品。")
-                            .font(.footnote)
-                        ForEach(titles, id: \.self) { Text($0).font(.subheadline) }
-                    }
+                            .font(.footnote).environment(\.dynamicTypeSize, dynamicTypeSize)
+                        ForEach(titles, id: \.self) { Text($0).font(.subheadline).environment(\.dynamicTypeSize, dynamicTypeSize) }
+                    } header: { Text("存在同名作品").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
                 }
                 Section {
                     Button("从 Soundgasm 链接导入", systemImage: "link") { showSoundgasm = true }
+                        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                         .accessibilityIdentifier("chooseSoundgasm")
                 }.disabled(busy)
-                Section("导入到") {
+                Section {
                     Picker("媒体库", selection: $library) {
                         ForEach(MediaLibraryKind.allCases, id: \.self) { Text($0.displayName).tag($0) }
-                    }.accessibilityIdentifier("libraryImportLibrary")
+                    }.dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                        .accessibilityIdentifier("libraryImportLibrary")
                     if library == .personal {
                         Picker("创作者", selection: $creatorID) {
                             Text("暂不指定").tag(Int64?.none)
                             ForEach(store.creators) { Text($0.name).tag(Optional($0.id)) }
-                        }
-                        Button("新建创作者") { showCreatorEditor = true }
+                        }.dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                        Button("新建创作者") { showCreatorEditor = true }.dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                     }
-                }.disabled(busy)
+                } header: { Text("导入到").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
+                .disabled(busy)
                 Section {
                     Picker("选择类型", selection: $kind) {
                         ForEach(InputKind.allCases, id: \.self) { Text(L10n.key($0.rawValue)).tag($0) }
                     }
-                    .accessibilityIdentifier("libraryImportKind")
+                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                        .accessibilityIdentifier("libraryImportKind")
                     .onChange(of: kind) { _, _ in resetSelection() }
                     Button { showPicker = true } label: {
                         Label(selectedURLs.isEmpty ? L10n.text("选择\(L10n.key(kind.rawValue))…") : L10n.text("重新选择…"), systemImage: "plus")
-                    }.accessibilityIdentifier("libraryImportChooseFiles")
+                    }.dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                        .accessibilityIdentifier("libraryImportChooseFiles")
                     ForEach(Array(selectedURLs.enumerated()), id: \.offset) { _, url in
-                        Text(url.lastPathComponent).font(.subheadline).lineLimit(2)
+                        Text(url.lastPathComponent).font(.subheadline).lineLimit(2).environment(\.dynamicTypeSize, dynamicTypeSize)
                     }
                 } footer: {
                     Text(kind == .audio ? L10n.text("每个音频建立一个作品，文件复制进 App，原文件保持原样。") :
                          kind == .video ? L10n.text("每个视频建立一个作品（可多选），原视频复制进 App，原文件保持原样。") :
                          kind == .zip ? L10n.text("支持普通 ZIP，暂不支持密码和分卷包。解压完成后先预览，确认才加入媒体库。") :
                          L10n.text("直接关联所选文件夹中的原文件。以后改名或移动，可在作品菜单重新关联。"))
+                        .transformEnvironment(\.font) { if dynamicTypeSize.isAccessibilitySize { $0 = .footnote } }.environment(\.dynamicTypeSize, dynamicTypeSize)
                 }.disabled(busy)
                 if preparing || importing {
-                    Section { ProgressView(progressText.isEmpty ? L10n.text("正在处理…") : progressText) }
+                    Section { ProgressView(progressText.isEmpty ? L10n.text("正在处理…") : progressText).dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
                 }
                 if !selectedURLs.isEmpty && (kind == .folder || kind == .zip) && !preparing {
                     Section {
@@ -112,72 +120,67 @@ struct LibraryImportSheet: View {
                             Text("按目录自动判断").tag(ScanOptions.Grouping.automatic)
                         }
                         .pickerStyle(.inline)
-                    } header: { Text("作品划分") } footer: {
+                        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                    } header: { Text("作品划分").dynamicTypeSize(...DynamicTypeSize.xxxLarge) } footer: {
                         if grouping == .filesAsWorks {
                             Text("包含所有子文件夹，每个媒体文件独立成作。同目录同名台本、字幕和图片随对应作品；多媒体共用明确命名的封面，无法确认归属的资料不自动分配。已有作品不会自动拆分。")
+                                .transformEnvironment(\.font) { if dynamicTypeSize.isAccessibilitySize { $0 = .footnote } }.environment(\.dynamicTypeSize, dynamicTypeSize)
                         }
                     }.disabled(importing)
                 }
                 if !selectedURLs.isEmpty && !preparing {
-                    Section("导入预览") {
-                        if loadingPreview { ProgressView("正在识别作品…") }
+                    Section {
+                        if loadingPreview { ProgressView("正在识别作品…").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
                         else if let preview {
-                            if let error = preview.errorMessage { Text(error).foregroundStyle(.orange) }
-                            else if hasUnsupportedVideo { Text("所选文件中包含非视频文件，请重新选择视频。").foregroundStyle(.orange) }
+                            if let error = preview.errorMessage { Text(error).foregroundStyle(.orange).font(.body).environment(\.dynamicTypeSize, dynamicTypeSize) }
+                            else if hasUnsupportedVideo { Text("所选文件中包含非视频文件，请重新选择视频。").foregroundStyle(.orange).font(.body).environment(\.dynamicTypeSize, dynamicTypeSize) }
                             else {
-                                LabeledContent("作品", value: "\(preview.workCount)")
-                                LabeledContent("音轨", value: "\(preview.trackCount)")
-                                if preview.videoCount > 0 { LabeledContent("视频", value: "\(preview.videoCount)") }
-                                LabeledContent("字幕文件", value: "\(preview.subtitleCount)")
-                                LabeledContent("封面", value: "\(preview.coverCount)")
+                                LabeledContent("作品", value: "\(preview.workCount)").dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                                LabeledContent("音轨", value: "\(preview.trackCount)").dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                                if preview.videoCount > 0 { LabeledContent("视频", value: "\(preview.videoCount)").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
+                                LabeledContent("字幕文件", value: "\(preview.subtitleCount)").dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                                LabeledContent("封面", value: "\(preview.coverCount)").dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 if !preview.subtitleFiles.isEmpty {
-                                    DisclosureGroup("字幕文件") {
-                                        ForEach(Array(preview.subtitleFiles.enumerated()), id: \.offset) { _, name in Text(name) }
-                                    }
+                                    DisclosureGroup {
+                                        ForEach(Array(preview.subtitleFiles.enumerated()), id: \.offset) { _, name in Text(name).font(.body).environment(\.dynamicTypeSize, dynamicTypeSize) }
+                                    } label: { Text("字幕文件").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
                                 }
                                 if !preview.unmatchedFiles.isEmpty {
-                                    DisclosureGroup("未自动收录的文件") {
+                                    DisclosureGroup {
                                         Text("未找到唯一匹配的音轨或可读取的时间字幕；台本可在作品中手动配对。")
-                                            .font(.footnote).foregroundStyle(AppTheme.secondaryText)
-                                        ForEach(Array(preview.unmatchedFiles.enumerated()), id: \.offset) { _, name in Text(name) }
-                                    }
+                                            .font(.footnote).foregroundStyle(AppTheme.secondaryText).environment(\.dynamicTypeSize, dynamicTypeSize)
+                                        ForEach(Array(preview.unmatchedFiles.enumerated()), id: \.offset) { _, name in Text(name).font(.body).environment(\.dynamicTypeSize, dynamicTypeSize) }
+                                    } label: { Text("未自动收录的文件").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
                                 }
                                 ForEach(Array(preview.titles.enumerated()), id: \.offset) { _, title in
-                                    Text(title).font(.caption).lineLimit(2)
+                                    Text(title).font(.caption).lineLimit(2).environment(\.dynamicTypeSize, dynamicTypeSize)
                                 }
                                 if preview.workCount > preview.titles.count {
-                                    Text("还有 \(preview.workCount - preview.titles.count) 个作品").font(.caption)
+                                    Text("还有 \(preview.workCount - preview.titles.count) 个作品").font(.caption).dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 }
                             }
                         }
-                    }
+                    } header: { Text("导入预览").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
                 }
-                if let errorText { Section { Text(errorText).font(.callout).foregroundStyle(.orange) } }
+                if let errorText { Section { Text(errorText).font(.callout).foregroundStyle(.orange).environment(\.dynamicTypeSize, dynamicTypeSize) } }
             }
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .appNavigationColors().navigationTitle(L10n.text("导入作品"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar(.hidden, for: .navigationBar)
+            .toolbar(dynamicTypeSize.isAccessibilitySize ? .hidden : .visible, for: .navigationBar)
+            .toolbar {
+                if !dynamicTypeSize.isAccessibilitySize {
+                    ToolbarItem(placement: .cancellationAction) { cancelButton }
+                    ToolbarItem(placement: .confirmationAction) { importButton }
+                }
+            }
             .safeAreaInset(edge: .top, spacing: 0) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(duplicateZIP ? L10n.text("这个 ZIP 已导入") : L10n.text("导入作品"))
-                        .font(.headline).fixedSize(horizontal: false, vertical: true)
-                    ViewThatFits(in: .horizontal) {
-                        HStack { cancelButton; Spacer(); importButton }
-                        VStack(alignment: .leading) { cancelButton; importButton }
-                    }
-                    if duplicateZIP {
-                        Toggle("另存为新作品", isOn: $importIndependentCopy)
-                            .font(.subheadline).disabled(busy || loadingPreview)
-                            .accessibilityIdentifier("libraryImportIndependentCopy")
-                    }
-                }.padding(16).frame(maxWidth: .infinity, alignment: .leading)
-                    .background(AppTheme.background)
-                    .overlay(alignment: .bottom) {
-                        LinearGradient(colors: [AppTheme.background, AppTheme.background.opacity(0)],
-                                       startPoint: .top, endPoint: .bottom)
-                            .frame(height: 18).offset(y: 18)
-                            .allowsHitTesting(false).accessibilityHidden(true)
-                    }
+                if dynamicTypeSize.isAccessibilitySize {
+                    importHeader
+                } else if duplicateZIP {
+                    // Keep the reason and recovery choice visible beside a disabled confirmation.
+                    duplicateNotice.padding(16).background(AppTheme.background)
+                }
             }
             .interactiveDismissDisabled(busy)
             .alert("存在同名作品", isPresented: $showNameConflictConfirmation) {
@@ -196,25 +199,58 @@ struct LibraryImportSheet: View {
             }
             .sheet(isPresented: $showCreatorEditor) {
                 CreatorEditorSheet(creator: nil, store: store) { creatorID = $0 }
+                    .environment(\.dynamicTypeSize, dynamicTypeSize)
             }
             .sheet(isPresented: $showSoundgasm) {
                 SoundgasmImportSheet(store: store) { dismiss() }
+                    .environment(\.dynamicTypeSize, dynamicTypeSize)
             }
             .task(id: "\(revision)-\(grouping.rawValue)-\(library.rawValue)") { await refreshPreview() }
             .onDisappear { operation?.cancel(); if !importing { try? archive?.dispose() } }
         }
     }
 
+    private var duplicateNotice: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("这个 ZIP 已导入").font(.headline)
+            Toggle("另存为新作品", isOn: $importIndependentCopy)
+                .font(.subheadline).disabled(busy || loadingPreview)
+                .accessibilityIdentifier("libraryImportIndependentCopy")
+        }
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+    }
+
+    private var importHeader: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("导入作品").font(.headline)
+            HStack { cancelButton; Spacer(); importButton }
+            if duplicateZIP { duplicateNotice }
+        }
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+        .padding(16).frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppTheme.background)
+        .overlay(alignment: .bottom) {
+            LinearGradient(colors: [AppTheme.background, AppTheme.background.opacity(0)],
+                           startPoint: .top, endPoint: .bottom)
+                .frame(height: 18).offset(y: 18)
+                .allowsHitTesting(false).accessibilityHidden(true)
+        }
+    }
+
     private var cancelButton: some View {
         Button { operation?.cancel(); dismiss() } label: {
             Text("取消").fixedSize(horizontal: false, vertical: true)
-                .padding(.horizontal, 12).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                .padding(.horizontal, dynamicTypeSize.isAccessibilitySize ? 12 : 0)
+                .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
         }.disabled(importing && kind == .folder)
     }
     private var importButton: some View {
         Button { submit() } label: {
             Text("确认导入").fixedSize(horizontal: false, vertical: true)
-                .padding(.horizontal, 12).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                .padding(.horizontal, dynamicTypeSize.isAccessibilitySize ? 12 : 0)
+                .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
         }.disabled(!ready).accessibilityIdentifier("libraryImportConfirm")
     }
 

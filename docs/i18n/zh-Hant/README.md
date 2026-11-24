@@ -8,19 +8,19 @@
 
 [简体中文](../../../README.md) · **繁體中文** · [English](../en/README.md) · [日本語](../ja/README.md) · [한국어](../ko/README.md)
 
-**正式版 v0.1.2（build 35）** · **iOS / iPadOS 18 或更新版本** · **個人非商業使用免費**
+**正式版 v0.1.3（build 36）** · **iOS / iPadOS 18 或更新版本** · **個人非商業使用免費**
 
 ## 下載與安裝
 
-### [直接下載 IPA · v0.1.2（build 35）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)
+### [直接下載 IPA · v0.1.3（build 36）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)
 
 1. **在電腦上點擊上方連結**，等待下載完成，無需登入 GitHub。
-2. **在「下載 / Downloads」資料夾找到 IPA**：`simo-0.1.2-build35-unsigned.ipa`。
+2. **在「下載 / Downloads」資料夾找到 IPA**：`simo-0.1.3-build36-unsigned.ipa`。
 3. **用 Sideloadly 簽名安裝**。首次安裝請依照[安裝教學](INSTALL.md)操作；更新時沿用原 Apple 帳號與簽名設定覆蓋安裝，**請勿先移除舊版**。
 
-已經安裝 build 35 的使用者無需重裝。本版新增創作者頭像裁剪，並包含照片選擇器的穩定性修補。
+本次重新建置仍使用 **0.1.3 / build 36**，直接更新發布頁 **`v0.1.3`** 的安裝檔。請以同頁新 SHA-256 校驗檔及建置 JSON 內的原始碼提交辨識，版本號與檔名本身不足以區分。沿用原 Apple 帳號、簽名設定與 App 識別碼覆蓋安裝，**請勿先移除舊版**。[重建說明（簡中）](../../RELEASE_BUILD36.md)
 
-[下載協助](DOWNLOAD.md) · [安裝、續簽與更新](INSTALL.md) · [版本說明](RELEASE_0.1.2.md)
+[下載協助](DOWNLOAD.md) · [安裝、續簽與更新](INSTALL.md) · [版本說明](../../RELEASE_BUILD36.md)
 
 ## 主要功能
 

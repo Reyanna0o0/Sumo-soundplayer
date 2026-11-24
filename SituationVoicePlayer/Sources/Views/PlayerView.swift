@@ -4,6 +4,7 @@ import SwiftUI
 struct PlayerView: View {
     @EnvironmentObject private var player: PlayerController
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     @State private var scrubPosition: Int?
 
@@ -27,7 +28,7 @@ struct PlayerView: View {
     var body: some View {
         NavigationStack {
             GeometryReader { proxy in
-                if proxy.size.width >= 800 || (proxy.size.width > proxy.size.height && proxy.size.width >= 560) {
+                if (horizontalSizeClass == .regular && proxy.size.width >= 800) || (proxy.size.width > proxy.size.height && proxy.size.width >= 560) {
                     landscapePlayer(in: proxy.size)
                 } else {
                     ScrollView {
@@ -208,7 +209,7 @@ struct PlayerView: View {
             }
             .padding(.vertical, 6)
             .frame(width: width)
-            .frame(maxWidth: .infinity, minHeight: size.height, alignment: size.width >= 800 ? .top : .center)
+            .frame(maxWidth: .infinity, minHeight: size.height, alignment: horizontalSizeClass == .regular && size.width >= 800 ? .top : .center)
         }
         .scrollBounceBehavior(.basedOnSize)
     }
@@ -264,6 +265,7 @@ struct PlayerView: View {
         }
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
     }
 
     private var playbackPanel: some View {
@@ -282,6 +284,7 @@ struct PlayerView: View {
 
     private var captureControls: some View {
         PlaylistCaptureControls(savedToken: captureSavedToken) { draft in captureClipDraft = draft }
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
     }
 
     private var optionButtons: some View {
@@ -336,6 +339,7 @@ struct PlayerView: View {
                 Text(SubtitleTime.clock(player.durationMS))
             }
             .font(.caption.monospacedDigit())
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .foregroundStyle(AppTheme.secondaryText)
             .padding(.horizontal, horizontalInset + 4)
         }
@@ -380,7 +384,12 @@ struct PlayerView: View {
 
 private extension View {
     @ViewBuilder func playerToolbarTarget() -> some View {
-        labelStyle(.iconOnly).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+        if AppTheme.isPurple {
+            labelStyle(.iconOnly).frame(width: 44, height: 44).contentShape(Rectangle())
+                .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+        } else {
+            dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+        }
     }
 
     @ViewBuilder func playerToolbarCapsule() -> some View {
@@ -458,71 +467,82 @@ struct PlayerOptionsRow: View {
     var labelInk: Color? = nil
 
     var body: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: dynamicTypeSize.isAccessibilitySize ? 2 : 3), spacing: 12) {
-            if let onCallSpatialToggle {
-                Button(action: onCallSpatialToggle) {
-                    Label("空间效果", systemImage: callSpatialEnabled ? "square.3.layers.3d.down.right" : "square.3.layers.3d")
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8)], spacing: 12) {
+                    controls
                 }
-                .foregroundStyle(callSpatialEnabled ? AnyShapeStyle(.tint) : AnyShapeStyle(.primary))
-                .disabled(!callSpatialAvailable)
-                .accessibilityLabel("空间效果")
-                .accessibilityValue(callSpatialEnabled ? L10n.text("已开启") : L10n.text("已关闭"))
-                .accessibilityIdentifier("callSpatialToggle")
             } else {
-                Menu {
-                    ForEach([0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0], id: \.self) { value in
-                        Button { player.rate = value } label: {
-                            if abs(player.rate - value) < 0.01 {
-                                Label(rateLabel(value), systemImage: "checkmark")
-                            } else {
-                                Text(rateLabel(value))
-                            }
+                HStack(spacing: 0) { controls }
+            }
+        }
+        .labelStyle(PlayerOptionLabelStyle(ink: labelInk, expandsLabels: dynamicTypeSize.isAccessibilitySize))
+        .buttonStyle(.plain)
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+    }
+
+    @ViewBuilder private var controls: some View {
+        if let onCallSpatialToggle {
+            Button(action: onCallSpatialToggle) {
+                Label("空间效果", systemImage: callSpatialEnabled ? "square.3.layers.3d.down.right" : "square.3.layers.3d")
+            }
+            .foregroundStyle(callSpatialEnabled ? AnyShapeStyle(.tint) : AnyShapeStyle(.primary))
+            .disabled(!callSpatialAvailable)
+            .accessibilityLabel("空间效果")
+            .accessibilityValue(callSpatialEnabled ? L10n.text("已开启") : L10n.text("已关闭"))
+            .accessibilityIdentifier("callSpatialToggle")
+        } else {
+            Menu {
+                ForEach([0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0], id: \.self) { value in
+                    Button { player.rate = value } label: {
+                        if abs(player.rate - value) < 0.01 {
+                            Label(rateLabel(value), systemImage: "checkmark")
+                        } else {
+                            Text(rateLabel(value))
                         }
                     }
-                } label: {
-                    Label(rateLabel(player.rate), systemImage: "speedometer")
                 }
-                .accessibilityLabel("播放速度")
-                .accessibilityValue(rateLabel(player.rate))
-                .accessibilityIdentifier("playbackSpeed")
+            } label: {
+                Label(rateLabel(player.rate), systemImage: "speedometer")
             }
-
-            AddTrackToPlaylistButton(item: player.currentItem)
-
-            if let onSubtitleStyle {
-                Button(action: onSubtitleStyle) {
-                    Label("字幕样式", systemImage: "textformat.size")
-                }
-                .accessibilityLabel("字幕大小与样式")
-                .accessibilityIdentifier("callSubtitleStyle")
-            } else if let onSleep {
-                Button(action: onSleep) {
-                    Label {
-                        Text(player.sleepTimer == .off ? L10n.text("定时") : L10n.text("定时中"))
-                    } icon: {
-                        DecorativeSymbol(name: player.sleepTimer == .off ? "moon" : "moon.fill")
-                    }
-                }
-                .foregroundStyle(player.sleepTimer == .off ? AnyShapeStyle(.primary) : AnyShapeStyle(.tint))
-                .disabled(player.currentItem == nil)
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel("睡眠定时")
-                .accessibilityValue(player.sleepTimer == .off ? L10n.text("已关闭") : L10n.text("已开启"))
-                .accessibilityIdentifier("playerSleepTimer")
-            }
-
-            repeatOrSubtitlePositionButton
-            PlayerFavoriteButton(favoriteWork: favoriteWork, onFavorite: onFavorite)
-
-            Button(action: onQueue) {
-                Label("队列", systemImage: "list.bullet")
-            }
-            .accessibilityLabel("当前播放队列")
-            .accessibilityIdentifier("showPlaybackQueue")
-            .disabled(!player.hasQueue)
+            .accessibilityLabel("播放速度")
+            .accessibilityValue(rateLabel(player.rate))
+            .accessibilityIdentifier("playbackSpeed")
         }
-        .labelStyle(PlayerOptionLabelStyle(ink: labelInk))
-        .buttonStyle(.plain)
+
+        AddTrackToPlaylistButton(item: player.currentItem)
+
+        if let onSubtitleStyle {
+            Button(action: onSubtitleStyle) {
+                Label("字幕样式", systemImage: "textformat.size")
+            }
+            .accessibilityLabel("字幕大小与样式")
+            .accessibilityIdentifier("callSubtitleStyle")
+        } else if let onSleep {
+            Button(action: onSleep) {
+                Label {
+                    Text(player.sleepTimer == .off ? L10n.text("定时") : L10n.text("定时中"))
+                } icon: {
+                    DecorativeSymbol(name: player.sleepTimer == .off ? "moon" : "moon.fill")
+                }
+            }
+            .foregroundStyle(player.sleepTimer == .off ? AnyShapeStyle(.primary) : AnyShapeStyle(.tint))
+            .disabled(player.currentItem == nil)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("睡眠定时")
+            .accessibilityValue(player.sleepTimer == .off ? L10n.text("已关闭") : L10n.text("已开启"))
+            .accessibilityIdentifier("playerSleepTimer")
+        }
+
+        repeatOrSubtitlePositionButton
+        PlayerFavoriteButton(favoriteWork: favoriteWork, onFavorite: onFavorite)
+
+        Button(action: onQueue) {
+            Label("队列", systemImage: "list.bullet")
+        }
+        .accessibilityLabel("当前播放队列")
+        .accessibilityIdentifier("showPlaybackQueue")
+        .disabled(!player.hasQueue)
     }
 
     private func rateLabel(_ value: Double) -> String {
@@ -551,12 +571,14 @@ struct PlayerOptionsRow: View {
 
 private struct PlayerOptionLabelStyle: LabelStyle {
     let ink: Color?
+    let expandsLabels: Bool
 
     func makeBody(configuration: Configuration) -> some View {
         let label = VStack(spacing: 4) {
             configuration.icon.font(.system(size: 18)).accessibilityHidden(true)
-            configuration.title.font(.caption).multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
+            configuration.title.font(expandsLabels ? .caption : .caption2)
+                .lineLimit(expandsLabels ? 2 : 1)
+                .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, minHeight: 44)
         .contentShape(Rectangle())

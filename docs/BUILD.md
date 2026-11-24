@@ -23,9 +23,11 @@ bash scripts/test-media-picker.sh
 bash scripts/test-import-regression.sh
 ```
 
-也可以从 [v0.1.2 下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.2) 获取 `simo-0.1.2-build35-source.zip`，解压后在 `Sumo-soundplayer-0.1.2/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。
+也可以从 [build 36 下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.3) 获取 `simo-0.1.3-build36-source.zip`，解压后在 `Sumo-soundplayer-0.1.3/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。
 
 资源检查覆盖 LAME 上游文件、FFmpeg 归档、模型、三份许可副本和 ZIPFoundation 锁定版本。`test-media-picker.sh` 在 Mac 上检查选择会话的取消、重复回调、目标隔离和图片数据读取；它不代替 iOS 系统图库界面或云端资源实测。
+
+当前发布为 `v0.1.3`，本次重新构建仍使用应用版本 `0.1.3` / build `36`。发布附件直接更新；请核对构建 JSON 中的源码提交和同一发布页的新 SHA-256，不要只看应用版本号或同名文件。[本次重建说明](RELEASE_BUILD36.md)
 
 ## 生成未签名 IPA
 
@@ -37,7 +39,7 @@ bash scripts/build.sh ipa
 
 产物位于 `dist/`：
 
-- `simo-0.1.2-build35-unsigned.ipa`
+- `simo-0.1.3-build36-unsigned.ipa`
 - 同名 `.sha256` 文件，供下载校验。
 - 同名 `.json` 文件，记录版本、构建号、标识、工具链与源码提交。
 

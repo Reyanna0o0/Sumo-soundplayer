@@ -2,11 +2,13 @@
 
 [简体中文](../../INSTALL.md) · [繁體中文](../zh-Hant/INSTALL.md) · [English](../en/INSTALL.md) · **日本語** · [한국어](../ko/INSTALL.md)
 
-**[IPA をダウンロード · v0.1.2（build 35）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)** · [ダウンロードの案内](DOWNLOAD.md)
+**[IPA をダウンロード · v0.1.3（build 36）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)** · [ダウンロードの案内](DOWNLOAD.md)
 
-初回は以下の準備から始めてください。インストール済みの場合は[データを残して更新する](#update)へ進めます。build 35 の再インストールは不要です。
+今回の再ビルドもアプリのバージョンは **0.1.3 / build 36** で、リリース **`v0.1.3`** の配布ファイルを置き換えます。同じリリースの SHA-256 とビルド JSON 内のソースコミットで識別してください。バージョン番号やファイル名だけでは区別できません。同じ Apple Account・署名設定・アプリ識別子で上書きし、**先に旧版を削除しないでください**。[再ビルドの内容（簡体字中国語）](../../RELEASE_BUILD36.md)
 
-Mac + Sideloadly のインストールと build 33 への上書き更新には実測記録があります。Windows、AltStore、署名の更新は未検証です。[リリースノート](RELEASE_0.1.2.md)・[検証記録（簡体字中国語）](../../RELEASE_STATUS.md)
+初回は以下の準備から始めてください。インストール済みの場合は[データを残して更新する](#update)へ進めます。
+
+Mac + Sideloadly のインストールと build 33 への上書き更新には実測記録があります。Windows、AltStore、署名の更新は未検証です。[リリースノート](../../RELEASE_BUILD36.md)・[検証記録（簡体字中国語）](../../RELEASE_STATUS.md)
 
 ## 用意するもの
 
@@ -65,12 +67,12 @@ Apple Account へのサインインは署名ツール上で行います。Sumo �
 <a id="verify"></a>
 ## 任意：ダウンロードしたファイルを検証する
 
-同じリリースの `.ipa.sha256` を IPA と同じフォルダへ保存し、そのフォルダでターミナルまたは PowerShell を開きます。以下は build 35 の例です。他の版では実際のファイル名に置き換えてください。
+同じリリースの `.ipa.sha256` を IPA と同じフォルダへ保存し、そのフォルダでターミナルまたは PowerShell を開きます。以下は build 36 の例です。他の版では実際のファイル名に置き換えてください。
 
 Mac：
 
 ```bash
-shasum -a 256 -c simo-0.1.2-build35-unsigned.ipa.sha256
+shasum -a 256 -c simo-0.1.3-build36-unsigned.ipa.sha256
 ```
 
 `OK` なら一致しています。`FAILED` の場合は、同じリリースから両方のファイルを取得し直してください。
@@ -78,7 +80,7 @@ shasum -a 256 -c simo-0.1.2-build35-unsigned.ipa.sha256
 Windows PowerShell：
 
 ```powershell
-Get-FileHash .\simo-0.1.2-build35-unsigned.ipa -Algorithm SHA256
+Get-FileHash .\simo-0.1.3-build36-unsigned.ipa -Algorithm SHA256
 ```
 
 `.sha256` をテキストエディタで開き、先頭の文字列を `Hash` と比較します。英字の大文字・小文字以外は完全に一致する必要があります。

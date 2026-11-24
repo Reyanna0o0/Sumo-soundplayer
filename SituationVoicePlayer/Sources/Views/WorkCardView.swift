@@ -4,6 +4,7 @@ import SwiftUI
 struct WorkCardView: View {
     let work: WorkRecord
     @EnvironmentObject private var store: LibraryStore
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -23,7 +24,7 @@ struct WorkCardView: View {
 
                 Text(work.subtitle.replacingOccurrences(of: "、", with: "/"))
                     .font(.caption2)
-                    .lineLimit(2, reservesSpace: true)
+                    .lineLimit(dynamicTypeSize.isAccessibilitySize ? 2 : 1, reservesSpace: true)
                     .foregroundStyle(AppTheme.secondaryText)
 
                 HStack(spacing: 4) {
@@ -36,6 +37,7 @@ struct WorkCardView: View {
                 .font(.caption2)
                 .foregroundStyle(AppTheme.tertiaryText)
             }
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
         }
     }
 

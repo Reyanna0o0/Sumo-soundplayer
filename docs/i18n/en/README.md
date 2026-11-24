@@ -8,19 +8,19 @@
 
 [简体中文](../../../README.md) · [繁體中文](../zh-Hant/README.md) · **English** · [日本語](../ja/README.md) · [한국어](../ko/README.md)
 
-**Stable release v0.1.2 (build 35)** · **iOS / iPadOS 18 or later** · **Free for personal, non-commercial use**
+**Stable release v0.1.3 (build 36)** · **iOS / iPadOS 18 or later** · **Free for personal, non-commercial use**
 
 ## Download and install
 
-### [Download the IPA · v0.1.2 (build 35)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)
+### [Download the IPA · v0.1.3 (build 36)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)
 
 1. **Open the link on your computer** and wait for the download to finish. No GitHub account is needed.
-2. **Find the IPA in Downloads**: `simo-0.1.2-build35-unsigned.ipa`.
+2. **Find the IPA in Downloads**: `simo-0.1.3-build36-unsigned.ipa`.
 3. **Sign and install it with Sideloadly** using the [installation guide](INSTALL.md). For an update, keep your original Apple Account and signing settings, and install over the existing app. **Do not uninstall it first.**
 
-If you already have build 35, there is no need to reinstall. This release adds creator avatar cropping and includes the photo picker stability fixes.
+This rebuild keeps app version **0.1.3 / build 36** and replaces the files in release **`v0.1.3`**. Identify the new package by the matching SHA-256 file and the source commit in its build JSON; the app version and filename alone do not distinguish it. Install over the existing app with the same Apple Account, signing settings and app identifier; **do not uninstall first**. [Rebuild notes — Simplified Chinese](../../RELEASE_BUILD36.md)
 
-[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Release notes](RELEASE_0.1.2.md)
+[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Release notes](../../RELEASE_BUILD36.md)
 
 ## Features
 

@@ -306,8 +306,14 @@ struct ListeningReviewView: View {
                                         .padding(16).frame(maxWidth: 660)
                                 }
                             } else {
-                                ContentUnavailableView(kind == .annual ? L10n.text("这一年还没有收听记录") : L10n.text("这个月还没有收听记录"),
-                                                       systemImage: "calendar")
+                                ContentUnavailableView {
+                                    Label {
+                                        Text(kind == .annual ? L10n.text("这一年还没有收听记录") : L10n.text("这个月还没有收听记录"))
+                                            .foregroundStyle(AppTheme.ink)
+                                    } icon: {
+                                        Image(systemName: "calendar")
+                                    }
+                                }
                             }
                         }.tag(ListeningReviewPage.overview)
                         ForEach(snapshot.rankingKinds, id: \.self) { type in

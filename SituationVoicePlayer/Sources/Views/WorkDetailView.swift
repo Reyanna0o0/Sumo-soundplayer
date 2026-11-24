@@ -131,7 +131,7 @@ struct WorkDetailView: View {
         } message: { track in
             Text("「\(track.displayTitle)」会从作品和播放列表移除。原文件和独立摘选会保留。")
         }
-        .confirmationDialog("从媒体库移除作品？", isPresented: $showWorkRemoval, titleVisibility: .visible) {
+        .alert("从媒体库移除作品？", isPresented: $showWorkRemoval) {
             Button("移除作品", role: .destructive) {
                 do {
                     try store.removeWorkFromLibrary(currentWork)

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject private var store: LibraryStore
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isSeeding = false
     @AppStorage(CoverPrivacy.settingKey) private var privacyEnabled = false
     @AppStorage(CallInterfacePreferences.realisticLabelsKey) private var realisticCallLabels = false
@@ -27,37 +28,41 @@ struct SettingsView: View {
         NavigationStack {
             AppList {
                 Section {
-                    LanguageSettingsPicker()
+                    LanguageSettingsPicker().environment(\.dynamicTypeSize, dynamicTypeSize)
                 } footer: {
-                    Text("语言已内置，无需下载。仅更改界面文字，不改动作品、台本和字幕。")
-                }
-                Section("外观") {
-                    AppearancePalettePicker(selection: $appearance.palette)
+                    Text("语言已内置，无需下载。仅更改界面文字，不改动作品、台本和字幕。").transformEnvironment(\.font) { if dynamicTypeSize.isAccessibilitySize { $0 = .footnote } }.environment(\.dynamicTypeSize, dynamicTypeSize)
                 }
                 Section {
+                    AppearancePalettePicker(selection: $appearance.palette).environment(\.dynamicTypeSize, dynamicTypeSize)
+                } header: { Text("外观").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
+                Section {
                     NavigationLink {
-                        LaunchSettingsView()
-                    } label: { Label("启动与图标", systemImage: "sparkles") }
+                        LaunchSettingsView().environment(\.dynamicTypeSize, dynamicTypeSize)
+                    } label: { Label("启动与图标", systemImage: "sparkles").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
+                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                     .accessibilityIdentifier("launchSettingsEntry")
                 }
                 Section {
                     Toggle("防偷窥", isOn: $privacyEnabled)
+                        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                         .accessibilityIdentifier("coverPrivacyToggle")
                 } footer: {
-                    Text("浏览作品时模糊封面，播放页显示原图。锁屏和控制中心使用模糊封面，音轨显示为「\(CoverPrivacy.publicTitle)」。")
-                }
-
-                Section("统计") {
-                    NavigationLink {
-                        StatisticsSettingsView()
-                    } label: {
-                        Label("统计显示", systemImage: "chart.bar.xaxis")
-                    }
-                    .accessibilityIdentifier("statisticsSettingsEntry")
+                    Text("浏览作品时模糊封面，播放页显示原图。锁屏和控制中心使用模糊封面，音轨显示为「\(CoverPrivacy.publicTitle)」。").transformEnvironment(\.font) { if dynamicTypeSize.isAccessibilitySize { $0 = .footnote } }.environment(\.dynamicTypeSize, dynamicTypeSize)
                 }
 
                 Section {
+                    NavigationLink {
+                        StatisticsSettingsView().environment(\.dynamicTypeSize, dynamicTypeSize)
+                    } label: {
+                        Label("统计显示", systemImage: "chart.bar.xaxis").dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                    }
+                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                    .accessibilityIdentifier("statisticsSettingsEntry")
+                } header: { Text("统计").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
+
+                Section {
                     Toggle("完全模拟通话按键名称", isOn: $realisticCallLabels)
+                        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                         .accessibilityIdentifier("realisticCallLabels")
                     Button {
                         do {
@@ -65,10 +70,10 @@ struct SettingsView: View {
                                 profile: try store.callProfile(ownerKind: .localUser, id: 0)
                             )
                         } catch { callProfileError = error.localizedDescription }
-                    } label: { Label("我的头像", systemImage: "person.crop.rectangle") }
+                    } label: { Label("我的头像", systemImage: "person.crop.rectangle").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
                     .accessibilityIdentifier("myCallDisplayEntry")
-                } header: { Text("通话") } footer: {
-                    Text("关闭时显示暂停、继续和我的头像；开启后显示麦克风、打开摄像头等通话名称。实际功能仍是播放控制和显示已选图片。")
+                } header: { Text("通话").dynamicTypeSize(...DynamicTypeSize.xxxLarge) } footer: {
+                    Text("关闭时显示暂停、继续和我的头像；开启后显示麦克风、打开摄像头等通话名称。实际功能仍是播放控制和显示已选图片。").transformEnvironment(\.font) { if dynamicTypeSize.isAccessibilitySize { $0 = .footnote } }.environment(\.dynamicTypeSize, dynamicTypeSize)
                 }
 
                 Section {
@@ -81,6 +86,7 @@ struct SettingsView: View {
                         }
                         .multilineTextAlignment(.trailing)
                     } label: { Text("字幕历史缓存") }
+                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                     .accessibilityIdentifier("subtitleHistoryCacheCount")
                     Button {
                         subtitleHistoryMessage = nil
@@ -90,7 +96,7 @@ struct SettingsView: View {
                         }
                     } label: {
                         HStack {
-                            Text("清理字幕历史缓存")
+                            Text("清理字幕历史缓存").dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                             Spacer()
                             if clearingSubtitleHistory || loadingSubtitleHistory { ProgressView().controlSize(.small) }
                         }
@@ -98,10 +104,10 @@ struct SettingsView: View {
                     .disabled(clearingSubtitleHistory || loadingSubtitleHistory || subtitleHistorySummary == nil || subtitleHistorySummary?.versionCount == 0)
                     .accessibilityIdentifier("clearSubtitleHistory")
                     if let subtitleHistoryMessage {
-                        Text(subtitleHistoryMessage).font(.footnote).foregroundStyle(AppTheme.secondaryText)
+                        Text(subtitleHistoryMessage).font(.footnote).foregroundStyle(AppTheme.secondaryText).environment(\.dynamicTypeSize, dynamicTypeSize)
                             .accessibilityIdentifier("subtitleHistoryCleanupResult")
                     }
-                    LabeledContent("图片空间效果", value: cacheSize(spatialCacheBytes))
+                    LabeledContent("图片空间效果", value: cacheSize(spatialCacheBytes)).dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                         .accessibilityIdentifier("spatialCacheSize")
                     Button("清理空间效果缓存") {
                         clearingSpatialCache = true
@@ -111,10 +117,11 @@ struct SettingsView: View {
                             spatialCacheBytes = await CallSpatialDepth.shared.cacheBytes()
                             clearingSpatialCache = false
                         }
-                    }.disabled(clearingSpatialCache || spatialCacheBytes == 0)
+                    }.dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                        .disabled(clearingSpatialCache || spatialCacheBytes == 0)
                         .accessibilityIdentifier("clearCallSpatialCache")
-                } header: { Text("App 缓存") } footer: {
-                    Text("字幕容量按可清理版本的文本内容估算，清理后数据库空间可供后续编辑复用。原始、当前、固定及草稿引用的版本保留；图片原图和取景设置保留。")
+                } header: { Text("App 缓存").dynamicTypeSize(...DynamicTypeSize.xxxLarge) } footer: {
+                    Text("字幕容量按可清理版本的文本内容估算，清理后数据库空间可供后续编辑复用。原始、当前、固定及草稿引用的版本保留；图片原图和取景设置保留。").transformEnvironment(\.font) { if dynamicTypeSize.isAccessibilitySize { $0 = .footnote } }.environment(\.dynamicTypeSize, dynamicTypeSize)
                 }
                 .task { await refreshSubtitleHistory() }
                 .task { spatialCacheBytes = await CallSpatialDepth.shared.cacheBytes() }
@@ -151,10 +158,10 @@ struct SettingsView: View {
                 }
                 #endif
 
-                Section("关于") {
-                    LabeledContent("应用名称", value: Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? "—")
-                    LabeledContent("版本", value: appVersion)
-                    NavigationLink("开源许可") {
+                Section {
+                    LabeledContent("应用名称", value: Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? "—").dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                    LabeledContent("版本", value: appVersion).dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                    NavigationLink {
                         ScrollView {
                             VStack(alignment: .leading, spacing: 16) {
                                 Text("图片空间效果：Depth Anything V2 Small").font(.headline)
@@ -182,8 +189,10 @@ struct SettingsView: View {
                                     .font(.caption).textSelection(.enabled)
                             }.padding()
                         }.appPageBackground(AppTheme.painted(.clear, AppTheme.background)).appNavigationColors().navigationTitle(L10n.text("开源许可"))
-                    }
-                }
+                        .environment(\.dynamicTypeSize, dynamicTypeSize)
+                    } label: { Text("开源许可") }
+                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                } header: { Text("关于").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
 
                 #if DEBUG
                 Section {
@@ -193,13 +202,24 @@ struct SettingsView: View {
                 }
                 #endif
             }
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .modifier(ScrollContentEdges.topOnly)
             .appPageBackground(AppTheme.painted(Color(uiColor: .systemGroupedBackground), AppTheme.background))
             .appNavigationColors().navigationTitle(L10n.text("设置"))
+            .navigationBarTitleDisplayMode(dynamicTypeSize.isAccessibilitySize ? .inline : .automatic)
+            .toolbar {
+                if dynamicTypeSize.isAccessibilitySize {
+                    ToolbarItem(placement: .principal) {
+                        Text("设置").font(.headline).foregroundStyle(AppTheme.ink)
+                            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                            .accessibilityAddTraits(.isHeader)
+                    }
+                }
+            }
             .porcelainSheet(item: $callProfilePresentation) { presentation in
                 CallProfileEditorSheet(title: L10n.text("我的头像"), ownerKind: .localUser, profile: presentation.profile) {
                     try store.saveCallProfile($0, ownerKind: .localUser, id: 0)
-                }
+                }.environment(\.dynamicTypeSize, dynamicTypeSize)
             }
             .alert("无法读取通话资料", isPresented: Binding(get: { callProfileError != nil }, set: { if !$0 { callProfileError = nil } })) {
                 Button("确定") { callProfileError = nil }
@@ -276,22 +296,33 @@ struct SettingsView: View {
 
 /// List 的内容闭包可能缓存已取出的颜色；由选项本身观察皮肤，更新当前值和箭头。
 private struct LanguageSettingsPicker: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     var body: some View {
         @Bindable var language = AppLanguageSelection.shared
         @Bindable var appearance = AppearanceSelection.shared
-        Menu {
-            Picker("App 语言", selection: $language.language) {
-                ForEach(AppLanguage.allCases) { choice in Text(verbatim: choice.name).tag(choice) }
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                Menu {
+                    Picker("App 语言", selection: $language.language) {
+                        ForEach(AppLanguage.allCases) { choice in Text(verbatim: choice.name).tag(choice) }
+                    }
+                } label: {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("App 语言")
+                        Text(verbatim: language.language.name).foregroundStyle(AppTheme.secondaryText)
+                    }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                    .contentShape(Rectangle())
+                }
+            } else {
+                Picker("App 语言", selection: $language.language) {
+                    ForEach(AppLanguage.allCases) { choice in Text(verbatim: choice.name).tag(choice) }
+                }
             }
-        } label: {
-            VStack(alignment: .leading, spacing: 6) {
-                Text("App 语言")
-                Text(verbatim: language.language.name).foregroundStyle(AppTheme.secondaryText)
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-            .contentShape(Rectangle())
         }
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
         .tint(AppTheme.ink)
         // 原生菜单选择器会缓存已解析的 tint。只重建这个无草稿控件，
         // 绑定的语言选择、外层列表滚动和导航状态均留在原处。
