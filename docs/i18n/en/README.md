@@ -1,99 +1,176 @@
-# Sumo Sound Player · 厮磨播放器
+<p align="center">
+  <img src="../../images/showcase/app-icon.png" width="96" alt="Sumo app icon">
+</p>
 
-> **💛 Tips**
->
-> Developing Sumo takes time and effort. Tips are welcome and appreciated!
->
-> **[Tips via Stripe](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00)**
+<h1 align="center">Sumo · 厮磨</h1>
+<p align="center"><strong>A personal library for the voices you love.</strong></p>
+<p align="center">Independently developed · All features free for personal, non-commercial use · Source available</p>
 
-[简体中文](../../../README.md) · [繁體中文](../zh-Hant/README.md) · **English** · [日本語](../ja/README.md) · [한국어](../ko/README.md)
+<p align="center">
+  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa"><strong>Download IPA</strong></a> ·
+  <a href="INSTALL.md"><strong>Installation guide</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>Releases</strong></a>
+</p>
 
-**Stable release v0.1.3 (build 36)** · **iOS / iPadOS 18 or later** · **Free for personal, non-commercial use**
+<p align="center">v0.1.3 · build 36 &nbsp; | &nbsp; iOS / iPadOS 18 or later</p>
+<p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <strong>English</strong> · <a href="../ja/README.md">日本語</a> · <a href="../ko/README.md">한국어</a></p>
 
-## Download and install
+Sumo is an iOS audio player built around organizing your collection and immersive listening. Personal Audio and Indie Releases have separate libraries, bringing audio, video, covers, scripts and listening history together. No app account is required—import your own collection and start listening. The interface supports Simplified Chinese, Traditional Chinese, English, Japanese and Korean.
 
-### [Download the IPA · v0.1.3 (build 36)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)
+> **Build 36 has been rebuilt.** The download keeps the same filename and replaces the previous build 36 package, fixing standard text layouts, larger text support and report exports. Even if you already have build 36, download it again and install over the existing app with your original Apple Account and signing settings. **Do not uninstall first.** [Changes and verification — Simplified Chinese](../../RELEASE_BUILD36.md)
 
-1. **Open the link on your computer** and wait for the download to finish. No GitHub account is needed.
-2. **Find the IPA in Downloads**: `simo-0.1.3-build36-unsigned.ipa`.
-3. **Sign and install it with Sideloadly** using the [installation guide](INSTALL.md). For an update, keep your original Apple Account and signing settings, and install over the existing app. **Do not uninstall it first.**
+## From import to listening in three steps
 
-This rebuild keeps app version **0.1.3 / build 36** and replaces the files in release **`v0.1.3`**. Identify the new package by the matching SHA-256 file and the source commit in its build JSON; the app version and filename alone do not distinguish it. Install over the existing app with the same Apple Account, signing settings and app identifier; **do not uninstall first**. [Rebuild notes — Simplified Chinese](../../RELEASE_BUILD36.md)
+| Import | Organize | Listen |
+| --- | --- | --- |
+| Choose audio, video, a folder or ZIP, or paste a single Soundgasm work link. | Group files into works and add covers, creators, scripts and categories. | Choose the regular player, call-style view or fullscreen subtitles. |
 
-[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Release notes](../../RELEASE_BUILD36.md)
+## Three ways to enjoy the same collection
 
-## Features
+<table>
+  <tr>
+    <th align="center">Regular player</th>
+    <th align="center">Immersive call view</th>
+    <th align="center">Fullscreen subtitles</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="../../images/showcase/player-sample.png"><img src="../../images/showcase/player-sample.png" width="250" alt="Regular player with a fictional work, cover and playback controls; Chinese interface"></a></td>
+    <td align="center"><a href="../../images/showcase/call-sample.png"><img src="../../images/showcase/call-sample.png" width="250" alt="Call-style player with an original demo character; Chinese interface"></a></td>
+    <td align="center"><a href="../../images/showcase/subtitles-sample.png"><img src="../../images/showcase/subtitles-sample.png" width="250" alt="Fullscreen subtitles following playback with original demo text; Chinese interface"></a></td>
+  </tr>
+  <tr>
+    <td valign="top">Speed, pitch, equalizer, repeat, sleep timer and queue controls, plus background and Lock Screen playback.</td>
+    <td valign="top">Set a character, avatar and background for each work, with voice-call or video-call styling.</td>
+    <td valign="top">Read alongside the audio, arrange original text and translations, edit subtitles, set timings or open a floating subtitle window.</td>
+  </tr>
+</table>
 
-### Two libraries, organized by work and creator
+These three examples were captured in the app running in a simulator, using fictional works and original demo content rather than existing audio releases. **Screenshots throughout this page show the Chinese interface; the app also supports English.** Picture-in-picture availability depends on the device; the call screenshot retains the simulator’s system notice. The call view plays local media and does not place real calls. Regular-player adjustments such as speed are unavailable in this view. [Playback details — Simplified Chinese](../../USAGE.md#播放与通话)
 
-- **Indie Releases** holds complete releases with multiple tracks, covers, scripts and bonus content.
-- **Personal Audio** keeps individual creators and their details together. Both libraries support favorites and categories. Creator, voice actor and circle lists can each be reordered by dragging.
+## Keep your collection organized and see your listening habits
 
-### Local imports and folder relinking
+<table>
+  <tr>
+    <th align="center">Import from different sources</th>
+    <th align="center">Follow your listening history</th>
+    <th align="center">Make it your own</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="../../images/showcase/import-sources.jpg"><img src="../../images/showcase/import-sources.jpg" width="250" alt="Audio, video, folder, ZIP and Soundgasm import options; Chinese interface"></a></td>
+    <td align="center"><a href="../../images/showcase/listening-statistics.jpg"><img src="../../images/showcase/listening-statistics.jpg" width="250" alt="Listening time including seconds, trends and a 24-hour distribution; Chinese interface"></a></td>
+    <td align="center"><a href="../../images/showcase/appearance-settings.jpg"><img src="../../images/showcase/appearance-settings.jpg" width="250" alt="Ivory appearance with theme, icon, privacy, statistics and call settings; Chinese interface"></a></td>
+  </tr>
+  <tr>
+    <td valign="top">Import audio, video, folders and ZIPs. Preview works and tracks before saving to Personal Audio or Indie Releases.</td>
+    <td valign="top">See total time, works played, listening days, averages per listening day and streaks. View the libraries separately or together; durations retain seconds.</td>
+    <td valign="top">Choose Native, Ivory, Soft Black or Purple, and adjust the app icon, launch audio, statistics and call-button labels.</td>
+  </tr>
+</table>
 
-Sumo stores your library locally. When you select individual audio or video files, it copies them into the app. When you import a folder, the app continues to read its media from the selected location; supported subtitles, scripts and attachments can be imported alongside multi-track works.
+The settings screenshot shows the first three appearances; scroll horizontally to find Purple. Cover privacy blurs covers while browsing. On the Lock Screen and in Control Center it also substitutes the track title and omits work and creator details. The player still shows the original cover.
 
-If a linked folder is renamed or moved, open the work's **… → Relink Folder**, select its new location and check the file matches. This keeps the existing work, including edited details, subtitle versions and reading position. [Detailed import instructions — Simplified Chinese](../../USAGE.md#导入作品)
+### One folder, several ways to organize it
 
-### Soundgasm audio and Scriptbin scripts
+Folder and ZIP imports offer four grouping options: **the whole folder, each subfolder, each audio/video file, or automatic grouping by directory**. Selecting individual audio or video files creates one work per file.
 
-Paste a single Soundgasm work link into **Import Works**, preview the title, then download it into the selected library. To attach a Scriptbin script to an existing work, open its link in the script import screen, confirm the web page, extract the text and review it before saving. Saved audio and scripts work offline; fetching them requires internet access. [Link import details — Simplified Chinese](../../USAGE.md#从链接导入)
+Individual media files are copied into the app; folder imports keep a reference to the external location. If that folder moves or is renamed, relink it from the work menu to preserve the existing details and subtitle versions. [Import and relinking — Simplified Chinese](../../USAGE.md#导入作品)
 
-### Three listening views
+<details>
+<summary>See grouping options and the import preview</summary>
+<p align="center"><img src="../../images/showcase/folder-grouping.jpg" width="320" alt="Four grouping options and the import preview; Chinese interface"></p>
+</details>
 
-- **Normal playback** offers speed, pitch, equalizer and queue controls, repeat modes and a sleep timer. Playback controls also work in the background and on the Lock Screen.
-- **Fullscreen Subtitles** lets you read, edit and time scripts. A subtitle window can remain visible over other apps on devices that support picture in picture.
-- **Simulated Call** opens from the phone icon in the player. Choose a simulated voice or video call, with per-work avatars, backgrounds and framing. Still-image backgrounds can use an on-device depth effect. This view is for playback; controls such as playback speed are not available here. The call-style buttons control playback and selected images.
+### Bring a Soundgasm work into your library
 
-Imported videos also have a separate player. Supported playback depends on the file's codec. [Playback details — Simplified Chinese](../../USAGE.md#播放与通话)
+Paste a **single Soundgasm work link**, read and confirm its details, then download an audio copy. Saved audio works offline; loading the page and downloading require internet access. [Supported links and instructions — Simplified Chinese](../../USAGE.md#从链接导入)
 
-### Scripts, bilingual subtitles and manual timing
+<details>
+<summary>See the Soundgasm import screen</summary>
+<p align="center"><img src="../../images/showcase/soundgasm-import.jpg" width="320" alt="Soundgasm work URL input and read button; Chinese interface"></p>
+</details>
 
-The app can recognize some script layouts and timing formats. SRT, LRC and supported timed PDF / TXT scripts follow their existing timestamps. Untimed text can be read as a script or timed sentence by sentence in the fullscreen view. You can adjust individual timestamps or shift them together; edits create a new subtitle version.
+### Match the listening view to the work
 
-If you import both the original text and a translation, Sumo can pair and display them together. **Both texts must be supplied by you; the app does not automatically translate.** [Script and subtitle guide — Simplified Chinese](../../USAGE.md#字幕与台本)
+Set the **call character, avatar, background and framing** independently. Inherit the cover, choose your own images or prefer video from the work. Avatar and background settings are saved separately without changing the original work cover. Background videos loop silently; still images can use an on-device depth effect.
 
-### Work details and call appearance
+<details>
+<summary>See avatar and background settings</summary>
+<p align="center"><img src="../../images/showcase/call-appearance.jpg" width="320" alt="Separate avatar, background and work-video settings; Chinese interface"></p>
+</details>
 
-Use **… → Edit Work Details** to change a work's name, library associations and player cover display. Indie releases can have a circle, voice actors and a work number; personal audio can be assigned to a creator. The same editor contains the call character, avatar, background and framing settings. Edit a creator's profile to share a call appearance across that creator's works. Creator avatars can be cropped after selecting a photo or file. [Editing details — Simplified Chinese](../../USAGE.md#作品资料与通话设置)
+### Keep scripts with their works
 
-### Playlists and clips
+Choose a local script, open a **Scriptbin** link and extract and review its text, or rematch PDFs already attached to a work. Timestamped subtitles such as SRT and LRC follow playback. Untimed scripts can be read as they are or timed manually, sentence by sentence; edits create a new version.
 
-Build playlists for longer listening sessions. Use the scissors control to mark and save a favorite excerpt as a clip. Clips can retain subtitles, be combined and be exported as MP3 or WAV. Within a playlist or clip category, use **Reorder** to drag items, or the item's **…** menu to change its category. [Playlist and clip guide — Simplified Chinese](../../USAGE.md#播放列表与摘选)
+Import both the original and a translation to pair them and display them together. **Sumo does not automatically translate; you supply both texts.** [Scripts, subtitles and timing — Simplified Chinese](../../USAGE.md#字幕与台本)
 
-### Launch audio, appearance and languages
+<details>
+<summary>See script import options</summary>
+<p align="center"><img src="../../images/showcase/script-import.jpg" width="320" alt="Script import from files, Scriptbin or PDFs within a work; Chinese interface"></p>
+</details>
 
-In Settings → Launch & Icon, choose your own audio or clip as a launch sound. It is silent by default and, when enabled, plays for up to 10 seconds when the app starts fresh and the playback conditions are met. Four appearances are available: Native, Ivory, Soft Black and Purple. The app supports Simplified Chinese, Traditional Chinese, Japanese, English and Korean.
+### Save a favorite moment—and your listening history
 
-### Listening statistics and reviews
+Add tracks to playlists, or use the scissors control to mark an excerpt and save it as an independent clip. Clips can retain subtitles, be combined and be exported as MP3 or WAV. Lists and categories support reordering and moving items.
 
-Explore listening trends, favorite times of day, streaks and rankings by work or voice. Select a date range to see your listening time. Statistics from the two libraries can be combined or viewed separately, and their components can be arranged. Monthly and annual reviews include expandable rankings and can be exported as long images. [Statistics guide — Simplified Chinese](../../USAGE.md#统计外观与语言)
+Monthly reviews and annual reports collect your listening time, milestones and rankings into a continuous long image you can save or share.
 
-## Your data and content
+[Playlists and clips — Simplified Chinese](../../USAGE.md#播放列表与摘选) · [Statistics and report sharing — Simplified Chinese](../../USAGE.md#统计外观与语言)
 
-- **Media and library data stay on your device.** The app stores file references, subtitles, playlists, clips and listening history locally. It does not require an app account or provide a project-operated cloud library or cross-device sync.
-- **Network access and sharing follow your actions.** Importing Soundgasm or Scriptbin links contacts those services. Cloud files, exported content and system iCloud backups are handled by the system and providers according to your settings. [Apple's iCloud backup explanation](https://support.apple.com/en-us/108770)
-- **Keep copies of your original files.** Relink moved folders, and export important subtitles or clips separately. Keep the existing app when updating or renewing its signature. One-step full-library backup and restore has not been verified.
-- **You supply the works.** The IPA includes no audio works or scripts. Import content you are entitled to access and use; consider the original content and personal details before sharing clips, subtitles or reports.
+## Free for personal, non-commercial use, with source available
 
-## Development
+Every feature is free for personal, non-commercial use. You can choose to support development; donations do not unlock extra benefits, exclusive features or paid content, and do not grant commercial-use permission.
 
-The [build guide — Simplified Chinese](../../BUILD.md) covers building with Xcode on a Mac, producing an unsigned IPA, and replacing and relinking applicable third-party libraries.
+**[Support via Stripe](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00) · [Support via Afdian](https://afdian.com/a/Reyanna0o0)**
+
+The project uses the custom **Sumo Sound Player Noncommercial Source License 1.0**, not MIT, GPL or an OSI-approved open-source license. Non-commercial use, modification and free sharing are permitted under its terms. Keep the license, credits and project link when sharing; modified versions must also include complete corresponding source and be marked unofficial. **All commercial use requires prior written permission from Reyanna0o0.** [License — the Chinese text is authoritative](../../../LICENSE) · [Commercial use — Simplified Chinese](../../COMMERCIAL_USE.md)
+
+## Installation and updates
+
+Sumo is currently installed through self-signing, rather than the App Store.
+
+1. [Download the IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa) on a computer, and prepare a signing tool such as Sideloadly and your own Apple Account.
+2. Connect your iPhone or iPad with a cable and follow the [installation guide](INSTALL.md).
+3. If prompted, trust your developer account under **Settings → General → VPN & Device Management** and enable Developer Mode as described in the guide.
+
+For updates or signing renewal, use the same Apple Account, app identifier and signing settings to install over the existing app. **Keep the app; do not uninstall it first.** The guide covers signing expiry, renewal and alternative installation methods.
+
+[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Corresponding source ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-source.zip) · [Verified scope — Simplified Chinese](../../RELEASE_STATUS.md)
+
+## Your data and your content
+
+Library data, subtitle versions, playlists, clips and listening history stay on your device. There is no project-operated cloud library or cross-device sync. Link imports access the relevant websites; iCloud Drive, system backups and cloud exports follow your OS and service-provider settings.
+
+Keep separate copies of important original files. The app does not include audio works or scripts, and demo screenshots do not indicate bundled content. Import media you have the right to use, and consider the work information included when sharing clips, subtitles or reports. [File retention and caches — Simplified Chinese](../../USAGE.md#缓存与数据保留)
+
+## Feedback and future plans
+
+Report bugs or suggest improvements through [GitHub Issues](https://github.com/Reyanna0o0/Sumo-soundplayer/issues). Include your device OS, app version and reproduction steps, and hide private work titles and account information in screenshots. [Report a bug](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)
+
+The available app runs on iOS and iPadOS. Updates and plans for Android will be recorded on GitHub; **there is no Android release schedule yet**. Star the project to bookmark it, or subscribe to releases under **Watch → Custom → Releases** for update notifications.
+
+To contribute, read the [build guide](../../BUILD.md), [validation record](../../RELEASE_STATUS.md) and [fix history](../../AI_REVIEW_FIXES.md), then discuss your proposed change in Issues. These detailed documents and issue templates are currently in Simplified Chinese.
+
+<details>
+<summary>Project structure and visual credits</summary>
 
 | Directory | Contents |
 | --- | --- |
 | `SituationVoicePlayer/` | SwiftUI app, resources and Xcode project |
 | `hibiki/` | HibikiCore, database, subtitle logic and self-checks |
-| `ThirdParty/` | LAME source, FFmpeg archive, depth model licenses and provenance |
-| `scripts/` | Resource checks, dependency builds, core checks and IPA packaging |
-| `tools/localization/` | Five-language app translations and resource generation |
+| `ThirdParty/` | Third-party source, model provenance and licenses |
+| `scripts/` | Resource checks, builds, tests and IPA packaging |
+| `tools/localization/` | The existing five-language catalog and generation tools |
 
-## License, artwork and contact
+The icon and launch-screen concept is by Reyanna0o0. A friend contributed authorized hand-drawn revisions; base imagery and animation were created with assistance from ChatGPT. Showcase images and demo content have separate provenance records; existing audio releases are not used as demonstration content.
 
-The project's own code, build scripts, documentation and covered visual assets use the **Sumo Sound Player Noncommercial Source License 1.0**. Personal, non-commercial use and modification are free. Original and modified versions may be shared free of charge under the license. Keep the license, attribution and project link; modified distributions must include corresponding source and be marked unofficial. **All commercial use requires prior written permission from Reyanna0o0.** See the [license (authoritative Chinese text)](../../../LICENSE) and [commercial-use details — Simplified Chinese](../../COMMERCIAL_USE.md).
+Third-party components retain their own licenses, including applicable LGPL rights to modify, debug, replace and relink them. Distributions containing LGPL components must include the corresponding source and rebuild materials.
 
-Reyanna0o0 provided the icon and launch-screen concepts; a friend contributed authorized hand-drawn revisions, and ChatGPT assisted with base images and animation. Third-party components retain their respective licenses, including applicable LGPL rights to modify, debug, replace and relink. Distributions containing LGPL components must include the corresponding source and rebuilding materials. [Artwork provenance — Simplified Chinese](../../ASSETS.md) · [Third-party materials — Simplified Chinese](../../THIRD_PARTY.md)
+[Visual assets — Simplified Chinese](../../ASSETS.md) · [Third-party materials — Simplified Chinese](../../THIRD_PARTY.md) · [Request commercial permission](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [Developer email](mailto:sumo-soundplayer@outlook.com)
 
-For [bug reports](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml), include the app version, device system and reproduction steps. Redact personal work names, file paths and account details. The issue templates and detailed technical documents are currently in Simplified Chinese.
+</details>
 
-[Commercial permission requests](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)
+---
+
+<p align="center"><strong>Keep the voices you love in Sumo.</strong></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa">Download IPA</a> · <a href="INSTALL.md">Installation guide</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">Star on GitHub</a></p>

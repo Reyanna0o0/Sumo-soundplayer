@@ -1,97 +1,176 @@
-# 厮磨播放器 · Sumo Sound Player
+<p align="center">
+  <img src="docs/images/showcase/app-icon.png" width="96" alt="厮磨 App 图标">
+</p>
 
-> **💛 支持开发**
->
-> 开发不易，欢迎支持打赏！
->
-> **[Stripe 打赏](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00) · [爱发电打赏](https://afdian.com/a/Reyanna0o0)**
+<h1 align="center">厮磨</h1>
+<p align="center"><strong>把喜欢的声音，整理成一座属于自己的媒体库。</strong></p>
+<p align="center">个人独立开发 · 全部功能免费 · 源码公开</p>
 
-**简体中文** · [繁體中文](docs/i18n/zh-Hant/README.md) · [English](docs/i18n/en/README.md) · [日本語](docs/i18n/ja/README.md) · [한국어](docs/i18n/ko/README.md)
+<p align="center">
+  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa"><strong>下载 IPA</strong></a> ·
+  <a href="docs/INSTALL.md"><strong>查看安装方法</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>版本更新</strong></a>
+</p>
 
-**正式版 v0.1.3（build 36）** · **iOS / iPadOS 18 或更新版本** · **个人非商业使用免费**
+<p align="center">v0.1.3 · build 36 &nbsp; | &nbsp; iOS / iPadOS 18 或更新版本</p>
+<p align="center"><strong>简体中文</strong> · <a href="docs/i18n/zh-Hant/README.md">繁體中文</a> · <a href="docs/i18n/en/README.md">English</a> · <a href="docs/i18n/ja/README.md">日本語</a> · <a href="docs/i18n/ko/README.md">한국어</a></p>
 
-## 下载与安装
+厮磨是一款以作品整理与沉浸式播放为核心的 iOS 音声播放器。个人音声与社团作品分库管理，音频、视频、封面、台本和收听记录集中在同一个地方。无需注册账户，导入自己的收藏，就可以开始收听。
 
-### [直接下载厮磨 IPA · v0.1.3（build 36）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)
+> **build 36 已重新构建。** 本次直接更新同名安装包，修复普通字号排版、大字号适配和报告长图。已安装旧 build 36 的用户也请重新下载，沿用原账户与签名设置覆盖安装，**不要先卸载**。[更新说明与校验](docs/RELEASE_BUILD36.md)
 
-1. **在电脑上点击上方链接**，等待下载完成。下载无需登录 GitHub。
-2. **在「下载 / Downloads」文件夹找到 IPA**，文件名为 `simo-0.1.3-build36-unsigned.ipa`。
-3. **用 Sideloadly 签名安装**。第一次安装请按[安装教程](docs/INSTALL.md#方式一sideloadlywindows--mac)操作；更新时沿用原账户和签名设置覆盖安装，**不要先卸载旧版**。
+## 从导入到收听，只需三步
 
-本次重新构建仍使用 **0.1.3 / build 36**，直接更新发布页 **`v0.1.3`** 的安装包。请以同页新 SHA-256 校验文件及构建 JSON 内的源码提交区分，版本号与文件名本身不足以区分。沿用原 Apple 账户、签名设置和应用标识覆盖安装，**不要先卸载旧版**。[重建说明](docs/RELEASE_BUILD36.md)
+| 导入作品 | 整理作品 | 开始收听 |
+| --- | --- | --- |
+| 选择音频、视频、文件夹、ZIP，或粘贴 Soundgasm 单作品链接。 | 按目录与文件划分作品，补充封面、创作者、台本和分类。 | 在普通播放、通话外观与全屏字幕之间，找到舒服的收听方式。 |
 
-[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [版本说明](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/latest) · [验证范围](docs/RELEASE_STATUS.md)
+## 三种方式，听同一份喜欢
 
-## 主要功能
+<table>
+  <tr>
+    <th align="center">普通播放</th>
+    <th align="center">沉浸通话</th>
+    <th align="center">全屏字幕</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="docs/images/showcase/player-sample.png"><img src="docs/images/showcase/player-sample.png" width="250" alt="普通播放示例：虚构作品、封面和播放控制"></a></td>
+    <td align="center"><a href="docs/images/showcase/call-sample.png"><img src="docs/images/showcase/call-sample.png" width="250" alt="通话模式示例：原创示例角色与通话外观"></a></td>
+    <td align="center"><a href="docs/images/showcase/subtitles-sample.png"><img src="docs/images/showcase/subtitles-sample.png" width="250" alt="全屏字幕示例：原创示例文字跟随播放"></a></td>
+  </tr>
+  <tr>
+    <td valign="top">倍速、音调、均衡、循环、睡眠定时与队列，也可以在后台和锁屏控制播放。</td>
+    <td valign="top">按作品设置角色、头像与背景，切换语音或视频通话外观，让画面更贴合作品。</td>
+    <td valign="top">边听边读，调整原文与译文的显示；也能编辑字幕、手动打轴或打开字幕浮窗。</td>
+  </tr>
+</table>
 
-### 两个库，按作品和创作者整理
-1.**社团作品**库：可放一整套带多条音轨、封面、台本和特典的作品
+三张示例均为模拟器中的 App 实拍，使用虚构作品和原创演示内容，不引用实际音声作品。画中画的可用性取决于设备；通话图保留了模拟器的系统提示。通话外观用于本地媒体播放，不发起真实通话；此模式不提供倍速等普通播放器调节。[播放与通话说明](docs/USAGE.md#播放与通话)
 
-2.**个人音声**库：为不同创作者保存各自的资料。两个库都能收藏和分类。创作者、声优、社团的列表可各自拖动排序。
+## 让收藏有条理，让习惯看得见
 
-### 本地导入与重新关联
-厮磨播放器**没有云端，一切数据都在本地**，单独选音视频时，厮磨把文件复制进 App。选文件夹时，作品仍从你选的原位置读取，多轨作品可以连同可识别的字幕、台本和附件一起导入。
-如果给已关联的文件夹改了名，或把其中的文件搬走了，在作品的 **「…」→「重新关联文件夹」** 里选新位置并核对对应文件。这样能继续用同一部作品，保留改过的资料、字幕版本和阅读位置。[导入与重新关联步骤](docs/USAGE.md#导入作品)
+<table>
+  <tr>
+    <th align="center">从不同来源导入</th>
+    <th align="center">记录自己的收听轨迹</th>
+    <th align="center">按自己的习惯使用</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="docs/images/showcase/import-sources.jpg"><img src="docs/images/showcase/import-sources.jpg" width="250" alt="导入作品：音频、视频、文件夹、ZIP 与 Soundgasm 入口"></a></td>
+    <td align="center"><a href="docs/images/showcase/listening-statistics.jpg"><img src="docs/images/showcase/listening-statistics.jpg" width="250" alt="收听统计：秒级时长、趋势与24小时时段分布"></a></td>
+    <td align="center"><a href="docs/images/showcase/appearance-settings.jpg"><img src="docs/images/showcase/appearance-settings.jpg" width="250" alt="米白外观下的主题、图标、防偷窥、统计与通话设置"></a></td>
+  </tr>
+  <tr>
+    <td valign="top">音频、视频、文件夹与 ZIP 都能导入。确认前预览作品和音轨，选择保存至个人音声或社团作品。</td>
+    <td valign="top">查看总时长、作品数、收听天数、每个收听日平均与连续记录。两个库可分开或合并统计，时长保留秒数。</td>
+    <td valign="top">原生、米白、浅黑色、紫色四种外观；可调整启动图标、开屏语音、统计显示和通话按键名称。</td>
+  </tr>
+</table>
 
-### Soundgasm 音频与 Scriptbin 台本
+设置截图展示前三个外观选项，紫色可横向滑动选择。防偷窥模式会模糊浏览时的封面，并在锁屏和控制中心模糊封面、替换音轨标题及隐藏作品／作者资料；播放页仍显示原图。
 
-想收藏一条 **Soundgasm** 音频，从「导入作品」贴上单个作品链接，预览标题后再下载到所选媒体库。想给已有作品加一份 **Scriptbin** 台本，从「导入作品台本」打开链接，在网页确认后提取正文，核对再保存。保存后的音频与台本文字可以离线使用，读取网页时需要联网。[链接导入步骤与支持范围](docs/USAGE.md#从链接导入)
+### 一个文件夹，多种整理方式
 
-### 三种音声收听方式
+文件夹和 ZIP 导入支持四种作品划分：**整个文件夹、每个子文件夹、每个音频／视频文件，或按目录自动判断**。单独选择音频或视频时，每个文件建立一部作品。
 
-- **普通播放**可在底部菜单栏调整倍速、音调、均衡和队列，选择不重复、列表循环或单曲循环，也能设置睡眠定时。切到后台或锁屏后还可以控制播放。
-- **全屏字幕**适合边听边看台本，字幕编辑和打轴的入口也在此，也可打开字幕浮窗，在支持画中画的设备上边听边用其他 App。
-- **模拟通话**从播放页的电话图标进入，可切换模拟语音或视频通话。头像、背景和取景随作品设置，静态背景可启用在本机处理的空间效果。在此模式下无法调倍速等功能哦，模拟通话只用于播放，通话样式按键用于播放控制和显示已选图片。
+单独导入的音视频会复制进 App；文件夹导入保留外部关联。外部文件夹改名或移动后，可在作品菜单重新关联新位置，继续使用已有资料和字幕版本。[导入与重新关联](docs/USAGE.md#导入作品)
 
-导入的视频可打开独立的视频播放器，实际可播放的格式取决于文件编码。[播放与通话入口](docs/USAGE.md#播放与通话)
+<details>
+<summary>查看作品划分与导入预览</summary>
+<p align="center"><img src="docs/images/showcase/folder-grouping.jpg" width="320" alt="四种作品划分方式及导入预览"></p>
+</details>
 
-### 台本、双语字幕与手动打轴
-本app没有自动翻译，但有对台本的初步识别；
-有 SRT、LRC 等带时间的字幕，或含可识别时间标记的 PDF / TXT 台本，配到对应曲目后就能按文件自带时间跟播。没有时间标记的台本可以直接阅读，也可以在全屏台本里逐句设置起止时间。打过轴的句子还可以调整时间或整体偏移，编辑会保存为新的字幕版本。
+### 链接里的声音，也能收进媒体库
 
-如果你手头同时有原文和译文，厮磨可以配对并上下显示。**原文和译文都来自你导入的文件，App 不提供自动翻译。** [台本导入、预览和打轴图解](docs/USAGE.md#字幕与台本)
+粘贴 **Soundgasm 单作品链接**，读取并确认资料，再下载音频副本。保存后的音频可以离线收听；读取网页和下载时需要联网。[链接导入步骤与支持范围](docs/USAGE.md#从链接导入)
 
-### 作品资料与通话设置
+<details>
+<summary>查看 Soundgasm 导入入口</summary>
+<p align="center"><img src="docs/images/showcase/soundgasm-import.jpg" width="320" alt="Soundgasm 作品链接输入与读取入口"></p>
+</details>
 
-从作品的 **「…」→「编辑作品资料」** 修改名称、归属和播放器封面显示。社团作品可填写社团、声优和作品编号，个人音声可指定创作者。通话角色、头像、背景和取景也在这个编辑页。想把同一套通话形象用于某位创作者的多部作品，可以编辑那位创作者的资料。[作品资料编辑](docs/USAGE.md#作品资料与通话设置)
+### 让播放画面更贴合作品
 
-### 播放列表与摘选
+除了作品封面，还可以分别设置**通话角色、头像、背景与取景**。沿用封面、自选图片，或优先使用作品中的视频画面；头像与背景分别保存，不改写原作品封面。视频背景以静音循环显示，静态背景还可启用本机处理的空间效果。
 
-把几首准备连听的曲目放进**播放列表**。碰到想单独回听的几秒，在播放器里用剪刀标记起点和终点，存成**摘选**。摘选可保留片段字幕、拼接，并导出 MP3 或 WAV。进入两类列表的分类后，点右上角「调整顺序」再拖动，或用条目右侧的「…」更改分类。[摘取、排序和移动图解](docs/USAGE.md#播放列表与摘选)
+<details>
+<summary>查看头像与背景设置</summary>
+<p align="center"><img src="docs/images/showcase/call-appearance.jpg" width="320" alt="独立设置通话头像、背景和作品视频画面"></p>
+</details>
 
-### 开屏语音、外观与语言
+### 把台本和作品放在一起
 
-在 **「设置」→「启动与图标」** 可以试听并选择一段自己的音频或摘选作为开屏语音。默认无声，设定后只在冷启动时按条件播放，最多 10 秒。外观有原生、米白、浅黑色和紫色四种，界面可选简体中文、繁体中文、日文、英文和韩文。
+从“文件”选择台本、从 **Scriptbin** 链接提取并确认正文，或重新匹配作品内的 PDF。带时间标记的 SRT、LRC 等字幕可以跟播；无时间标记的台本可以阅读，也可以逐句手动打轴，编辑会保存为新版本。
 
-### 收听统计、月度回顾与年度报告
+如果同时导入原文和译文，可以配对并上下显示。**厮磨不提供自动翻译，原文与译文由你导入。** [台本、字幕与打轴](docs/USAGE.md#字幕与台本)
 
-看最近的收听趋势、最常听的时段、连续收听天数和作品或声音排行。想看看这个月听了多久，可以在总收听时长里选日期范围。两个库的统计可以合并或分开看，组件能调整显示和顺序。月度回顾、年度报告可展开排行，也能把选中的报告存成长图。[统计与分享步骤](docs/USAGE.md#统计外观与语言)
+<details>
+<summary>查看台本导入入口</summary>
+<p align="center"><img src="docs/images/showcase/script-import.jpg" width="320" alt="从文件、Scriptbin链接或作品内PDF导入台本"></p>
+</details>
 
-## 数据、隐私与内容声明
+### 留下喜欢的片段，也留下收听的足迹
 
-- **媒体与资料保存在设备上。** 厮磨读取你选的文件，媒体库资料、文件位置引用、字幕版本、播放列表、摘选和收听记录保存在本机。App 使用时无需注册账户，没有项目方的云端媒体库或多设备同步。
-- **联网与分享由你发起。** 导入 Soundgasm 或 Scriptbin 链接会访问相应的第三方网站。选择 iCloud Drive 等位置的文件、把导出内容存到云盘，或开启系统的 iCloud 云备份，分别由系统和文件提供方按你的设置处理。[Apple 的 iCloud 备份说明](https://support.apple.com/en-us/108770)
-- **请另外保留原文件。** 移动外部文件后按需要重新关联。重要字幕和摘选可以单独导出，更新或续签时保留原 App。整库备份和恢复暂未验收。[文件保留与缓存](docs/USAGE.md#缓存与数据保留)
-- **作品由你提供。** 安装包不附带音声作品或台本。请导入你有权访问及使用的内容，分享摘选、字幕或报告前留意其中的原作内容和作品资料。
+把准备连听的曲目加入播放列表，用剪刀标记喜欢的起点和终点，保存为独立摘选；片段可保留字幕、拼接，并导出 MP3 或 WAV。列表与分类支持排序和移动。
 
-## 开发与构建
+月度回顾、年度报告整理收听时长、足迹和排行，也可导出连续长图，保存属于自己的收听记录。
 
-[从源码构建](docs/BUILD.md)说明如何在 Mac 上用 Xcode 构建、生成未签名 IPA，以及如何替换并重新链接适用的第三方库。
+[播放列表与摘选](docs/USAGE.md#播放列表与摘选) · [统计与报告分享](docs/USAGE.md#统计外观与语言)
+
+## 全部功能免费，源码公开
+
+厮磨的全部功能对个人非商业使用免费开放。你可以自愿赞助开发；赞助不会解锁额外权益、专属功能或付费内容，也不等于获得商业授权。
+
+**[通过 Stripe 支持](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00) · [通过爱发电支持](https://afdian.com/a/Reyanna0o0)**
+
+项目采用自定义的**厮磨播放器非商业源码许可协议 1.0**，并非 MIT、GPL 或 OSI 认证的开源许可。允许依协议免费使用、修改和分享；分享修改版须保留署名、提供完整对应源码并标明非官方。所有商业使用须事先取得书面同意。[许可全文](LICENSE) · [商业授权](docs/COMMERCIAL_USE.md)
+
+## 安装与更新
+
+目前通过自签方式安装，不是 App Store 下载。
+
+1. 在电脑上[下载 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)，准备 Sideloadly 等签名工具和自己的 Apple 账户。
+2. 用数据线连接 iPhone / iPad，按[安装教程](docs/INSTALL.md)完成签名与安装。
+3. 如系统提示，前往“设置 → 通用 → VPN 与设备管理”信任开发者，并按教程开启开发者模式。
+
+更新或续签时，沿用原 Apple 账户、应用标识与签名设置覆盖安装，**保留原 App，不要先卸载**。签名有效期、续签和不同安装方式的注意事项请看完整说明。
+
+[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [对应源码 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-source.zip) · [实际验证范围](docs/RELEASE_STATUS.md)
+
+## 数据与内容由你掌握
+
+媒体库、字幕版本、播放列表、摘选与收听记录保存在设备上，没有项目方的云端媒体库或多设备同步。链接导入需要访问相应网站；iCloud Drive、系统备份和导出到云盘由系统及服务提供方按你的设置处理。
+
+请另外保留重要原文件。安装包不附带音声作品或台本，示例截图也不代表附赠内容；请导入你有权使用的媒体，分享摘选、字幕或报告时留意其中的作品资料。[文件保留与缓存](docs/USAGE.md#缓存与数据保留)
+
+## 反馈与后续计划
+
+发现 Bug，或对功能和界面有新的想法，欢迎通过 [GitHub Issues](https://github.com/Reyanna0o0/Sumo-soundplayer/issues) 反馈。描述设备系统、App 版本和复现步骤，截图中请遮住私人作品与账户信息。[提交 Bug](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)
+
+目前提供 iOS / iPadOS 版本。后续更新与 Android 适配计划会在 GitHub 记录，**Android 版暂无发布时间表**。点击 **Star** 收藏项目；需要更新通知时，可在 **Watch → Custom → Releases** 中订阅发行版。
+
+想参与改进，可以先阅读[构建说明](docs/BUILD.md)、[验证记录](docs/RELEASE_STATUS.md)和[历轮修复说明](docs/AI_REVIEW_FIXES.md)，通过 Issues 交流后提交修改。
+
+<details>
+<summary>开发目录与素材署名</summary>
 
 | 目录 | 用途 |
 | --- | --- |
 | `SituationVoicePlayer/` | SwiftUI App、资源与 Xcode 工程 |
-| `hibiki/` | 自有业务核心 HibikiCore、数据库、字幕逻辑与自检程序 |
-| `ThirdParty/` | LAME 源码、FFmpeg 源归档、深度模型许可和来源 |
-| `scripts/` | 资源核验、依赖构建、核心自检和 IPA 打包 |
-| `tools/localization/` | 五语界面翻译目录及生成工具 |
+| `hibiki/` | HibikiCore、数据库、字幕逻辑与自检 |
+| `ThirdParty/` | 第三方源码、模型来源与许可 |
+| `scripts/` | 资源核验、构建、测试与 IPA 打包 |
+| `tools/localization/` | 既有五语翻译目录与生成工具 |
 
-## 使用许可与素材声明
+图标与开屏创意来自 Reyanna0o0，手绘修改由友人协助并已授权，底图与动效由 ChatGPT 辅助生成。展示截图及示例内容的来源另有记录，不使用真实音声作品作为演示。
 
-项目自有源码、构建脚本、文档和纳入许可的视觉素材采用**厮磨播放器非商业源码许可协议 1.0**。个人非商业使用和修改免费，原版和修改版都可以依许可免费分享。分享副本时须保留许可、署名及项目链接，分享修改版还须附完整对应源码并标明非官方。**所有商业使用须事先取得 Reyanna0o0 的书面同意。** [许可全文](LICENSE) · [使用情形与商业授权](docs/COMMERCIAL_USE.md)
+第三方组件保留各自许可；适用的 LGPL 修改、调试、替换及重新链接权利保留。分发含 LGPL 组件的安装包时，请同时提供对应源码和重建材料。
 
-图标与开屏的创意来自 Reyanna0o0，手绘修改由友人协助并已完整授权，底图与动效由 ChatGPT 辅助生成。第三方组件依各自许可分发，适用的 LGPL 自用修改、调试、替换和重新链接权利保留。自行分发含 LGPL 组件的安装包时，应同时提供对应源码与重建材料。[素材说明](docs/ASSETS.md) · [第三方材料与重建说明](docs/THIRD_PARTY.md)
+[素材说明](docs/ASSETS.md) · [第三方材料](docs/THIRD_PARTY.md) · [商业授权申请](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [开发者邮箱](mailto:sumo-soundplayer@outlook.com)
 
-遇到使用问题，请提供 App 版本、设备系统和复现步骤，提交前遮住个人作品名、文件路径和账户资料。[问题反馈](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)
+</details>
 
-商业授权可从 GitHub 提交申请，或联系开发者邮箱。[GitHub 申请](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)
+---
+
+<p align="center"><strong>把喜欢的声音，收进厮磨。</strong></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa">下载 IPA</a> · <a href="docs/INSTALL.md">查看安装教程</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">在 GitHub 收藏项目</a></p>

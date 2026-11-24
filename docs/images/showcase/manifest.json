@@ -1,0 +1,57 @@
+[
+  {
+    "file": "app-icon.png",
+    "bytes": 116309,
+    "sha256": "158ae859cb059f5b85d75ed25c2210cf612fe0f776a7666f344dc615c8b7a5c1"
+  },
+  {
+    "file": "appearance-settings.jpg",
+    "bytes": 235307,
+    "sha256": "582fd7c30beb953f73fb71bbeb54fdfaaf47ca06dfb930a5480998a3f22ea235"
+  },
+  {
+    "file": "call-appearance.jpg",
+    "bytes": 224986,
+    "sha256": "012e614157fb2740ae2985b8bff476e278ebf52dfef6d06cac797df6a79df3b7"
+  },
+  {
+    "file": "call-sample.png",
+    "bytes": 471921,
+    "sha256": "9210d76406130d673f44a9c433dc8fd5fbf58e94d80b3e38b03aaf05676da726"
+  },
+  {
+    "file": "folder-grouping.jpg",
+    "bytes": 230082,
+    "sha256": "196c7ce99d78d74d14b37e8174567afb465d11be852efa782263f3b781d60f97"
+  },
+  {
+    "file": "import-sources.jpg",
+    "bytes": 162917,
+    "sha256": "abf12fc2999c853919b4f99292c1cc9e32ffd41d777917fa620bb164ad381a59"
+  },
+  {
+    "file": "listening-statistics.jpg",
+    "bytes": 260915,
+    "sha256": "02faabdd4b0c2335e25021c7a1b29d2784873cf29c7805f16812346303132aea"
+  },
+  {
+    "file": "player-sample.png",
+    "bytes": 304727,
+    "sha256": "4192c05aa82929850f859d19a2714b3c9ac33b748a3483d45f276595e9ba31a5"
+  },
+  {
+    "file": "script-import.jpg",
+    "bytes": 118644,
+    "sha256": "1c5ff880e475e9ae0fec7f7e6f10240be841c773f07f2d1bec117a5767b99b1b"
+  },
+  {
+    "file": "soundgasm-import.jpg",
+    "bytes": 106762,
+    "sha256": "c25e306793f771bec8ce6d3069ff489169cb37dec17a4831ecd98274a9faf07c"
+  },
+  {
+    "file": "subtitles-sample.png",
+    "bytes": 866189,
+    "sha256": "ddaf8b03f97605c3be46fe70089ca939611b16099c66f4d811998d132a4e7006"
+  }
+]
