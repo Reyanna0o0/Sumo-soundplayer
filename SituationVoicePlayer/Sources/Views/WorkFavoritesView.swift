@@ -11,7 +11,11 @@ struct WorkFavoritesView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Button("新建收藏夹", systemImage: "folder.badge.plus") { creating = true }
+                Button { creating = true } label: {
+                    Label { Text("新建收藏夹") } icon: { DecorativeSymbol(name: "folder.badge.plus") }
+                }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("新建收藏夹")
                     .accessibilityIdentifier("newFavoriteCollection")
                 Spacer()
                 Button(managing ? L10n.text("完成") : L10n.text("管理分类")) { managing.toggle() }
@@ -173,8 +177,12 @@ struct WorkFavoritePicker: View {
                         .accessibilityIdentifier("pickFavorite-\(group.id)")
                         .porcelainPlainRow(AppTheme.card)
                     }
-                    Button("新建收藏夹", systemImage: "folder.badge.plus") { creating = true }
-                        .porcelainPlainRow(AppTheme.card)
+                    Button { creating = true } label: {
+                        Label { Text("新建收藏夹") } icon: { DecorativeSymbol(name: "folder.badge.plus") }
+                    }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("新建收藏夹")
+                    .porcelainPlainRow(AppTheme.card)
                 }
                 if store.isWorkFavorite(id: workID) {
                     Button("取消收藏这部作品", role: .destructive) { commit([]) }

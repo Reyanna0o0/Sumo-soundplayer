@@ -18,7 +18,9 @@ struct SleepTimerSheet: View {
                                     .monospacedDigit()
                             }
                         case .endOfTrack:
-                            Label("播完当前音轨就停", systemImage: "moon.fill")
+                            Label { Text("播完当前音轨就停") } icon: { DecorativeSymbol(name: "moon.fill") }
+                                .accessibilityElement(children: .ignore)
+                                .accessibilityLabel("播完当前音轨就停")
                         case .endOfQueueItem(let id):
                             if let item = player.queue.items.first(where: { $0.id == id }) {
                                 LabeledContent("播完后停止", value: item.trackTitle)

@@ -88,6 +88,7 @@
 "{#0} 天" = "Days: {#0}";
 "{#0} 小时" = "{#0} hr";
 "{#0} 小时 {#1} 分" = "{#0} hr {#1} min";
+"{#0} 小时 {#1} 分 {#2} 秒" = "{#0} hr {#1} min {#2} sec";
 "{#0} 小时 {#1} 分钟" = "{#0} hr {#1} min";
 "{#0} 曲" = "Tracks: {#0}";
 "{#0} 曲 · {#1} 个视频" = "Tracks: {#0} · Videos: {#1}";
@@ -250,6 +251,7 @@
 "内核自检" = "Core Self-Test";
 "内部正则构造失败" = "Unable to construct the internal regular expression";
 "分" = "min";
+"分:秒" = "m:ss";
 "分享" = "Share";
 "分享导出的字幕" = "Share Exported Subtitles";
 "分享报告会标注当前统计范围；恢复默认只重设显示选项。" = "Shared reports show the current statistics scope. Restoring defaults only resets display options.";
@@ -778,6 +780,7 @@
 "旧草稿未能清除，原有草稿数据已保留。" = "The previous draft could not be cleared. Its original data has been preserved.";
 "旧草稿未能清除，当前文字仍保留在这里；暂未打开详细编辑。" = "The previous draft could not be cleared. Your current text is still here; detailed editing has not been opened.";
 "时" = "hr";
+"时:分:秒" = "h:mm:ss";
 "时长未知" = "Unknown Duration";
 "时间" = "Time";
 "时间范围" = "Time Range";
@@ -856,6 +859,7 @@
 "本地文件链接失败，请查看本地文件位置。" = "Unable to link local files. Check their location.";
 "本月" = "This Month";
 "本次拖动未保存" = "This Drag Was Not Saved";
+"本次新增字幕记录" = "Subtitle records added this time";
 "本編" = "Main Story";
 "来源地址不受支持，尚未导入。" = "The source URL is unsupported. Nothing has been imported.";
 "来源链接无效。" = "The source link is invalid.";
@@ -984,6 +988,7 @@
 "点已打轴的台词可跳转，点未打轴的台词可编辑" = "Tap a timed line to seek, or an untimed line to edit";
 "点开始或结束时间，滚动微调。调整时间不会修改原字幕。" = "Tap the start or end time, then scroll to fine-tune. Adjusting the time does not change the original subtitles.";
 "点按或横向滑动查看分钟" = "Tap or Swipe Horizontally to View Minutes";
+"点按或横向滑动查看时长" = "Tap or swipe horizontally to see listening time";
 "点按改字 · 长按详细编辑 · ＋ 空行即时保存" = "Tap to edit text · Hold for details · ＋ saves a blank line immediately";
 "点组名可展开或收起，拖右侧把手可调整分组顺序。拖动音轨或附件，看到插入线后松手即可。" = "Tap a group name to expand or collapse it. Drag the handle on the right to reorder groups. Drag tracks or attachments and release when the insertion line appears.";
 "点选对应音轨" = "Tap the Matching Track";

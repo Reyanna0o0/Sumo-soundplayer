@@ -90,12 +90,6 @@ enum ListeningRanking: String, CaseIterable, Sendable {
     }
 }
 
-private func rankingMinutes(_ seconds: Int) -> String {
-    guard seconds >= 60 else { return seconds > 0 ? L10n.text("不足 1 分钟") : L10n.text("0 分钟") }
-    let minutes = (Double(seconds) / 60).formatted(.number.precision(.fractionLength(0...1)))
-    return minutes + L10n.text(" 分钟")
-}
-
 /// The actual creator ID travels with its listening rows. A name shared by
 /// multiple identities receives a neutral symbol, including in a combined report.
 struct ListeningRankBadge: View {
@@ -153,7 +147,7 @@ struct ListeningRankRow: View {
             }
             Text(entry.name).font(.body).fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 8)
-            Text(rankingMinutes(entry.seconds)).font(.subheadline.monospacedDigit())
+            Text(listeningDuration(entry.seconds)).font(.subheadline.monospacedDigit())
                 .foregroundStyle(AppTheme.secondaryText).multilineTextAlignment(.trailing)
         }
         .accessibilityElement(children: .combine)

@@ -443,11 +443,24 @@ private struct ListeningDatePicker: View {
 }
 
 func listeningDuration(_ seconds: Int) -> String {
+    let seconds = max(0, seconds)
     let hours = seconds / 3600
     let minutes = seconds % 3600 / 60
-    if hours > 0 { return L10n.text("\(hours) 小时 \(minutes) 分") }
+    if hours > 0 { return L10n.text("\(hours) 小时 \(minutes) 分 \(seconds % 60) 秒") }
     if minutes > 0 { return L10n.text("\(minutes) 分 \(seconds % 60) 秒") }
     return L10n.text("\(seconds) 秒")
+}
+
+func listeningClock(_ seconds: Int) -> String {
+    let seconds = max(0, seconds)
+    if seconds >= 3600 {
+        return String(format: "%d:%02d:%02d", seconds / 3600, seconds % 3600 / 60, seconds % 60)
+    }
+    return String(format: "%d:%02d", seconds / 60, seconds % 60)
+}
+
+func listeningClockUnit(_ seconds: Int) -> String {
+    seconds >= 3600 ? L10n.text("时:分:秒") : L10n.text("分:秒")
 }
 
 extension View {

@@ -500,7 +500,7 @@ struct PlayerOptionsRow: View {
                     Label {
                         Text(player.sleepTimer == .off ? L10n.text("定时") : L10n.text("定时中"))
                     } icon: {
-                        DecorativePlayerSymbol(name: player.sleepTimer == .off ? "moon" : "moon.fill")
+                        DecorativeSymbol(name: player.sleepTimer == .off ? "moon" : "moon.fill")
                     }
                 }
                 .foregroundStyle(player.sleepTimer == .off ? AnyShapeStyle(.primary) : AnyShapeStyle(.tint))
@@ -614,7 +614,7 @@ private struct AddTrackToPlaylistButton: View {
 
 /// Pure drawing: no semantic SF Symbol image is added to the accessibility tree.
 /// The containing button supplies its name, value and action.
-struct DecorativePlayerSymbol: View {
+struct DecorativeSymbol: View {
     let name: String
     @ScaledMetric(relativeTo: .subheadline) private var side: CGFloat = 18
 

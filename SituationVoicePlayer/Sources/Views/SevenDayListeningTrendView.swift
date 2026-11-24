@@ -19,11 +19,7 @@ struct RecentListeningTrend {
         }
     }
 
-    static func minutes(_ seconds: Int) -> String {
-        let value = Double(max(0, seconds)) / 60
-        let precision = seconds > 0 && seconds < 60 ? 2 : 1
-        return value.formatted(.number.precision(.fractionLength(0...precision))) + L10n.text(" 分钟")
-    }
+    static func duration(_ seconds: Int) -> String { listeningDuration(seconds) }
 }
 
 struct SevenDayListeningTrendView: View {
@@ -42,8 +38,8 @@ struct SevenDayListeningTrendView: View {
                 Text("最近 7 天 · 分钟").font(.caption).foregroundStyle(AppTheme.secondaryText)
                     .accessibilityIdentifier("statsTrendPeriod")
             }
-            Text(selectedPoint.map { "\($0.label) · \(RecentListeningTrend.minutes($0.seconds))" }
-                 ?? L10n.text("点按或横向滑动查看分钟"))
+            Text(selectedPoint.map { "\($0.label) · \(RecentListeningTrend.duration($0.seconds))" }
+                 ?? L10n.text("点按或横向滑动查看时长"))
                 .font(.subheadline.weight(.medium)).monospacedDigit()
                 .foregroundStyle(selectedPoint == nil ? AppTheme.secondary : trendInk)
                 .accessibilityIdentifier("statsTrendSelection")
@@ -52,7 +48,7 @@ struct SevenDayListeningTrendView: View {
                     .foregroundStyle(AppTheme.trendBarStyle(selected: selectedKey == point.bucketKey))
                     .cornerRadius(3)
                     .accessibilityLabel(point.bucketKey)
-                    .accessibilityValue(RecentListeningTrend.minutes(point.seconds))
+                    .accessibilityValue(RecentListeningTrend.duration(point.seconds))
                     .accessibilityIdentifier("statsTrendBar-\(point.bucketKey)")
             }
             .chartXScale(domain: points.map(\.bucketKey))
@@ -82,7 +78,7 @@ struct SevenDayListeningTrendView: View {
             }
             .frame(height: 150)
             .accessibilityLabel("最近 7 天收听趋势")
-            .accessibilityValue(points.map { "\($0.bucketKey)：\(RecentListeningTrend.minutes($0.seconds))" }.joined(separator: "；"))
+            .accessibilityValue(points.map { "\($0.bucketKey)：\(RecentListeningTrend.duration($0.seconds))" }.joined(separator: "；"))
             .accessibilityIdentifier("statsTrendChart")
         }
         .onChange(of: points) { _, points in

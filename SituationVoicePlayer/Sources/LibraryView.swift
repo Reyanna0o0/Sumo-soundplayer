@@ -741,7 +741,7 @@ struct LibraryView: View {
     static func summaryText(works: Int, tracks: Int, subtitles: Int, unmatched: Int, pdfSummary: String, rescannedWorks: Int = 0) -> String {
         var parts = [rescannedWorks == 0 ? L10n.text("\(works) 个作品 / \(tracks) 首曲目") :
             L10n.text("新建 \(works - rescannedWorks) 个作品 · 重扫 \(rescannedWorks) 个作品 / \(tracks) 首曲目")]
-        if subtitles > 0 { parts.append(L10n.text("字幕记录") + ": " + String(subtitles)) }
+        if subtitles > 0 { parts.append(L10n.text("本次新增字幕记录") + ": " + String(subtitles)) }
         if unmatched > 0 { parts.append(String(unmatched) + L10n.text(" 份字幕未收录")) }
         if !pdfSummary.isEmpty { parts.append(pdfSummary) }
         return parts.joined(separator: " · ")

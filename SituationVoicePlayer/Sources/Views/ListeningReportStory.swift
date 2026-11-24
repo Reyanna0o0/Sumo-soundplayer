@@ -344,22 +344,18 @@ struct ListeningReportStory: View {
                 .frame(width: 428, height: 40).offset(y: 116)
                 .accessibilityIdentifier("storyDurationTitle")
                 .reportGroup(visible(1, on: 0))
-            Text(totalMinutes)
+            Text(listeningClock(report.summary.totalSeconds))
                 .font(.custom("Baskerville", fixedSize: 100)).lineLimit(1).minimumScaleFactor(0.53)
                 .frame(width: 380, height: 120).offset(x: 24, y: 181)
                 .accessibilityIdentifier("storyDurationValue")
+                .accessibilityLabel(listeningDuration(report.summary.totalSeconds))
                 .reportGroup(visible(2, on: 0))
-            Text("分钟").font(.system(size: 18, weight: .medium)).foregroundStyle(ReportPaint.accent)
+            Text(listeningClockUnit(report.summary.totalSeconds)).font(.system(size: 18, weight: .medium)).foregroundStyle(ReportPaint.accent)
                 .frame(width: 428, height: 32).offset(y: 292)
                 .accessibilityIdentifier("storyDurationUnit")
                 .reportGroup(visible(2, on: 0))
+                .accessibilityHidden(true)
         }
-    }
-
-    private var totalMinutes: String {
-        let seconds = report.summary.totalSeconds
-        if seconds > 0 && seconds < 60 { return "<1" }
-        return (seconds / 60).formatted()
     }
 
     private var footprint: some View {
@@ -536,8 +532,13 @@ private struct ReportRankingRow: View {
             Text(entry.name).font(.system(size: compact ? 15 : 18, weight: .medium))
                 .lineLimit(1).truncationMode(.tail).padding(.leading, 12)
             Spacer(minLength: 6)
-            Text(entry.seconds > 0 && entry.seconds < 60 ? L10n.text("不足 1 分钟") : L10n.text("\((entry.seconds / 60).formatted()) 分钟"))
-                .font(.system(size: 14)).foregroundStyle(ReportPaint.subtle).fixedSize()
+            VStack(alignment: .trailing, spacing: 1) {
+                Text(listeningClock(entry.seconds)).font(.system(size: 14)).monospacedDigit()
+                Text(listeningClockUnit(entry.seconds)).font(.system(size: 11))
+            }
+            .foregroundStyle(ReportPaint.subtle).fixedSize()
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(listeningDuration(entry.seconds))
         }
         .accessibilityElement(children: .combine)
         .task(id: entry.id + kind.rawValue) {
