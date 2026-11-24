@@ -2,13 +2,13 @@
 
 [简体中文](../../INSTALL.md) · **繁體中文** · [English](../en/INSTALL.md) · [日本語](../ja/INSTALL.md) · [한국어](../ko/INSTALL.md)
 
-**[直接下載 IPA · v0.1.3（build 36）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)** · [下載協助](DOWNLOAD.md)
+**[直接下載 IPA · v0.1.4（build 37）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [下載協助](DOWNLOAD.md)
 
-本次重新建置仍使用 **0.1.3 / build 36**，直接更新發布頁 **`v0.1.3`** 的安裝檔。請以同頁新 SHA-256 校驗檔及建置 JSON 內的原始碼提交辨識，版本號與檔名本身不足以區分。沿用原 Apple 帳號、簽名設定與 App 識別碼覆蓋安裝，**請勿先移除舊版**。[重建說明（簡中）](../../RELEASE_BUILD36.md)
+本次為 **v0.1.4 / build 37**，新增預設開啟的外放保護，並修正背景中斷後的恢復條件。這是獨立新版本，不再替換 build 36 的同名附件。沿用原 Apple 帳號、簽名設定與 App 識別碼覆蓋安裝，**請勿先移除舊版**。[更新說明（簡中）](../../RELEASE_BUILD37.md)
 
 首次安裝從下方開始；已安裝的使用者可直接看[更新與保留資料](#update)。
 
-Mac + Sideloadly 安裝與 build 33 覆蓋更新已有實測紀錄；Windows、AltStore 與續簽仍待驗證。詳見[版本說明](../../RELEASE_BUILD36.md)及[完整驗證紀錄（簡中）](../../RELEASE_STATUS.md)。
+Mac + Sideloadly 安裝與 build 33 覆蓋更新已有實測紀錄；Windows、AltStore 與續簽仍待驗證。詳見[版本說明](../../RELEASE_BUILD37.md)及[完整驗證紀錄（簡中）](../../RELEASE_STATUS.md)。
 
 ## 事前準備
 
@@ -67,12 +67,12 @@ Apple 帳號登入是在簽名工具中進行；廝磨本身無需登入 Apple �
 <a id="verify"></a>
 ## 選用：核對下載檔案
 
-從同一版本下載 `.ipa.sha256`，放在 IPA 旁邊，於該資料夾開啟終端機或 PowerShell。以下以 build 36 為例，其他版本須換成實際檔名。
+從同一版本下載 `.ipa.sha256`，放在 IPA 旁邊，於該資料夾開啟終端機或 PowerShell。以下以 build 37 為例，其他版本須換成實際檔名。
 
 Mac：
 
 ```bash
-shasum -a 256 -c simo-0.1.3-build36-unsigned.ipa.sha256
+shasum -a 256 -c simo-0.1.4-build37-unsigned.ipa.sha256
 ```
 
 顯示 `OK` 即通過；若是 `FAILED`，請重新下載同一版本的兩個檔案。
@@ -80,7 +80,7 @@ shasum -a 256 -c simo-0.1.3-build36-unsigned.ipa.sha256
 Windows PowerShell：
 
 ```powershell
-Get-FileHash .\simo-0.1.3-build36-unsigned.ipa -Algorithm SHA256
+Get-FileHash .\simo-0.1.4-build37-unsigned.ipa -Algorithm SHA256
 ```
 
 用文字編輯器開啟 `.sha256`，將開頭字串與 `Hash` 比較。英文字母大小寫可不同，其餘字元應完全相同。

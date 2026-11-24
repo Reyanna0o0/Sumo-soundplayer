@@ -7,17 +7,17 @@
 <p align="center">個人開発 · 個人の非商用利用は全機能無料 · ソース公開</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa"><strong>IPA をダウンロード</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>IPA をダウンロード</strong></a> ·
   <a href="INSTALL.md"><strong>インストール方法</strong></a> ·
   <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>リリース情報</strong></a>
 </p>
 
-<p align="center">v0.1.3 · build 36 &nbsp; | &nbsp; iOS / iPadOS 18 以降</p>
+<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 以降</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <a href="../en/README.md">English</a> · <strong>日本語</strong> · <a href="../ko/README.md">한국어</a></p>
 
 厮磨は、作品の整理と没入感のある再生を大切にした iOS 向け音声プレイヤーです。個人の音声作品とサークル作品を別々のライブラリで管理し、音声・動画・カバー・台本・再生履歴をひとつにまとめます。アカウント登録は不要。自分のコレクションを取り込んですぐに聴けます。簡体字中国語、繁体字中国語、英語、日本語、韓国語に対応しています。
 
-> **build 36 を再ビルドしました。** 同じファイル名の配布物を更新し、通常の文字サイズでのレイアウト、大きな文字への対応、レポートの縦長画像を修正しました。すでに build 36 をお使いの場合も再ダウンロードし、同じ Apple Account と署名設定で上書きしてください。**先にアプリを削除しないでください。** [変更内容と確認方法（簡体字中国語）](../../RELEASE_BUILD36.md)
+> **v0.1.4 · build 37：スピーカー再生の保護と、バックグラウンド再開条件の見直し。** 本体スピーカーは初期状態で消音され、再生中のシステム音量調節やヘッドフォンへの出力切り替えで解除できます。バックグラウンドで他の音声に中断された後は、手動で再開するまで一時停止します。同じ Apple Account と署名設定で上書きし、**先にアプリを削除しないでください。** [更新内容（簡体字中国語）](../../RELEASE_BUILD37.md)
 
 ## 取り込みから再生まで、3 ステップ
 
@@ -68,6 +68,12 @@
 </table>
 
 設定画像には最初の 3 つの外観が写っています。パープルは横にスクロールすると選べます。カバーのプライバシー機能を有効にすると、閲覧時のカバーをぼかします。ロック画面とコントロールセンターではカバーをぼかし、トラック名を別の表示に置き換え、作品名・クリエイター情報を表示しません。プレイヤー内では元のカバーを表示します。
+
+### スピーカーで鳴らす前に、ひとつ確認
+
+**スピーカー再生の保護は初期設定でオン**です。「設定」でオフにできます。本体スピーカーでは、音声・動画・通話モード・起動時の音声が消音状態で始まります。再生中にシステム音量を調節するか、**「今回のスピーカー再生を許可」**を押すか、出力をヘッドフォンに切り替えると解除できます。一時停止後の再開時やスピーカー出力に戻ったときは、再び保護されます。Sumo の音だけを消音し、システム音量は変更しません。消音を解除しても一時停止中の内容は自動再生されません。音量が最大・最小でキーを押しても変わらない場合は、許可ボタンを使えます。
+
+アプリがバックグラウンドまたは非アクティブの間に中断が終了した場合は、一時停止を維持します。前面では、中断前に同じ項目を再生しており、手動で一時停止されず、システムが許可した場合に限り自動再開します。[使い方](../../USAGE.md#speaker-protection-translations)
 
 ### ひとつのフォルダを、好みの作品単位に
 
@@ -129,13 +135,13 @@
 
 現在は App Store ではなく、自分のアカウントで署名してインストールする方式です。
 
-1. コンピュータで [IPA をダウンロード](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)し、Sideloadly などの署名ツールと自分の Apple Account を用意します。
+1. コンピュータで [IPA をダウンロード](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)し、Sideloadly などの署名ツールと自分の Apple Account を用意します。
 2. iPhone / iPad をケーブルで接続し、[インストール手順](INSTALL.md)に沿って署名・インストールします。
 3. 必要な場合は「設定 → 一般 → VPN とデバイス管理」で開発者アカウントを信頼し、手順に従ってデベロッパモードを有効にします。
 
 更新や署名の更新では、同じ Apple Account・アプリ識別子・署名設定で上書きします。**元のアプリを残し、先に削除しないでください。** 署名の有効期間や更新、ほかのインストール方法については詳細な手順をご覧ください。
 
-[ダウンロード案内](DOWNLOAD.md) · [インストール・署名更新・アップデート](INSTALL.md) · [対応するソース ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-source.zip) · [検証済みの範囲（簡体字中国語）](../../RELEASE_STATUS.md)
+[ダウンロード案内](DOWNLOAD.md) · [インストール・署名更新・アップデート](INSTALL.md) · [対応するソース ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [検証済みの範囲（簡体字中国語）](../../RELEASE_STATUS.md)
 
 ## データとコンテンツは自分の手元に
 
@@ -173,4 +179,4 @@
 ---
 
 <p align="center"><strong>好きな声を、厮磨に。</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa">IPA をダウンロード</a> · <a href="INSTALL.md">インストール手順</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">GitHub で Star</a></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">IPA をダウンロード</a> · <a href="INSTALL.md">インストール手順</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">GitHub で Star</a></p>

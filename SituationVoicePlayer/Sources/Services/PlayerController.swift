@@ -2,6 +2,7 @@ import Foundation
 import AVFoundation
 import MediaPlayer
 import Combine
+import UIKit
 
 enum SimulatedCallPhase: String { case inactive, connecting, connected }
 
@@ -140,10 +141,11 @@ final class PlayerController: ObservableObject {
     private var listening = ListeningTimeRecorder()
     private var nextListeningSave: TimeInterval = 0
     private var lastAudibleUptime: TimeInterval = 0
-    private var interruptedItemID: UUID?
+    private var interruptionState = PlaybackInterruptionState()
     private var ownsAudioSession = false
     private var pictureInPictureAudioSessionActive = false
     let requestsStopPictureInPicture = PassthroughSubject<Void, Never>()
+    let requestsInvalidateSystemPlayback = PassthroughSubject<Void, Never>()
     private var audioSessionGeneration: UInt64 = 0
     private(set) var videoPreviewToken: UUID?
     private var videoPreviewStop: (() -> Void)?
@@ -162,9 +164,10 @@ final class PlayerController: ObservableObject {
         pause(immediately: true)
         ownsAudioSession = false
         audioSessionGeneration &+= 1
-        interruptedItemID = nil
+        interruptionState = PlaybackInterruptionState()
         let token = UUID()
         videoPreviewToken = token
+        remoteCommandGate.transition(allowsAudio: false)
         videoPreviewStop = onReplaced
         updateNowPlaying()
         return token
@@ -172,16 +175,23 @@ final class PlayerController: ObservableObject {
 
     func activateVideoPreview(_ token: UUID) throws {
         guard videoPreviewToken == token else { throw CancellationError() }
-        guard !ownsVideoAudioSession else { return }
+        if ownsVideoAudioSession {
+            SpeakerProtection.shared.beginPlayback(owner: "preview")
+            return
+        }
         let session = AVAudioSession.sharedInstance()
         try session.setCategory(.playback, mode: .moviePlayback, options: [])
+        SpeakerProtection.shared.prepareForActivation()
         try session.setActive(true)
         ownsVideoAudioSession = true
+        SpeakerProtection.shared.beginPlayback(owner: "preview")
     }
 
     /// The preview must pause its AVPlayer before releasing the shared session.
     func suspendVideoPreview(_ token: UUID) {
-        guard videoPreviewToken == token, ownsVideoAudioSession else { return }
+        guard videoPreviewToken == token else { return }
+        SpeakerProtection.shared.endPlayback(owner: "preview")
+        guard ownsVideoAudioSession else { return }
         ownsVideoAudioSession = false
         do { try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) }
         catch { DebugLog.write("视频交还音频会话失败：\(error.localizedDescription)") }
@@ -193,7 +203,7 @@ final class PlayerController: ObservableObject {
         videoPreviewToken = nil
         videoPreviewStop = nil
         remoteCommandGate.transition(allowsAudio: true)
-        interruptedItemID = nil
+        interruptionState = PlaybackInterruptionState()
         audioSessionGeneration &+= 1
         do { try AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: []) }
         catch { DebugLog.write("恢复音频会话配置失败：\(error.localizedDescription)") }
@@ -291,6 +301,7 @@ final class PlayerController: ObservableObject {
         case .endOfTrack, .endOfQueueItem: cancelSleepTimer()
         case .off, .deadline: break
         }
+        SpeakerProtection.shared.endPlayback(owner: "main")
         queueCollection = collection
         queue = PlaybackQueue.make(items: items, startingAt: index)
         queue.repeatMode = repeatMode
@@ -308,7 +319,8 @@ final class PlayerController: ObservableObject {
         queuePositionText = queue.progressDescription
         guard removedCurrent else { return }
         checkpointListening(ending: true)
-        interruptedItemID = nil
+        interruptionState.cancelPlaybackIntent()
+        invalidatePendingPlaybackCommands()
         stopTicker()
         engine.stop()
         movie.stop(); videoLease = nil; isLoadingMedia = false
@@ -321,6 +333,7 @@ final class PlayerController: ObservableObject {
         positionMS = 0
         durationMS = 0
         hasQueue = !queue.isEmpty
+        if !hasQueue || !shouldContinue { SpeakerProtection.shared.endPlayback(owner: "main") }
         if hasQueue { loadAndPlayCurrent(autoplay: shouldContinue) }
         else {
             cancelSleepTimer()
@@ -372,12 +385,15 @@ final class PlayerController: ObservableObject {
     func pause(immediately: Bool = false) {
         guard videoPreviewToken == nil else { return }
         if callPhase == .connecting { endCall(); return }
-        // 即使系统已把播放暂停，来自界面、耳机或锁屏的暂停仍然撤销自动恢复。
-        interruptedItemID = nil
+        // Pause wins over both interruption recovery and already queued
+        // remote/PiP Play callbacks, even if the engine is already stopped.
+        interruptionState.cancelPlaybackIntent()
+        invalidatePendingPlaybackCommands()
         pausePlayback(fadeOut: immediately ? 0 : fadeDuration)
     }
 
     private func pausePlayback(fadeOut: Double) {
+        SpeakerProtection.shared.endPlayback(owner: "main")
         pendingVideoAutoplay = false
         let wasPlaying = isPlaying
         checkpointListening(ending: true)
@@ -406,10 +422,11 @@ final class PlayerController: ObservableObject {
     func resume() {
         guard videoPreviewToken == nil, callPhase != .connecting else { return }
         OpeningVoicePlayer.shared.stop()
-        interruptedItemID = nil
         // A deliberate Play after the app was suspended is a fresh user action.
         _ = expireSleepTimerIfNeeded()
-        guard currentItem != nil, !isPlaying else { return }
+        guard let currentItem, !isPlaying else { return }
+        interruptionState.requestPlayback(itemID: currentItem.id)
+        invalidatePendingPlaybackCommands()
         if needsMediaReload { loadAndPlayCurrent(); return }
         if isLoadingMedia { pendingVideoAutoplay = true; return }
         if isVideo, movie.player.currentItem == nil || movie.player.currentItem?.status == .failed {
@@ -419,6 +436,7 @@ final class PlayerController: ObservableObject {
         do {
             try startMedia(at: positionMS)
         } catch {
+            interruptionState.cancelPlaybackIntent()
             cancelSleepTimerForUnplayableTarget()
             errorMessage = error.localizedDescription
             return
@@ -645,11 +663,14 @@ final class PlayerController: ObservableObject {
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(.playback, mode: .moviePlayback, options: [])
+            SpeakerProtection.shared.prepareForActivation()
             try session.setActive(true)
             ownsAudioSession = true
+            SpeakerProtection.shared.beginPlayback(owner: "main")
+            interruptionState.requestPlayback(itemID: currentItem?.id)
             movie.rate = Float(AudioMath.clampRate(rate))
             movie.seek(to: position, playing: true)
-        } catch { releaseAudioSession(); throw error }
+        } catch { SpeakerProtection.shared.endPlayback(owner: "main"); releaseAudioSession(); throw error }
     }
 
     private func videoPlaybackChanged() {
@@ -678,8 +699,10 @@ final class PlayerController: ObservableObject {
     private func loadAndPlayCurrent(autoplay: Bool = true, advanceOnFailure: Bool = true) {
         guard !autoplay || videoPreviewToken == nil else { return }
         if autoplay { OpeningVoicePlayer.shared.stop() }
+        else { SpeakerProtection.shared.endPlayback(owner: "main") }
         checkpointListening(ending: true)
-        interruptedItemID = nil
+        interruptionState.cancelPlaybackIntent()
+        invalidatePendingPlaybackCommands()
         persistPosition()
         stopTicker()
         isPlaying = false
@@ -706,6 +729,7 @@ final class PlayerController: ObservableObject {
                 playLoaded(item, autoplay: autoplay)
                 return
             } catch {
+                SpeakerProtection.shared.endPlayback(owner: "main")
                 needsMediaReload = true
                 errorMessage = error.localizedDescription
                 DebugLog.write("无法打开 \(item.trackTitle)：\(error.localizedDescription)")
@@ -746,6 +770,7 @@ final class PlayerController: ObservableObject {
             }
         }
         engine.stop()
+        SpeakerProtection.shared.endPlayback(owner: "main")
         releaseAudioSession()
         cancelSleepTimer()
         currentItem = nil
@@ -961,11 +986,15 @@ final class PlayerController: ObservableObject {
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(.playback, mode: .spokenAudio, options: [])
+            SpeakerProtection.shared.prepareForActivation()
             try session.setActive(true)
             ownsAudioSession = true
+            SpeakerProtection.shared.beginPlayback(owner: "main")
             try engine.play(fromMilliseconds: position, fadeIn: fadeDuration)
+            interruptionState.requestPlayback(itemID: currentItem?.id)
             beginListening()
         } catch {
+            SpeakerProtection.shared.endPlayback(owner: "main")
             engine.pause()
             releaseAudioSession()
             throw error
@@ -979,6 +1008,7 @@ final class PlayerController: ObservableObject {
             guard videoPreviewToken == nil else { throw CancellationError() }
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playback, mode: .spokenAudio, options: [])
+            SpeakerProtection.shared.prepareForActivation()
             try session.setActive(true)
             ownsAudioSession = true
             pictureInPictureAudioSessionActive = true
@@ -1036,7 +1066,7 @@ final class PlayerController: ObservableObject {
         else { return }
 
         if videoPreviewToken != nil {
-            interruptedItemID = nil
+            interruptionState.cancelPlaybackIntent()
             ownsAudioSession = false
             if type == .began { ownsVideoAudioSession = false }
             return
@@ -1045,19 +1075,21 @@ final class PlayerController: ObservableObject {
         switch type {
         case .began:
             cancelCallConnectionIfNeeded()
-            // 系统已停用本应用会话。保留重复 began 之前记录的那一次播放。
             ownsAudioSession = false
-            if isPlaying { interruptedItemID = currentItem?.id }
+            interruptionState.begin(itemID: currentItem?.id, wasPlaying: isPlaying)
+            invalidatePendingPlaybackCommands()
             pausePlayback(fadeOut: 0)
         case .ended:
-            // 中断期间进程可能被系统挂起；先检查期限，再决定是否自动续播。
+            let options = (info[AVAudioSessionInterruptionOptionKey] as? UInt) ?? 0
+            let mayResume = interruptionState.end(itemID: currentItem?.id,
+                systemAllowsResume: AVAudioSession.InterruptionOptions(rawValue: options).contains(.shouldResume),
+                appIsActive: UIApplication.shared.applicationState == .active)
+            // A queued system Play from the interrupted session is not a fresh
+            // user command. Automatic recovery also requires a foreground,
+            // active app; a background ending always leaves this player paused.
+            invalidatePendingPlaybackCommands()
             if expireSleepTimerIfNeeded() { return }
-            let interrupted = interruptedItemID
-            interruptedItemID = nil
-            guard let interrupted, interrupted == currentItem?.id,
-                  let options = info[AVAudioSessionInterruptionOptionKey] as? UInt,
-                  AVAudioSession.InterruptionOptions(rawValue: options).contains(.shouldResume)
-            else { return }
+            guard mayResume else { return }
             resume()
         @unknown default:
             break
@@ -1135,6 +1167,10 @@ final class PlayerController: ObservableObject {
     @discardableResult
     func executeRemoteCommand(_ command: AudioRemoteCommand, ticket: AudioRemoteCommandGate.Ticket) -> Bool {
         guard remoteCommandGate.accepts(ticket), videoPreviewToken == nil else { return false }
+        // A current MPRemote command is a new user request. In particular,
+        // Play must be allowed to reactivate a session even if iOS never sent
+        // the preceding interruption's ended notification. Old queued work is
+        // still rejected by the ticket check above.
         switch command {
         case .play: resume()
         case .pause: pause()
@@ -1144,6 +1180,23 @@ final class PlayerController: ObservableObject {
         case .seek(let position): seek(to: position)
         }
         return true
+    }
+
+    /// AVKit defines this as a user playback request. Like MPRemote, a fresh
+    /// request may reactivate audio even without an interruption-ended event;
+    /// the PiP delegate has already rejected callbacks from an older epoch.
+    func setPictureInPicturePlayback(_ playing: Bool) {
+        guard callPhase == .connected, videoPreviewToken == nil else { return }
+        if playing {
+            resume()
+        } else {
+            pause(immediately: true)
+        }
+    }
+
+    private func invalidatePendingPlaybackCommands() {
+        remoteCommandGate.transition(allowsAudio: videoPreviewToken == nil)
+        requestsInvalidateSystemPlayback.send()
     }
 
     func refreshLockScreenPrivacy() {

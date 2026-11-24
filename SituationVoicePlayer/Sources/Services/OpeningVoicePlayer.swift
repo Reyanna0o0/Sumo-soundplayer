@@ -59,6 +59,7 @@ final class OpeningVoicePlayer: NSObject, ObservableObject, AVAudioPlayerDelegat
     nonisolated static let maximumDuration: TimeInterval = 10
     @Published private(set) var isPlaying = false
     @Published private(set) var message: String?
+    private var protectionSubscription: AnyCancellable?
     private var audio: AVAudioPlayer?
     private var file: OpeningVoiceFile?
     private var stopTask: Task<Void, Never>?
@@ -67,6 +68,9 @@ final class OpeningVoicePlayer: NSObject, ObservableObject, AVAudioPlayerDelegat
 
     override init() {
         super.init()
+        protectionSubscription = SpeakerProtection.shared.$isMuted.sink { [weak self] muted in
+            self?.audio?.volume = muted ? 0 : 1
+        }
         let center = NotificationCenter.default
         observers.append(center.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: .main) { [weak self] _ in
             MainActor.assumeIsolated { self?.stop() }
@@ -105,12 +109,15 @@ final class OpeningVoicePlayer: NSObject, ObservableObject, AVAudioPlayerDelegat
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setCategory(.playback, mode: .spokenAudio, options: [])
+            SpeakerProtection.shared.prepareForActivation()
             try session.setActive(true)
             ownsSession = true
             self.file = file
             self.audio = audio
             audio.delegate = self
             audio.numberOfLoops = 0
+            SpeakerProtection.shared.beginPlayback(owner: "opening")
+            audio.volume = SpeakerProtection.shared.isMuted ? 0 : 1
             guard audio.play() else { throw OpeningVoiceError.unreadable }
             isPlaying = true
             let duration = min(Self.maximumDuration, min(limit, audio.duration))
@@ -124,6 +131,7 @@ final class OpeningVoicePlayer: NSObject, ObservableObject, AVAudioPlayerDelegat
     func stop() {
         stopTask?.cancel(); stopTask = nil
         audio?.stop(); audio = nil; file = nil
+        SpeakerProtection.shared.endPlayback(owner: "opening")
         isPlaying = false
         if ownsSession {
             ownsSession = false

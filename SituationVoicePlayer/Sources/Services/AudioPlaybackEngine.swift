@@ -1,5 +1,6 @@
 import Foundation
 import AVFoundation
+import Combine
 
 /// 基于 `AVAudioEngine` 的音频播放引擎。
 ///
@@ -57,12 +58,17 @@ final class AudioPlaybackEngine {
 
     private var volume: Float = 1.0
     private var fadeTask: Task<Void, Never>?
+    private var protectionSubscription: AnyCancellable?
 
     // MARK: - 初始化
 
     init() {
         configureGraph()
         configureEqualizerDefaults()
+        // A final output gate cannot be overwritten by fades, seeks, or EQ.
+        protectionSubscription = SpeakerProtection.shared.$isMuted.sink { [weak self] muted in
+            self?.engine.mainMixerNode.outputVolume = muted ? 0 : 1
+        }
     }
 
     private func configureGraph() {

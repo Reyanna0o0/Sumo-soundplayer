@@ -2,13 +2,13 @@
 
 [简体中文](../../INSTALL.md) · [繁體中文](../zh-Hant/INSTALL.md) · [English](../en/INSTALL.md) · [日本語](../ja/INSTALL.md) · **한국어**
 
-**[IPA 다운로드 · v0.1.3 (build 36)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)** · [다운로드 도움말](DOWNLOAD.md)
+**[IPA 다운로드 · v0.1.4 (build 37)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [다운로드 도움말](DOWNLOAD.md)
 
-이번 재빌드도 앱 버전은 **0.1.3 / build 36**이며 릴리스 **`v0.1.3`**의 배포 파일을 교체합니다. 같은 릴리스의 SHA-256과 빌드 JSON의 소스 커밋으로 새 파일을 확인하세요. 앱 버전과 파일명만으로는 구분할 수 없습니다. 같은 Apple 계정, 서명 설정과 앱 식별자로 덮어쓰고 **기존 앱을 먼저 삭제하지 마세요**. [재빌드 안내 — 중국어 간체](../../RELEASE_BUILD36.md)
+이번 버전은 스피커 재생 보호를 기본으로 켜고 백그라운드 재개 조건을 개선한 별도 새 버전 **v0.1.4 / build 37**입니다. build 36의 같은 이름 파일을 교체하지 않습니다. 원래 Apple 계정, 서명 설정과 앱 식별자로 덮어쓰고 **기존 앱을 먼저 삭제하지 마세요**. [변경 내용 — 중국어 간체](../../RELEASE_BUILD37.md)
 
 처음 설치한다면 아래 준비부터 시작하세요. 이미 설치했다면 [데이터를 유지하며 업데이트](#update)로 이동하세요.
 
-Mac + Sideloadly 설치와 build 33 덮어쓰기 업데이트는 실측 기록이 있습니다. Windows, AltStore와 서명 갱신은 아직 검증하지 않았습니다. [버전 안내](../../RELEASE_BUILD36.md) · [상세 검증 기록 — 중국어 간체](../../RELEASE_STATUS.md)
+Mac + Sideloadly 설치와 build 33 덮어쓰기 업데이트는 실측 기록이 있습니다. Windows, AltStore와 서명 갱신은 아직 검증하지 않았습니다. [버전 안내](../../RELEASE_BUILD37.md) · [상세 검증 기록 — 중국어 간체](../../RELEASE_STATUS.md)
 
 ## 준비할 것
 
@@ -67,12 +67,12 @@ Apple 계정 로그인은 서명 도구에서 진행합니다. Sumo 자체는 Ap
 <a id="verify"></a>
 ## 선택 사항: 다운로드 파일 검증
 
-같은 버전의 `.ipa.sha256`을 IPA 옆에 저장하고 그 폴더에서 터미널 또는 PowerShell을 여세요. 아래는 build 36 기준이며, 다른 버전은 실제 파일명으로 바꿔야 합니다.
+같은 버전의 `.ipa.sha256`을 IPA 옆에 저장하고 그 폴더에서 터미널 또는 PowerShell을 여세요. 아래는 build 37 기준이며, 다른 버전은 실제 파일명으로 바꿔야 합니다.
 
 Mac:
 
 ```bash
-shasum -a 256 -c simo-0.1.3-build36-unsigned.ipa.sha256
+shasum -a 256 -c simo-0.1.4-build37-unsigned.ipa.sha256
 ```
 
 `OK`가 나오면 일치합니다. `FAILED`라면 같은 버전에서 두 파일을 다시 받으세요.
@@ -80,7 +80,7 @@ shasum -a 256 -c simo-0.1.3-build36-unsigned.ipa.sha256
 Windows PowerShell:
 
 ```powershell
-Get-FileHash .\simo-0.1.3-build36-unsigned.ipa -Algorithm SHA256
+Get-FileHash .\simo-0.1.4-build37-unsigned.ipa -Algorithm SHA256
 ```
 
 텍스트 편집기로 `.sha256`을 열고 첫 문자열을 `Hash`와 비교합니다. 영문 대소문자를 제외한 모든 문자가 같아야 합니다.

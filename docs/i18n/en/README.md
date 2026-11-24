@@ -7,17 +7,17 @@
 <p align="center">Independently developed · All features free for personal, non-commercial use · Source available</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa"><strong>Download IPA</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>Download IPA</strong></a> ·
   <a href="INSTALL.md"><strong>Installation guide</strong></a> ·
   <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>Releases</strong></a>
 </p>
 
-<p align="center">v0.1.3 · build 36 &nbsp; | &nbsp; iOS / iPadOS 18 or later</p>
+<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 or later</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <strong>English</strong> · <a href="../ja/README.md">日本語</a> · <a href="../ko/README.md">한국어</a></p>
 
 Sumo is an iOS audio player built around organizing your collection and immersive listening. Personal Audio and Indie Releases have separate libraries, bringing audio, video, covers, scripts and listening history together. No app account is required—import your own collection and start listening. The interface supports Simplified Chinese, Traditional Chinese, English, Japanese and Korean.
 
-> **Build 36 has been rebuilt.** The download keeps the same filename and replaces the previous build 36 package, fixing standard text layouts, larger text support and report exports. Even if you already have build 36, download it again and install over the existing app with your original Apple Account and signing settings. **Do not uninstall first.** [Changes and verification — Simplified Chinese](../../RELEASE_BUILD36.md)
+> **v0.1.4 · build 37 adds speaker protection and safer background resumption.** Built-in speakers are muted by default; adjust the system volume during playback or switch output to headphones to unmute. Playback interrupted in the background stays paused until you resume it. Install over the existing app with the same Apple Account and signing settings. **Do not uninstall first.** [Changes — Simplified Chinese](../../RELEASE_BUILD37.md)
 
 ## From import to listening in three steps
 
@@ -68,6 +68,12 @@ These three examples were captured in the app running in a simulator, using fict
 </table>
 
 The settings screenshot shows the first three appearances; scroll horizontally to find Purple. Cover privacy blurs covers while browsing. On the Lock Screen and in Control Center it also substitutes the track title and omits work and creator details. The player still shows the original cover.
+
+### A check before playing aloud
+
+**Speaker protection is on by default** and can be turned off in Settings. On built-in speakers, audio, video, call-mode playback and launch audio start muted. During playback, change the system volume, tap **Allow speaker audio**, or switch output to headphones to unmute. Protection resets after a pause and restart, or when returning to the speakers. It mutes only Sumo, never changes system volume, and never resumes paused content. If a volume key has no effect at the upper or lower limit, use **Allow speaker audio**.
+
+When the app is in the background or inactive, interruption endings leave playback paused until you resume it. In the foreground, automatic resumption is allowed only for the same previously playing item, with system permission and no intervening user pause. [Usage details](../../USAGE.md#speaker-protection-translations)
 
 ### One folder, several ways to organize it
 
@@ -129,13 +135,13 @@ The project uses the custom **Sumo Sound Player Noncommercial Source License 1.0
 
 Sumo is currently installed through self-signing, rather than the App Store.
 
-1. [Download the IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa) on a computer, and prepare a signing tool such as Sideloadly and your own Apple Account.
+1. [Download the IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa) on a computer, and prepare a signing tool such as Sideloadly and your own Apple Account.
 2. Connect your iPhone or iPad with a cable and follow the [installation guide](INSTALL.md).
 3. If prompted, trust your developer account under **Settings → General → VPN & Device Management** and enable Developer Mode as described in the guide.
 
 For updates or signing renewal, use the same Apple Account, app identifier and signing settings to install over the existing app. **Keep the app; do not uninstall it first.** The guide covers signing expiry, renewal and alternative installation methods.
 
-[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Corresponding source ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-source.zip) · [Verified scope — Simplified Chinese](../../RELEASE_STATUS.md)
+[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Corresponding source ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [Verified scope — Simplified Chinese](../../RELEASE_STATUS.md)
 
 ## Your data and your content
 
@@ -173,4 +179,4 @@ Third-party components retain their own licenses, including applicable LGPL righ
 ---
 
 <p align="center"><strong>Keep the voices you love in Sumo.</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa">Download IPA</a> · <a href="INSTALL.md">Installation guide</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">Star on GitHub</a></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">Download IPA</a> · <a href="INSTALL.md">Installation guide</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">Star on GitHub</a></p>

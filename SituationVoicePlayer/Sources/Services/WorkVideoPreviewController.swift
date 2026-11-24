@@ -21,6 +21,7 @@ final class WorkVideoPreviewController: ObservableObject {
     private var generation = UUID()
     private var statusObservation: NSKeyValueObservation?
     private var rateObservation: NSKeyValueObservation?
+    private var protectionSubscription: AnyCancellable?
     private var observers: [NSObjectProtocol] = []
     private var isClosed = false
     private var isForeground = UIApplication.shared.applicationState != .background
@@ -30,6 +31,9 @@ final class WorkVideoPreviewController: ObservableObject {
         self.url = url
         self.playback = playback
         self.prepare = prepare
+        protectionSubscription = SpeakerProtection.shared.$isMuted.sink { [weak self] muted in
+            self?.player?.isMuted = muted
+        }
         token = playback.beginVideoPreview { [weak self] in self?.close() }
         observeExternalEvents()
         load()
@@ -56,6 +60,7 @@ final class WorkVideoPreviewController: ObservableObject {
                 self.preparedVideo = prepared
                 let item = AVPlayerItem(url: prepared.url)
                 let movie = AVPlayer(playerItem: item)
+                movie.isMuted = SpeakerProtection.shared.isMuted
                 self.player = movie
                 self.statusObservation = item.observe(\.status, options: [.initial, .new]) { [weak self, weak movie] item, _ in
                     Task { @MainActor in
@@ -78,10 +83,21 @@ final class WorkVideoPreviewController: ObservableObject {
                         }
                     }
                 }
-                self.rateObservation = movie.observe(\.rate, options: [.new]) { [weak self, weak movie] _, _ in
+                self.rateObservation = movie.observe(\.rate, options: [.new]) { [weak self, weak movie] _, change in
+                    let requestedRate = change.newValue ?? 0
                     Task { @MainActor in
                         guard let self, let movie, !self.isClosed, self.generation == expected,
-                              self.player === movie, movie.rate > 0 else { return }
+                              self.player === movie else { return }
+                        if requestedRate == 0 {
+                            // Capture the event, not only the final rate: rapid
+                            // pause/play must still revoke the old permission.
+                            SpeakerProtection.shared.endPlayback(owner: "preview")
+                            if movie.rate == 0, let token = self.token {
+                                self.playback?.suspendVideoPreview(token)
+                            }
+                            return
+                        }
+                        guard movie.rate > 0 else { return }
                         guard self.isForeground else { movie.pause(); return }
                         do {
                             guard let token = self.token, let playback = self.playback else { throw CancellationError() }

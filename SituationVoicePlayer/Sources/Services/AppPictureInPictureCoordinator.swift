@@ -72,6 +72,9 @@ final class AppPictureInPictureCoordinator: ObservableObject {
         player.$currentItem.sink { [weak self] _ in
             Task { @MainActor [weak self] in self?.updateSubtitleTrack() }
         }.store(in: &subscriptions)
+        player.requestsInvalidateSystemPlayback.sink { [weak self] _ in
+            self?.pip.invalidatePendingPlaybackCommands()
+        }.store(in: &subscriptions)
         player.requestsStopPictureInPicture.sink { [weak self] _ in
             guard let self else { return }
             self.preparationID = UUID(); self.preparation?.cancel(); self.preparation = nil
@@ -231,7 +234,7 @@ final class AppPictureInPictureCoordinator: ObservableObject {
                             localPosition: self.localPosition, animatesModeChanges: true)
                     }, onPlayback: { [weak player] playing in
                         guard let player, player.callPhase == .connected else { return }
-                        if playing { player.resume() } else { player.pause(immediately: true) }
+                        player.setPictureInPicturePlayback(playing)
                     }, onRestore: { [weak self] completion in
                         guard let self else { completion(false); return }
                         self.restore(.call, completion: completion)

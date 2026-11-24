@@ -7,17 +7,17 @@
 <p align="center">个人独立开发 · 全部功能免费 · 源码公开</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa"><strong>下载 IPA</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>下载 IPA</strong></a> ·
   <a href="docs/INSTALL.md"><strong>查看安装方法</strong></a> ·
   <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>版本更新</strong></a>
 </p>
 
-<p align="center">v0.1.3 · build 36 &nbsp; | &nbsp; iOS / iPadOS 18 或更新版本</p>
+<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 或更新版本</p>
 <p align="center"><strong>简体中文</strong> · <a href="docs/i18n/zh-Hant/README.md">繁體中文</a> · <a href="docs/i18n/en/README.md">English</a> · <a href="docs/i18n/ja/README.md">日本語</a> · <a href="docs/i18n/ko/README.md">한국어</a></p>
 
 厮磨是一款以作品整理与沉浸式播放为核心的 iOS 音声播放器。个人音声与社团作品分库管理，音频、视频、封面、台本和收听记录集中在同一个地方。无需注册账户，导入自己的收藏，就可以开始收听。
 
-> **build 36 已重新构建。** 本次直接更新同名安装包，修复普通字号排版、大字号适配和报告长图。已安装旧 build 36 的用户也请重新下载，沿用原账户与签名设置覆盖安装，**不要先卸载**。[更新说明与校验](docs/RELEASE_BUILD36.md)
+> **v0.1.4 · build 37：加入外放保护，并收紧后台恢复播放。** 内置扬声器默认静音，可在播放时调节系统音量或连接耳机解除；后台被其他声音打断后保持暂停，需主动继续。沿用原账户与签名设置覆盖安装，**不要先卸载**。 [更新说明](docs/RELEASE_BUILD37.md)
 
 ## 从导入到收听，只需三步
 
@@ -68,6 +68,12 @@
 </table>
 
 设置截图展示前三个外观选项，紫色可横向滑动选择。防偷窥模式会模糊浏览时的封面，并在锁屏和控制中心模糊封面、替换音轨标题及隐藏作品／作者资料；播放页仍显示原图。
+
+### 外放前，多一层确认
+
+**外放保护默认开启**，可在「设置 → 外放保护」关闭。使用设备内置扬声器时，普通音频、视频、通话与开屏语音先保持静音；播放时调节系统音量、点「允许本次外放」，或把输出切换到耳机即可解除。暂停后重新播放或切回扬声器时再次保护。它只静音厮磨，不改系统音量，也不会让已暂停的内容自动播放。音量已在最高或最低、按键未改变音量时，可使用「允许本次外放」。
+
+App 在后台或未处于活动状态时，中断结束后保持暂停；需主动点击播放。前台只有此前正在播放同一曲目、期间未手动暂停且系统允许时才会恢复。[使用说明](docs/USAGE.md#外放保护与中断后播放build-37-起)
 
 ### 一个文件夹，多种整理方式
 
@@ -129,13 +135,13 @@
 
 目前通过自签方式安装，不是 App Store 下载。
 
-1. 在电脑上[下载 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)，准备 Sideloadly 等签名工具和自己的 Apple 账户。
+1. 在电脑上[下载 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)，准备 Sideloadly 等签名工具和自己的 Apple 账户。
 2. 用数据线连接 iPhone / iPad，按[安装教程](docs/INSTALL.md)完成签名与安装。
 3. 如系统提示，前往“设置 → 通用 → VPN 与设备管理”信任开发者，并按教程开启开发者模式。
 
 更新或续签时，沿用原 Apple 账户、应用标识与签名设置覆盖安装，**保留原 App，不要先卸载**。签名有效期、续签和不同安装方式的注意事项请看完整说明。
 
-[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [对应源码 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-source.zip) · [实际验证范围](docs/RELEASE_STATUS.md)
+[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [对应源码 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [实际验证范围](docs/RELEASE_STATUS.md)
 
 ## 数据与内容由你掌握
 
@@ -173,4 +179,4 @@
 ---
 
 <p align="center"><strong>把喜欢的声音，收进厮磨。</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa">下载 IPA</a> · <a href="docs/INSTALL.md">查看安装教程</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">在 GitHub 收藏项目</a></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">下载 IPA</a> · <a href="docs/INSTALL.md">查看安装教程</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">在 GitHub 收藏项目</a></p>

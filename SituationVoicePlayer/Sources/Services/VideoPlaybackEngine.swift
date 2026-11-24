@@ -1,5 +1,6 @@
 import AVFoundation
 import Foundation
+import Combine
 
 /// The formal playback session owns this engine, independently of any visible view.
 @MainActor
@@ -9,6 +10,7 @@ final class VideoPlaybackEngine {
     var onFinished: (() -> Void)?
     var onStateChanged: (() -> Void)?
     var onFailure: ((String) -> Void)?
+    private var protectionSubscription: AnyCancellable?
     private var prepared: PreparedWorkVideo?
     private var preparation: Task<Void, Never>?
     private var generation = UUID()
@@ -31,6 +33,9 @@ final class VideoPlaybackEngine {
     }
 
     init() {
+        protectionSubscription = SpeakerProtection.shared.$isMuted.sink { [weak self] muted in
+            self?.player.isMuted = muted
+        }
         player.audiovisualBackgroundPlaybackPolicy = .continuesIfPossible
         playbackStatus = player.observe(\.timeControlStatus, options: [.new]) { [weak self] _, _ in
             Task { @MainActor in self?.onStateChanged?() }

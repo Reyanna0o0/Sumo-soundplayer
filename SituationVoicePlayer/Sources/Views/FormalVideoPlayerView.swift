@@ -9,6 +9,11 @@ struct PlaybackPresentationView: View {
             else if player.isVideo { FormalVideoPlayerView() }
             else { PlayerView().porcelainSurface() }
         }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            if player.isPlaying {
+                SpeakerProtectionNotice().padding(.horizontal, 12)
+            }
+        }
         .background(CallOrientationWindowBridge(player: player).allowsHitTesting(false))
         .alert("模拟通话", isPresented: Binding(
             get: { player.callCompletionMessage != nil },

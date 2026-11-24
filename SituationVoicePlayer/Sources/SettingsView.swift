@@ -4,6 +4,7 @@ struct SettingsView: View {
     @EnvironmentObject private var store: LibraryStore
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isSeeding = false
+    @ObservedObject private var speakerProtection = SpeakerProtection.shared
     @AppStorage(CoverPrivacy.settingKey) private var privacyEnabled = false
     @AppStorage(CallInterfacePreferences.realisticLabelsKey) private var realisticCallLabels = false
     @State private var callProfilePresentation: CallProfilePresentation?
@@ -48,6 +49,16 @@ struct SettingsView: View {
                         .accessibilityIdentifier("coverPrivacyToggle")
                 } footer: {
                     Text("浏览作品时模糊封面，播放页显示原图。锁屏和控制中心使用模糊封面，音轨显示为「\(CoverPrivacy.publicTitle)」。").transformEnvironment(\.font) { if dynamicTypeSize.isAccessibilitySize { $0 = .footnote } }.environment(\.dynamicTypeSize, dynamicTypeSize)
+                }
+
+                Section {
+                    Toggle("外放保护", isOn: $speakerProtection.isEnabled)
+                        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                        .accessibilityIdentifier("speakerProtectionToggle")
+                } footer: {
+                    Text("使用设备扬声器时默认静音。播放时调节系统音量可允许本次外放，连接耳机也会解除静音。重新开始播放或切回扬声器时再次保护。解除静音不会自动播放已暂停的内容。")
+                        .transformEnvironment(\.font) { if dynamicTypeSize.isAccessibilitySize { $0 = .footnote } }
+                        .environment(\.dynamicTypeSize, dynamicTypeSize)
                 }
 
                 Section {

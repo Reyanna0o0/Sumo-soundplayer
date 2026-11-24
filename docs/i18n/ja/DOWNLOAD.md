@@ -2,16 +2,16 @@
 
 [简体中文](../../DOWNLOAD.md) · [繁體中文](../zh-Hant/DOWNLOAD.md) · [English](../en/DOWNLOAD.md) · **日本語** · [한국어](../ko/DOWNLOAD.md)
 
-**[IPA をダウンロード · v0.1.3（build 36）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)**
+**[IPA をダウンロード · v0.1.4（build 37）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)**
 
-今回の再ビルドもアプリのバージョンは **0.1.3 / build 36** で、リリース **`v0.1.3`** の配布ファイルを置き換えます。同じリリースの SHA-256 とビルド JSON 内のソースコミットで識別してください。バージョン番号やファイル名だけでは区別できません。同じ Apple Account・署名設定・アプリ識別子で上書きし、**先に旧版を削除しないでください**。[再ビルドの内容（簡体字中国語）](../../RELEASE_BUILD36.md)
+今回は、スピーカー再生の保護を初期設定で有効にし、バックグラウンドでの再開条件を見直した新しい **v0.1.4 / build 37** です。build 36 の同名ファイルを置き換える更新ではありません。同じ Apple Account・署名設定・アプリ識別子で上書きし、**先に旧版を削除しないでください**。[更新内容（簡体字中国語）](../../RELEASE_BUILD37.md)
 
 **iOS / iPadOS 18 以降**が必要です。Windows または Mac でダウンロードしてください。GitHub アカウントは不要です。
 
 ## 3 つの手順
 
 1. **上のリンクをクリック**し、ダウンロードが終わるまで待ちます。
-2. **ファイルを確認します**。「ダウンロード」フォルダにある `simo-0.1.3-build36-unsigned.ipa` を探してください。ブラウザのダウンロード一覧から「フォルダーに表示」「Finder に表示」を選んでも開けます。
+2. **ファイルを確認します**。「ダウンロード」フォルダにある `simo-0.1.4-build37-unsigned.ipa` を探してください。ブラウザのダウンロード一覧から「フォルダーに表示」「Finder に表示」を選んでも開けます。
 3. **署名してインストールします**。IPA を Sideloadly にドラッグし、[インストール手順](INSTALL.md)に従ってください。`unsigned` は未署名という意味で、インストール用ツールが署名を行います。
 
 **すでにインストール済みの場合**は、同じ Apple Account、署名ツール、アプリ識別子で上書きしてください。**先に旧版を削除しないでください。**
@@ -20,7 +20,7 @@
 
 | 状況 | 対処 |
 | --- | --- |
-| リンクを押しても反応しない・ダウンロードに失敗する | ブラウザの一覧を確認して再試行します。[リリースページ](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.3)の `Assets` から `.ipa` で終わるファイルを選ぶこともできます |
+| リンクを押しても反応しない・ダウンロードに失敗する | ブラウザの一覧を確認して再試行します。[リリースページ](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.4)の `Assets` から `.ipa` で終わるファイルを選ぶこともできます |
 | ダウンロードしたファイルが見つからない | ブラウザのダウンロード一覧で「フォルダーに表示」「Finder に表示」を選びます |
 | IPA をダブルクリックしてもインストールできない | Sideloadly にドラッグし、[インストール手順](INSTALL.md)を進めてください |
 | スマートフォンにダウンロードしてしまった | この Sideloadly の手順にはパソコンが必要です。パソコンで同じリンクを開いてください |
@@ -30,6 +30,6 @@
 <details>
 <summary>任意：ファイルの検証・ソースの取得</summary>
 
-[リリースページ](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.3)から同名の `.ipa.sha256` を取得し、[検証手順](INSTALL.md#verify)を実行できます。ソース ZIP、ライセンス、ビルド情報も同じページにあります。通常のインストールに必要なのは IPA です。
+[リリースページ](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.4)から同名の `.ipa.sha256` を取得し、[検証手順](INSTALL.md#verify)を実行できます。ソース ZIP、ライセンス、ビルド情報も同じページにあります。通常のインストールに必要なのは IPA です。
 
 </details>

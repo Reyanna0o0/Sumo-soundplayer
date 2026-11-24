@@ -7,17 +7,17 @@
 <p align="center">개인 개발 · 개인의 비상업적 이용은 모든 기능 무료 · 소스 공개</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa"><strong>IPA 다운로드</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>IPA 다운로드</strong></a> ·
   <a href="INSTALL.md"><strong>설치 방법</strong></a> ·
   <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>릴리스 소식</strong></a>
 </p>
 
-<p align="center">v0.1.3 · build 36 &nbsp; | &nbsp; iOS / iPadOS 18 이상</p>
+<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 이상</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <a href="../en/README.md">English</a> · <a href="../ja/README.md">日本語</a> · <strong>한국어</strong></p>
 
 Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오디오 플레이어입니다. 개인 오디오 작품과 서클 작품을 별도 라이브러리로 관리하면서 오디오, 동영상, 표지, 대본과 청취 기록을 한곳에 모읍니다. 앱 계정을 만들 필요 없이, 자신의 컬렉션을 가져와 바로 들을 수 있습니다. 중국어 간체·번체, 영어, 일본어, 한국어를 지원합니다.
 
-> **build 36을 다시 빌드했습니다.** 같은 파일명의 설치 패키지를 교체하여 일반 글자 크기의 배치, 큰 글자 지원, 보고서 긴 이미지 내보내기를 수정했습니다. 기존 build 36을 사용 중이어도 다시 다운로드한 뒤 원래 Apple 계정과 서명 설정으로 덮어써 주세요. **기존 앱을 먼저 삭제하지 마세요.** [변경 내용과 확인 방법 — 중국어 간체](../../RELEASE_BUILD36.md)
+> **v0.1.4 · build 37: 스피커 재생 보호와 백그라운드 재개 조건 개선.** 내장 스피커는 기본적으로 음소거됩니다. 재생 중 시스템 음량을 조절하거나 출력을 헤드폰으로 전환하면 해제됩니다. 백그라운드에서 다른 소리로 중단되면 직접 재개할 때까지 일시 정지됩니다. 원래 Apple 계정과 서명 설정으로 덮어쓰고 **기존 앱을 먼저 삭제하지 마세요.** [변경 내용 — 중국어 간체](../../RELEASE_BUILD37.md)
 
 ## 가져오기부터 재생까지, 세 단계
 
@@ -68,6 +68,12 @@ Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 </table>
 
 설정 스크린샷에는 앞의 세 외관이 보입니다. 옆으로 스크롤하면 보라색을 선택할 수 있습니다. 표지 보호 기능은 탐색 중 표지를 흐리게 표시합니다. 잠금 화면과 제어 센터에서는 표지를 흐리게 하고 트랙 제목을 대체 문구로 표시하며 작품·창작자 정보를 숨깁니다. 플레이어 안에서는 원본 표지를 보여 줍니다.
+
+### 스피커로 재생하기 전에 한 번 더 확인
+
+**스피커 재생 보호는 기본적으로 켜져 있으며** 설정에서 끌 수 있습니다. 내장 스피커에서는 일반 오디오, 동영상, 통화 모드와 시작 음성이 음소거 상태로 시작됩니다. 재생 중 시스템 음량을 조절하거나 **「이번 스피커 재생 허용」**을 누르거나 출력을 헤드폰으로 전환하면 해제됩니다. 일시 정지 후 다시 재생하거나 스피커로 돌아오면 보호가 다시 적용됩니다. Sumo만 음소거하며 시스템 음량은 바꾸지 않고, 일시 정지된 콘텐츠를 자동으로 재생하지도 않습니다. 음량이 최대·최소라 같은 방향의 키를 눌러도 변하지 않으면 허용 버튼을 사용할 수 있습니다.
+
+앱이 백그라운드에 있거나 비활성 상태일 때 중단이 끝나면 일시 정지를 유지합니다. 포그라운드에서는 이전에 같은 항목을 재생 중이었고, 사용자가 중간에 일시 정지하지 않았으며, 시스템이 허용한 경우에만 자동으로 재개합니다. [사용 방법](../../USAGE.md#speaker-protection-translations)
 
 ### 폴더 하나도 원하는 작품 단위로
 
@@ -129,13 +135,13 @@ Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 
 현재 App Store가 아닌 자신의 계정으로 서명하여 설치하는 방식입니다.
 
-1. 컴퓨터에서 [IPA를 다운로드](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)하고, Sideloadly 같은 서명 도구와 자신의 Apple 계정을 준비합니다.
+1. 컴퓨터에서 [IPA를 다운로드](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)하고, Sideloadly 같은 서명 도구와 자신의 Apple 계정을 준비합니다.
 2. iPhone 또는 iPad를 케이블로 연결하고 [설치 안내](INSTALL.md)에 따라 서명·설치합니다.
 3. 시스템에서 요구하면 「설정 → 일반 → VPN 및 기기 관리」에서 개발자 계정을 신뢰하고, 안내에 따라 개발자 모드를 켭니다.
 
 업데이트나 서명 갱신 때는 같은 Apple 계정, 앱 식별자와 서명 설정으로 덮어씁니다. **기존 앱을 유지하고 먼저 삭제하지 마세요.** 서명 유효 기간, 갱신과 다른 설치 방법은 자세한 안내를 확인해 주세요.
 
-[다운로드 도움말](DOWNLOAD.md) · [설치·서명 갱신·업데이트](INSTALL.md) · [해당 버전 소스 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-source.zip) · [실제 검증 범위 — 중국어 간체](../../RELEASE_STATUS.md)
+[다운로드 도움말](DOWNLOAD.md) · [설치·서명 갱신·업데이트](INSTALL.md) · [해당 버전 소스 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [실제 검증 범위 — 중국어 간체](../../RELEASE_STATUS.md)
 
 ## 데이터와 콘텐츠는 내 기기에
 
@@ -173,4 +179,4 @@ Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 ---
 
 <p align="center"><strong>좋아하는 목소리를 Sumo에 담아 보세요.</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa">IPA 다운로드</a> · <a href="INSTALL.md">설치 안내</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">GitHub에서 Star</a></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">IPA 다운로드</a> · <a href="INSTALL.md">설치 안내</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">GitHub에서 Star</a></p>

@@ -38,6 +38,7 @@ final class SystemPictureInPictureController: NSObject, ObservableObject {
     private var bufferWidth = 0
     private var bufferHeight = 0
     private nonisolated let playbackSnapshot = PlaybackSnapshot()
+    private nonisolated let playbackCommands = AudioRemoteCommandGate()
 
     /// AVKit's synchronous playback queries need an answer even if delivered
     /// off-main. Keep just these immutable-identity/value reads behind a lock.
@@ -132,6 +133,7 @@ final class SystemPictureInPictureController: NSObject, ObservableObject {
         let configured = Session(kind: kind, controller: controller, frameProvider: frameProvider,
             onPlayback: onPlayback, onRestore: onRestore, onExternalStop: onExternalStop)
         session = configured
+        playbackCommands.transition(allowsAudio: true)
         playbackSnapshot.update(controllerID: ObjectIdentifier(controller), paused: false)
         isPaused = false
         errorMessage = nil
@@ -225,6 +227,12 @@ final class SystemPictureInPictureController: NSObject, ObservableObject {
         updatePausedState()
     }
 
+    /// Reject delegate work captured before a newer pause, route change or
+    /// interruption boundary. The next genuinely new PiP control remains usable.
+    func invalidatePendingPlaybackCommands() {
+        playbackCommands.transition(allowsAudio: session != nil)
+    }
+
     /// Refresh a static image after an appearance change, including while paused.
     func refreshFrame() { enqueueFrame(force: true) }
 
@@ -232,6 +240,7 @@ final class SystemPictureInPictureController: NSObject, ObservableObject {
         guard let session else { isPaused = false; return }
         let paused = session.inputPaused || (session.kind == .subtitles && session.subtitleFrozen)
         guard isPaused != paused else { return }
+        invalidatePendingPlaybackCommands()
         isPaused = paused
         playbackSnapshot.update(controllerID: ObjectIdentifier(session.controller), paused: paused)
         session.controller.invalidatePlaybackState()
@@ -271,6 +280,7 @@ final class SystemPictureInPictureController: NSObject, ObservableObject {
     }
 
     private func discardConfiguration() {
+        playbackCommands.transition(allowsAudio: false)
         frameTimer?.invalidate(); frameTimer = nil
         possibleObservation?.invalidate(); possibleObservation = nil
         if let session {
@@ -514,8 +524,10 @@ extension SystemPictureInPictureController: AVPictureInPictureControllerDelegate
 extension SystemPictureInPictureController: AVPictureInPictureSampleBufferPlaybackDelegate {
     nonisolated func pictureInPictureController(_ controller: AVPictureInPictureController, setPlaying playing: Bool) {
         let identity = ObjectIdentifier(controller)
+        let ticket = playbackCommands.capture()
         onMain { owner in
-            guard let session = owner.matchingSession(identity), owner.isActive,
+            guard owner.playbackCommands.accepts(ticket),
+                  let session = owner.matchingSession(identity), owner.isActive,
                   !session.programmaticStop, !session.returningInline, !session.restoring, !session.failedStart,
                   !session.externalStopDelivered, !owner.isStopping else { return }
             if session.kind == .subtitles {

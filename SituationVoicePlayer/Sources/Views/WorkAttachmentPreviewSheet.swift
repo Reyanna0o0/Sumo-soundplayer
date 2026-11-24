@@ -155,6 +155,9 @@ private struct WorkAttachmentVideoView: View {
                 if let player = controller.player {
                     WorkVideoPlayerView(player: player)
                     .accessibilityIdentifier("attachmentVideoPlayer")
+                    .safeAreaInset(edge: .bottom, spacing: 0) {
+                        SpeakerProtectionNotice().padding(.horizontal, 12)
+                    }
                 }
             }
         }

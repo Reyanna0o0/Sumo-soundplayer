@@ -5,6 +5,7 @@ struct MiniPlayerView: View {
     @EnvironmentObject private var player: PlayerController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var showQueue = false
+    @ObservedObject private var speakerProtection = SpeakerProtection.shared
     private let controlSize: CGFloat = 44
     private let endInset: CGFloat = 8
 
@@ -18,6 +19,14 @@ struct MiniPlayerView: View {
                         CoverImageView(path: player.currentCoverPath, cornerRadius: 5, maxPixels: 160)
                             .frame(width: 48, height: 36)
                             .frame(height: 38)
+                            .overlay(alignment: .bottomTrailing) {
+                                if speakerProtection.isMuted && player.isPlaying {
+                                    Image(systemName: "speaker.slash.fill")
+                                        .font(.system(size: 10, weight: .semibold))
+                                        .padding(3).background(.regularMaterial, in: Circle())
+                                        .accessibilityLabel("外放保护已静音")
+                                }
+                            }
                         VStack(alignment: .leading, spacing: 2) {
                             MiniPlayerTitles(
                                 trackTitle: item.trackTitle,
