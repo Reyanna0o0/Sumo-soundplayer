@@ -733,8 +733,14 @@ struct LibraryView: View {
     // MARK: - 进度条
 
     /// 导入完成的提示文字（ViewBuilder 里不能写语句，所以拆到这里）
-    static func summaryText(works: Int, tracks: Int, subtitles: Int, unmatched: Int, pdfSummary: String) -> String {
-        var parts = [L10n.text("\(works) 个作品 / \(tracks) 首曲目")]
+    static func completionTitle(works: Int, rescannedWorks: Int) -> LocalizedStringKey {
+        if rescannedWorks == 0 { return "导入成功" }
+        return rescannedWorks == works ? "重新扫描完成" : "导入与重扫完成"
+    }
+
+    static func summaryText(works: Int, tracks: Int, subtitles: Int, unmatched: Int, pdfSummary: String, rescannedWorks: Int = 0) -> String {
+        var parts = [rescannedWorks == 0 ? L10n.text("\(works) 个作品 / \(tracks) 首曲目") :
+            L10n.text("新建 \(works - rescannedWorks) 个作品 · 重扫 \(rescannedWorks) 个作品 / \(tracks) 首曲目")]
         if subtitles > 0 { parts.append(L10n.text("字幕记录") + ": " + String(subtitles)) }
         if unmatched > 0 { parts.append(String(unmatched) + L10n.text(" 份字幕未收录")) }
         if !pdfSummary.isEmpty { parts.append(pdfSummary) }
@@ -748,9 +754,9 @@ struct LibraryView: View {
             banner(text: found == 0 ? L10n.text("正在扫描…") : L10n.text("已发现 \(found) 个文件，正在整理…"), spinner: true)
         case .saving(let current, let total):
             banner(text: L10n.text("正在写入数据库 \(current)/\(total)…"), spinner: true)
-        case .done(let works, let tracks, let subtitles, let unmatched, let pendingPDFs):
+        case .done(let works, let tracks, let subtitles, let unmatched, let pendingPDFs, let rescannedWorks):
             if works == 0 || unmatched > 0 || pendingPDFs > 0 {
-                banner(text: Self.summaryText(works: works, tracks: tracks, subtitles: subtitles, unmatched: unmatched, pdfSummary: store.scriptImportSummary),
+                banner(text: Self.summaryText(works: works, tracks: tracks, subtitles: subtitles, unmatched: unmatched, pdfSummary: store.scriptImportSummary, rescannedWorks: rescannedWorks),
                        spinner: false, tint: unmatched > 0 || pendingPDFs > 0 ? .orange : AppTheme.secondary)
             }
         case .failed(let message):

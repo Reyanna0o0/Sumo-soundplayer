@@ -55,7 +55,7 @@ struct WorkFavoritesView: View {
             .modifier(ScrollContentEdges.library)
         }
         .porcelainSheet(isPresented: $creating) {
-            CollectionNameEditor(title: L10n.text("新建收藏夹")) { _ = try store.createCollection(.favorites, name: $0) }
+            CollectionNameEditor(title: L10n.text("新建文件夹")) { _ = try store.createCollection(.favorites, name: $0) }
         }
         .modifier(CollectionManagementActions(kind: .favorites, editing: $editing,
             removing: $removing, message: $message))
@@ -200,7 +200,7 @@ struct WorkFavoritePicker: View {
                 selection = store.favoriteMemberships[workID] ?? [CollectionKind.favorites.defaultID]
             }
             .porcelainSheet(isPresented: $creating) {
-                CollectionNameEditor(title: L10n.text("新建收藏夹")) { name in
+                CollectionNameEditor(title: L10n.text("新建文件夹")) { name in
                     selection.insert(try store.createCollection(.favorites, name: name))
                 }
             }

@@ -497,8 +497,11 @@ struct PlayerOptionsRow: View {
                 .accessibilityIdentifier("callSubtitleStyle")
             } else if let onSleep {
                 Button(action: onSleep) {
-                    Label(player.sleepTimer == .off ? L10n.text("定时") : L10n.text("定时中"),
-                          systemImage: player.sleepTimer == .off ? "moon" : "moon.fill")
+                    Label {
+                        Text(player.sleepTimer == .off ? L10n.text("定时") : L10n.text("定时中"))
+                    } icon: {
+                        DecorativePlayerSymbol(name: player.sleepTimer == .off ? "moon" : "moon.fill")
+                    }
                 }
                 .foregroundStyle(player.sleepTimer == .off ? AnyShapeStyle(.primary) : AnyShapeStyle(.tint))
                 .disabled(player.currentItem == nil)
@@ -606,5 +609,26 @@ private struct AddTrackToPlaylistButton: View {
         .accessibilityLabel("加入播放列表")
         .accessibilityIdentifier("saveWholeTrack")
         .porcelainSheet(item: $pending) { PlaylistDestinationSheet(item: $0, onAdded: onAdded) }
+    }
+}
+
+/// Pure drawing: no semantic SF Symbol image is added to the accessibility tree.
+/// The containing button supplies its name, value and action.
+struct DecorativePlayerSymbol: View {
+    let name: String
+    @ScaledMetric(relativeTo: .subheadline) private var side: CGFloat = 18
+
+    var body: some View {
+        Canvas { context, size in
+            var symbol = context.resolve(Image(systemName: name))
+            symbol.shading = .foreground
+            let ratio = min(size.width / max(symbol.size.width, 1), size.height / max(symbol.size.height, 1))
+            let width = symbol.size.width * ratio, height = symbol.size.height * ratio
+            context.draw(symbol, in: CGRect(x: (size.width - width) / 2, y: (size.height - height) / 2,
+                                           width: width, height: height))
+        }
+        .frame(width: side, height: side)
+        .accessibilityHidden(true)
+        .allowsHitTesting(false)
     }
 }

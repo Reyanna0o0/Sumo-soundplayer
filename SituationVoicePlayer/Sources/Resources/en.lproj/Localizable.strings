@@ -150,6 +150,7 @@
 "仅译文" = "Translation Only";
 "今天" = "Today";
 "今年" = "This Year";
+"仍然导入" = "Import Anyway";
 "从" = "From";
 "从 %@ 开始，到结尾点「标记终点」确认时间" = "Starting at %@. Tap “Mark End” at the end to confirm the time.";
 "从 Scriptbin 链接导入" = "Import from a Scriptbin Link";
@@ -243,6 +244,7 @@
 "关闭时显示暂停、继续和我的头像；开启后显示麦克风、打开摄像头等通话名称。实际功能仍是播放控制和显示已选图片。" = "When off, buttons say Pause, Resume, and My Avatar. When on, they use call labels such as Microphone and Turn On Camera. They still control playback and display selected images.";
 "关闭浮窗不暂停音频；浮窗播放/暂停只控制字幕显示。" = "Closing the window does not pause audio. Its play/pause button controls only the subtitle display.";
 "其他文档" = "Other Documents";
+"其他来源或本批次中有同名作品。继续导入会保留同名，不会合并或覆盖已有作品。" = "Works from another source or in this batch share the same title. Continuing keeps these titles without merging or overwriting existing works.";
 "其它" = "Other";
 "内嵌字幕" = "Embedded Subtitles";
 "内核自检" = "Core Self-Test";
@@ -422,6 +424,7 @@
 "字幕移到底部" = "Move Subtitles to Bottom";
 "字幕记录" = "Subtitle records";
 "字段被截断" = "A field is truncated";
+"存在同名作品" = "Matching Work Titles";
 "存在重复轨道号，请选择对应曲目" = "Duplicate track numbers found. Choose the matching track.";
 "完全模拟通话按键名称" = "Use Call-Style Button Names";
 "完成" = "Done";
@@ -435,6 +438,7 @@
 "导入" = "Import";
 "导入 Scriptbin" = "Import Scriptbin";
 "导入 Soundgasm" = "Import Soundgasm";
+"导入与重扫完成" = "Import & Rescan Complete";
 "导入个人音声时选择这位创作者，或在作品资料中修改归属。" = "Select this creator when importing Personal Audio, or change the creator in the work details.";
 "导入作品" = "Import Works";
 "导入作品台本" = "Import Work Scripts";
@@ -717,12 +721,14 @@
 "新增 " = "Added ";
 "新增空间" = "Additional Storage";
 "新增：{#0}" = "Added: {#0}";
+"新建 {#0} 个作品 · 重扫 {#1} 个作品 / {#2} 首曲目" = "New works: {#0} · Rescanned works: {#1} / Tracks: {#2}";
 "新建分组" = "New Group";
 "新建分组…" = "New Group…";
 "新建创作者" = "New Creator";
 "新建摘选集" = "New Clip Collection";
 "新建播放列表" = "New Playlist";
 "新建收藏夹" = "New Favorites Folder";
+"新建文件夹" = "New Folder";
 "新文件" = "New File";
 "新音频副本无法读取或已发生变化，请重新选择。" = "The new audio copy is unreadable or has changed. Please select again.";
 "新音频名称" = "New Audio Name";
@@ -1313,6 +1319,7 @@
 "重新关联音频" = "Relink Audio";
 "重新加载网页" = "Reload Page";
 "重新匹配作品内的 PDF 台本" = "Rematch PDF Scripts in This Work";
+"重新扫描完成" = "Rescan Complete";
 "重新选择…" = "Choose Again…";
 "重试" = "Retry";
 "铺满并居中" = "Fill and Center";

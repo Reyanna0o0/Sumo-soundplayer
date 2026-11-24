@@ -10,7 +10,7 @@ final class LibraryStore: ObservableObject {
         case idle
         case scanning(found: Int)
         case saving(current: Int, total: Int)
-        case done(works: Int, tracks: Int, subtitles: Int, unmatchedSubtitles: Int, pendingPDFs: Int)
+        case done(works: Int, tracks: Int, subtitles: Int, unmatchedSubtitles: Int, pendingPDFs: Int, rescannedWorks: Int = 0)
         case failed(String)
 
         var isBusy: Bool {
@@ -31,6 +31,7 @@ final class LibraryStore: ObservableObject {
         var coverCount = 0
         var subtitleFiles: [String] = []
         var unmatchedFiles: [String] = []
+        var conflictingTitles: [String] = []
 
         mutating func describeFiles(in works: [ScannedWork]) {
             coverCount = works.filter { $0.coverRelativePath != nil }.count
@@ -1029,16 +1030,7 @@ final class LibraryStore: ObservableObject {
             )
 
             let knownSources = try repository.sources(includeDisabled: true)
-            let canonicalRoot = url.resolvingSymlinksInPath().standardizedFileURL.path
-            let existing = knownSources.first {
-                $0.rootPath.map { URL(fileURLWithPath: $0).resolvingSymlinksInPath().standardizedFileURL.path } == canonicalRoot
-            }
-                ?? knownSources.first { source in
-                    guard let bookmark = source.bookmark,
-                          let restored = try? FolderImporter.resolve(bookmark: bookmark) else { return false }
-                    defer { if restored.needsStop { restored.url.stopAccessingSecurityScopedResource() } }
-                    return restored.url.resolvingSymlinksInPath().standardizedFileURL.path == canonicalRoot
-                }
+            let existing = existingFolderSource(for: url, in: knownSources)
             // Validate the whole source before any source/work/attachment write.
             // A renamed or temporarily offline file must never trigger cascade deletion.
             let attachments = discoveredAttachments(files: files, works: scannedWorks, grouping: grouping, sourceID: existing?.id)
@@ -1069,6 +1061,7 @@ final class LibraryStore: ObservableObject {
             }
             phase = .saving(current: 0, total: planned.count)
             var savedTracks = 0
+            var rescannedWorks = 0
             var savedSubtitles = 0
             var pdfTrackIDs: Set<Int64> = []
             var sidecarTrackIDs: Set<Int64> = []
@@ -1082,6 +1075,11 @@ final class LibraryStore: ObservableObject {
             }
 
             for (index, scannedWork) in planned.enumerated() {
+                let identity = LibraryRepository.storageKey(relativePath: scannedWork.folderRelativePath,
+                                                            absolutePath: scannedWork.folderAbsolutePath)
+                if try repository.workID(sourceID: sourceID, folderRelativePath: identity) != nil {
+                    rescannedWorks += 1
+                }
                 let workID = try repository.upsertWork(
                     WorkRecord(
                         title: scannedWork.title,
@@ -1182,7 +1180,8 @@ final class LibraryStore: ObservableObject {
                 tracks: savedTracks,
                 subtitles: savedSubtitles,
                 unmatchedSubtitles: unmatchedSubtitles,
-                pendingPDFs: reviewPDFs.count
+                pendingPDFs: reviewPDFs.count,
+                rescannedWorks: rescannedWorks
             )
 
             Task { await self.probeMissingDurations(sourceID: sourceID) }
@@ -1322,7 +1321,19 @@ final class LibraryStore: ObservableObject {
     /// 计算"如果按这个模式导入，会得到什么"，用于导入前预览。
     ///
     /// 枚举可能比较慢（大目录几万个文件），所以放到后台线程。
-    func makePreview(url: URL, grouping: ScanOptions.Grouping) async -> ImportPreview {
+    private func existingFolderSource(for url: URL, in sources: [LibrarySource]) -> LibrarySource? {
+        let canonicalRoot = url.resolvingSymlinksInPath().standardizedFileURL.path
+        return sources.first {
+            $0.rootPath.map { URL(fileURLWithPath: $0).resolvingSymlinksInPath().standardizedFileURL.path } == canonicalRoot
+        } ?? sources.first { source in
+            guard let bookmark = source.bookmark,
+                  let restored = try? FolderImporter.resolve(bookmark: bookmark) else { return false }
+            defer { if restored.needsStop { restored.url.stopAccessingSecurityScopedResource() } }
+            return restored.url.resolvingSymlinksInPath().standardizedFileURL.path == canonicalRoot
+        }
+    }
+
+    func makePreview(url: URL, grouping: ScanOptions.Grouping, libraryKind: MediaLibraryKind? = nil) async -> ImportPreview {
         let rootPath = url.path
         let files: [ScannedFile]
         do {
@@ -1359,6 +1370,31 @@ final class LibraryStore: ObservableObject {
         let titles = planned.prefix(5).map { $0.title }
         var preview = ImportPreview(workCount: planned.count, trackCount: trackCount, videoCount: videoCount, titles: titles)
         preview.describeFiles(in: planned)
+        if let libraryKind, let repository {
+            do {
+                let known = try repository.works(libraryKind: libraryKind)
+                let source = existingFolderSource(for: url, in: try repository.sources(includeDisabled: true))
+                let sourceWorks = try source.map { try repository.works(sourceID: $0.id) } ?? []
+                let existingPaths = Set(sourceWorks.map(\.folderRelativePath))
+                let excluded = try source.map { try repository.excludedWorkPaths(sourceID: $0.id) } ?? []
+                var names = Set(known.map(\.title))
+                var conflicts = Set<String>()
+                for work in planned {
+                    let identity = LibraryRepository.storageKey(relativePath: work.folderRelativePath, absolutePath: work.folderAbsolutePath)
+                    // Rescanning the same work is not the creation of a namesake.
+                    guard !existingPaths.contains(identity), grouping == .singleWork || !excluded.contains(identity) else { continue }
+                    let audio = work.tracks.filter { !$0.isVideo }
+                    let title: String
+                    if libraryKind == .personal, audio.count == 1, let track = audio.first {
+                        title = track.title.isEmpty ? (track.fileName as NSString).deletingPathExtension : track.title
+                    } else { title = work.title }
+                    if !names.insert(title).inserted { conflicts.insert(title) }
+                }
+                preview.conflictingTitles = conflicts.sorted()
+            } catch {
+                preview.errorMessage = InterfaceLocalization.text("读取媒体库失败：\(error.localizedDescription)")
+            }
+        }
         return preview
     }
 

@@ -56,10 +56,10 @@ struct RootView: View {
         .tint(AppTheme.isPurple ? AppTheme.purplePlaybackIndicator : AppTheme.optionalTint)
         .preferredColorScheme(AppearanceSelection.shared.palette.preferredColorScheme)
         .overlay {
-            if selection == .library, case .done(let works, let tracks, let subtitles, 0, 0) = store.phase, works > 0 {
+            if selection == .library, case .done(let works, let tracks, let subtitles, 0, 0, let rescannedWorks) = store.phase, works > 0 {
                 let detail = LibraryView.summaryText(works: works, tracks: tracks, subtitles: subtitles,
-                                                     unmatched: 0, pdfSummary: store.scriptImportSummary)
-                ImportSuccessToast(detail: detail)
+                                                     unmatched: 0, pdfSummary: store.scriptImportSummary, rescannedWorks: rescannedWorks)
+                ImportSuccessToast(title: LibraryView.completionTitle(works: works, rescannedWorks: rescannedWorks), detail: detail)
                     .accessibilityIdentifier("libraryImportSuccess")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .ignoresSafeArea()

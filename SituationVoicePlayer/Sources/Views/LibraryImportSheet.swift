@@ -7,6 +7,7 @@ struct LibraryImportSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var duplicateZIP = false
     @State private var importIndependentCopy = false
+    @State private var showNameConflictConfirmation = false
     private enum InputKind: String, CaseIterable { case audio = "音频文件", video = "视频文件", folder = "文件夹", zip = "ZIP 压缩包" }
     @State private var library: MediaLibraryKind
     @State private var kind: InputKind
@@ -56,6 +57,13 @@ struct LibraryImportSheet: View {
                     Section {
                         Text("新副本会添加编号；旧作品、字幕编辑和统计保留在原作品中，不会转移或覆盖。会额外占用存储空间。")
                             .font(.footnote).foregroundStyle(AppTheme.secondaryText)
+                    }
+                }
+                if let titles = preview?.conflictingTitles, !titles.isEmpty, !loadingPreview {
+                    Section("存在同名作品") {
+                        Text("其他来源或本批次中有同名作品。继续导入会保留同名，不会合并或覆盖已有作品。")
+                            .font(.footnote)
+                        ForEach(titles, id: \.self) { Text($0).font(.subheadline) }
                     }
                 }
                 Section {
@@ -172,6 +180,12 @@ struct LibraryImportSheet: View {
                     }
             }
             .interactiveDismissDisabled(busy)
+            .alert("存在同名作品", isPresented: $showNameConflictConfirmation) {
+                Button("取消", role: .cancel) {}
+                Button("仍然导入") { submit(confirmedNames: true) }
+            } message: {
+                Text("其他来源或本批次中有同名作品。继续导入会保留同名，不会合并或覆盖已有作品。")
+            }
             .fileImporter(isPresented: $showPicker, allowedContentTypes: allowedTypes,
                           allowsMultipleSelection: kind == .audio || kind == .video) { result in
                 switch result {
@@ -198,7 +212,7 @@ struct LibraryImportSheet: View {
         }.disabled(importing && kind == .folder)
     }
     private var importButton: some View {
-        Button(action: submit) {
+        Button { submit() } label: {
             Text("确认导入").fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, 12).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
         }.disabled(!ready).accessibilityIdentifier("libraryImportConfirm")
@@ -207,7 +221,7 @@ struct LibraryImportSheet: View {
     private func resetSelection() {
         operation?.cancel(); operation = nil
         try? archive?.dispose(); archive = nil
-        duplicateZIP = false; importIndependentCopy = false
+        duplicateZIP = false; importIndependentCopy = false; showNameConflictConfirmation = false
         selectedURLs = []; preview = nil; errorText = nil; preparing = false
         revision = UUID()
     }
@@ -238,7 +252,7 @@ struct LibraryImportSheet: View {
     private func refreshPreview() async {
         guard !selectedURLs.isEmpty, !preparing else { return }
         loadingPreview = true
-        duplicateZIP = false; importIndependentCopy = false
+        duplicateZIP = false; importIndependentCopy = false; showNameConflictConfirmation = false
         let result: LibraryStore.ImportPreview
         switch kind {
         case .audio:
@@ -248,7 +262,7 @@ struct LibraryImportSheet: View {
             result = .init(workCount: selectedURLs.count, trackCount: 0, videoCount: selectedURLs.count,
                            titles: selectedURLs.prefix(8).map { $0.deletingPathExtension().lastPathComponent })
         case .folder:
-            result = await store.makePreview(url: selectedURLs[0], grouping: grouping)
+            result = await store.makePreview(url: selectedURLs[0], grouping: grouping, libraryKind: library)
         case .zip:
             guard let archive else { loadingPreview = false; return }
             duplicateZIP = (try? store.hasImportedZIP(archive.archiveSHA256, library: library)) ?? false
@@ -258,8 +272,12 @@ struct LibraryImportSheet: View {
         preview = result; loadingPreview = false
     }
 
-    private func submit() {
+    private func submit(confirmedNames: Bool = false) {
         guard ready else { return }
+        if !confirmedNames, kind == .folder, preview?.conflictingTitles.isEmpty == false {
+            showNameConflictConfirmation = true
+            return
+        }
         importing = true; errorText = nil; progressText = L10n.text("正在导入…")
         operation = Task {
             do {
@@ -280,7 +298,7 @@ struct LibraryImportSheet: View {
                 importing = false
                 if kind == .zip {
                     try? archive?.dispose(); archive = nil
-                    duplicateZIP = false; importIndependentCopy = false
+                    duplicateZIP = false; importIndependentCopy = false; showNameConflictConfirmation = false
         selectedURLs = []; preview = nil; revision = UUID()
                 }
                 if !(error is CancellationError) {
