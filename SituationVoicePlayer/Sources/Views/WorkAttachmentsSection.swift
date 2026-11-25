@@ -51,11 +51,12 @@ struct WorkAttachmentRowView: View {
         .contextMenu {
             Button("从作品移除", systemImage: "trash", role: .destructive) { confirmRemoval = true }
         }
-        .confirmationDialog("从作品移除「\(file.fileName)」？", isPresented: $confirmRemoval, titleVisibility: .visible) {
+        .alert("从作品移除「\(file.fileName)」？", isPresented: $confirmRemoval) {
             Button("移除附件", role: .destructive) {
                 do { try store.removeAttachment(record, in: work) }
                 catch { errorMessage = error.localizedDescription }
             }
+            Button("取消", role: .cancel) {}
         } message: { Text("保留文件 App 中的原文件。") }
         .sheet(item: $preview, onDismiss: {
             videoPreview?.close()

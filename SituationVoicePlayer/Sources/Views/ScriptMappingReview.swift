@@ -133,7 +133,7 @@ struct ScriptMappingReview: View {
                 .accessibilityIdentifier("importScript")
             }
         }
-        .confirmationDialog("还有 \(pending) 项未选音轨", isPresented: $confirmPartial, titleVisibility: .visible) {
+        .alert("还有 \(pending) 项未选音轨", isPresented: $confirmPartial) {
             Button("仅导入已选的 \(selectedCount) 轨") { commit() }
             Button("继续配对", role: .cancel) {}
         }

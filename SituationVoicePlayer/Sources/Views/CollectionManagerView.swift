@@ -19,9 +19,9 @@ struct CollectionManagementActions: ViewModifier {
                     try store.renameCollection(kind, id: group.id, name: name)
                 }
             }
-            .confirmationDialog("删除「\(removing?.name ?? "")」？",
+            .alert("删除「\(removing?.name ?? "")」？",
                 isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } }),
-                titleVisibility: .visible, presenting: removing) { group in
+                presenting: removing) { group in
                     Button("移入「\(defaultName)」并删除分类", role: .destructive) {
                         do { try store.deleteCollection(kind, id: group.id) }
                         catch { message = error.localizedDescription }

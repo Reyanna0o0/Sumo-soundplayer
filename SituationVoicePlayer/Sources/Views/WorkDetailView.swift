@@ -120,9 +120,9 @@ struct WorkDetailView: View {
                     .padding(24).background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
             }
         }
-        .confirmationDialog("从作品中移除这条音轨？", isPresented: Binding(
+        .alert("从作品中移除这条音轨？", isPresented: Binding(
             get: { pendingRemoval != nil }, set: { if !$0 { pendingRemoval = nil } }
-        ), titleVisibility: .visible, presenting: pendingRemoval) { track in
+        ), presenting: pendingRemoval) { track in
             Button("移除音轨", role: .destructive) {
                 do { try store.removeTrack(track, in: currentWork); reloadSections() }
                 catch { assetMessage = error.localizedDescription }

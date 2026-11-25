@@ -65,13 +65,14 @@ struct TrackOrganizerSheet: View {
             .alert("没有保存这次调整", isPresented: Binding(
                 get: { errorMessage != nil }, set: { if !$0 { errorMessage = nil } }
             )) { Button("好") { errorMessage = nil } } message: { Text(errorMessage ?? "") }
-            .confirmationDialog("移除这个分组？", isPresented: Binding(
+            .alert("移除这个分组？", isPresented: Binding(
                 get: { deletingCategory != nil }, set: { if !$0 { deletingCategory = nil } }
-            ), titleVisibility: .visible, presenting: deletingCategory) { category in
+            ), presenting: deletingCategory) { category in
                 Button("移除分组", role: .destructive) {
                     store.removeCategory(for: work, key: category.key)
                     refresh()
                 }
+                Button("取消", role: .cancel) {}
             } message: { _ in Text("音轨回到原分类，附件回到作品附件。") }
             .onAppear { reload() }
             .onChange(of: store.contentRevision) { dragSession.invalidate(); reload() }
