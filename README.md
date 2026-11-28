@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">厮磨</h1>
-<p align="center"><strong>把喜欢的音声作品，整理成一座属于自己的媒体库。</strong></p>
+<p align="center"><strong>把喜欢的音声作品，整理成一座属于自己的媒体库</strong></p>
 <p align="center">个人独立开发 · 全部功能免费 </p>
 
 <p align="center">
