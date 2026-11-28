@@ -1,21 +1,21 @@
 <p align="center">
-  <img src="../../images/showcase/app-icon.png" width="96" alt="Sumo 앱 아이콘">
+  <img src="../../images/showcase/app-icon.png" width="96" alt="Simo 앱 아이콘">
 </p>
 
-<h1 align="center">Sumo · 厮磨</h1>
+<h1 align="center">Simo · 厮磨</h1>
 <p align="center"><strong>좋아하는 목소리를, 나만의 라이브러리로.</strong></p>
 <p align="center">개인 개발 · 개인의 비상업적 이용은 모든 기능 무료 · 소스 공개</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>IPA 다운로드</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>IPA 다운로드</strong></a> ·
   <a href="INSTALL.md"><strong>설치 방법</strong></a> ·
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>릴리스 소식</strong></a>
+  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>릴리스 소식</strong></a>
 </p>
 
 <p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 이상</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <a href="../en/README.md">English</a> · <a href="../ja/README.md">日本語</a> · <strong>한국어</strong></p>
 
-Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오디오 플레이어입니다. 개인 오디오 작품과 서클 작품을 별도 라이브러리로 관리하면서 오디오, 동영상, 표지, 대본과 청취 기록을 한곳에 모읍니다. 앱 계정을 만들 필요 없이, 자신의 컬렉션을 가져와 바로 들을 수 있습니다. 중국어 간체·번체, 영어, 일본어, 한국어를 지원합니다.
+Simo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오디오 플레이어입니다. 개인 오디오 작품과 서클 작품을 별도 라이브러리로 관리하면서 오디오, 동영상, 표지, 대본과 청취 기록을 한곳에 모읍니다. 앱 계정을 만들 필요 없이, 자신의 컬렉션을 가져와 바로 들을 수 있습니다. 중국어 간체·번체, 영어, 일본어, 한국어를 지원합니다.
 
 > **v0.1.4 · build 37: 스피커 재생 보호와 백그라운드 재개 조건 개선.** 내장 스피커는 기본적으로 음소거됩니다. 재생 중 시스템 음량을 조절하거나 출력을 헤드폰으로 전환하면 해제됩니다. 백그라운드에서 다른 소리로 중단되면 직접 재개할 때까지 일시 정지됩니다. 원래 Apple 계정과 서명 설정으로 덮어쓰고 **기존 앱을 먼저 삭제하지 마세요.** [변경 내용 — 중국어 간체](../../RELEASE_BUILD37.md)
 
@@ -71,7 +71,7 @@ Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 
 ### 스피커로 재생하기 전에 한 번 더 확인
 
-**스피커 재생 보호는 기본적으로 켜져 있으며** 설정에서 끌 수 있습니다. 내장 스피커에서는 일반 오디오, 동영상, 통화 모드와 시작 음성이 음소거 상태로 시작됩니다. 재생 중 시스템 음량을 조절하거나 **「이번 스피커 재생 허용」**을 누르거나 출력을 헤드폰으로 전환하면 해제됩니다. 일시 정지 후 다시 재생하거나 스피커로 돌아오면 보호가 다시 적용됩니다. Sumo만 음소거하며 시스템 음량은 바꾸지 않고, 일시 정지된 콘텐츠를 자동으로 재생하지도 않습니다. 음량이 최대·최소라 같은 방향의 키를 눌러도 변하지 않으면 허용 버튼을 사용할 수 있습니다.
+**스피커 재생 보호는 기본적으로 켜져 있으며** 설정에서 끌 수 있습니다. 내장 스피커에서는 일반 오디오, 동영상, 통화 모드와 시작 음성이 음소거 상태로 시작됩니다. 재생 중 시스템 음량을 조절하거나 **「이번 스피커 재생 허용」**을 누르거나 출력을 헤드폰으로 전환하면 해제됩니다. 일시 정지 후 다시 재생하거나 스피커로 돌아오면 보호가 다시 적용됩니다. Simo만 음소거하며 시스템 음량은 바꾸지 않고, 일시 정지된 콘텐츠를 자동으로 재생하지도 않습니다. 음량이 최대·최소라 같은 방향의 키를 눌러도 변하지 않으면 허용 버튼을 사용할 수 있습니다.
 
 앱이 백그라운드에 있거나 비활성 상태일 때 중단이 끝나면 일시 정지를 유지합니다. 포그라운드에서는 이전에 같은 항목을 재생 중이었고, 사용자가 중간에 일시 정지하지 않았으며, 시스템이 허용한 경우에만 자동으로 재개합니다. [사용 방법](../../USAGE.md#speaker-protection-translations)
 
@@ -108,7 +108,7 @@ Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 
 파일 앱에서 대본을 선택하거나 **Scriptbin** 페이지를 열어 본문을 추출·확인하고, 작품에 포함된 PDF 대본을 트랙에 다시 맞출 수 있습니다. SRT, LRC처럼 시간 정보가 있는 자막은 재생을 따라갑니다. 시간 정보가 없는 대본은 그대로 읽거나 문장별로 직접 시간을 지정할 수 있으며, 편집 내용은 새 버전으로 저장됩니다.
 
-원문과 번역문을 모두 가져오면 짝을 맞춰 위아래로 표시할 수 있습니다. **Sumo에는 자동 번역 기능이 없습니다. 원문과 번역문은 사용자가 준비합니다.** [대본·자막·타이밍 안내 — 중국어 간체](../../USAGE.md#字幕与台本)
+원문과 번역문을 모두 가져오면 짝을 맞춰 위아래로 표시할 수 있습니다. **Simo에는 자동 번역 기능이 없습니다. 원문과 번역문은 사용자가 준비합니다.** [대본·자막·타이밍 안내 — 중국어 간체](../../USAGE.md#字幕与台本)
 
 <details>
 <summary>대본 가져오기 메뉴 보기</summary>
@@ -129,19 +129,19 @@ Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 
 **[Stripe로 후원하기](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00) · [Afdian으로 후원하기](https://afdian.com/a/Reyanna0o0)**
 
-프로젝트에는 자체 **Sumo Sound Player 비상업적 소스 라이선스 1.0**이 적용됩니다. MIT, GPL 또는 OSI 승인 오픈소스 라이선스가 아닙니다. 약관에 따라 비상업적 이용·수정·무료 공유가 가능합니다. 공유할 때는 라이선스, 저작자 표시와 프로젝트 링크를 유지해야 하며, 수정본에는 완전한 대응 소스를 제공하고 비공식 버전임을 표시해야 합니다. **모든 상업적 이용에는 Reyanna0o0의 사전 서면 동의가 필요합니다.** [라이선스 원문 — 중국어 원문이 유효](../../../LICENSE) · [상업적 이용 안내 — 중국어 간체](../../COMMERCIAL_USE.md)
+프로젝트에는 자체 **Simo Sound Player 비상업적 소스 라이선스 1.0**이 적용됩니다. MIT, GPL 또는 OSI 승인 오픈소스 라이선스가 아닙니다. 약관에 따라 비상업적 이용·수정·무료 공유가 가능합니다. 공유할 때는 라이선스, 저작자 표시와 프로젝트 링크를 유지해야 하며, 수정본에는 완전한 대응 소스를 제공하고 비공식 버전임을 표시해야 합니다. **모든 상업적 이용에는 Reyanna0o0의 사전 서면 동의가 필요합니다.** [라이선스 원문 — 중국어 원문이 유효](../../../LICENSE) · [상업적 이용 안내 — 중국어 간체](../../COMMERCIAL_USE.md)
 
 ## 설치와 업데이트
 
 현재 App Store가 아닌 자신의 계정으로 서명하여 설치하는 방식입니다.
 
-1. 컴퓨터에서 [IPA를 다운로드](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)하고, Sideloadly 같은 서명 도구와 자신의 Apple 계정을 준비합니다.
+1. 컴퓨터에서 [IPA를 다운로드](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)하고, Sideloadly 같은 서명 도구와 자신의 Apple 계정을 준비합니다.
 2. iPhone 또는 iPad를 케이블로 연결하고 [설치 안내](INSTALL.md)에 따라 서명·설치합니다.
 3. 시스템에서 요구하면 「설정 → 일반 → VPN 및 기기 관리」에서 개발자 계정을 신뢰하고, 안내에 따라 개발자 모드를 켭니다.
 
 업데이트나 서명 갱신 때는 같은 Apple 계정, 앱 식별자와 서명 설정으로 덮어씁니다. **기존 앱을 유지하고 먼저 삭제하지 마세요.** 서명 유효 기간, 갱신과 다른 설치 방법은 자세한 안내를 확인해 주세요.
 
-[다운로드 도움말](DOWNLOAD.md) · [설치·서명 갱신·업데이트](INSTALL.md) · [해당 버전 소스 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [실제 검증 범위 — 중국어 간체](../../RELEASE_STATUS.md)
+[다운로드 도움말](DOWNLOAD.md) · [설치·서명 갱신·업데이트](INSTALL.md) · [해당 버전 소스 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [실제 검증 범위 — 중국어 간체](../../RELEASE_STATUS.md)
 
 ## 데이터와 콘텐츠는 내 기기에
 
@@ -151,7 +151,7 @@ Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 
 ## 피드백과 앞으로의 계획
 
-버그를 발견하거나 기능·화면에 대한 제안이 있다면 [GitHub Issues](https://github.com/Reyanna0o0/Sumo-soundplayer/issues)에 남겨 주세요. 기기 OS, 앱 버전과 재현 방법을 적고, 스크린샷의 개인 작품명이나 계정 정보는 가려 주세요. [버그 신고](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)
+버그를 발견하거나 기능·화면에 대한 제안이 있다면 [GitHub Issues](https://github.com/Reyanna0o0/Simo-soundplayer/issues)에 남겨 주세요. 기기 OS, 앱 버전과 재현 방법을 적고, 스크린샷의 개인 작품명이나 계정 정보는 가려 주세요. [버그 신고](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml)
 
 현재는 iOS / iPadOS 버전을 제공합니다. 후속 업데이트와 Android 지원 계획은 GitHub에 기록하지만, **Android 버전의 출시 일정은 아직 정해지지 않았습니다**. **Star**로 프로젝트를 저장하고, 업데이트 알림이 필요하면 **Watch → Custom → Releases**에서 릴리스를 구독할 수 있습니다.
 
@@ -172,11 +172,11 @@ Sumo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 
 타사 구성요소에는 각각의 라이선스가 적용되며, 해당 LGPL의 수정·디버깅·교체·재링크 권리는 유지됩니다. LGPL 구성요소가 포함된 설치 파일을 배포할 때는 대응 소스와 재빌드 자료도 함께 제공해야 합니다.
 
-[시각 자료 안내 — 중국어 간체](../../ASSETS.md) · [타사 자료 — 중국어 간체](../../THIRD_PARTY.md) · [상업적 이용 허가 신청](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [개발자 이메일](mailto:sumo-soundplayer@outlook.com)
+[시각 자료 안내 — 중국어 간체](../../ASSETS.md) · [타사 자료 — 중국어 간체](../../THIRD_PARTY.md) · [상업적 이용 허가 신청](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=commercial-license.yml) · [개발자 이메일](mailto:sumo-soundplayer@outlook.com)
 
 </details>
 
 ---
 
-<p align="center"><strong>좋아하는 목소리를 Sumo에 담아 보세요.</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">IPA 다운로드</a> · <a href="INSTALL.md">설치 안내</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">GitHub에서 Star</a></p>
+<p align="center"><strong>좋아하는 목소리를 Simo에 담아 보세요.</strong></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">IPA 다운로드</a> · <a href="INSTALL.md">설치 안내</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">GitHub에서 Star</a></p>

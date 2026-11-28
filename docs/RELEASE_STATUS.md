@@ -1,10 +1,14 @@
 # 发布与验证状态
 
+## 换机验收边界（2026-11-28 更新）
+
+不能将 iPhone 系统整机迁移视为厮磨已通过的迁移方案。侧载签名、App 数据容器、原始媒体及文件访问授权需分别检查；整库备份／恢复尚未验收。原“请使用系统整机迁移”的推荐已改为明确限制与排查步骤。[换机与无法启动排查](MIGRATION.md)
+
 记录更新：2026-11-24。本记录对应 v0.1.4（build 37），目标 iOS / iPadOS 18 起。此次是独立新版本，之前 v0.1.3 / build 36 的重建与附件替换记录保留为历史。
 
 这是从正式源码整理的独立发布副本。移除了个人签名 Team，默认应用标识改为 `io.github.gloriaguuuu.simo`；在 build 32 基线上继续完善。用户媒体、数据库、设备备份、QA 目录、证书与旧构建产物不在仓库中。
 
-GitHub 当前账户与仓库为 [Reyanna0o0/Sumo-soundplayer](https://github.com/Reyanna0o0/Sumo-soundplayer)。账户及仓库改名后，应用 Bundle Identifier 和相关内部类型标识沿用已验证的值，以保持现有覆盖更新路径；它们不需要与 GitHub 用户名相同。
+GitHub 当前账户与仓库为 [Reyanna0o0/Simo-soundplayer](https://github.com/Reyanna0o0/Simo-soundplayer)。账户及仓库改名后，应用 Bundle Identifier 和相关内部类型标识沿用已验证的值，以保持现有覆盖更新路径；它们不需要与 GitHub 用户名相同。
 
 ## build 37：后台恢复播放修复与外放保护
 
@@ -133,20 +137,20 @@ Soundgasm 路径与清理结论来自源码核对：临时下载导入后清理�
 ## v0.1.2 发行材料
 
 - build 35 已由 Pre-release 转为正式 Latest，继续提供原有未签名 IPA、构建信息、对应源码 ZIP、许可和 SHA-256 清单；精确源码提交与校验值随附件记录。
-- [v0.1.2 版本页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.2)说明头像裁剪的使用方法及验证范围。继续使用原签名账户与应用标识覆盖安装，保留原 App。
+- [v0.1.2 版本页](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.2)说明头像裁剪的使用方法及验证范围。继续使用原签名账户与应用标识覆盖安装，保留原 App。
 - 六个 build 35 附件不替换，源码 tag 仍为最初发布的提交。下载说明随后在默认分支更新；首页、下载帮助和发行说明均提供 IPA 直接下载链接。build 33 和 build 34 仍保留在历史版本中。
 
 ## v0.1.1 发行材料
 
 - 新增 build 34 未签名 IPA、构建信息、对应源码 ZIP、许可和 SHA-256 清单；构建提交与精确校验值见附件。
-- [v0.1.1 版本页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.1)列明修补及验证边界。build 34 尚未由用户在手机上验收；沿用原签名账户与应用标识覆盖安装，保留原 App。
+- [v0.1.1 版本页](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.1)列明修补及验证边界。build 34 尚未由用户在手机上验收；沿用原签名账户与应用标识覆盖安装，保留原 App。
 - build 34 仍标记为 Pre-release，历史附件不变；Latest 现为 v0.1.2 / build 35。
 
 ## v0.1.0 发行材料
 
 - 沿用已验收的 build 33 未签名 IPA，二进制构建源码提交为 `ed1f0640a1d16d8dc13a248636c8a25845193069`。
 - `v0.1.0` 发布提交额外包含已完成的许可、素材说明、联系入口、发布文档与问题模板，应用及构建源码与该二进制提交相同。
-- [公开版本页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.0)同时提供 IPA、原始构建信息、对应源码 ZIP、项目许可和校验清单；普通用户只需下载 IPA。源码包包括静态链接依赖的源码、适配与重新链接方法。
+- [公开版本页](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.0)同时提供 IPA、原始构建信息、对应源码 ZIP、项目许可和校验清单；普通用户只需下载 IPA。源码包包括静态链接依赖的源码、适配与重新链接方法。
 - 下载教程从 GitHub 项目首页开始，分为进入版本页、展开 Assets、选 IPA、保存与查找文件等步骤；[版本说明](RELEASE_0.1.0.md)另有直接下载入口。
 
 ## 发布后继续验证

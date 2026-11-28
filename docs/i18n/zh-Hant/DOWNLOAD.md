@@ -2,7 +2,7 @@
 
 [简体中文](../../DOWNLOAD.md) · **繁體中文** · [English](../en/DOWNLOAD.md) · [日本語](../ja/DOWNLOAD.md) · [한국어](../ko/DOWNLOAD.md)
 
-**[點擊下載 IPA · v0.1.4（build 37）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)**
+**[點擊下載 IPA · v0.1.4（build 37）](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)**
 
 本次為 **v0.1.4 / build 37**，新增預設開啟的外放保護，並修正背景中斷後的恢復條件。這是獨立新版本，不再替換 build 36 的同名附件。沿用原 Apple 帳號、簽名設定與 App 識別碼覆蓋安裝，**請勿先移除舊版**。[更新說明（簡中）](../../RELEASE_BUILD37.md)
 
@@ -20,16 +20,16 @@
 
 | 情況 | 處理方法 |
 | --- | --- |
-| 點連結沒有反應或下載失敗 | 查看瀏覽器下載清單並重試；也可開啟[版本頁](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.4)，在 `Assets`（附件）選取以 `.ipa` 結尾的檔案 |
+| 點連結沒有反應或下載失敗 | 查看瀏覽器下載清單並重試；也可開啟[版本頁](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.4)，在 `Assets`（附件）選取以 `.ipa` 結尾的檔案 |
 | 找不到下載好的檔案 | 在瀏覽器下載清單點「在資料夾中顯示」或「在 Finder 中顯示」 |
 | 連按兩下 IPA 無法安裝 | 將它拖入 Sideloadly，再依照[安裝教學](INSTALL.md)操作 |
 | 檔案下載到了手機 | 這套 Sideloadly 安裝流程需要電腦；在電腦上開啟同一連結下載即可 |
 
-需要協助時，可[回報問題](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)，說明裝置與錯誤訊息。問題範本目前為簡中。
+需要協助時，可[回報問題](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml)，說明裝置與錯誤訊息。問題範本目前為簡中。
 
 <details>
 <summary>選用：核對下載檔案或取得原始碼</summary>
 
-從[版本頁](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.4)下載同名的 `.ipa.sha256`，依照[檔案核對說明](INSTALL.md#verify)操作。原始碼 ZIP、授權與建置資訊也保留在版本頁，一般安裝只需要 IPA。
+從[版本頁](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.4)下載同名的 `.ipa.sha256`，依照[檔案核對說明](INSTALL.md#verify)操作。原始碼 ZIP、授權與建置資訊也保留在版本頁，一般安裝只需要 IPA。
 
 </details>

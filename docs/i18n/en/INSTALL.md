@@ -1,8 +1,10 @@
 # Install, renew and update
 
+**Changing devices:** System transfer does not guarantee a working sideloaded app or restored library. Keep the old app and its data. [Migration and launch troubleshooting](../../MIGRATION.md)
+
 [简体中文](../../INSTALL.md) · [繁體中文](../zh-Hant/INSTALL.md) · **English** · [日本語](../ja/INSTALL.md) · [한국어](../ko/INSTALL.md)
 
-**[Download the IPA · v0.1.4 (build 37)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [Download help](DOWNLOAD.md)
+**[Download the IPA · v0.1.4 (build 37)](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [Download help](DOWNLOAD.md)
 
 This is **v0.1.4 / build 37**, a separate new version with speaker protection enabled by default and revised background resumption. It does not replace the same-named build 36 files. Install over the existing app with the same Apple Account, signing settings and app identifier; **do not uninstall first**. [Release notes — Simplified Chinese](../../RELEASE_BUILD37.md)
 
@@ -17,7 +19,7 @@ Mac installation with Sideloadly and updating to build 33 have been tested. Wind
 
 With a free Apple Account, development signatures normally last 7 days, and a device normally supports up to 3 apps installed this way. App ID and other limits also apply; follow the messages from Apple and your signing tool. Renew the signature when needed while keeping the app installed. [Apple account information](https://developer.apple.com/help/account/basics/about-your-developer-account/) · [Sideloadly FAQ](https://sideloadly.io/faq.html)
 
-You sign in to your Apple Account in the signing tool. Sumo itself does not require that login or collect your password, verification codes or signing certificates.
+You sign in to your Apple Account in the signing tool. Simo itself does not require that login or collect your password, verification codes or signing certificates.
 
 <a id="sideloadly"></a>
 ## Option 1: Sideloadly on Windows or Mac
@@ -27,7 +29,7 @@ You sign in to your Apple Account in the signing tool. Sumo itself does not requ
 3. Drag the IPA into Sideloadly and enter your Apple Account. For the first installation, keep the normal settings without adding plugins or changing the app identifier.
 4. Click **Start**, complete the account verification prompts, and wait for signing and installation to finish.
 5. If prompted about an untrusted developer, trust your account in **Settings → General → VPN & Device Management**. If Developer Mode is required, enable it in **Settings → Privacy & Security → Developer Mode**, then restart and confirm as prompted. [Apple's Developer Mode guide](https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device)
-6. Open Sumo. Use an audio file you can obtain again to check importing, playback, background playback and reopening before adding your main collection.
+6. Open Simo. Use an audio file you can obtain again to check importing, playback, background playback and reopening before adding your main collection.
 
 Menu names may vary with the tool and system version. Follow the current official instructions if they differ.
 
@@ -61,7 +63,7 @@ Download the new IPA and install over the existing app using **the same Apple Ac
 | The app stops opening after a few days | Check signature expiry; keep the app and renew with the original account |
 | Device or App ID limits appear | Follow the signing tool's message; wait for limits to reset or review installed test apps |
 | Your computer cannot see the device | Connect by cable, unlock and trust the computer, and check the Apple drivers |
-| Two copies of Sumo appear after updating | Check for a different account or app identifier; preserve the original app and its data |
+| Two copies of Simo appear after updating | Check for a different account or app identifier; preserve the original app and its data |
 | Developer Mode is missing | Follow Apple's connection and development-signing steps, then check again; record the system version and message |
 
 <a id="verify"></a>

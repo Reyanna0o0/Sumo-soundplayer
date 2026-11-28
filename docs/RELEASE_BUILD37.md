@@ -22,9 +22,9 @@
 
 ## 下载与更新
 
-- [未签名 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)
-- [IPA 校验文件](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa.sha256)
-- [对应源码 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip)
+- [未签名 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)
+- [IPA 校验文件](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa.sha256)
+- [对应源码 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip)
 
 沿用原 Apple 账户、签名设置与应用标识覆盖安装，**不要先卸载旧版**。精确源码提交、SHA-256 和构建信息以本次发布附件为准。[安装与更新](INSTALL.md) · [使用说明](USAGE.md#外放保护与中断后播放build-37-起)
 

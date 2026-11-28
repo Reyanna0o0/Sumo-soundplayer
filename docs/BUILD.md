@@ -14,8 +14,8 @@
 ## 克隆与核验
 
 ```bash
-git clone https://github.com/Reyanna0o0/Sumo-soundplayer.git
-cd Sumo-soundplayer
+git clone https://github.com/Reyanna0o0/Simo-soundplayer.git
+cd Simo-soundplayer
 python3 scripts/verify-resources.py
 python3 tools/localization/build_resources.py --check
 bash scripts/test-core.sh
@@ -23,7 +23,7 @@ bash scripts/test-media-picker.sh
 bash scripts/test-import-regression.sh
 ```
 
-也可以从 [build 36 下载页](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/tag/v0.1.3) 获取 `simo-0.1.3-build36-source.zip`，解压后在 `Sumo-soundplayer-0.1.3/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。
+也可以从 [build 36 下载页](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.3) 获取 `simo-0.1.3-build36-source.zip`，解压后在 `Sumo-soundplayer-0.1.3/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。
 
 资源检查覆盖 LAME 上游文件、FFmpeg 归档、模型、三份许可副本和 ZIPFoundation 锁定版本。`test-media-picker.sh` 在 Mac 上检查选择会话的取消、重复回调、目标隔离和图片数据读取；它不代替 iOS 系统图库界面或云端资源实测。
 

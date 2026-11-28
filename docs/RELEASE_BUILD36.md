@@ -14,9 +14,9 @@
 
 ## 下载与更新
 
-- [未签名 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)
-- [IPA 校验文件](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa.sha256)
-- [对应源码 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-source.zip)，解压根目录为 `Sumo-soundplayer-0.1.3/`。
+- [未签名 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa)
+- [IPA 校验文件](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-unsigned.ipa.sha256)
+- [对应源码 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.3/simo-0.1.3-build36-source.zip)，解压根目录为 `Sumo-soundplayer-0.1.3/`。
 
 已有安装可沿用原 Apple 账户、签名设置与应用标识覆盖安装，**不要先卸载旧版**。请同时下载更新后的 IPA 与校验文件，避免把旧 build 36 的同名文件混用。[安装与更新说明](INSTALL.md)
 

@@ -7,9 +7,9 @@
 <p align="center">个人独立开发 · 全部功能免费 · 源码公开</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>下载 IPA</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>下载 IPA</strong></a> ·
   <a href="docs/INSTALL.md"><strong>查看安装方法</strong></a> ·
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>版本更新</strong></a>
+  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>版本更新</strong></a>
 </p>
 
 <p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 或更新版本</p>
@@ -135,13 +135,13 @@ App 在后台或未处于活动状态时，中断结束后保持暂停；需主�
 
 目前通过自签方式安装，不是 App Store 下载。
 
-1. 在电脑上[下载 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)，准备 Sideloadly 等签名工具和自己的 Apple 账户。
+1. 在电脑上[下载 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)，准备 Sideloadly 等签名工具和自己的 Apple 账户。
 2. 用数据线连接 iPhone / iPad，按[安装教程](docs/INSTALL.md)完成签名与安装。
 3. 如系统提示，前往“设置 → 通用 → VPN 与设备管理”信任开发者，并按教程开启开发者模式。
 
 更新或续签时，沿用原 Apple 账户、应用标识与签名设置覆盖安装，**保留原 App，不要先卸载**。签名有效期、续签和不同安装方式的注意事项请看完整说明。
 
-[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [对应源码 ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [实际验证范围](docs/RELEASE_STATUS.md)
+[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [对应源码 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [实际验证范围](docs/RELEASE_STATUS.md)
 
 ## 数据与内容由你掌握
 
@@ -151,7 +151,7 @@ App 在后台或未处于活动状态时，中断结束后保持暂停；需主�
 
 ## 反馈与后续计划
 
-发现 Bug，或对功能和界面有新的想法，欢迎通过 [GitHub Issues](https://github.com/Reyanna0o0/Sumo-soundplayer/issues) 反馈。描述设备系统、App 版本和复现步骤，截图中请遮住私人作品与账户信息。[提交 Bug](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)
+发现 Bug，或对功能和界面有新的想法，欢迎通过 [GitHub Issues](https://github.com/Reyanna0o0/Simo-soundplayer/issues) 反馈。描述设备系统、App 版本和复现步骤，截图中请遮住私人作品与账户信息。[提交 Bug](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml)
 
 目前提供 iOS / iPadOS 版本。后续更新与 Android 适配计划会在 GitHub 记录，**Android 版暂无发布时间表**。点击 **Star** 收藏项目；需要更新通知时，可在 **Watch → Custom → Releases** 中订阅发行版。
 
@@ -172,11 +172,11 @@ App 在后台或未处于活动状态时，中断结束后保持暂停；需主�
 
 第三方组件保留各自许可；适用的 LGPL 修改、调试、替换及重新链接权利保留。分发含 LGPL 组件的安装包时，请同时提供对应源码和重建材料。
 
-[素材说明](docs/ASSETS.md) · [第三方材料](docs/THIRD_PARTY.md) · [商业授权申请](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [开发者邮箱](mailto:sumo-soundplayer@outlook.com)
+[素材说明](docs/ASSETS.md) · [第三方材料](docs/THIRD_PARTY.md) · [商业授权申请](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=commercial-license.yml) · [开发者邮箱](mailto:sumo-soundplayer@outlook.com)
 
 </details>
 
 ---
 
 <p align="center"><strong>把喜欢的声音，收进厮磨。</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">下载 IPA</a> · <a href="docs/INSTALL.md">查看安装教程</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">在 GitHub 收藏项目</a></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">下载 IPA</a> · <a href="docs/INSTALL.md">查看安装教程</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">在 GitHub 收藏项目</a></p>

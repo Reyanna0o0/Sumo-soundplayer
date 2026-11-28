@@ -1,8 +1,10 @@
 # 安裝、續簽與更新
 
+**換機提醒：** 系統移轉不保證側載 App 與資料庫恢復成功。請先保留舊機 App 和資料。[移轉與啟動排查](../../MIGRATION.md)
+
 [简体中文](../../INSTALL.md) · **繁體中文** · [English](../en/INSTALL.md) · [日本語](../ja/INSTALL.md) · [한국어](../ko/INSTALL.md)
 
-**[直接下載 IPA · v0.1.4（build 37）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [下載協助](DOWNLOAD.md)
+**[直接下載 IPA · v0.1.4（build 37）](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [下載協助](DOWNLOAD.md)
 
 本次為 **v0.1.4 / build 37**，新增預設開啟的外放保護，並修正背景中斷後的恢復條件。這是獨立新版本，不再替換 build 36 的同名附件。沿用原 Apple 帳號、簽名設定與 App 識別碼覆蓋安裝，**請勿先移除舊版**。[更新說明（簡中）](../../RELEASE_BUILD37.md)
 
