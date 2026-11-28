@@ -6,13 +6,19 @@
 <p align="center"><strong>把喜歡的聲音，整理成一座屬於自己的媒體庫。</strong></p>
 <p align="center">個人獨立開發 · 全部功能免費 · 原始碼公開</p>
 
-<p align="center">
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>下載 IPA</strong></a> ·
-  <a href="../../INSTALL.md"><strong>查看安裝方法</strong></a> ·
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>版本更新</strong></a>
-</p>
+| 穩定版 · v0.1.4（build 37） | 測試版 · v0.1.5（build 38） |
+| --- | --- |
+| 外放保護與背景恢復條件修正。 | 設定新增 NAS 存取（SMB / HTTP / WebDAV）與整庫備份、還原。 |
+| **[下載穩定版 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** | **[下載測試版 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-unsigned.ipa)** |
+| [原始碼 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [更新說明（簡中）](../../RELEASE_BUILD37.md) | [原始碼 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-source.zip) · [更新說明（簡中）](../../RELEASE_BUILD38.md) |
 
-<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 或更新版本</p>
+兩個版本均為未簽名 IPA，需要自行簽名安裝；這是同一 App 的兩個版本選項。
+
+**新版為測試版。還原備份會替換目前整個媒體庫，不會合併。完整真機還原與家庭 NAS 使用仍未完成驗收。** 請保留重要原始檔案與現有 App。[測試版範圍與限制（簡中）](../../RELEASE_BUILD38.md)
+
+[安裝教學](INSTALL.md) · [版本更新](https://github.com/Reyanna0o0/Simo-soundplayer/releases)
+
+<p align="center">iOS / iPadOS 18 或更新版本</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <strong>繁體中文</strong> · <a href="../en/README.md">English</a> · <a href="../ja/README.md">日本語</a> · <a href="../ko/README.md">한국어</a></p>
 
 廝磨是一款以作品整理與沉浸式播放為核心的 iOS 音聲播放器。個人音聲與社團作品分庫管理，音訊、影片、封面、台本與聆聽紀錄集中在同一個地方。無需註冊帳號，匯入自己的收藏，就能開始聆聽。
@@ -135,13 +141,13 @@ App 在背景或非活動狀態時，中斷結束後保持暫停，需主動播�
 
 目前透過自行簽名的方式安裝，並非從 App Store 下載。
 
-1. 在電腦上[下載 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)，準備 Sideloadly 等簽名工具與自己的 Apple 帳號。
+1. 在電腦上[下載 IPA](DOWNLOAD.md)，準備 Sideloadly 等簽名工具與自己的 Apple 帳號。
 2. 使用傳輸線連接 iPhone / iPad，依照[安裝教學（簡中）](../../INSTALL.md)完成簽名與安裝。
 3. 若系統提示，前往「設定 → 一般 → VPN 與裝置管理」信任開發者，並依教學開啟開發者模式。
 
 更新或續簽時，沿用原 Apple 帳號、App 識別碼與簽名設定覆蓋安裝，**保留原 App，請勿先移除舊版**。簽名有效期限、續簽與各種安裝方式的注意事項，請參閱完整說明。
 
-[下載協助（簡中）](../../DOWNLOAD.md) · [安裝、續簽與更新（簡中）](../../INSTALL.md) · [對應原始碼 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [實際驗證範圍（簡中）](../../RELEASE_STATUS.md)
+[下載協助（簡中）](../../DOWNLOAD.md) · [安裝、續簽與更新（簡中）](../../INSTALL.md) · [對應原始碼 ZIP](DOWNLOAD.md) · [實際驗證範圍（簡中）](../../RELEASE_STATUS.md)
 
 ## 資料與內容由你掌握
 
@@ -179,4 +185,4 @@ App 在背景或非活動狀態時，中斷結束後保持暫停，需主動播�
 ---
 
 <p align="center"><strong>把喜歡的聲音，收進廝磨。</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">下載 IPA</a> · <a href="../../INSTALL.md">查看安裝教學</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">在 GitHub 收藏專案</a></p>
+<p align="center"><a href="DOWNLOAD.md">下載 IPA</a> · <a href="../../INSTALL.md">查看安裝教學</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">在 GitHub 收藏專案</a></p>

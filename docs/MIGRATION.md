@@ -1,17 +1,72 @@
 # 换机、数据保留与无法启动排查
 
-系统“快速开始”、备份恢复和侧载签名解决的是不同问题。厮磨目前没有已验收的一键整库备份／恢复流程，不能保证只做 iPhone 之间的数据迁移就能继续使用。
+系统“快速开始”、App 资料恢复和侧载签名解决的是不同问题。**[0.1.5（build 38）测试版](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.5-beta.1)** 提供设置 → 整库备份与恢复；[0.1.4 稳定版](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.4) 保留为稳定入口，没有这一功能。
 
-## 开发候选中的整库备份
+当前已有核心测试和模拟器备份导出、保存检查。真机反馈仅确认旧机与新机安装后可打开使用，**尚未收到两台真机之间整库恢复完成的验收反馈**；安装成功不等于迁移完成。NAS 支持范围和测试清单见 [NAS 与整库备份](NAS_AND_BACKUP.md)。
 
-NAS 与备份开发候选新增设置 → 整库备份与恢复，操作与验收范围见 [NAS 与整库备份](NAS_AND_BACKUP.md)。此说明不改变已发布 0.1.4 的功能状态。
+## 测试版换机流程
 
-备份范围为 App 内数据与媒体；外部文件夹和 NAS 音频留在原处，新机重新授权/连接。备份先校验、确认后于下次冷启动替换资料，不合并两套库。确认新机作品、字幕、列表、摘选、统计与音频完整前保留旧机。
+1. **保留旧机 App 和资料。** 使用原有签名身份、安装工具和 App 标识，覆盖更新旧机到 0.1.5（build 38）测试版；不要先卸载。如果安装后出现第二个 App，先核对身份和标识，不要删除原 App。
+2. **在旧机导出。** 打开设置 → 整库备份与恢复 → 导出整库备份，等待完成。再把 `.simobackup` 文件保存或复制到电脑等旧机以外、且新机可读取的位置；只把备份留在旧机内不算完成这一步。
+3. **安装新机版本。** 为新机签名安装同一测试版或明确兼容的更新版本。如果新机已有独有资料，先另行导出并保存一份备份。恢复会整库替换，不会合并新旧两套资料。
+4. **选择备份并校验。** 在新机的整库备份与恢复页面选择旧机备份，等待校验；确认替换后，按页面提示关闭并重新打开 App。为迁移同一套作品无需再手动导入媒体，避免产生重复记录。
+5. **核对后再处理旧机。** 检查个人／社团作品、封面、字幕及历史、播放位置、列表、摘选、收听记录、设置和 App 内媒体。外部文件夹与 NAS 音频不在备份中，需要保留原文件，在新机重新授权、关联或连接并输入密码。确认所需资料和音频完整以前保留旧机及独立备份。
 
-- **繁體中文**：開發候選新增「整庫備份與恢復」。包含 App 內資料與媒體；外部資料夾與 NAS 在新機重新連接。先驗證再確認，於下次啟動取代資料庫，不合併。確認新機完整後才處理舊機。
-- **English**: The development candidate adds full-library backup and restore in Settings. It includes app-owned data and media; reconnect external folders and NAS sources on the new device. Validation precedes confirmation, and replacement occurs on the next cold launch. Libraries are not merged. Keep the old installation until recovery is verified.
-- **日本語**：開発候補版では設定からライブラリ全体のバックアップと復元ができます。App 内のデータとメディアが対象で、外部フォルダや NAS は新端末で再接続します。検証と確認の後、次回起動時にライブラリを置き換えます。統合はしません。復元確認までは旧端末を保管してください。
-- **한국어**: 개발 후보 버전의 설정에 전체 라이브러리 백업 및 복원이 추가됩니다. 앱 내부 데이터와 미디어를 포함하며 외부 폴더와 NAS는 새 기기에서 다시 연결합니다. 검증과 확인 후 다음 완전한 재실행 때 라이브러리를 교체하며 병합하지 않습니다. 복원이 확인될 때까지 기존 설치를 보관하세요.
+<details>
+<summary>繁體中文 · English · 日本語 · 한국어</summary>
+
+### 繁體中文
+
+0.1.5（build 38，標籤 `v0.1.5-beta.1`）是提供 NAS 與整庫備份的**測試版**；0.1.4 仍為穩定版，沒有整庫備份入口。已有核心與模擬器檢查，目前真機回饋只確認舊、新機安裝後可開啟使用，尚未確認兩台真機間整庫還原完成。
+
+1. 保留舊機 App，沿用原簽名身分、工具及 App 識別碼覆蓋更新到測試版，不要先解除安裝。
+2. 在舊機「設定 → 整庫備份與恢復」匯出 `.simobackup`，並存到電腦等舊機以外、且新機可讀取的位置。
+3. 在新機簽名安裝相同或明確相容的版本；若新機已有獨有資料，先另存一份備份。
+4. 在新機選擇舊機備份、等待校驗、確認取代，再按提示關閉並重開 App。這是整庫取代，不會合併；同一套作品無須再手動匯入，以免重複。
+5. 核對作品、封面、字幕與歷史、進度、清單、摘選、收聽紀錄、設定及 App 內媒體。外部資料夾與 NAS 音訊不隨備份複製，需保留原檔並重新授權／連接及輸入密碼。確認完整以前保留舊機與獨立備份。
+
+### English
+
+**0.1.5 (build 38, tag `v0.1.5-beta.1`) is a beta** with NAS access and full-library backup. 0.1.4 remains the stable release and has no full-library backup entry. Core and simulator checks have been performed. Current physical-device feedback confirms installation and opening on the old and new phones only; a completed full-library restore between those phones has not been confirmed.
+
+1. Keep the old app installed. Update it in place to the beta using the original signing identity, tool and app identifier; do not uninstall first.
+2. On the old phone, export a `.simobackup` from Settings → full-library backup and restore. Save or copy it off that phone to a computer or another location the new phone can read.
+3. Sign and install the same or an explicitly compatible version on the new phone. Back up any data unique to the new phone separately before proceeding.
+4. Select the old phone's backup, wait for validation, confirm replacement, then close and reopen the app as instructed. Restore replaces the entire library; it does not merge libraries. Do not manually import the same works again for this migration, as that may create duplicates.
+5. Check works, covers, subtitles and history, playback positions, playlists, clips, listening records, settings and app-owned media. External-folder and NAS audio are not copied into the backup: keep the originals and reauthorize, relink or reconnect them and enter credentials on the new phone. Keep the old installation and independent backup until verification is complete.
+
+### 日本語
+
+**0.1.5（build 38、タグ `v0.1.5-beta.1`）はテスト版**で、NAS とライブラリ全体のバックアップに対応します。0.1.4 は引き続き安定版ですが、全体バックアップの項目はありません。コアとシミュレータの検証は実施済みです。現在の実機報告は旧・新端末でのインストールと起動確認までで、実機間のライブラリ全体の復元完了は未確認です。
+
+1. 旧端末の App を残し、従来の署名 ID・ツール・App 識別子でテスト版を上書き更新します。先にアンインストールしないでください。
+2. 旧端末の「設定 → ライブラリ全体のバックアップと復元」から `.simobackup` を書き出し、パソコンなど旧端末以外で新端末から読める場所に保存します。
+3. 新端末に同じ版、または互換性が明示された版を署名してインストールします。新端末だけにあるデータは、先に別のバックアップとして保存してください。
+4. 旧端末のバックアップを選択し、検証を待って置き換えを確認した後、画面の指示どおり App を終了して開き直します。ライブラリ全体を置き換える操作であり、統合ではありません。同じ作品を再度手動で読み込む必要はなく、重複の原因になります。
+5. 作品、カバー、字幕と履歴、再生位置、リスト、抜粋、再生記録、設定、App 内メディアを確認します。外部フォルダと NAS の音声はバックアップに含まれません。元ファイルを保管し、新端末で再認可・再関連付け・再接続と認証情報の入力を行います。確認が終わるまで旧端末と別途保存したバックアップを残してください。
+
+### 한국어
+
+**0.1.5(build 38, 태그 `v0.1.5-beta.1`)는 테스트 버전**이며 NAS와 전체 라이브러리 백업을 지원합니다. 0.1.4는 계속 안정 버전으로 제공되지만 전체 백업 메뉴는 없습니다. 핵심 기능과 시뮬레이터 검증은 진행했습니다. 현재 실기기 피드백은 기존·새 휴대폰에서 설치 및 실행이 가능하다는 확인까지이며, 두 실기기 사이의 전체 복원 완료는 아직 확인되지 않았습니다.
+
+1. 기존 앱을 유지하고 원래 서명 계정, 도구, 앱 식별자로 테스트 버전을 덮어써 업데이트하세요. 먼저 삭제하지 마세요.
+2. 기존 휴대폰의 ‘설정 → 전체 라이브러리 백업 및 복원’에서 `.simobackup`을 내보내고, 컴퓨터 등 기존 휴대폰 밖이면서 새 휴대폰에서 읽을 수 있는 곳에 저장하세요.
+3. 새 휴대폰에 같은 버전 또는 호환성이 명시된 버전을 서명하여 설치하세요. 새 휴대폰에만 있는 자료는 먼저 별도 백업으로 저장하세요.
+4. 기존 휴대폰의 백업을 선택하고 검증을 기다린 뒤 교체를 확인하세요. 안내에 따라 앱을 완전히 종료하고 다시 여세요. 전체 라이브러리를 교체하며 병합하지 않습니다. 같은 작품을 다시 수동으로 가져올 필요가 없으며, 다시 가져오면 중복될 수 있습니다.
+5. 작품, 표지, 자막과 이력, 재생 위치, 목록, 발췌, 청취 기록, 설정과 앱 내부 미디어를 확인하세요. 외부 폴더 및 NAS 음원은 백업에 복사되지 않습니다. 원본을 보관하고 새 기기에서 다시 권한을 부여하거나 연결하고 인증 정보를 입력하세요. 확인이 끝날 때까지 기존 설치와 별도 백업을 유지하세요.
+
+</details>
+
+## 重新安装后为什么仍有作品
+
+重新安装或在新机安装后出现旧作品，可能是系统迁移、备份恢复或保留下来的 App 资料。作品记录与源媒体文件独立：资料库里能看到作品，不代表音频一定在当前设备或已获得访问授权；“目录无法刷新”也不能据此认定 IPA 自带作品或文件已经丢失。应分别核对安装包内容、当前数据库、实际媒体位置和访问权限。
+
+若媒体随系统搬到了新容器，旧的绝对路径或目录授权仍可能失效；若媒体留在外部文件夹或 NAS，也需重新关联或连接。先核对并恢复关联，不要急于删除作品或重复导入。
+
+- **繁體中文**：重新安裝後出現舊作品，可能來自系統移轉、備份還原或保留的 App 資料。作品紀錄與媒體檔案獨立；目錄刷新失敗不代表 IPA 帶有作品，也不證明檔案已遺失。請分別核對安裝包、資料庫、實際檔案及權限；先恢復關聯，不要刪除或重複匯入。
+- **English**: Old works appearing after installation may come from migrated, restored or retained app data. Catalogue records and media files are separate: a directory refresh failure does not establish that the IPA contains those works or that the files are lost. Check the package, database, actual files and permissions separately. Restore access or relink before deleting or importing duplicates.
+- **日本語**：再インストール後の旧作品は、移行・復元・保持された App データに由来する可能性があります。作品情報とメディアファイルは別です。フォルダ更新の失敗だけでは、IPA に作品が含まれることも、ファイル消失も判断できません。パッケージ、データベース、実ファイルと権限を個別に確認し、削除や再読み込みの前にアクセスや関連付けを復旧してください。
+- **한국어**: 재설치 후 보이는 기존 작품은 이전·복원되거나 유지된 앱 데이터일 수 있습니다. 작품 기록과 미디어 파일은 별개이므로 폴더 새로고침 실패만으로 IPA에 작품이 들어 있다거나 파일이 사라졌다고 판단할 수 없습니다. 설치 패키지, 데이터베이스, 실제 파일과 권한을 각각 확인하고, 삭제하거나 중복으로 가져오기 전에 연결과 접근 권한을 복구하세요.
 
 ## 旧手机暂时不要卸载
 

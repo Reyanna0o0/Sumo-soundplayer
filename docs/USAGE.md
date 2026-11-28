@@ -176,7 +176,7 @@ build 35 起，编辑创作者时，从照片或文件选择头像后会打开�
 
 打开底部「统计」，可以查看总时长、收听趋势、24 小时分布、最长连续收听和排行。点总收听时长旁的日期选项，可以改看不同周期。从「设置 → 统计显示」可选择两个库的统计合并或分开、显隐组件及调整顺序。这里的显示开关只改变页面显示。
 
-进入「月度回顾」或「年度报告」，按月份或年份回看记录，点「查看完整排行」展开更多条目。用分享按钮生成长图，可通过系统分享或保存到相册。报告使用厮磨在这台设备上记下的收听数据，刚安装时会从空白开始。
+进入「月度回顾」或「年度报告」，按月份或年份回看记录，点「查看完整排行」展开更多条目。用分享按钮生成长图，可通过系统分享或保存到相册。报告使用厮磨资料库中的收听数据。全新且未恢复任何资料的安装从空白开始；覆盖更新、系统迁移或恢复已有资料时，可能保留原记录。
 
 ### 开屏语音与外观
 
@@ -186,20 +186,22 @@ build 35 起，编辑创作者时，从照片或文件选择头像后会打开�
 
 ## 缓存与数据保留
 
-开发候选的 NAS 与整库备份入口、外部媒体范围及五语换机说明见 [NAS 与整库备份](NAS_AND_BACKUP.md) 和 [换机说明](MIGRATION.md#开发候选中的整库备份)。既有 0.1.4 安装包不因此获得新功能。
+[0.1.5（build 38）测试版](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.5-beta.1) 提供 NAS 与整库备份入口；[0.1.4 稳定版](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.4) 仍可下载，不含这两项新功能。范围与限制见 [NAS 与整库备份](NAS_AND_BACKUP.md)。
 
 “设置 → App 缓存”可以清理可清理的字幕旧版本和图片空间效果缓存。字幕清理保留原始、当前、固定和未完成编辑引用的版本；确认删除的其他历史版本不能恢复。图片空间缓存可重建，原图与取景设置保留。
 
-请另行保留原始媒体、字幕和重要导出文件。续签、更新时保留原 App，用原账户与应用标识覆盖更新。整库备份与恢复暂未验收。[安装与更新说明](INSTALL.md)
+请另行保留原始媒体、字幕和重要导出文件。续签、更新时保留原 App，用原账户与应用标识覆盖更新。[安装与更新说明](INSTALL.md)
 
-**换机提示**　系统整机迁移不能当作厮磨已验证的迁移方案。侧载 App 在新设备上可能需要重新签名安装；App 能打开、媒体文件存在、库内资料恢复是三个分别需要检查的结果。当前没有已验收的一键整库备份／恢复，请先保留旧机 App 和数据，按[换机与无法启动排查](MIGRATION.md)处理。
+**测试版换机顺序**　保留旧机 App → 覆盖更新到 build 38 → 设置中导出整库备份 → 把 `.simobackup` 保存到旧机以外 → 新机签名安装兼容版本 → 选择备份并校验、确认恢复 → 按提示关闭重开并逐项核对。恢复是整库替换，不合并；新机独有资料要先另备份，同一套作品不要重复手动导入。App 内媒体随备份保存，外部文件夹／NAS 音频不复制，需要保留原文件并重新授权或连接。
+
+已有核心和模拟器检查；当前真机反馈仅确认旧、新机安装后可打开使用，尚未确认整库恢复完成。重新安装后若出现旧作品，可能是迁移或保留的资料；作品记录与源文件独立，目录刷新失败不能据此认定 IPA 自带数据或媒体已丢失。保留旧机 App 和备份，按 [换机与无法启动排查](MIGRATION.md) 分别核对。
 
 <details>
 <summary>繁體中文 · English · 日本語 · 한국어</summary>
 
-- **繁體中文**　系統移轉不保證側載 App、媒體與資料庫均可用。新機可能需要重新簽名安裝；請保留舊機 App 和資料。整庫備份／恢復尚未驗收。[排查說明](MIGRATION.md)
-- **English**　Device transfer is not a verified migration method for Simo. A sideloaded app may need signing and installation on the new device; check media and library data separately. Keep the old app and its data. Full-library backup/restore is not yet verified. [Troubleshooting](MIGRATION.md)
-- **日本語**　端末移行だけでは Simo・メディア・ライブラリの復元を保証できません。新端末で再署名・インストールが必要な場合があります。旧端末のアプリとデータを残してください。ライブラリ全体のバックアップ／復元は未検証です。[対処手順](MIGRATION.md)
-- **한국어**　기기 이전만으로 Simo, 미디어, 라이브러리 복원이 보장되지는 않습니다. 새 기기에서 다시 서명하고 설치해야 할 수 있습니다. 기존 기기의 앱과 데이터를 보관하세요. 전체 라이브러리 백업/복원은 아직 검증되지 않았습니다. [문제 해결](MIGRATION.md)
+- **繁體中文**　0.1.5（build 38，`v0.1.5-beta.1`）為 NAS／整庫備份測試版，0.1.4 仍為穩定版且沒有這些入口。保留舊機 App → 覆蓋更新 → 設定匯出 → 備份移出舊機 → 新機簽名安裝 → 校驗、確認還原並重開核對。還原會整庫取代、不合併；新機獨有資料先另備份，相同作品不要重複匯入。外部／NAS 音訊需保留原檔並重新連接。真機目前只確認安裝和開啟，尚未確認整庫還原完成。舊作品可能來自保留／移轉的資料；目錄失聯不代表 IPA 帶有作品或檔案已遺失。[完整步驟](MIGRATION.md#测试版换机流程)
+- **English**　0.1.5 (build 38, `v0.1.5-beta.1`) is the NAS/full-library-backup beta; 0.1.4 remains stable without these entries. Keep the old app → update in place → export in Settings → move the backup off the old phone → sign and install on the new phone → validate, confirm restore, reopen and check. Restore replaces the whole library, without merging. Back up data unique to the new phone first; do not import the same works again. Keep and reconnect external/NAS media separately. Physical-device feedback confirms installation and opening only, not a completed full restore. Old works may be retained or migrated records; unavailable folders do not establish that the IPA contains them or that files are lost. [Full steps](MIGRATION.md#测试版换机流程)
+- **日本語**　0.1.5（build 38、`v0.1.5-beta.1`）は NAS／全体バックアップのテスト版で、0.1.4 はこれらの項目がない安定版です。旧 App を保持 → 上書き更新 → 設定から書き出し → 旧端末以外に保存 → 新端末で署名・インストール → 検証・復元確認・再起動後の確認の順に進めます。全体を置き換え、統合しません。新端末だけの資料は先に別途バックアップし、同じ作品を重複して読み込まないでください。外部／NAS メディアは元ファイルを保管し再接続します。実機ではインストールと起動のみ報告され、全体復元は未確認です。旧作品は保持・移行済みの記録の場合があり、フォルダへのアクセス失敗だけでは IPA 内の作品やファイル消失を判断できません。[詳しい手順](MIGRATION.md#测试版换机流程)
+- **한국어**　0.1.5(build 38, `v0.1.5-beta.1`)는 NAS/전체 백업 테스트 버전이며 0.1.4는 해당 메뉴가 없는 안정 버전입니다. 기존 앱 유지 → 덮어쓰기 업데이트 → 설정에서 내보내기 → 기존 휴대폰 밖에 백업 저장 → 새 기기에 서명·설치 → 검증 및 복원 확인 → 재실행 후 확인 순서로 진행하세요. 전체 교체이며 병합하지 않습니다. 새 기기에만 있는 자료는 먼저 별도 백업하고 같은 작품을 중복으로 가져오지 마세요. 외부/NAS 미디어는 원본을 보관하고 다시 연결해야 합니다. 실기기는 설치·실행까지만 확인되었으며 전체 복원 완료는 미확인입니다. 기존 작품은 유지·이전된 기록일 수 있으며, 폴더 접근 실패만으로 IPA에 작품이 있다거나 파일이 사라졌다고 판단할 수 없습니다. [전체 절차](MIGRATION.md#测试版换机流程)
 
 </details>

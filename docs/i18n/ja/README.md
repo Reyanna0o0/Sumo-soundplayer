@@ -6,13 +6,19 @@
 <p align="center"><strong>好きな声を、自分だけのライブラリに。</strong></p>
 <p align="center">個人開発 · 個人の非商用利用は全機能無料 · ソース公開</p>
 
-<p align="center">
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>IPA をダウンロード</strong></a> ·
-  <a href="INSTALL.md"><strong>インストール方法</strong></a> ·
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>リリース情報</strong></a>
-</p>
+| 安定版 · v0.1.4（build 37） | ベータ版 · v0.1.5（build 38） |
+| --- | --- |
+| スピーカー再生の保護とバックグラウンド再開条件の改善。 | 設定に NAS 接続（SMB / HTTP / WebDAV）とライブラリ全体のバックアップ・復元を追加。 |
+| **[安定版 IPA をダウンロード](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** | **[ベータ版 IPA をダウンロード](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-unsigned.ipa)** |
+| [ソース ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [更新内容（簡体字中国語）](../../RELEASE_BUILD37.md) | [ソース ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-source.zip) · [更新内容（簡体字中国語）](../../RELEASE_BUILD38.md) |
 
-<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 以降</p>
+どちらも未署名の IPA で、自分の Apple Account による署名が必要です。同じアプリの二つのリリースから選べます。
+
+**ベータ版はテスト用です。バックアップの復元は現在のライブラリ全体を置き換え、統合はしません。実機での全体復元と家庭用 NAS での受け入れ確認は未完了です。** 重要な元ファイルと既存のアプリを残してください。[ベータ版の対応範囲と制限（簡体字中国語）](../../RELEASE_BUILD38.md)
+
+[インストール方法](INSTALL.md) · [リリース情報](https://github.com/Reyanna0o0/Simo-soundplayer/releases)
+
+<p align="center">iOS / iPadOS 18 以降</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <a href="../en/README.md">English</a> · <strong>日本語</strong> · <a href="../ko/README.md">한국어</a></p>
 
 厮磨は、作品の整理と没入感のある再生を大切にした iOS 向け音声プレイヤーです。個人の音声作品とサークル作品を別々のライブラリで管理し、音声・動画・カバー・台本・再生履歴をひとつにまとめます。アカウント登録は不要。自分のコレクションを取り込んですぐに聴けます。簡体字中国語、繁体字中国語、英語、日本語、韓国語に対応しています。
@@ -135,13 +141,13 @@
 
 現在は App Store ではなく、自分のアカウントで署名してインストールする方式です。
 
-1. コンピュータで [IPA をダウンロード](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)し、Sideloadly などの署名ツールと自分の Apple Account を用意します。
+1. コンピュータで [IPA をダウンロード](DOWNLOAD.md)し、Sideloadly などの署名ツールと自分の Apple Account を用意します。
 2. iPhone / iPad をケーブルで接続し、[インストール手順](INSTALL.md)に沿って署名・インストールします。
 3. 必要な場合は「設定 → 一般 → VPN とデバイス管理」で開発者アカウントを信頼し、手順に従ってデベロッパモードを有効にします。
 
 更新や署名の更新では、同じ Apple Account・アプリ識別子・署名設定で上書きします。**元のアプリを残し、先に削除しないでください。** 署名の有効期間や更新、ほかのインストール方法については詳細な手順をご覧ください。
 
-[ダウンロード案内](DOWNLOAD.md) · [インストール・署名更新・アップデート](INSTALL.md) · [対応するソース ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [検証済みの範囲（簡体字中国語）](../../RELEASE_STATUS.md)
+[ダウンロード案内](DOWNLOAD.md) · [インストール・署名更新・アップデート](INSTALL.md) · [対応するソース ZIP](DOWNLOAD.md) · [検証済みの範囲（簡体字中国語）](../../RELEASE_STATUS.md)
 
 ## データとコンテンツは自分の手元に
 
@@ -179,4 +185,4 @@
 ---
 
 <p align="center"><strong>好きな声を、厮磨に。</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">IPA をダウンロード</a> · <a href="INSTALL.md">インストール手順</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">GitHub で Star</a></p>
+<p align="center"><a href="DOWNLOAD.md">IPA をダウンロード</a> · <a href="INSTALL.md">インストール手順</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">GitHub で Star</a></p>

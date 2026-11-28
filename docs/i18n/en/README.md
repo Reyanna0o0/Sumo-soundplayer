@@ -6,13 +6,19 @@
 <p align="center"><strong>A personal library for the voices you love.</strong></p>
 <p align="center">Independently developed · All features free for personal, non-commercial use · Source available</p>
 
-<p align="center">
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>Download IPA</strong></a> ·
-  <a href="INSTALL.md"><strong>Installation guide</strong></a> ·
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>Releases</strong></a>
-</p>
+| Stable · v0.1.4 (build 37) | Beta · v0.1.5 (build 38) |
+| --- | --- |
+| Speaker protection and safer background resumption. | NAS access (SMB / HTTP / WebDAV) and whole-library backup / restore in Settings. |
+| **[Download stable IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** | **[Download beta IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-unsigned.ipa)** |
+| [Source ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [Notes — Simplified Chinese](../../RELEASE_BUILD37.md) | [Source ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-source.zip) · [Notes — Simplified Chinese](../../RELEASE_BUILD38.md) |
 
-<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 or later</p>
+Both downloads are unsigned IPAs and require self-signing. These are two release choices for the same app.
+
+**The beta is a test release. Restoring a backup replaces the entire current library; it does not merge libraries. Full restore on a physical device and use with a household NAS have not completed acceptance testing.** Keep important originals and the existing app. [Beta scope and limits — Simplified Chinese](../../RELEASE_BUILD38.md)
+
+[Installation guide](INSTALL.md) · [Releases](https://github.com/Reyanna0o0/Simo-soundplayer/releases)
+
+<p align="center">iOS / iPadOS 18 or later</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <strong>English</strong> · <a href="../ja/README.md">日本語</a> · <a href="../ko/README.md">한국어</a></p>
 
 Simo is an iOS audio player built around organizing your collection and immersive listening. Personal Audio and Indie Releases have separate libraries, bringing audio, video, covers, scripts and listening history together. No app account is required—import your own collection and start listening. The interface supports Simplified Chinese, Traditional Chinese, English, Japanese and Korean.
@@ -135,13 +141,13 @@ The project uses the custom **Simo Sound Player Noncommercial Source License 1.0
 
 Simo is currently installed through self-signing, rather than the App Store.
 
-1. [Download the IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa) on a computer, and prepare a signing tool such as Sideloadly and your own Apple Account.
+1. [Download the IPA](DOWNLOAD.md) on a computer, and prepare a signing tool such as Sideloadly and your own Apple Account.
 2. Connect your iPhone or iPad with a cable and follow the [installation guide](INSTALL.md).
 3. If prompted, trust your developer account under **Settings → General → VPN & Device Management** and enable Developer Mode as described in the guide.
 
 For updates or signing renewal, use the same Apple Account, app identifier and signing settings to install over the existing app. **Keep the app; do not uninstall it first.** The guide covers signing expiry, renewal and alternative installation methods.
 
-[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Corresponding source ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [Verified scope — Simplified Chinese](../../RELEASE_STATUS.md)
+[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Corresponding source ZIP](DOWNLOAD.md) · [Verified scope — Simplified Chinese](../../RELEASE_STATUS.md)
 
 ## Your data and your content
 
@@ -179,4 +185,4 @@ Third-party components retain their own licenses, including applicable LGPL righ
 ---
 
 <p align="center"><strong>Keep the voices you love in Simo.</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">Download IPA</a> · <a href="INSTALL.md">Installation guide</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">Star on GitHub</a></p>
+<p align="center"><a href="DOWNLOAD.md">Download IPA</a> · <a href="INSTALL.md">Installation guide</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">Star on GitHub</a></p>

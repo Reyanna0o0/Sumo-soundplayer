@@ -6,13 +6,19 @@
 <p align="center"><strong>좋아하는 목소리를, 나만의 라이브러리로.</strong></p>
 <p align="center">개인 개발 · 개인의 비상업적 이용은 모든 기능 무료 · 소스 공개</p>
 
-<p align="center">
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>IPA 다운로드</strong></a> ·
-  <a href="INSTALL.md"><strong>설치 방법</strong></a> ·
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>릴리스 소식</strong></a>
-</p>
+| 안정판 · v0.1.4 (build 37) | 베타판 · v0.1.5 (build 38) |
+| --- | --- |
+| 스피커 재생 보호와 백그라운드 재개 조건 개선. | 설정에 NAS 연결(SMB / HTTP / WebDAV)과 전체 라이브러리 백업·복원 추가. |
+| **[안정판 IPA 다운로드](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** | **[베타판 IPA 다운로드](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-unsigned.ipa)** |
+| [소스 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [변경 내용 — 중국어 간체](../../RELEASE_BUILD37.md) | [소스 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-source.zip) · [변경 내용 — 중국어 간체](../../RELEASE_BUILD38.md) |
 
-<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 이상</p>
+두 파일 모두 서명되지 않은 IPA이므로 직접 서명해야 합니다. 같은 앱의 두 릴리스 중 하나를 선택할 수 있습니다.
+
+**베타판은 테스트 버전입니다. 백업 복원은 현재 라이브러리 전체를 교체하며, 병합하지 않습니다. 실제 기기에서의 전체 복원과 가정용 NAS 사용은 아직 인수 검증을 마치지 않았습니다.** 중요한 원본 파일과 기존 앱을 보관하세요. [베타판 지원 범위와 제한 — 중국어 간체](../../RELEASE_BUILD38.md)
+
+[설치 방법](INSTALL.md) · [릴리스 소식](https://github.com/Reyanna0o0/Simo-soundplayer/releases)
+
+<p align="center">iOS / iPadOS 18 이상</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <a href="../en/README.md">English</a> · <a href="../ja/README.md">日本語</a> · <strong>한국어</strong></p>
 
 Simo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오디오 플레이어입니다. 개인 오디오 작품과 서클 작품을 별도 라이브러리로 관리하면서 오디오, 동영상, 표지, 대본과 청취 기록을 한곳에 모읍니다. 앱 계정을 만들 필요 없이, 자신의 컬렉션을 가져와 바로 들을 수 있습니다. 중국어 간체·번체, 영어, 일본어, 한국어를 지원합니다.
@@ -135,13 +141,13 @@ Simo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 
 현재 App Store가 아닌 자신의 계정으로 서명하여 설치하는 방식입니다.
 
-1. 컴퓨터에서 [IPA를 다운로드](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)하고, Sideloadly 같은 서명 도구와 자신의 Apple 계정을 준비합니다.
+1. 컴퓨터에서 [IPA를 다운로드](DOWNLOAD.md)하고, Sideloadly 같은 서명 도구와 자신의 Apple 계정을 준비합니다.
 2. iPhone 또는 iPad를 케이블로 연결하고 [설치 안내](INSTALL.md)에 따라 서명·설치합니다.
 3. 시스템에서 요구하면 「설정 → 일반 → VPN 및 기기 관리」에서 개발자 계정을 신뢰하고, 안내에 따라 개발자 모드를 켭니다.
 
 업데이트나 서명 갱신 때는 같은 Apple 계정, 앱 식별자와 서명 설정으로 덮어씁니다. **기존 앱을 유지하고 먼저 삭제하지 마세요.** 서명 유효 기간, 갱신과 다른 설치 방법은 자세한 안내를 확인해 주세요.
 
-[다운로드 도움말](DOWNLOAD.md) · [설치·서명 갱신·업데이트](INSTALL.md) · [해당 버전 소스 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [실제 검증 범위 — 중국어 간체](../../RELEASE_STATUS.md)
+[다운로드 도움말](DOWNLOAD.md) · [설치·서명 갱신·업데이트](INSTALL.md) · [해당 버전 소스 ZIP](DOWNLOAD.md) · [실제 검증 범위 — 중국어 간체](../../RELEASE_STATUS.md)
 
 ## 데이터와 콘텐츠는 내 기기에
 
@@ -179,4 +185,4 @@ Simo는 작품 정리와 몰입감 있는 재생을 중심으로 만든 iOS 오�
 ---
 
 <p align="center"><strong>좋아하는 목소리를 Simo에 담아 보세요.</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">IPA 다운로드</a> · <a href="INSTALL.md">설치 안내</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">GitHub에서 Star</a></p>
+<p align="center"><a href="DOWNLOAD.md">IPA 다운로드</a> · <a href="INSTALL.md">설치 안내</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">GitHub에서 Star</a></p>

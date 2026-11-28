@@ -4,9 +4,13 @@
 
 [简体中文](../../INSTALL.md) · **繁體中文** · [English](../en/INSTALL.md) · [日本語](../ja/INSTALL.md) · [한국어](../ko/INSTALL.md)
 
-**[直接下載 IPA · v0.1.4（build 37）](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [下載協助](DOWNLOAD.md)
+**[下載穩定版 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa) · [下載測試版 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-unsigned.ipa)** · [選擇下載版本](DOWNLOAD.md)
 
-本次為 **v0.1.4 / build 37**，新增預設開啟的外放保護，並修正背景中斷後的恢復條件。這是獨立新版本，不再替換 build 36 的同名附件。沿用原 Apple 帳號、簽名設定與 App 識別碼覆蓋安裝，**請勿先移除舊版**。[更新說明（簡中）](../../RELEASE_BUILD37.md)
+可在[下載頁](DOWNLOAD.md)選擇穩定版 v0.1.4（build 37）或測試版 v0.1.5（build 38）。更新時沿用原 Apple 帳號、簽名設定與 App 識別碼，**請勿先移除舊版**。
+
+兩個版本均為未簽名 IPA，需要自行簽名安裝；這是同一 App 的兩個版本選項。
+
+**新版為測試版。還原備份會替換目前整個媒體庫，不會合併。完整真機還原與家庭 NAS 使用仍未完成驗收。** 請保留重要原始檔案與現有 App。[測試版範圍與限制（簡中）](../../RELEASE_BUILD38.md)
 
 首次安裝從下方開始；已安裝的使用者可直接看[更新與保留資料](#update)。
 
@@ -52,7 +56,7 @@ Apple 帳號登入是在簽名工具中進行；廝磨本身無需登入 Apple �
 
 - 簽名到期或安裝失敗時，先保留原 App，記錄錯誤並檢查帳號、額度與連線。
 - 更換帳號、Team 或 App 識別碼可能產生獨立 App，或無法覆蓋安裝；資料不一定會自動轉移。
-- 請另行保存原始音訊、影片與字幕。重要摘選可匯出 MP3 / WAV；一鍵整庫備份與還原尚未完成驗證。
+- 請另行保存原始音訊、影片與字幕，重要摘選可匯出 MP3 / WAV。穩定版 v0.1.4 沒有整庫備份、還原入口；測試版 v0.1.5 已在設定新增入口，但還原會**替換整個媒體庫，不會合併**，完整真機還原仍未完成驗收。[測試版說明（簡中）](../../RELEASE_BUILD38.md)
 - 資料夾匯入依賴原位置；移動檔案後，請在作品選單重新關聯。重新安裝不能代替重新關聯。
 
 ## 常見問題

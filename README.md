@@ -7,19 +7,25 @@
 <p align="center">个人独立开发 · 全部功能免费 · 源码公开</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>下载 IPA</strong></a> ·
+  <a href="#下载版本"><strong>选择版本下载</strong></a> ·
   <a href="docs/INSTALL.md"><strong>查看安装方法</strong></a> ·
   <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>版本更新</strong></a>
 </p>
 
-<p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 或更新版本</p>
+<p align="center">正式版 0.1.4 · 测试版 0.1.5 &nbsp; | &nbsp; iOS / iPadOS 18 或更新版本</p>
 <p align="center"><strong>简体中文</strong> · <a href="docs/i18n/zh-Hant/README.md">繁體中文</a> · <a href="docs/i18n/en/README.md">English</a> · <a href="docs/i18n/ja/README.md">日本語</a> · <a href="docs/i18n/ko/README.md">한국어</a></p>
 
 厮磨是一款以作品整理与沉浸式播放为核心的 iOS 音声播放器。个人音声与社团作品分库管理，音频、视频、封面、台本和收听记录集中在同一个地方。无需注册账户，导入自己的收藏，就可以开始收听。
 
-> **v0.1.4 · build 37：加入外放保护，并收紧后台恢复播放。** 内置扬声器默认静音，可在播放时调节系统音量或连接耳机解除；后台被其他声音打断后保持暂停，需主动继续。沿用原账户与签名设置覆盖安装，**不要先卸载**。 [更新说明](docs/RELEASE_BUILD37.md)
+## 下载版本
 
-> **本地开发候选 0.1.5 · build 38：NAS 与整库备份。** 此分支新增设置入口，手动导入 SMB/WebDAV/HTTP 音频，以及 App 内资料和媒体的备份/恢复。上方下载仍指向已发布的 0.1.4；候选功能与真机清单见 [NAS 与整库备份](docs/NAS_AND_BACKUP.md)。
+| **0.1.4 正式版 · build 37** | **0.1.5 测试版 · build 38** |
+| --- | --- |
+| **[下载正式版 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** | **[下载测试版 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-unsigned.ipa)** |
+| 外放保护与后台恢复播放修复；保留当前正式版本。 | 设置中新增 NAS 来源与整库备份／恢复，支持 SMB、WebDAV 和 HTTP 音频。 |
+| [更新说明](docs/RELEASE_BUILD37.md) · [对应源码](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) | [更新说明与限制](docs/RELEASE_BUILD38.md) · [对应源码](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-source.zip) |
+
+两版均需自行签名安装。覆盖更新沿用原账户与应用标识，**不要先卸载**。测试版的整库恢复会**替换当前库，不合并或重复导入**；新机独有资料请先另存备份。家庭 NAS 与真机整库恢复仍待验收，操作步骤见 [NAS 与整库备份](docs/NAS_AND_BACKUP.md)。
 
 ## 从导入到收听，只需三步
 
@@ -137,13 +143,13 @@ App 在后台或未处于活动状态时，中断结束后保持暂停；需主�
 
 目前通过自签方式安装，不是 App Store 下载。
 
-1. 在电脑上[下载 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)，准备 Sideloadly 等签名工具和自己的 Apple 账户。
+1. 在电脑上[选择正式版或测试版并下载 IPA](#下载版本)，准备 Sideloadly 等签名工具和自己的 Apple 账户。
 2. 用数据线连接 iPhone / iPad，按[安装教程](docs/INSTALL.md)完成签名与安装。
 3. 如系统提示，前往“设置 → 通用 → VPN 与设备管理”信任开发者，并按教程开启开发者模式。
 
 更新或续签时，沿用原 Apple 账户、应用标识与签名设置覆盖安装，**保留原 App，不要先卸载**。签名有效期、续签和不同安装方式的注意事项请看完整说明。
 
-[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [对应源码 ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [实际验证范围](docs/RELEASE_STATUS.md)
+[下载帮助](docs/DOWNLOAD.md) · [安装、续签与更新](docs/INSTALL.md) · [各版对应源码 ZIP](#下载版本) · [实际验证范围](docs/RELEASE_STATUS.md)
 
 ## 数据与内容由你掌握
 

@@ -4,9 +4,13 @@
 
 [简体中文](../../INSTALL.md) · [繁體中文](../zh-Hant/INSTALL.md) · **English** · [日本語](../ja/INSTALL.md) · [한국어](../ko/INSTALL.md)
 
-**[Download the IPA · v0.1.4 (build 37)](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [Download help](DOWNLOAD.md)
+**[Download stable IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa) · [Download beta IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.5-beta.1/simo-0.1.5-build38-unsigned.ipa)** · [Download choices](DOWNLOAD.md)
 
-This is **v0.1.4 / build 37**, a separate new version with speaker protection enabled by default and revised background resumption. It does not replace the same-named build 36 files. Install over the existing app with the same Apple Account, signing settings and app identifier; **do not uninstall first**. [Release notes — Simplified Chinese](../../RELEASE_BUILD37.md)
+Choose the stable v0.1.4 (build 37) or the beta v0.1.5 (build 38) on the [download page](DOWNLOAD.md). Use the same Apple Account, signing settings and app identifier to update; **do not uninstall first**.
+
+Both downloads are unsigned IPAs and require self-signing. These are two release choices for the same app.
+
+**The beta is a test release. Restoring a backup replaces the entire current library; it does not merge libraries. Full restore on a physical device and use with a household NAS have not completed acceptance testing.** Keep important originals and the existing app. [Beta scope and limits — Simplified Chinese](../../RELEASE_BUILD38.md)
 
 For a first installation, start below. If the app is already installed, see [Updating without removing your data](#update).
 
@@ -52,7 +56,7 @@ Download the new IPA and install over the existing app using **the same Apple Ac
 
 - If signing expires or installation fails, keep the app installed and check the error, account limits and connection.
 - Changing the account, team or app identifier may create a separate app or prevent an update. Data does not necessarily transfer automatically.
-- Keep original audio, video and subtitles separately. Export important clips as MP3 / WAV. One-step full-library backup and restore has not been verified.
+- Keep original audio, video and subtitles separately. Export important clips as MP3 / WAV. Stable v0.1.4 has no whole-library backup / restore entry. Beta v0.1.5 adds it in Settings, but restoration **replaces the whole library, without merging**; full physical-device restore remains unverified. [Beta notes — Simplified Chinese](../../RELEASE_BUILD38.md)
 - Folder imports depend on their original location. If files move, use the work's folder relinking action; reinstalling does not replace relinking.
 
 ## Common problems

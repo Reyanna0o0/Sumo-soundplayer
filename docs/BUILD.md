@@ -23,11 +23,11 @@ bash scripts/test-media-picker.sh
 bash scripts/test-import-regression.sh
 ```
 
-也可以从 [build 36 下载页](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.3) 获取 `simo-0.1.3-build36-source.zip`，解压后在 `Sumo-soundplayer-0.1.3/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。
+也可以从 [build 38 测试版下载页](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.5-beta.1) 获取 `simo-0.1.5-build38-source.zip`，解压后在 `simo-source/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。若需要 0.1.4 正式版，请使用 [v0.1.4 对应源码](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip)。
 
 资源检查覆盖 LAME 与 AMSMB2 上游/修补源文件、FFmpeg 归档、模型、五份许可副本和 ZIPFoundation 锁定版本。`test-media-picker.sh` 在 Mac 上检查选择会话的取消、重复回调、目标隔离和图片数据读取；它不代替 iOS 系统图库界面或云端资源实测。
 
-此分支现在构建 NAS 与备份开发候选 `0.1.5` / build `38`，尚不表示已公开发布或通过家庭 NAS 真机验收。请以当前分支的 Xcode 配置、构建 JSON 和 SHA-256 为准。上面的 build 36 下载链接是历史源码示例，[历史重建说明](RELEASE_BUILD36.md)不描述此候选的新功能。
+此分支现在构建 NAS 与备份测试版 `0.1.5` / build `38`，对应发行标签 `v0.1.5-beta.1`。家庭 NAS 和真机整库恢复仍待验收。请以所选 tag 的 Xcode 配置、构建 JSON 和 SHA-256 为准；[历史重建说明](RELEASE_BUILD36.md)不描述此版本的新功能。
 
 ## 生成未签名 IPA
 
@@ -39,7 +39,7 @@ bash scripts/build.sh ipa
 
 产物位于 `dist/`：
 
-- `simo-0.1.3-build36-unsigned.ipa`
+- `simo-0.1.5-build38-unsigned.ipa`
 - 同名 `.sha256` 文件，供下载校验。
 - 同名 `.json` 文件，记录版本、构建号、标识、工具链与源码提交。
 
@@ -74,7 +74,7 @@ FFmpeg 完整源归档位于 `ThirdParty/FFmpeg/`，构建脚本和全部 config
 
 完整构建材料用于重建与重新链接，不代表源码目录相同就能得到逐字节一致的二进制。编译器版本、路径和签名均可能影响产物。
 
-## NAS 与备份候选的额外验证
+## NAS 与备份测试版的额外验证
 
 NAS 适配器和完整 AMSMB2 动态库源码已作为本地 Swift 包纳入工程，不需要部署自建后端。运行 `python3 scripts/verify-resources.py` 会同时检查 NAS SDK 源文件及许可副本。`bash scripts/build.sh ipa` 生成供自行签名的设备包；确认 `.app/Frameworks/AMSMB2.framework` 被嵌入。
 
