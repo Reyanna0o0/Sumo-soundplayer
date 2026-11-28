@@ -1,21 +1,21 @@
 <p align="center">
-  <img src="../../images/showcase/app-icon.png" width="96" alt="Sumo app icon">
+  <img src="../../images/showcase/app-icon.png" width="96" alt="Simo app icon">
 </p>
 
-<h1 align="center">Sumo · 厮磨</h1>
+<h1 align="center">Simo · 厮磨</h1>
 <p align="center"><strong>A personal library for the voices you love.</strong></p>
 <p align="center">Independently developed · All features free for personal, non-commercial use · Source available</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>Download IPA</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>Download IPA</strong></a> ·
   <a href="INSTALL.md"><strong>Installation guide</strong></a> ·
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>Releases</strong></a>
+  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>Releases</strong></a>
 </p>
 
 <p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 or later</p>
 <p align="center"><a href="../../../README.md">简体中文</a> · <a href="../zh-Hant/README.md">繁體中文</a> · <strong>English</strong> · <a href="../ja/README.md">日本語</a> · <a href="../ko/README.md">한국어</a></p>
 
-Sumo is an iOS audio player built around organizing your collection and immersive listening. Personal Audio and Indie Releases have separate libraries, bringing audio, video, covers, scripts and listening history together. No app account is required—import your own collection and start listening. The interface supports Simplified Chinese, Traditional Chinese, English, Japanese and Korean.
+Simo is an iOS audio player built around organizing your collection and immersive listening. Personal Audio and Indie Releases have separate libraries, bringing audio, video, covers, scripts and listening history together. No app account is required—import your own collection and start listening. The interface supports Simplified Chinese, Traditional Chinese, English, Japanese and Korean.
 
 > **v0.1.4 · build 37 adds speaker protection and safer background resumption.** Built-in speakers are muted by default; adjust the system volume during playback or switch output to headphones to unmute. Playback interrupted in the background stays paused until you resume it. Install over the existing app with the same Apple Account and signing settings. **Do not uninstall first.** [Changes — Simplified Chinese](../../RELEASE_BUILD37.md)
 
@@ -71,7 +71,7 @@ The settings screenshot shows the first three appearances; scroll horizontally t
 
 ### A check before playing aloud
 
-**Speaker protection is on by default** and can be turned off in Settings. On built-in speakers, audio, video, call-mode playback and launch audio start muted. During playback, change the system volume, tap **Allow speaker audio**, or switch output to headphones to unmute. Protection resets after a pause and restart, or when returning to the speakers. It mutes only Sumo, never changes system volume, and never resumes paused content. If a volume key has no effect at the upper or lower limit, use **Allow speaker audio**.
+**Speaker protection is on by default** and can be turned off in Settings. On built-in speakers, audio, video, call-mode playback and launch audio start muted. During playback, change the system volume, tap **Allow speaker audio**, or switch output to headphones to unmute. Protection resets after a pause and restart, or when returning to the speakers. It mutes only Simo, never changes system volume, and never resumes paused content. If a volume key has no effect at the upper or lower limit, use **Allow speaker audio**.
 
 When the app is in the background or inactive, interruption endings leave playback paused until you resume it. In the foreground, automatic resumption is allowed only for the same previously playing item, with system permission and no intervening user pause. [Usage details](../../USAGE.md#speaker-protection-translations)
 
@@ -108,7 +108,7 @@ Set the **call character, avatar, background and framing** independently. Inheri
 
 Choose a local script, open a **Scriptbin** link and extract and review its text, or rematch PDFs already attached to a work. Timestamped subtitles such as SRT and LRC follow playback. Untimed scripts can be read as they are or timed manually, sentence by sentence; edits create a new version.
 
-Import both the original and a translation to pair them and display them together. **Sumo does not automatically translate; you supply both texts.** [Scripts, subtitles and timing — Simplified Chinese](../../USAGE.md#字幕与台本)
+Import both the original and a translation to pair them and display them together. **Simo does not automatically translate; you supply both texts.** [Scripts, subtitles and timing — Simplified Chinese](../../USAGE.md#字幕与台本)
 
 <details>
 <summary>See script import options</summary>
@@ -129,19 +129,19 @@ Every feature is free for personal, non-commercial use. You can choose to suppor
 
 **[Support via Stripe](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00) · [Support via Afdian](https://afdian.com/a/Reyanna0o0)**
 
-The project uses the custom **Sumo Sound Player Noncommercial Source License 1.0**, not MIT, GPL or an OSI-approved open-source license. Non-commercial use, modification and free sharing are permitted under its terms. Keep the license, credits and project link when sharing; modified versions must also include complete corresponding source and be marked unofficial. **All commercial use requires prior written permission from Reyanna0o0.** [License — the Chinese text is authoritative](../../../LICENSE) · [Commercial use — Simplified Chinese](../../COMMERCIAL_USE.md)
+The project uses the custom **Simo Sound Player Noncommercial Source License 1.0**, not MIT, GPL or an OSI-approved open-source license. Non-commercial use, modification and free sharing are permitted under its terms. Keep the license, credits and project link when sharing; modified versions must also include complete corresponding source and be marked unofficial. **All commercial use requires prior written permission from Reyanna0o0.** [License — the Chinese text is authoritative](../../../LICENSE) · [Commercial use — Simplified Chinese](../../COMMERCIAL_USE.md)
 
 ## Installation and updates
 
-Sumo is currently installed through self-signing, rather than the App Store.
+Simo is currently installed through self-signing, rather than the App Store.
 
-1. [Download the IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa) on a computer, and prepare a signing tool such as Sideloadly and your own Apple Account.
+1. [Download the IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa) on a computer, and prepare a signing tool such as Sideloadly and your own Apple Account.
 2. Connect your iPhone or iPad with a cable and follow the [installation guide](INSTALL.md).
 3. If prompted, trust your developer account under **Settings → General → VPN & Device Management** and enable Developer Mode as described in the guide.
 
 For updates or signing renewal, use the same Apple Account, app identifier and signing settings to install over the existing app. **Keep the app; do not uninstall it first.** The guide covers signing expiry, renewal and alternative installation methods.
 
-[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Corresponding source ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [Verified scope — Simplified Chinese](../../RELEASE_STATUS.md)
+[Download help](DOWNLOAD.md) · [Installation, renewal and updates](INSTALL.md) · [Corresponding source ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [Verified scope — Simplified Chinese](../../RELEASE_STATUS.md)
 
 ## Your data and your content
 
@@ -151,7 +151,7 @@ Keep separate copies of important original files. The app does not include audio
 
 ## Feedback and future plans
 
-Report bugs or suggest improvements through [GitHub Issues](https://github.com/Reyanna0o0/Sumo-soundplayer/issues). Include your device OS, app version and reproduction steps, and hide private work titles and account information in screenshots. [Report a bug](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)
+Report bugs or suggest improvements through [GitHub Issues](https://github.com/Reyanna0o0/Simo-soundplayer/issues). Include your device OS, app version and reproduction steps, and hide private work titles and account information in screenshots. [Report a bug](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml)
 
 The available app runs on iOS and iPadOS. Updates and plans for Android will be recorded on GitHub; **there is no Android release schedule yet**. Star the project to bookmark it, or subscribe to releases under **Watch → Custom → Releases** for update notifications.
 
@@ -172,11 +172,11 @@ The icon and launch-screen concept is by Reyanna0o0. A friend contributed author
 
 Third-party components retain their own licenses, including applicable LGPL rights to modify, debug, replace and relink them. Distributions containing LGPL components must include the corresponding source and rebuild materials.
 
-[Visual assets — Simplified Chinese](../../ASSETS.md) · [Third-party materials — Simplified Chinese](../../THIRD_PARTY.md) · [Request commercial permission](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [Developer email](mailto:sumo-soundplayer@outlook.com)
+[Visual assets — Simplified Chinese](../../ASSETS.md) · [Third-party materials — Simplified Chinese](../../THIRD_PARTY.md) · [Request commercial permission](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=commercial-license.yml) · [Developer email](mailto:sumo-soundplayer@outlook.com)
 
 </details>
 
 ---
 
-<p align="center"><strong>Keep the voices you love in Sumo.</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">Download IPA</a> · <a href="INSTALL.md">Installation guide</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">Star on GitHub</a></p>
+<p align="center"><strong>Keep the voices you love in Simo.</strong></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">Download IPA</a> · <a href="INSTALL.md">Installation guide</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">Star on GitHub</a></p>

@@ -1,4 +1,4 @@
-# Sumo v0.1.2 · build 35
+# Simo v0.1.2 · build 35
 
 [简体中文](../../RELEASE_0.1.2.md) · [繁體中文](../zh-Hant/RELEASE_0.1.2.md) · [English](../en/RELEASE_0.1.2.md) · [日本語](../ja/RELEASE_0.1.2.md) · **한국어**
 
@@ -6,7 +6,7 @@
 
 ## 다운로드와 업데이트
 
-**[build 35 IPA 다운로드](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)**
+**[build 35 IPA 다운로드](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)**
 
 **iOS / iPadOS 18 이상**이 필요합니다.
 
@@ -33,4 +33,4 @@
 
 일반 설치는 `.ipa`를 받아 직접 서명하면 됩니다. `.ipa.json`과 `.ipa.sha256`에는 빌드 출처와 체크섬이 있습니다. `simo-0.1.2-build35-source.zip`은 대응 소스, 타사 소스 자료와 재빌드 안내를 제공합니다. `LICENSE.txt`와 `SHA256SUMS.txt`는 라이선스와 첨부 파일 검증 목록입니다. build 33과 34의 기존 첨부 파일도 계속 보관됩니다.
 
-[문제 보고](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml) · [라이선스](../../../LICENSE)
+[문제 보고](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml) · [라이선스](../../../LICENSE)

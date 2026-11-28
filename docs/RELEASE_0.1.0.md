@@ -4,10 +4,10 @@
 
 ## 下载与安装
 
-**[下载厮磨 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.0/simo-0.1.0-build33-unsigned.ipa)**
+**[下载厮磨 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.0/simo-0.1.0-build33-unsigned.ipa)**
 
 1. 下载 `simo-0.1.0-build33-unsigned.ipa`。普通用户只需要这一个文件，无需下载或编译源码。
-2. 按下载教程中的截图认准 IPA 文件，再按安装教程用 Sideloadly 签名。[从 GitHub 下载](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/codex/release-preparation/docs/DOWNLOAD.md) · [安装教程](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.0/docs/INSTALL.md)
+2. 按下载教程中的截图认准 IPA 文件，再按安装教程用 Sideloadly 签名。[从 GitHub 下载](https://github.com/Reyanna0o0/Simo-soundplayer/blob/codex/release-preparation/docs/DOWNLOAD.md) · [安装教程](https://github.com/Reyanna0o0/Simo-soundplayer/blob/v0.1.0/docs/INSTALL.md)
 3. 手机首次打开后，先导入一份可重新取得的音频，确认自己的设备上能够播放。
 
 `unsigned` 表示需要自行签名。下载 IPA 本身不等于安装，不能在 Safari 下载后直接点开安装；免费开发签名需要定期续签，具体操作见安装教程。
@@ -23,11 +23,11 @@
 - **列表和摘选。** 把整曲排进播放列表，把想再听的几秒保存为摘选。条目可拖动或换分类，摘选可拼接并导出 MP3 或 WAV。
 - **开屏和统计。** 可用自己选的音频设置开屏语音。查看收听时长、趋势、时段和排行，回顾每月或每年的记录，并导出报告长图。提供四种外观和五种界面语言。
 
-仓库首页按模块介绍这些功能，使用手册配有台本导入、文件重新关联和列表排序图解。[功能介绍](https://github.com/Reyanna0o0/Sumo-soundplayer#主要功能) · [图文使用手册](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/codex/release-preparation/docs/USAGE.md)
+仓库首页按模块介绍这些功能，使用手册配有台本导入、文件重新关联和列表排序图解。[功能介绍](https://github.com/Reyanna0o0/Simo-soundplayer#主要功能) · [图文使用手册](https://github.com/Reyanna0o0/Simo-soundplayer/blob/codex/release-preparation/docs/USAGE.md)
 
 ## 文件与隐私
 
-作品资料、文件位置引用、字幕和收听记录保存在设备上。厮磨无需账户，没有项目方的云端媒体库或跨设备同步。链接导入时会访问你选择的第三方站点。以文件夹方式导入的作品从原位置读取，文件移动或改名后可以在作品菜单重新关联。[完整声明](https://github.com/Reyanna0o0/Sumo-soundplayer#数据隐私与内容声明)
+作品资料、文件位置引用、字幕和收听记录保存在设备上。厮磨无需账户，没有项目方的云端媒体库或跨设备同步。链接导入时会访问你选择的第三方站点。以文件夹方式导入的作品从原位置读取，文件移动或改名后可以在作品菜单重新关联。[完整声明](https://github.com/Reyanna0o0/Simo-soundplayer#数据隐私与内容声明)
 
 ## 已验证与尚待验证
 
@@ -36,7 +36,7 @@
 - **尚待验证：** 续签到期后的表现、Windows / AltStore 路线，以及更多设备、iPad 布局和媒体组合。
 - 构建验证来自同一台 Mac，未在另一台干净电脑上复建；维护者决定后续根据实际反馈修复其他环境问题。
 
-原始媒体请另行保存，重要摘选可导出。目前没有已验收的一键整库备份 / 恢复功能。详见[验证范围](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.0/docs/RELEASE_STATUS.md)。
+原始媒体请另行保存，重要摘选可导出。目前没有已验收的一键整库备份 / 恢复功能。详见[验证范围](https://github.com/Reyanna0o0/Simo-soundplayer/blob/v0.1.0/docs/RELEASE_STATUS.md)。
 
 ## 附件说明
 
@@ -55,10 +55,10 @@ IPA 大小为 **53,206,341 字节**，SHA-256：
 25c2f6e53991ea85a89562bf57b0ada302306a9987938c9de2b8821c9ed0f872
 ```
 
-IPA 实际构建源码提交为 `ed1f0640a1d16d8dc13a248636c8a25845193069`。源码附件从 `v0.1.0` 发布提交导出：应用与构建源码相同，额外包含后续完成的许可、发布文档和反馈模板。LAME / FFmpeg 的完整对应源码、适配和重新链接步骤包含在源码附件中，见[第三方材料](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.0/docs/THIRD_PARTY.md)与[构建说明](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.0/docs/BUILD.md)。
+IPA 实际构建源码提交为 `ed1f0640a1d16d8dc13a248636c8a25845193069`。源码附件从 `v0.1.0` 发布提交导出：应用与构建源码相同，额外包含后续完成的许可、发布文档和反馈模板。LAME / FFmpeg 的完整对应源码、适配和重新链接步骤包含在源码附件中，见[第三方材料](https://github.com/Reyanna0o0/Simo-soundplayer/blob/v0.1.0/docs/THIRD_PARTY.md)与[构建说明](https://github.com/Reyanna0o0/Simo-soundplayer/blob/v0.1.0/docs/BUILD.md)。
 
 ## 许可与反馈
 
 项目自有代码和明确纳入的视觉素材采用非商业许可：个人非商业使用和修改免费；免费分享修改版须提供对应源码、保留许可与署名并注明非官方；商业使用须事先取得 Reyanna0o0 的书面同意。第三方组件保留各自许可和适用 LGPL 权利。
 
-[问题反馈](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml) · [商业授权申请](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)
+[问题反馈](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml) · [商业授权申请](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=commercial-license.yml) · [sumo-soundplayer@outlook.com](mailto:sumo-soundplayer@outlook.com)

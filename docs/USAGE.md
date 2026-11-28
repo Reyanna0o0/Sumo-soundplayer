@@ -87,19 +87,19 @@ App 在背景或非活動狀態時，中斷結束後保持暫停，需主動播�
 
 **English**
 
-**Speaker protection is on by default** and can be turned off in Settings. On built-in speakers, audio, video, call-mode playback and launch audio start muted. During playback, change the system volume, tap **Allow speaker audio**, or switch output to headphones to unmute. Protection resets after a pause and restart, or when returning to the speakers. It mutes only Sumo, never changes system volume, and never resumes paused content. If a volume key has no effect at the upper or lower limit, use **Allow speaker audio**.
+**Speaker protection is on by default** and can be turned off in Settings. On built-in speakers, audio, video, call-mode playback and launch audio start muted. During playback, change the system volume, tap **Allow speaker audio**, or switch output to headphones to unmute. Protection resets after a pause and restart, or when returning to the speakers. It mutes only Simo, never changes system volume, and never resumes paused content. If a volume key has no effect at the upper or lower limit, use **Allow speaker audio**.
 
 When the app is in the background or inactive, interruption endings leave playback paused until you resume it. In the foreground, automatic resumption is allowed only for the same previously playing item, with system permission and no intervening user pause.
 
 **日本語**
 
-**スピーカー再生の保護は初期設定でオン**です。「設定」でオフにできます。本体スピーカーでは、音声・動画・通話モード・起動時の音声が消音状態で始まります。再生中にシステム音量を調節するか、**「今回のスピーカー再生を許可」**を押すか、出力をヘッドフォンに切り替えると解除できます。一時停止後の再開時やスピーカー出力に戻ったときは、再び保護されます。Sumo の音だけを消音し、システム音量は変更しません。消音を解除しても一時停止中の内容は自動再生されません。音量が最大・最小でキーを押しても変わらない場合は、許可ボタンを使えます。
+**スピーカー再生の保護は初期設定でオン**です。「設定」でオフにできます。本体スピーカーでは、音声・動画・通話モード・起動時の音声が消音状態で始まります。再生中にシステム音量を調節するか、**「今回のスピーカー再生を許可」**を押すか、出力をヘッドフォンに切り替えると解除できます。一時停止後の再開時やスピーカー出力に戻ったときは、再び保護されます。Simo の音だけを消音し、システム音量は変更しません。消音を解除しても一時停止中の内容は自動再生されません。音量が最大・最小でキーを押しても変わらない場合は、許可ボタンを使えます。
 
 アプリがバックグラウンドまたは非アクティブの間に中断が終了した場合は、一時停止を維持します。前面では、中断前に同じ項目を再生しており、手動で一時停止されず、システムが許可した場合に限り自動再開します。
 
 **한국어**
 
-**스피커 재생 보호는 기본적으로 켜져 있으며** 설정에서 끌 수 있습니다. 내장 스피커에서는 일반 오디오, 동영상, 통화 모드와 시작 음성이 음소거 상태로 시작됩니다. 재생 중 시스템 음량을 조절하거나 **「이번 스피커 재생 허용」**을 누르거나 출력을 헤드폰으로 전환하면 해제됩니다. 일시 정지 후 다시 재생하거나 스피커로 돌아오면 보호가 다시 적용됩니다. Sumo만 음소거하며 시스템 음량은 바꾸지 않고, 일시 정지된 콘텐츠를 자동으로 재생하지도 않습니다. 음량이 최대·최소라 같은 방향의 키를 눌러도 변하지 않으면 허용 버튼을 사용할 수 있습니다.
+**스피커 재생 보호는 기본적으로 켜져 있으며** 설정에서 끌 수 있습니다. 내장 스피커에서는 일반 오디오, 동영상, 통화 모드와 시작 음성이 음소거 상태로 시작됩니다. 재생 중 시스템 음량을 조절하거나 **「이번 스피커 재생 허용」**을 누르거나 출력을 헤드폰으로 전환하면 해제됩니다. 일시 정지 후 다시 재생하거나 스피커로 돌아오면 보호가 다시 적용됩니다. Simo만 음소거하며 시스템 음량은 바꾸지 않고, 일시 정지된 콘텐츠를 자동으로 재생하지도 않습니다. 음량이 최대·최소라 같은 방향의 키를 눌러도 변하지 않으면 허용 버튼을 사용할 수 있습니다.
 
 앱이 백그라운드에 있거나 비활성 상태일 때 중단이 끝나면 일시 정지를 유지합니다. 포그라운드에서는 이전에 같은 항목을 재생 중이었고, 사용자가 중간에 일시 정지하지 않았으며, 시스템이 허용한 경우에만 자동으로 재개합니다.
 
@@ -190,14 +190,14 @@ build 35 起，编辑创作者时，从照片或文件选择头像后会打开�
 
 请另行保留原始媒体、字幕和重要导出文件。续签、更新时保留原 App，用原账户与应用标识覆盖更新。整库备份与恢复暂未验收。[安装与更新说明](INSTALL.md)
 
-**换机提示**　厮磨暂未内置数据迁移功能，播放器依赖本地文件，更换 iPhone 或 iPad 时请使用系统的整机数据迁移，并确认新设备能打开原媒体文件。[Apple 换机指南](https://support.apple.com/zh-cn/119967)
+**换机提示**　系统整机迁移不能当作厮磨已验证的迁移方案。侧载 App 在新设备上可能需要重新签名安装；App 能打开、媒体文件存在、库内资料恢复是三个分别需要检查的结果。当前没有已验收的一键整库备份／恢复，请先保留旧机 App 和数据，按[换机与无法启动排查](MIGRATION.md)处理。
 
 <details>
 <summary>繁體中文 · English · 日本語 · 한국어</summary>
 
-- **繁體中文**　廝磨目前沒有內建資料移轉功能，播放器仰賴本機檔案，更換 iPhone 或 iPad 時請使用系統的整機資料移轉，並確認新裝置能開啟原始媒體檔案。
-- **English**　Sumo Sound Player does not yet have built-in data migration. It plays local files, so when switching to a new iPhone or iPad, use Apple's device data transfer and check that your original media files open on the new device.
-- **日本語**　Sumo Sound Player には、アプリ内でデータを移行する機能がまだありません。端末内のファイルを再生するため、iPhone や iPad の機種変更時は端末全体のデータを移行し、新しい端末で元のメディアファイルを開けることを確認してください。
-- **한국어**　Sumo Sound Player에는 아직 앱 자체의 데이터 이전 기능이 없습니다. 로컬 파일을 재생하므로 iPhone 또는 iPad를 바꿀 때는 기기의 전체 데이터 이전 기능을 사용하고, 새 기기에서 원본 미디어 파일을 열 수 있는지 확인해 주세요.
+- **繁體中文**　系統移轉不保證側載 App、媒體與資料庫均可用。新機可能需要重新簽名安裝；請保留舊機 App 和資料。整庫備份／恢復尚未驗收。[排查說明](MIGRATION.md)
+- **English**　Device transfer is not a verified migration method for Simo. A sideloaded app may need signing and installation on the new device; check media and library data separately. Keep the old app and its data. Full-library backup/restore is not yet verified. [Troubleshooting](MIGRATION.md)
+- **日本語**　端末移行だけでは Simo・メディア・ライブラリの復元を保証できません。新端末で再署名・インストールが必要な場合があります。旧端末のアプリとデータを残してください。ライブラリ全体のバックアップ／復元は未検証です。[対処手順](MIGRATION.md)
+- **한국어**　기기 이전만으로 Simo, 미디어, 라이브러리 복원이 보장되지는 않습니다. 새 기기에서 다시 서명하고 설치해야 할 수 있습니다. 기존 기기의 앱과 데이터를 보관하세요. 전체 라이브러리 백업/복원은 아직 검증되지 않았습니다. [문제 해결](MIGRATION.md)
 
 </details>

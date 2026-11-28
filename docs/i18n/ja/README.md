@@ -2,14 +2,14 @@
   <img src="../../images/showcase/app-icon.png" width="96" alt="厮磨のアプリアイコン">
 </p>
 
-<h1 align="center">厮磨 · Sumo</h1>
+<h1 align="center">厮磨 · Simo</h1>
 <p align="center"><strong>好きな声を、自分だけのライブラリに。</strong></p>
 <p align="center">個人開発 · 個人の非商用利用は全機能無料 · ソース公開</p>
 
 <p align="center">
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>IPA をダウンロード</strong></a> ·
+  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa"><strong>IPA をダウンロード</strong></a> ·
   <a href="INSTALL.md"><strong>インストール方法</strong></a> ·
-  <a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases"><strong>リリース情報</strong></a>
+  <a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases"><strong>リリース情報</strong></a>
 </p>
 
 <p align="center">v0.1.4 · build 37 &nbsp; | &nbsp; iOS / iPadOS 18 以降</p>
@@ -71,7 +71,7 @@
 
 ### スピーカーで鳴らす前に、ひとつ確認
 
-**スピーカー再生の保護は初期設定でオン**です。「設定」でオフにできます。本体スピーカーでは、音声・動画・通話モード・起動時の音声が消音状態で始まります。再生中にシステム音量を調節するか、**「今回のスピーカー再生を許可」**を押すか、出力をヘッドフォンに切り替えると解除できます。一時停止後の再開時やスピーカー出力に戻ったときは、再び保護されます。Sumo の音だけを消音し、システム音量は変更しません。消音を解除しても一時停止中の内容は自動再生されません。音量が最大・最小でキーを押しても変わらない場合は、許可ボタンを使えます。
+**スピーカー再生の保護は初期設定でオン**です。「設定」でオフにできます。本体スピーカーでは、音声・動画・通話モード・起動時の音声が消音状態で始まります。再生中にシステム音量を調節するか、**「今回のスピーカー再生を許可」**を押すか、出力をヘッドフォンに切り替えると解除できます。一時停止後の再開時やスピーカー出力に戻ったときは、再び保護されます。Simo の音だけを消音し、システム音量は変更しません。消音を解除しても一時停止中の内容は自動再生されません。音量が最大・最小でキーを押しても変わらない場合は、許可ボタンを使えます。
 
 アプリがバックグラウンドまたは非アクティブの間に中断が終了した場合は、一時停止を維持します。前面では、中断前に同じ項目を再生しており、手動で一時停止されず、システムが許可した場合に限り自動再開します。[使い方](../../USAGE.md#speaker-protection-translations)
 
@@ -129,19 +129,19 @@
 
 **[Stripe で支援する](https://donate.stripe.com/7sYcN4ctY5GM3rK3oM7ok00) · [愛発電で支援する](https://afdian.com/a/Reyanna0o0)**
 
-本プロジェクトは独自の **Sumo Sound Player 非商用ソースライセンス 1.0** を採用しています。MIT、GPL、OSI 承認のオープンソースライセンスではありません。規約に従って非商用での利用・改変・無償共有が可能です。共有時はライセンス・クレジット・プロジェクトへのリンクを残し、改変版には完全な対応ソースを付けて非公式版と明示してください。**すべての商用利用には、事前に Reyanna0o0 の書面による許可が必要です。** [ライセンス原文（中国語が正式な本文）](../../../LICENSE) · [商用利用の説明（簡体字中国語）](../../COMMERCIAL_USE.md)
+本プロジェクトは独自の **Simo Sound Player 非商用ソースライセンス 1.0** を採用しています。MIT、GPL、OSI 承認のオープンソースライセンスではありません。規約に従って非商用での利用・改変・無償共有が可能です。共有時はライセンス・クレジット・プロジェクトへのリンクを残し、改変版には完全な対応ソースを付けて非公式版と明示してください。**すべての商用利用には、事前に Reyanna0o0 の書面による許可が必要です。** [ライセンス原文（中国語が正式な本文）](../../../LICENSE) · [商用利用の説明（簡体字中国語）](../../COMMERCIAL_USE.md)
 
 ## インストールと更新
 
 現在は App Store ではなく、自分のアカウントで署名してインストールする方式です。
 
-1. コンピュータで [IPA をダウンロード](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)し、Sideloadly などの署名ツールと自分の Apple Account を用意します。
+1. コンピュータで [IPA をダウンロード](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)し、Sideloadly などの署名ツールと自分の Apple Account を用意します。
 2. iPhone / iPad をケーブルで接続し、[インストール手順](INSTALL.md)に沿って署名・インストールします。
 3. 必要な場合は「設定 → 一般 → VPN とデバイス管理」で開発者アカウントを信頼し、手順に従ってデベロッパモードを有効にします。
 
 更新や署名の更新では、同じ Apple Account・アプリ識別子・署名設定で上書きします。**元のアプリを残し、先に削除しないでください。** 署名の有効期間や更新、ほかのインストール方法については詳細な手順をご覧ください。
 
-[ダウンロード案内](DOWNLOAD.md) · [インストール・署名更新・アップデート](INSTALL.md) · [対応するソース ZIP](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [検証済みの範囲（簡体字中国語）](../../RELEASE_STATUS.md)
+[ダウンロード案内](DOWNLOAD.md) · [インストール・署名更新・アップデート](INSTALL.md) · [対応するソース ZIP](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-source.zip) · [検証済みの範囲（簡体字中国語）](../../RELEASE_STATUS.md)
 
 ## データとコンテンツは自分の手元に
 
@@ -151,7 +151,7 @@
 
 ## フィードバックと今後の予定
 
-不具合や機能・画面への提案は [GitHub Issues](https://github.com/Reyanna0o0/Sumo-soundplayer/issues) へ。端末の OS、アプリのバージョン、再現手順を添え、画像に含まれる私的な作品名やアカウント情報は伏せてください。[不具合を報告](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml)
+不具合や機能・画面への提案は [GitHub Issues](https://github.com/Reyanna0o0/Simo-soundplayer/issues) へ。端末の OS、アプリのバージョン、再現手順を添え、画像に含まれる私的な作品名やアカウント情報は伏せてください。[不具合を報告](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml)
 
 現在は iOS / iPadOS 版を提供しています。今後の更新と Android 対応の計画は GitHub で記録しますが、**Android 版の公開時期は未定です**。**Star** でプロジェクトを保存でき、更新通知が必要な場合は **Watch → Custom → Releases** からリリースを購読できます。
 
@@ -172,11 +172,11 @@
 
 サードパーティの構成要素にはそれぞれのライセンスが適用され、対象となる LGPL の改変・デバッグ・置き換え・再リンクの権利は維持されます。LGPL の構成要素を含む配布物には、対応するソースと再ビルド用の資料も提供してください。
 
-[素材の説明（簡体字中国語）](../../ASSETS.md) · [サードパーティ資料（簡体字中国語）](../../THIRD_PARTY.md) · [商用利用の申請](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=commercial-license.yml) · [開発者へのメール](mailto:sumo-soundplayer@outlook.com)
+[素材の説明（簡体字中国語）](../../ASSETS.md) · [サードパーティ資料（簡体字中国語）](../../THIRD_PARTY.md) · [商用利用の申請](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=commercial-license.yml) · [開発者へのメール](mailto:sumo-soundplayer@outlook.com)
 
 </details>
 
 ---
 
 <p align="center"><strong>好きな声を、厮磨に。</strong></p>
-<p align="center"><a href="https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">IPA をダウンロード</a> · <a href="INSTALL.md">インストール手順</a> · <a href="https://github.com/Reyanna0o0/Sumo-soundplayer">GitHub で Star</a></p>
+<p align="center"><a href="https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa">IPA をダウンロード</a> · <a href="INSTALL.md">インストール手順</a> · <a href="https://github.com/Reyanna0o0/Simo-soundplayer">GitHub で Star</a></p>

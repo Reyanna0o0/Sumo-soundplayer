@@ -6,9 +6,9 @@
 
 ## 下载与更新
 
-**[下载 build 34 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.1/simo-0.1.1-build34-unsigned.ipa)**
+**[下载 build 34 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.1/simo-0.1.1-build34-unsigned.ipa)**
 
-普通用户只需下载 `.ipa`，按[安装与更新说明](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.1/docs/INSTALL.md)继续使用原来的签名方式覆盖安装。保留原 App，不要先卸载。应用标识与 build 33 相同，本版不更改数据库结构。
+普通用户只需下载 `.ipa`，按[安装与更新说明](https://github.com/Reyanna0o0/Simo-soundplayer/blob/v0.1.1/docs/INSTALL.md)继续使用原来的签名方式覆盖安装。保留原 App，不要先卸载。应用标识与 build 33 相同，本版不更改数据库结构。
 
 ## 本版调整
 
@@ -22,11 +22,11 @@
 - 3755 项核心检查、9 项选择会话检查通过。
 - 完整设备版及模拟器版 Release 构建通过，资源校验通过。
 - 独立模拟器上的照片滚动、关闭 / 重开、选图裁剪及保存 / 取消回归通过；相关文件入口关闭 / 重开与真实文件读取、草稿清理检查通过。
-- 文件深层浏览仍需真机复核：模拟器的系统「文件」App 对照也无法进入测试文件夹，未完成文件选择至裁剪的完整界面流程。详见[发布与验证状态](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.1/docs/RELEASE_STATUS.md)。
+- 文件深层浏览仍需真机复核：模拟器的系统「文件」App 对照也无法进入测试文件夹，未完成文件选择至裁剪的完整界面流程。详见[发布与验证状态](https://github.com/Reyanna0o0/Simo-soundplayer/blob/v0.1.1/docs/RELEASE_STATUS.md)。
 - 本版尚未在用户手机的大量旧照片、iCloud 照片下载或第三方云盘中实测；这些场景不记为已经通过。若仍有问题，请记录入口、是否播放中、照片是否在云端以及复现步骤。
 
 ## 附件
 
 `unsigned.ipa` 是需要自行签名的安装包；`.ipa.json` 和 `.ipa.sha256` 记录构建来源与校验值。`simo-0.1.1-build34-source.zip` 提供对应源码、第三方源材料和重建说明；`LICENSE.txt` 与 `SHA256SUMS.txt` 分别是项目许可和附件校验清单。原 v0.1.0 / build 33 保留在历史版本中。
 
-[问题反馈](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml) · [使用许可](https://github.com/Reyanna0o0/Sumo-soundplayer/blob/v0.1.1/LICENSE)
+[问题反馈](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml) · [使用许可](https://github.com/Reyanna0o0/Simo-soundplayer/blob/v0.1.1/LICENSE)

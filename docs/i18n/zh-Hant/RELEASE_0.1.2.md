@@ -6,7 +6,7 @@
 
 ## 下載與更新
 
-**[下載 build 35 IPA](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)**
+**[下載 build 35 IPA](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.2/simo-0.1.2-build35-unsigned.ipa)**
 
 需要 **iOS / iPadOS 18 或更新版本**。
 
@@ -33,4 +33,4 @@
 
 一般安裝只需下載 `.ipa` 並自行簽名。`.ipa.json` 與 `.ipa.sha256` 記錄建置來源與校驗值。`simo-0.1.2-build35-source.zip` 提供對應原始碼、第三方材料與重建說明；`LICENSE.txt` 與 `SHA256SUMS.txt` 為授權和附件校驗清單。build 33 與 build 34 的既有附件繼續保留。
 
-[回報問題](https://github.com/Reyanna0o0/Sumo-soundplayer/issues/new?template=bug-report.yml) · [使用授權](../../../LICENSE)
+[回報問題](https://github.com/Reyanna0o0/Simo-soundplayer/issues/new?template=bug-report.yml) · [使用授權](../../../LICENSE)

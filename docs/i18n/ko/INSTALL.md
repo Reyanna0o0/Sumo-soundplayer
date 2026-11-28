@@ -1,8 +1,10 @@
 # 설치·서명 갱신·업데이트
 
+**기기 변경:** 시스템 이전만으로 앱과 라이브러리 복원을 보장할 수 없습니다. 기존 앱과 데이터를 보관하세요. [이전 및 실행 문제 해결](../../MIGRATION.md)
+
 [简体中文](../../INSTALL.md) · [繁體中文](../zh-Hant/INSTALL.md) · [English](../en/INSTALL.md) · [日本語](../ja/INSTALL.md) · **한국어**
 
-**[IPA 다운로드 · v0.1.4 (build 37)](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [다운로드 도움말](DOWNLOAD.md)
+**[IPA 다운로드 · v0.1.4 (build 37)](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [다운로드 도움말](DOWNLOAD.md)
 
 이번 버전은 스피커 재생 보호를 기본으로 켜고 백그라운드 재개 조건을 개선한 별도 새 버전 **v0.1.4 / build 37**입니다. build 36의 같은 이름 파일을 교체하지 않습니다. 원래 Apple 계정, 서명 설정과 앱 식별자로 덮어쓰고 **기존 앱을 먼저 삭제하지 마세요**. [변경 내용 — 중국어 간체](../../RELEASE_BUILD37.md)
 
@@ -17,7 +19,7 @@ Mac + Sideloadly 설치와 build 33 덮어쓰기 업데이트는 실측 기록�
 
 무료 계정의 개발용 서명은 일반적으로 7일간 유효하며, 이 방식으로 기기에 동시에 설치할 수 있는 앱은 보통 3개입니다. App ID 등 다른 제한도 있으므로 Apple과 서명 도구의 안내를 따라 주세요. 만료 시에는 앱을 유지한 상태로 다시 서명합니다. [Apple 계정 안내](https://developer.apple.com/help/account/basics/about-your-developer-account/) · [Sideloadly FAQ](https://sideloadly.io/faq.html)
 
-Apple 계정 로그인은 서명 도구에서 진행합니다. Sumo 자체는 Apple 계정 로그인을 요구하지 않으며 비밀번호, 인증 코드나 서명 인증서를 수집하지 않습니다.
+Apple 계정 로그인은 서명 도구에서 진행합니다. Simo 자체는 Apple 계정 로그인을 요구하지 않으며 비밀번호, 인증 코드나 서명 인증서를 수집하지 않습니다.
 
 <a id="sideloadly"></a>
 ## 방법 1: Sideloadly (Windows / Mac)
@@ -27,7 +29,7 @@ Apple 계정 로그인은 서명 도구에서 진행합니다. Sumo 자체는 Ap
 3. IPA를 Sideloadly로 드래그하고 자신의 Apple 계정을 입력합니다. 첫 설치는 기본 설정을 사용하며 플러그인을 추가하거나 앱 식별자를 바꾸지 마세요.
 4. **Start**를 누르고 계정 인증 안내를 따른 뒤 서명과 설치가 끝날 때까지 기다립니다.
 5. 신뢰하지 않는 개발자 안내가 나오면 「설정 → 일반 → VPN 및 기기 관리」에서 자신의 개발자 계정을 신뢰합니다. 개발자 모드가 필요하면 「설정 → 개인정보 보호 및 보안 → 개발자 모드」를 켜고 안내에 따라 재시동 후 다시 확인합니다. [Apple 개발자 모드 안내](https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device)
-6. Sumo를 열고 다시 구할 수 있는 오디오로 가져오기, 재생, 백그라운드 재생과 앱 재실행을 확인한 뒤 주요 소장 자료를 가져오세요.
+6. Simo를 열고 다시 구할 수 있는 오디오로 가져오기, 재생, 백그라운드 재생과 앱 재실행을 확인한 뒤 주요 소장 자료를 가져오세요.
 
 메뉴 이름은 도구와 OS 버전에 따라 달라질 수 있습니다. 차이가 있으면 현재 공식 안내를 참조하세요.
 
@@ -61,7 +63,7 @@ Apple 계정 로그인은 서명 도구에서 진행합니다. Sumo 자체는 Ap
 | 며칠 뒤 앱이 열리지 않음 | 서명 만료를 확인하고 앱을 유지한 채 원래 계정으로 갱신하세요 |
 | 기기 또는 App ID 개수 제한 | 도구의 안내를 확인하고 한도 회복을 기다리거나 설치된 테스트 앱을 정리하세요 |
 | 컴퓨터가 기기를 찾지 못함 | 케이블, 잠금 해제, 컴퓨터 신뢰와 Apple 드라이버를 확인하세요 |
-| 업데이트 후 Sumo가 두 개 생김 | 계정이나 식별자가 바뀌었는지 확인하고 원래 앱과 데이터를 보존하세요 |
+| 업데이트 후 Simo가 두 개 생김 | 계정이나 식별자가 바뀌었는지 확인하고 원래 앱과 데이터를 보존하세요 |
 | 개발자 모드가 보이지 않음 | Apple의 연결·개발 서명 설치 절차 후 다시 확인하고 OS와 표시 메시지를 기록하세요 |
 
 <a id="verify"></a>

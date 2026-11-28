@@ -1,8 +1,10 @@
 # インストール・署名の更新・アップデート
 
+**機種変更時：** 端末移行だけではアプリやライブラリの復元を保証できません。旧端末のアプリとデータを残してください。[移行・起動の対処手順](../../MIGRATION.md)
+
 [简体中文](../../INSTALL.md) · [繁體中文](../zh-Hant/INSTALL.md) · [English](../en/INSTALL.md) · **日本語** · [한국어](../ko/INSTALL.md)
 
-**[IPA をダウンロード · v0.1.4（build 37）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [ダウンロードの案内](DOWNLOAD.md)
+**[IPA をダウンロード · v0.1.4（build 37）](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [ダウンロードの案内](DOWNLOAD.md)
 
 今回は、スピーカー再生の保護を初期設定で有効にし、バックグラウンドでの再開条件を見直した新しい **v0.1.4 / build 37** です。build 36 の同名ファイルを置き換える更新ではありません。同じ Apple Account・署名設定・アプリ識別子で上書きし、**先に旧版を削除しないでください**。[更新内容（簡体字中国語）](../../RELEASE_BUILD37.md)
 
@@ -17,7 +19,7 @@ Mac + Sideloadly のインストールと build 33 への上書き更新には�
 
 無料アカウントの開発用署名は通常 7 日間有効で、この方法で端末に同時インストールできるアプリは通常 3 個までです。App ID などの制限もあり、Apple や署名ツールの表示を優先してください。期限が近づいたら、アプリを残したまま署名を更新します。[Apple のアカウント説明](https://developer.apple.com/help/account/basics/about-your-developer-account/)・[Sideloadly FAQ](https://sideloadly.io/faq.html)
 
-Apple Account へのサインインは署名ツール上で行います。Sumo 自体は Apple Account のログインを必要とせず、パスワード、確認コード、署名証明書を収集しません。
+Apple Account へのサインインは署名ツール上で行います。Simo 自体は Apple Account のログインを必要とせず、パスワード、確認コード、署名証明書を収集しません。
 
 <a id="sideloadly"></a>
 ## 方法 1：Sideloadly（Windows / Mac）
@@ -27,7 +29,7 @@ Apple Account へのサインインは署名ツール上で行います。Sumo �
 3. IPA を Sideloadly にドラッグし、自分の Apple Account を入力します。初回は通常の設定を使い、プラグインの追加やアプリ識別子の変更は行わないでください。
 4. **Start** を押し、アカウント認証の案内に従って署名とインストールの完了を待ちます。
 5. 未信頼の開発元に関する表示が出た場合は、「設定 → 一般 → VPN とデバイス管理」で自分の開発用アカウントを信頼します。デベロッパモードが必要な場合は、「設定 → プライバシーとセキュリティ → デベロッパモード」を有効にし、案内どおり再起動して確認します。[Apple の説明](https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device)
-6. Sumo を開き、再取得できる音声ファイルで、取り込み・再生・バックグラウンド再生・再起動を確認してから、主なコレクションを取り込んでください。
+6. Simo を開き、再取得できる音声ファイルで、取り込み・再生・バックグラウンド再生・再起動を確認してから、主なコレクションを取り込んでください。
 
 項目名はツールや OS のバージョンにより異なることがあります。違う場合は公式の最新案内を参照してください。
 
@@ -61,7 +63,7 @@ Apple Account へのサインインは署名ツール上で行います。Sumo �
 | 数日後に起動できなくなった | 署名の期限を確認し、アプリを残して元のアカウントで再署名します |
 | 端末数や App ID の制限が出る | ツールの案内で上限を確認し、枠の回復を待つかテスト用アプリを整理します |
 | パソコンが端末を認識しない | ケーブル接続、ロック解除、コンピュータの信頼、Apple ドライバーを確認します |
-| 更新後に Sumo が 2 つ表示される | アカウントや識別子の変更を確認し、元のアプリとデータを残してください |
+| 更新後に Simo が 2 つ表示される | アカウントや識別子の変更を確認し、元のアプリとデータを残してください |
 | デベロッパモードが見つからない | Apple の接続・開発署名手順を終えてから再確認し、OS と表示内容を記録します |
 
 <a id="verify"></a>

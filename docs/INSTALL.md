@@ -1,8 +1,10 @@
 # IPA 安装、续签与更新
 
+**换机提醒：** 系统整机迁移不保证侧载 App 与库内资料可用。新机可能需要重新签名安装；旧机打不开时先保留 App 和数据，不要先卸载。[换机与无法启动排查](MIGRATION.md)
+
 **简体中文** · [繁體中文](i18n/zh-Hant/INSTALL.md) · [English](i18n/en/INSTALL.md) · [日本語](i18n/ja/INSTALL.md) · [한국어](i18n/ko/INSTALL.md)
 
-**[直接下载 IPA · v0.1.4（build 37）](https://github.com/Reyanna0o0/Sumo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [下载帮助](DOWNLOAD.md)
+**[直接下载 IPA · v0.1.4（build 37）](https://github.com/Reyanna0o0/Simo-soundplayer/releases/download/v0.1.4/simo-0.1.4-build37-unsigned.ipa)** · [下载帮助](DOWNLOAD.md)
 
 本次为 **v0.1.4 / build 37**，新增默认开启的外放保护，并修正后台中断后的恢复条件；它是独立新版本，不再替换 build 36 的同名附件。沿用原 Apple 账户、签名设置和应用标识覆盖安装，**不要先卸载旧版**。[更新说明](RELEASE_BUILD37.md)
 
