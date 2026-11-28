@@ -201,10 +201,17 @@ struct WorkDetailView: View {
                     Label("导入作品台本…", systemImage: "doc.text")
                 }
                 .accessibilityIdentifier("importWorkScript")
-                Button { showRelinkSheet = true } label: {
-                    Label("重新关联文件夹…", systemImage: "link")
+                if store.sources.contains(where: { $0.id == currentWork.sourceID && [.smb, .http, .webdav].contains($0.type) }) {
+                    NavigationLink {
+                        NetworkSourcesView(store: store)
+                    } label: { Label("管理网络来源…", systemImage: "network") }
+                    .accessibilityIdentifier("manageWorkNetworkSource")
+                } else {
+                    Button { showRelinkSheet = true } label: {
+                        Label("重新关联文件夹…", systemImage: "link")
+                    }
+                    .accessibilityIdentifier("relinkWorkFolder")
                 }
-                .accessibilityIdentifier("relinkWorkFolder")
                 Divider()
                 Button {
                     showOrganizer = true

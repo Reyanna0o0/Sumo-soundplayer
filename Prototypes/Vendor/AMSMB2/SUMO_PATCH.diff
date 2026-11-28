@@ -1,0 +1,263 @@
+--- a/AMSMB2/Context.swift
++++ b/AMSMB2/Context.swift
+@@ -5,6 +5,8 @@
+ //  Created by Amir Abbas on 5/20/18.
+ //  Copyright © 2018 Mousavian. Distributed under MIT license.
+ //  All rights reserved.
++//  Modified for Sumo's isolated resource probe, 2026-11-25: retain terminal
++//  callbacks and original failure metadata after socket/context closure.
+ //
+ 
+ import Foundation
+@@ -209,9 +211,11 @@
+     func service(revents: Int32) throws {
+         let result = smb2_service(context, revents)
+         if result < 0 {
++            let savedDescription = error
++            let savedStatus = ntError.severity == .error ? ntError.rawValue : nil
+             smb2_destroy_context(context)
+             context = nil
+-            try POSIXError.throwIfError(result, description: error)
++            try POSIXError.throwIfError(result, description: savedDescription, ntStatus: savedStatus)
+         }
+     }
+ }
+@@ -356,12 +360,14 @@
+         var result: Int32 = .init(NTStatus.success.rawValue)
+         var isFinished: Bool = false
+         var dataHandler: ((UnsafeMutableRawPointer?) -> Void)?
++        var ntStatus: UInt32?
++        var errorDescription: String?
+         var status: NTStatus {
+             NTStatus(rawValue: result)
+         }
+     }
+ 
+-    private func wait_for_reply(_ cb: inout CBData) throws {
++    private func wait_for_reply(_ cb: CBData) throws {
+         let startDate = Date()
+         while !cb.isFinished {
+             var pfd = pollfd()
+@@ -385,10 +391,17 @@
+ 
+     static let generic_handler: smb2_command_cb = { smb2, status, command_data, cbdata in
+         do {
+-            guard try smb2.unwrap().pointee.fd >= 0 else { return }
+-            let cbdata = try cbdata.unwrap().bindMemory(to: CBData.self, capacity: 1).pointee
++            let cbdata = Unmanaged<CBData>.fromOpaque(try cbdata.unwrap()).takeUnretainedValue()
++            guard !cbdata.isFinished else { return }
++            // Session setup closes its socket before reporting a failed login.
++            // A closed descriptor must not suppress that terminal callback.
+             if NTStatus(rawValue: status) != .success {
+                 cbdata.result = status
++                if let smb2 {
++                    let rawStatus = UInt32(bitPattern: smb2_get_nterror(smb2))
++                    if NTStatus(rawValue: rawStatus).severity == .error { cbdata.ntStatus = rawStatus }
++                    cbdata.errorDescription = smb2_get_error(smb2).map(String.init(cString:))
++                }
+             }
+             cbdata.dataHandler?(command_data)
+             cbdata.isFinished = true
+@@ -414,7 +427,20 @@
+         throws -> (result: Int32, data: DataType)
+     {
+         try withThreadSafeContext { context -> (Int32, DataType) in
+-            var cb = CBData()
++            // No failure status from a previous operation may classify this one.
++            context.pointee.nterror = 0
++            let cb = CBData()
++            // Keep callback storage alive until every queued callback is completed
++            // or cancelled. A timeout must not leave a pointer to a dead stack slot
++            // for smb2_destroy_context to invoke later in deinit.
++            defer {
++                if !cb.isFinished {
++                    cb.isFinished = true
++                    smb2_destroy_context(self.context)
++                    self.context = nil
++                }
++                withExtendedLifetime(cb) {}
++            }
+             var resultData: DataType?
+             var dataHandlerError: (any Error)?
+             cb.dataHandler = { ptr in
+@@ -424,14 +450,12 @@
+                     dataHandlerError = error
+                 }
+             }
+-            let result = try withUnsafeMutablePointer(to: &cb) { cb in
+-                try handler(context, cb)
+-            }
++            let result = try handler(context, Unmanaged.passUnretained(cb).toOpaque())
+             try POSIXError.throwIfError(result, description: error)
+-            try wait_for_reply(&cb)
++            try wait_for_reply(cb)
+             let cbResult = cb.result
+ 
+-            try POSIXError.throwIfError(cbResult, description: error)
++            try POSIXError.throwIfError(cbResult, description: cb.errorDescription ?? error, ntStatus: cb.ntStatus)
+             if let error = dataHandlerError { throw error }
+             return try (cbResult, resultData.unwrap())
+         }
+@@ -452,7 +476,16 @@
+         throws -> (status: UInt32, data: DataType)
+     {
+         try withThreadSafeContext { context -> (UInt32, DataType) in
+-            var cb = CBData()
++            context.pointee.nterror = 0
++            let cb = CBData()
++            defer {
++                if !cb.isFinished {
++                    cb.isFinished = true
++                    smb2_destroy_context(self.context)
++                    self.context = nil
++                }
++                withExtendedLifetime(cb) {}
++            }
+             var resultData: DataType?
+             var dataHandlerError: (any Error)?
+             cb.dataHandler = { ptr in
+@@ -462,11 +495,9 @@
+                     dataHandlerError = error
+                 }
+             }
+-            let pdu = try withUnsafeMutablePointer(to: &cb) { cb in
+-                try handler(context, cb).unwrap()
+-            }
++            let pdu = try handler(context, Unmanaged.passUnretained(cb).toOpaque()).unwrap()
+             smb2_queue_pdu(context, pdu)
+-            try wait_for_reply(&cb)
++            try wait_for_reply(cb)
+ 
+             try POSIXError.throwIfErrorStatus(cb.status)
+             if let error = dataHandlerError { throw error }
+--- a/AMSMB2/Extensions.swift
++++ b/AMSMB2/Extensions.swift
+@@ -5,6 +5,8 @@
+ //  Created by Amir Abbas on 5/21/18.
+ //  Copyright © 2018 Mousavian. Distributed under MIT license.
+ //  All rights reserved.
++//  Modified for Sumo's isolated resource probe, 2026-11-25: preserve a verified
++//  server NTSTATUS separately from lossy POSIX mappings.
+ //
+ 
+ import Foundation
+@@ -50,25 +52,27 @@
+ }
+ 
+ extension POSIXError {
+-    static func throwIfError<Number: SignedInteger>(_ result: Number, description: String?) throws {
++    static func throwIfError<Number: SignedInteger>(_ result: Number, description: String?, ntStatus: UInt32? = nil) throws {
+         guard result < 0 else { return }
+         let errno = Int32(-result)
+         let errorDesc = description.map { "Error code \(errno): \($0)" }
+-        throw POSIXError(.init(errno), description: errorDesc)
++        throw POSIXError(.init(errno), description: errorDesc, ntStatus: ntStatus)
+     }
+ 
+     static func throwIfErrorStatus(_ status: NTStatus) throws {
+         if status.severity == .error {
+             throw POSIXError(
+                 status.posixErrorCode,
+-                description: "Error 0x\(String(status.rawValue, radix: 16, uppercase: true)): \(status.localizedDescription)"
++                description: "Error 0x\(String(status.rawValue, radix: 16, uppercase: true)): \(status.localizedDescription)",
++                ntStatus: status.rawValue
+             )
+         }
+     }
+ 
+-    init(_ code: POSIXError.Code, description: String?) {
+-        let userInfo: [String: Any] =
++    init(_ code: POSIXError.Code, description: String?, ntStatus: UInt32? = nil) {
++        var userInfo: [String: Any] =
+             description.map { [NSLocalizedDescriptionKey: $0] } ?? [:]
++        if let ntStatus { userInfo[SMB2ErrorMetadata.ntStatusKey] = NSNumber(value: ntStatus) }
+         self = POSIXError(code, userInfo: userInfo)
+     }
+ }
+--- a/Dependencies/libsmb2/lib/libsmb2.c
++++ b/Dependencies/libsmb2/lib/libsmb2.c
+@@ -2615,7 +2615,11 @@
+ {
+         struct disconnect_data *dc_data = private_data;
+ 
+-        dc_data->cb(smb2, 0, NULL, dc_data->cb_data);
++        /* Sumo probe patch, 2026-11-25: preserve a real LOGOFF failure. */
++        if (status != SMB2_STATUS_SUCCESS) {
++                smb2_set_nterror(smb2, status, "%s", nterror_to_str(status));
++        }
++        dc_data->cb(smb2, -nterror_to_errno(status), NULL, dc_data->cb_data);
+         free(dc_data);
+         if (smb2->change_fd) {
+                 smb2->change_fd(smb2, smb2->fd, SMB2_DEL_FD);
+@@ -2633,7 +2637,7 @@
+ 
+         if (status != SMB2_STATUS_SUCCESS) {
+                 smb2_set_nterror(smb2, status, "%s", nterror_to_str(status));
+-                dc_data->cb(smb2, -ENOMEM, NULL, dc_data->cb_data);
++                dc_data->cb(smb2, -nterror_to_errno(status), NULL, dc_data->cb_data);
+                 free(dc_data);
+                 return;
+         }
+--- a/Dependencies/libsmb2/lib/socket.c
++++ b/Dependencies/libsmb2/lib/socket.c
+@@ -782,6 +782,12 @@
+         int count;
+ 
+         while(1) {
++                /* Sumo probe patch, 2026-11-25: terminal reply callbacks can
++                 * intentionally close the fd (LOGOFF or rejected SESSION_SETUP).
++                 * Do not overwrite their result by calling readv(-1) next. */
++                if (!SMB2_VALID_SOCKET(smb2->fd)) {
++                        return 0;
++                }
+                 /* initialize the input vectors to the spl and the header
+                  * which are both static data in the smb2 context.
+                  * additional vectors will be added when we can map this to
+@@ -905,11 +911,16 @@
+                                         "Unknown socket error.");
+                 }
+ 
++                /* Sumo probe patch, 2026-11-25: preserve the socket errno,
++                 * including the negative result from trying another address. */
++                if (err < 0) {
++                        err = -err;
++                }
+                 if (smb2->connect_cb) {
+                         smb2->connect_cb(smb2, err, NULL, smb2->connect_data);
+                         smb2->connect_cb = NULL;
+                 }
+-                ret = -1;
++                ret = err ? -err : -1;
+                 goto out;
+         }
+         if (revents & POLLHUP) {
+@@ -942,12 +953,15 @@
+                                                 strerror(err), err);
+                         }
+ 
++                        if (err < 0) {
++                                err = -err;
++                        }
+                         if (smb2->connect_cb) {
+                                 smb2->connect_cb(smb2, err,
+                                                  NULL, smb2->connect_data);
+                                 smb2->connect_cb = NULL;
+                         }
+-                        ret = -1;
++                        ret = err ? -err : -1;
+                         goto out;
+                 }
+                 smb2->fd = fd;
+--- /dev/null
++++ b/AMSMB2/SMB2ErrorMetadata.swift
+@@ -0,0 +1,10 @@
++// Added for Sumo's isolated resource probe, 2026-11-25.
++// MIT, matching the AMSMB2 Swift wrapper. Full combined dependency terms remain
++// in LICENSE and Dependencies/libsmb2/COPYING.
++import Foundation
++
++/// A verified server NTSTATUS copied before socket/context cleanup. Its absence
++/// means no NTSTATUS was captured; callers must not infer one from POSIX errno.
++public enum SMB2ErrorMetadata {
++    public static let ntStatusKey = "AMSMB2.NTStatus"
++}

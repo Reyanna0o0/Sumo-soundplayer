@@ -3,6 +3,7 @@ import AVFoundation
 import MediaPlayer
 import Combine
 import UIKit
+import ResourceAccessCore
 
 enum SimulatedCallPhase: String { case inactive, connecting, connected }
 
@@ -24,9 +25,18 @@ final class PlayerController: ObservableObject {
     private var callGeneration = UUID()
     var isInCall: Bool { callPhase != .inactive }
     var isPresentingVideoPreview: Bool { videoPreviewToken != nil }
+    // Updated from the Published values themselves: their synchronous callbacks
+    // precede the coordinator property's didSet, so reading it there is stale.
+    private var publishedBackupLock = false
+    private var isQuiescingForBackup = false
+    private var libraryBackupLocksPlayback: Bool {
+        // The coordinator sets this barrier BEFORE publishing isBusy. Another
+        // synchronous subscriber can otherwise issue a command before our sink.
+        LibraryBackupCoordinator.shared.playbackLocked || publishedBackupLock
+    }
 
     func beginCall() {
-        guard !isInCall, videoPreviewToken == nil, let item = currentItem,
+        guard !libraryBackupLocksPlayback, !isInCall, videoPreviewToken == nil, let item = currentItem,
               !item.isSavedClip, item.workID > 0,
               (try? libraryStore?.repository?.work(id: item.workID)) != nil else { return }
         OpeningVoicePlayer.shared.stop()
@@ -71,25 +81,42 @@ final class PlayerController: ObservableObject {
     // 收起播放器仍保留起点；换曲时清除，避免用错原音频。
     @Published private(set) var clipStartMS: Int?
     func markClipStart() {
-        guard let currentItem, !currentItem.isSavedClip, !currentItem.isVideo else { return }
+        guard let currentItem, !currentItem.isSavedClip, !currentItem.isVideo, !currentItem.isNetworkAudio else { return }
         clipStartMS = capturePositionMS
     }
     func clearClipStart() { clipStartMS = nil }
     var capturePositionMS: Int {
         // iOS 可能先停渲染，才通知 App 被打断。这时节点只能报出上次 seek 的起点。
-        min(durationMS, max(0, isPlaying ? (isVideo ? (videoSeeking ? positionMS : movie.positionMS) : max(positionMS, engine.currentPositionMS)) : positionMS))
+        let measured: Int
+        if isNetworkAudio {
+            measured = isLoadingMedia || network.isSeeking || network.hasFailed ? positionMS : network.positionMS
+        } else {
+            measured = isPlaying ? (isVideo ? (videoSeeking ? positionMS : movie.positionMS) : max(positionMS, engine.currentPositionMS)) : positionMS
+        }
+        return durationMS > 0 ? min(durationMS, max(0, measured)) : max(0, measured)
     }
 
     @Published private(set) var isLoadingMedia = false
     @Published var videoScale: CGFloat = 1
     var isVideo: Bool { currentItem?.isVideo == true }
+    var isNetworkAudio: Bool { currentItem?.isNetworkAudio == true }
+    @Published private(set) var isWaitingForNetwork = false
+    /// These operations still require a verified complete local file.
+    var hasCompleteLocalAudio: Bool { currentItem != nil && !isVideo && !isNetworkAudio }
     var videoPlayer: AVPlayer { movie.player }
-    private var pendingVideoAutoplay = false
+    private var pendingMediaAutoplay = false
     private var needsMediaReload = false
     private var videoSeeking: Bool { movie.isSeeking }
     private var videoLease: WorkAttachmentDirectoryLease?
     private let movie = VideoPlaybackEngine()
+    private let network = NetworkAudioPlaybackEngine()
+    private var networkRestorePositionMS: Int?
+    private var networkRecoveryPositionMS = 0
+    private var networkRetryWantsPlayback = false
+    private var networkPreviousIdentity: NetworkAudioPlaybackEngine.IdentityEvidence?
+    private var networkListeningEvidence = NetworkPlaybackEvidence()
     private var attachmentRemovalSubscription: AnyCancellable?
+    private var backupSubscription: AnyCancellable?
 
     @Published private(set) var currentItem: PlaybackQueueItem?
     @Published private(set) var currentWorkTitle = ""
@@ -112,8 +139,13 @@ final class PlayerController: ObservableObject {
     /// 播放速度（1.0 = 原速）
     @Published var rate: Double = 1.0 {
         didSet {
+            if isNetworkAudio {
+                checkpointListening(ending: true)
+                networkListeningEvidence.resetBaseline()
+            }
             engine.rate = Float(AudioMath.clampRate(rate))
             movie.rate = Float(AudioMath.clampRate(rate))
+            network.rate = Float(AudioMath.clampRate(rate))
             updateNowPlaying()
         }
     }
@@ -155,6 +187,9 @@ final class PlayerController: ObservableObject {
     /// An attachment preview temporarily owns playback. Keep the audio queue and
     /// its saved position, but never let a queued remote/interruption resume it.
     func beginVideoPreview(onReplaced: @escaping () -> Void = {}) -> UUID {
+        // A denied token never becomes an owner; the preview's later activation
+        // is rejected without mutating the held library snapshot.
+        guard !libraryBackupLocksPlayback else { return UUID() }
         OpeningVoicePlayer.shared.stop()
         videoPreviewStop?()
         if let previous = videoPreviewToken { endVideoPreview(previous) }
@@ -174,7 +209,7 @@ final class PlayerController: ObservableObject {
     }
 
     func activateVideoPreview(_ token: UUID) throws {
-        guard videoPreviewToken == token else { throw CancellationError() }
+        guard !libraryBackupLocksPlayback, videoPreviewToken == token else { throw CancellationError() }
         if ownsVideoAudioSession {
             SpeakerProtection.shared.beginPlayback(owner: "preview")
             return
@@ -226,8 +261,31 @@ final class PlayerController: ObservableObject {
             self.isLoadingMedia = false
             self.errorMessage = message
         }
+        network.onReady = { [weak self] duration in self?.networkBecameReady(durationMS: duration) }
+        network.onStateChanged = { [weak self] in self?.networkPlaybackChanged() }
+        network.onFinished = { [weak self] in
+            guard let self, self.isNetworkAudio else { return }
+            self.handleTrackFinished()
+        }
+        network.onFailure = { [weak self] message in self?.networkFailed(message) }
         configureAudioSession()
         configureRemoteCommands()
+        backupSubscription = LibraryBackupCoordinator.shared.$isBusy
+            .combineLatest(LibraryBackupCoordinator.shared.$restoreReady)
+            .sink { [weak self] busy, restoreReady in
+                guard let self else { return }
+                let locked = busy || restoreReady
+                if locked, !self.publishedBackupLock {
+                    self.isQuiescingForBackup = true
+                    self.videoPreviewStop?()
+                    // Synchronous quiescing completes its final position/stat
+                    // write before export() starts the snapshot task.
+                    self.pause(immediately: true)
+                    self.isQuiescingForBackup = false
+                }
+                self.publishedBackupLock = locked
+                self.updateNowPlaying()
+            }
     }
 
     func attach(store: LibraryStore) {
@@ -294,7 +352,7 @@ final class PlayerController: ObservableObject {
 
     /// 开始播放一组曲目
     func play(items: [PlaybackQueueItem], startingAt index: Int = 0, collection: SavedPlaylistGroup? = nil) {
-        guard videoPreviewToken == nil, !items.isEmpty else { return }
+        guard !libraryBackupLocksPlayback, videoPreviewToken == nil, !items.isEmpty else { return }
         OpeningVoicePlayer.shared.stop()
         if isInCall { endCall() }
         switch sleepTimer {
@@ -323,7 +381,8 @@ final class PlayerController: ObservableObject {
         invalidatePendingPlaybackCommands()
         stopTicker()
         engine.stop()
-        movie.stop(); videoLease = nil; isLoadingMedia = false
+        movie.stop(); network.stop(); videoLease = nil; isLoadingMedia = false
+        isWaitingForNetwork = false
         waveformTask?.cancel()
         waveform = .empty
         currentItem = nil
@@ -353,7 +412,7 @@ final class PlayerController: ObservableObject {
             guard !item.isSavedClip, !item.isVideo,
                   let source = sources[item.trackID] else { return false }
             return source.trackID == item.trackID && source.workID == item.workID
-                && !source.isVideo && !source.filePath.isEmpty
+                && !source.isVideo && (!source.filePath.isEmpty || source.isNetworkAudio)
         } ?? false
         let savedPosition = replacesCurrent ? capturePositionMS : 0
         if replacesCurrent {
@@ -375,7 +434,7 @@ final class PlayerController: ObservableObject {
 
     func togglePlayPause() {
         if callPhase == .connecting { endCall(); return }
-        if isPlaying || pendingVideoAutoplay {
+        if isPlaying || pendingMediaAutoplay {
             pause()
         } else {
             resume()
@@ -394,12 +453,23 @@ final class PlayerController: ObservableObject {
 
     private func pausePlayback(fadeOut: Double) {
         SpeakerProtection.shared.endPlayback(owner: "main")
-        pendingVideoAutoplay = false
+        pendingMediaAutoplay = false
+        networkRetryWantsPlayback = false
         let wasPlaying = isPlaying
         checkpointListening(ending: true)
         if wasPlaying { positionMS = capturePositionMS }
         isPlaying = false
         stopTicker()
+        if isNetworkAudio {
+            network.pause()
+            isWaitingForNetwork = false
+            networkListeningEvidence.resetBaseline()
+            releaseAudioSession()
+            clock.pause()
+            persistPosition()
+            updateNowPlaying()
+            return
+        }
         if isVideo {
             movie.pause()
             releaseAudioSession()
@@ -420,19 +490,27 @@ final class PlayerController: ObservableObject {
     }
 
     func resume() {
-        guard videoPreviewToken == nil, callPhase != .connecting else { return }
+        guard !libraryBackupLocksPlayback, videoPreviewToken == nil, callPhase != .connecting else { return }
         OpeningVoicePlayer.shared.stop()
         // A deliberate Play after the app was suspended is a fresh user action.
         _ = expireSleepTimerIfNeeded()
         guard let currentItem, !isPlaying else { return }
         interruptionState.requestPlayback(itemID: currentItem.id)
         invalidatePendingPlaybackCommands()
-        if needsMediaReload { loadAndPlayCurrent(); return }
-        if isLoadingMedia { pendingVideoAutoplay = true; return }
+        if needsMediaReload {
+            if isNetworkAudio { reloadNetworkAudio(autoplay: true) }
+            else { loadAndPlayCurrent() }
+            return
+        }
+        if isLoadingMedia {
+            pendingMediaAutoplay = true
+            if isNetworkAudio { isPlaying = true; isWaitingForNetwork = true; updateNowPlaying() }
+            return
+        }
         if isVideo, movie.player.currentItem == nil || movie.player.currentItem?.status == .failed {
             loadAndPlayCurrent(); return
         }
-        if positionMS >= durationMS { positionMS = 0 }
+        if durationMS > 0, positionMS >= durationMS { positionMS = 0 }
         do {
             try startMedia(at: positionMS)
         } catch {
@@ -448,7 +526,7 @@ final class PlayerController: ObservableObject {
     }
 
     func next() {
-        guard videoPreviewToken == nil else { return }
+        guard !libraryBackupLocksPlayback, videoPreviewToken == nil else { return }
         let previousID = currentItem?.id
         if isInCall {
             cancelCallConnectionIfNeeded()
@@ -479,7 +557,7 @@ final class PlayerController: ObservableObject {
     }
 
     func previous() {
-        guard videoPreviewToken == nil else { return }
+        guard !libraryBackupLocksPlayback, videoPreviewToken == nil else { return }
         if callPhase == .connecting { endCall(); return }
         persistPosition()
         let elapsed = capturePositionMS
@@ -510,8 +588,19 @@ final class PlayerController: ObservableObject {
     }
 
     func seek(to positionMS: Int) {
-        guard videoPreviewToken == nil else { return }
-        let target = min(max(0, positionMS), durationMS)
+        guard !libraryBackupLocksPlayback, videoPreviewToken == nil else { return }
+        let target = durationMS > 0 ? min(max(0, positionMS), durationMS) : max(0, positionMS)
+        if isNetworkAudio {
+            checkpointListening(ending: true)
+            networkListeningEvidence.resetBaseline()
+            networkRecoveryPositionMS = target
+            if isLoadingMedia { networkRestorePositionMS = target; return }
+            guard !network.hasFailed else { return }
+            network.seek(to: target, playing: isPlaying)
+            // Do not move subtitle/media time to an unfulfilled request.
+            updateNowPlaying()
+            return
+        }
         if isVideo {
             guard !isLoadingMedia else { return }
             checkpointListening(ending: true)
@@ -529,6 +618,7 @@ final class PlayerController: ObservableObject {
 
     /// 跳到队列里的某一项
     func jump(toItemIndex index: Int) {
+        guard !libraryBackupLocksPlayback else { return }
         guard videoPreviewToken == nil else { return }
         guard queue.items.indices.contains(index) else { return }
         if callPhase == .connecting { endCall(); return }
@@ -614,7 +704,7 @@ final class PlayerController: ObservableObject {
     }
 
     private var mediaIsActuallyPlaying: Bool {
-        isVideo ? movie.isActuallyPlaying : (engine.isEngineRunning && engine.isPlaying)
+        isNetworkAudio ? network.isActuallyPlaying : (isVideo ? movie.isActuallyPlaying : (engine.isEngineRunning && engine.isPlaying))
     }
 
     private func loadVideo(_ original: PlaybackQueueItem, autoplay: Bool) throws {
@@ -637,7 +727,7 @@ final class PlayerController: ObservableObject {
         waveformTask?.cancel(); waveform = .empty
         durationMS = 0; positionMS = 0
         queuePositionText = queue.progressDescription
-        pendingVideoAutoplay = autoplay
+        pendingMediaAutoplay = autoplay
         isLoadingMedia = true
         reconcileSleepTimer(notice: InterfaceLocalization.text("停止音轨已不在剩余队列中，定时已取消。"))
         movie.load(URL(fileURLWithPath: item.filePath))
@@ -650,14 +740,31 @@ final class PlayerController: ObservableObject {
         positionMS = resumePosition(for: item)
         clock.reset(positionMS: positionMS, durationMS: durationMS)
         isLoadingMedia = false
-        let autoplay = pendingVideoAutoplay
-        pendingVideoAutoplay = false
+        let autoplay = pendingMediaAutoplay
+        pendingMediaAutoplay = false
         if autoplay { resume() }
         else { movie.seek(to: positionMS, playing: false); updateNowPlaying() }
     }
 
     private func startMedia(at position: Int) throws {
+        guard !libraryBackupLocksPlayback else { throw CancellationError() }
         OpeningVoicePlayer.shared.stop()
+        if isNetworkAudio {
+            audioSessionGeneration &+= 1
+            let session = AVAudioSession.sharedInstance()
+            do {
+                try session.setCategory(.playback, mode: .spokenAudio, options: [])
+                SpeakerProtection.shared.prepareForActivation()
+                try session.setActive(true)
+                ownsAudioSession = true
+                SpeakerProtection.shared.beginPlayback(owner: "main")
+                interruptionState.requestPlayback(itemID: currentItem?.id)
+                network.rate = Float(AudioMath.clampRate(rate))
+                networkListeningEvidence.resetBaseline()
+                network.seek(to: position, playing: true)
+            } catch { SpeakerProtection.shared.endPlayback(owner: "main"); releaseAudioSession(); throw error }
+            return
+        }
         if !isVideo { try startAudio(at: position); return }
         audioSessionGeneration &+= 1
         let session = AVAudioSession.sharedInstance()
@@ -681,6 +788,124 @@ final class PlayerController: ObservableObject {
         } else if listening.isRunning { checkpointListening(ending: true) }
     }
 
+    // MARK: - Network audio (the same formal playback owner)
+
+    private func loadNetworkAudio(_ original: PlaybackQueueItem, autoplay: Bool,
+                                  restorePosition: Int?, previous: NetworkAudioPlaybackEngine.IdentityEvidence?) {
+        var item = original
+        item.subtitle = libraryStore?.displayWorkSubtitle(for: item) ?? item.subtitle
+        currentItem = item
+        currentWorkTitle = libraryStore?.displayWorkTitle(for: item) ?? item.workTitle
+        currentCoverPath = libraryStore?.coverPath(forWorkID: item.workID)
+        needsMediaReload = false
+        errorMessage = nil
+        waveformTask?.cancel(); waveform = .empty; clearClipStart()
+        durationMS = max(0, item.durationMS ?? 0)
+        positionMS = max(0, restorePosition ?? 0)
+        networkRestorePositionMS = restorePosition
+        networkRecoveryPositionMS = positionMS
+        networkPreviousIdentity = previous
+        networkRetryWantsPlayback = autoplay
+        networkListeningEvidence = NetworkPlaybackEvidence()
+        pendingMediaAutoplay = autoplay
+        isLoadingMedia = true
+        isWaitingForNetwork = autoplay
+        // Existing transport controls use isPlaying as the user's play intent.
+        // Keep their Pause action available while preparing; actual playback is
+        // independently checked by the backend for statistics and lock-screen time.
+        isPlaying = autoplay
+        hasQueue = !queue.isEmpty
+        queuePositionText = queue.progressDescription
+        let trackID = item.trackID
+        network.load(previous: previous) {
+            let service = NetworkLibraryService.shared
+            guard let reference = try service.resource(for: trackID),
+                  let source = service.sources.first(where: { $0.id == reference.sourceID && $0.enabled }) else {
+                throw ResourceAccessError.notFound
+            }
+            let adapter = try await service.adapter(for: reference.sourceID)
+            return .init(adapter: adapter, path: reference.path, expectedRevision: reference.expectedRevision,
+                validateBinding: {
+                    guard try service.resource(for: trackID) == reference,
+                          service.sources.first(where: { $0.id == reference.sourceID && $0.enabled })?.revision == source.revision else {
+                        throw ResourceAccessError.resourceChanged
+                    }
+                })
+        }
+        updateNowPlaying()
+    }
+
+    private func networkBecameReady(durationMS: Int) {
+        guard isNetworkAudio, let item = currentItem else { return }
+        if durationMS > 0 { self.durationMS = durationMS }
+        let requested = networkRestorePositionMS ?? resumePosition(for: item)
+        let target = self.durationMS > 0 ? min(max(0, requested), self.durationMS) : max(0, requested)
+        networkRestorePositionMS = nil
+        networkRecoveryPositionMS = target
+        networkPreviousIdentity = network.identityEvidence
+        isLoadingMedia = false
+        let autoplay = pendingMediaAutoplay
+        pendingMediaAutoplay = false
+        networkRetryWantsPlayback = autoplay
+        // positionMS remains the last confirmed media position while restoring.
+        clock.reset(positionMS: positionMS, durationMS: self.durationMS)
+        if autoplay {
+            do {
+                try startMedia(at: target)
+                isPlaying = true
+                clock.play(); startTicker()
+            } catch { networkFailed(NetworkAudioPlaybackEngine.failureMessage(error)) }
+        } else {
+            network.seek(to: target, playing: false)
+        }
+        networkPlaybackChanged()
+        updateNowPlaying()
+    }
+
+    private func networkPlaybackChanged() {
+        guard isNetworkAudio else { return }
+        isWaitingForNetwork = (isLoadingMedia && pendingMediaAutoplay) || (isPlaying && network.isWaiting)
+        if !isLoadingMedia, network.isReady, !network.isSeeking, !network.hasFailed {
+            positionMS = network.positionMS
+            networkRecoveryPositionMS = positionMS
+            if network.durationMS > 0 { durationMS = network.durationMS }
+            clock.reconcile(enginePositionMS: positionMS)
+        }
+        if !network.isActuallyPlaying {
+            checkpointListening(ending: true)
+            networkListeningEvidence.resetBaseline()
+        }
+        updateNowPlaying()
+    }
+
+    private func networkFailed(_ message: String) {
+        guard isNetworkAudio else { return }
+        let wantsRetry = isPlaying || pendingMediaAutoplay || networkRetryWantsPlayback
+        networkRecoveryPositionMS = network.requestedPositionMS ?? networkRestorePositionMS ?? max(positionMS, networkRecoveryPositionMS)
+        networkPreviousIdentity = network.identityEvidence ?? networkPreviousIdentity
+        if isInCall { endCall() } else { pause(immediately: true) }
+        networkRetryWantsPlayback = wantsRetry
+        isLoadingMedia = false; isWaitingForNetwork = false
+        needsMediaReload = true
+        errorMessage = message
+        // Preserve currentItem, queue, subtitle identity and the last confirmed clock.
+        updateNowPlaying()
+    }
+
+    func reconnectNetworkAudio() {
+        guard !libraryBackupLocksPlayback, isNetworkAudio, !isLoadingMedia, videoPreviewToken == nil else { return }
+        reloadNetworkAudio(autoplay: isPlaying || networkRetryWantsPlayback)
+    }
+
+    private func reloadNetworkAudio(autoplay: Bool) {
+        guard isNetworkAudio else { return }
+        let target = network.requestedPositionMS ?? networkRestorePositionMS
+            ?? (network.hasFailed || needsMediaReload ? networkRecoveryPositionMS : capturePositionMS)
+        let previous = network.identityEvidence ?? networkPreviousIdentity
+        loadAndPlayCurrent(autoplay: autoplay, advanceOnFailure: false,
+                           networkRestorePosition: target, networkPrevious: previous)
+    }
+
     // MARK: - 加载与播放
 
     /// 切换曲目时重新读波形（后台进行，不阻塞播放）
@@ -696,7 +921,10 @@ final class PlayerController: ObservableObject {
         }
     }
 
-    private func loadAndPlayCurrent(autoplay: Bool = true, advanceOnFailure: Bool = true) {
+    private func loadAndPlayCurrent(autoplay: Bool = true, advanceOnFailure: Bool = true,
+                                    networkRestorePosition: Int? = nil,
+                                    networkPrevious: NetworkAudioPlaybackEngine.IdentityEvidence? = nil) {
+        guard !libraryBackupLocksPlayback else { return }
         guard !autoplay || videoPreviewToken == nil else { return }
         if autoplay { OpeningVoicePlayer.shared.stop() }
         else { SpeakerProtection.shared.endPlayback(owner: "main") }
@@ -706,9 +934,10 @@ final class PlayerController: ObservableObject {
         persistPosition()
         stopTicker()
         isPlaying = false
-        pendingVideoAutoplay = false
+        pendingMediaAutoplay = false
         isLoadingMedia = false
-        engine.stop(); movie.stop(); videoLease = nil
+        engine.stop(); movie.stop(); network.stop(); videoLease = nil
+        isWaitingForNetwork = false
         releaseAudioSession()
         videoScale = 1
         needsMediaReload = false
@@ -721,6 +950,10 @@ final class PlayerController: ObservableObject {
                 return
             }
             do {
+                if item.isNetworkAudio {
+                    loadNetworkAudio(item, autoplay: autoplay, restorePosition: networkRestorePosition, previous: networkPrevious)
+                    return
+                }
                 if item.isVideo {
                     try loadVideo(item, autoplay: autoplay)
                     return
@@ -833,7 +1066,7 @@ final class PlayerController: ObservableObject {
     }
 
     private func handleTrackFinished() {
-        guard videoPreviewToken == nil, isPlaying, isVideo || engine.isEngineRunning else { return }
+        guard videoPreviewToken == nil, isPlaying, isVideo || isNetworkAudio || engine.isEngineRunning else { return }
         persistPosition(finalPositionReached: true)
         // 拦在推进队列之前，单曲循环也应在此处停住。
         if sleepTimer.shouldStop(at: .now, finishedItemID: currentItem?.id) {
@@ -893,6 +1126,13 @@ final class PlayerController: ObservableObject {
         clock.reconcile(enginePositionMS: positionMS)
 
         let uptime = ProcessInfo.processInfo.systemUptime
+        if isNetworkAudio {
+            networkListeningEvidence.sample(positionMS: positionMS, uptime: uptime, rate: rate,
+                advancing: network.isActuallyPlaying)
+            if network.durationMS > 0 { durationMS = network.durationMS }
+            if !network.isSeeking, !network.hasFailed { networkRecoveryPositionMS = positionMS }
+            isWaitingForNetwork = network.isWaiting
+        }
         if mediaIsActuallyPlaying {
             lastAudibleUptime = uptime
             if !listening.isRunning { beginListening() }
@@ -920,7 +1160,7 @@ final class PlayerController: ObservableObject {
                                            workTitle: work.title ?? item.workTitle, trackTitle: item.trackTitle,
                                            isSavedClip: item.isSavedClip, libraryKind: work.libraryKind,
                                            creatorID: work.creatorID, creatorName: work.creatorName)
-        listening.start(work: work, detail: detail, uptime: uptime)
+        listening.start(work: work, detail: detail, uptime: isNetworkAudio ? networkListeningEvidence.seconds : uptime)
     }
 
     /// 统计页打开或 App 退到后台时立即结算，正在响的音频仍会继续计时。
@@ -932,10 +1172,15 @@ final class PlayerController: ObservableObject {
         let now = ProcessInfo.processInfo.systemUptime
         nextListeningSave = now + 5
         let audible = mediaIsActuallyPlaying
+        if isNetworkAudio {
+            networkListeningEvidence.sample(positionMS: network.positionMS, uptime: now, rate: rate,
+                advancing: isPlaying && audible)
+        }
         // 外部打断可能在 App 恢复执行前已停掉引擎，不能把这段静音时间记进去。
-        listening.checkpoint(date: Date(), uptime: audible ? now : lastAudibleUptime,
+        let confirmedUptime = isNetworkAudio ? networkListeningEvidence.seconds : (audible ? now : lastAudibleUptime)
+        listening.checkpoint(date: Date(), uptime: confirmedUptime,
                              continuing: audible && !ending, calendar: PlaybackStatSplitter.listeningCalendar)
-        guard let store = libraryStore else { return }
+        guard !libraryBackupLocksPlayback || isQuiescingForBackup, let store = libraryStore else { return }
         do { try listening.save(using: store.recordListening(_:sessions:)) }
         catch { DebugLog.write("收听统计暂未保存，将在下次重试：\(error.localizedDescription)") }
     }
@@ -955,7 +1200,8 @@ final class PlayerController: ObservableObject {
     }
 
     private func persistPosition(finalPositionReached: Bool = false) {
-        guard let store = libraryStore, let item = currentItem, !item.isSavedClip else { return }
+        guard !libraryBackupLocksPlayback || isQuiescingForBackup,
+              let store = libraryStore, let item = currentItem, !item.isSavedClip else { return }
         let position = finalPositionReached ? durationMS : capturePositionMS
         if let attachmentID = item.attachmentID {
             guard !isLoadingMedia else { return }
@@ -980,7 +1226,7 @@ final class PlayerController: ObservableObject {
     // MARK: - 音频会话
 
     private func startAudio(at position: Int) throws {
-        guard videoPreviewToken == nil else { throw CancellationError() }
+        guard !libraryBackupLocksPlayback, videoPreviewToken == nil else { throw CancellationError() }
         OpeningVoicePlayer.shared.stop()
         audioSessionGeneration &+= 1
         let session = AVAudioSession.sharedInstance()
@@ -1005,7 +1251,7 @@ final class PlayerController: ObservableObject {
     func setPictureInPictureAudioSessionActive(_ active: Bool) throws {
         guard pictureInPictureAudioSessionActive != active else { return }
         if active {
-            guard videoPreviewToken == nil else { throw CancellationError() }
+            guard !libraryBackupLocksPlayback, videoPreviewToken == nil else { throw CancellationError() }
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playback, mode: .spokenAudio, options: [])
             SpeakerProtection.shared.prepareForActivation()
@@ -1167,6 +1413,11 @@ final class PlayerController: ObservableObject {
     @discardableResult
     func executeRemoteCommand(_ command: AudioRemoteCommand, ticket: AudioRemoteCommandGate.Ticket) -> Bool {
         guard remoteCommandGate.accepts(ticket), videoPreviewToken == nil else { return false }
+        if libraryBackupLocksPlayback {
+            // Pause remains usable; every command capable of starting playback
+            // or changing persisted position is rejected while the snapshot is held.
+            guard case .pause = command else { return false }
+        }
         // A current MPRemote command is a new user request. In particular,
         // Play must be allowed to reactivate a session even if iOS never sent
         // the preceding interruption's ended notification. Old queued work is
@@ -1204,7 +1455,7 @@ final class PlayerController: ObservableObject {
     }
 
     private func updateNowPlaying() {
-        let remoteEnabled = videoPreviewToken == nil && currentItem != nil
+        let remoteEnabled = !libraryBackupLocksPlayback && videoPreviewToken == nil && currentItem != nil
         let commands = MPRemoteCommandCenter.shared()
         commands.playCommand.isEnabled = remoteEnabled
         commands.pauseCommand.isEnabled = remoteEnabled
@@ -1233,7 +1484,9 @@ final class PlayerController: ObservableObject {
             MPMediaItemPropertyTitle: obscured ? CoverPrivacy.publicTitle : item.trackTitle,
             MPMediaItemPropertyPlaybackDuration: Double(durationMS) / 1000.0,
             MPNowPlayingInfoPropertyElapsedPlaybackTime: Double(capturePositionMS) / 1000.0,
-            MPNowPlayingInfoPropertyPlaybackRate: isPlaying ? rate : 0,
+            // A network play intent may be waiting. Do not let the system's
+            // lock-screen clock extrapolate through buffering or a pending seek.
+            MPNowPlayingInfoPropertyPlaybackRate: (isNetworkAudio ? network.isActuallyPlaying : isPlaying) ? rate : 0,
             MPNowPlayingInfoPropertyMediaType: (isVideo ? MPNowPlayingInfoMediaType.video : .audio).rawValue
         ]
         if !obscured {

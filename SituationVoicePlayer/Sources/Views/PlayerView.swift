@@ -278,7 +278,7 @@ struct PlayerView: View {
                 .padding(.top, 4)
                 .offset(y: -16)
             optionButtons.padding(.vertical, 8).padding(.top, 16)
-            if player.errorMessage != nil { playbackError.padding(.top, 10) }
+            if player.errorMessage != nil || player.isNetworkAudio { playbackError.padding(.top, 10) }
         }
     }
 
@@ -296,6 +296,19 @@ struct PlayerView: View {
     @ViewBuilder private var playbackError: some View {
         if let error = player.errorMessage {
             Text(error).font(.caption).foregroundStyle(.red)
+        }
+        if player.isNetworkAudio {
+            VStack(spacing: 6) {
+                if player.isLoadingMedia {
+                    Label("正在连接网络音频", systemImage: "network")
+                } else if player.isWaitingForNetwork {
+                    Label("正在等待网络数据，可暂停或重新连接", systemImage: "arrow.triangle.2.circlepath")
+                }
+                Button("重新连接并恢复位置") { player.reconnectNetworkAudio() }
+                    .disabled(player.isLoadingMedia)
+                    .accessibilityIdentifier("reconnectNetworkAudio")
+            }
+            .font(.caption).foregroundStyle(AppTheme.secondary)
         }
     }
 

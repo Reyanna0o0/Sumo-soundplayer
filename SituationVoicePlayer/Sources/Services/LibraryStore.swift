@@ -146,6 +146,7 @@ final class LibraryStore: ObservableObject {
             let playlist = PlaylistRepository(database: db)
             self.playlist = playlist
             self.repository = repo
+            try NetworkLibraryService.shared.attach(repository: repo)
             reload()
             // Old single excerpts can be recovered only while their source and
             // an active timed subtitle track still exist. Save that copy now so
@@ -476,6 +477,7 @@ final class LibraryStore: ObservableObject {
     /// 附件沿用已导入目录；同源仅一部作品时兼容旧格式子目录的作品边界。
     func attachmentSource(for work: WorkRecord) -> WorkAttachmentSource? {
         guard let source = sources.first(where: { $0.id == work.sourceID }),
+              source.type == .local,
               let root = resolvedRoots[source.id] ?? source.rootPath else { return nil }
         let singleWork = (try? repository?.works(sourceID: source.id).count) == 1
         return WorkAttachmentSource(sourceRootPath: root, bookmark: source.bookmark,
@@ -489,6 +491,7 @@ final class LibraryStore: ObservableObject {
     /// 曲目绝对路径：存储源根 → 作品目录 → 曲目（库里存的是相对作品目录）
     func resolveTrackPath(_ track: TrackRecord, work: WorkRecord) -> String? {
         if let relative = track.assetRelativePath { return WorkAssetImporter.path(for: relative) }
+        guard !track.filePath.hasPrefix("network-track:") else { return nil }
         guard let root = resolvedRoots[work.sourceID] else { return nil }
         let workAbsolute = contentDirectory(for: work, root: root)
         if let relative = track.relativePath, !relative.isEmpty {
@@ -593,10 +596,14 @@ final class LibraryStore: ObservableObject {
         return organizedSections(for: work).flatMap(\.items).compactMap { media in
             switch media {
             case .track(let original):
-                guard let track = tracks[original.id], let path = track.resolvedFilePath, !path.isEmpty else { return nil }
+                guard let track = tracks[original.id] else { return nil }
+                let network = try? NetworkLibraryService.shared.resource(for: track.id)
+                let path = track.resolvedFilePath ?? ""
+                guard !path.isEmpty || network != nil else { return nil }
                 return PlaybackQueueItem(workID: work.id, trackID: track.id, workTitle: work.title,
                     trackTitle: track.displayTitle, subtitle: work.libraryKind == .personal ? creator(id: work.creatorID)?.name : work.subtitle,
-                    filePath: path, fileType: track.fileType, durationMS: track.durationMS, category: track.category)
+                    filePath: path, fileType: track.fileType, durationMS: track.durationMS, category: track.category,
+                    networkSourceID: path.isEmpty ? network?.sourceID : nil)
             case .attachment(let record):
                 guard record.attachment.kind == .video else { return nil }
                 // Missing media stays visible in the queue and fails explicitly when loaded.
@@ -699,6 +706,10 @@ final class LibraryStore: ObservableObject {
     }
 
     func saveClip(_ item: PlaybackQueueItem, startMS: Int, endMS: Int, groupID: Int64? = nil) async throws {
+        guard !item.isNetworkAudio else {
+            throw NSError(domain: "Simo.Media", code: 1, userInfo: [NSLocalizedDescriptionKey:
+                L10n.text("此音轨尚无完整本地文件，暂不能摘选或导出。")])
+        }
         guard let playlist else { throw PlaylistError.unavailable }
         guard item.trackID > 0, let track = try repository?.track(id: item.trackID),
               let work = try work(id: track.workID),
@@ -845,12 +856,14 @@ final class LibraryStore: ObservableObject {
             return PlaybackQueueItem(workID: entry.workID ?? 0, trackID: -entry.id, workTitle: entry.workTitle,
                                      trackTitle: title, filePath: file.path, fileType: "caf", durationMS: duration)
         }
-        guard let track, let work = try? work(id: track.workID),
-              let path = resolveTrackPath(track, work: work),
-              FileManager.default.fileExists(atPath: path) else { return nil }
+        guard let track, let work = try? work(id: track.workID) else { return nil }
+        let network = try? NetworkLibraryService.shared.resource(for: track.id)
+        let path = resolveTrackPath(track, work: work) ?? ""
+        guard network != nil || (!path.isEmpty && FileManager.default.fileExists(atPath: path)) else { return nil }
         return PlaybackQueueItem(workID: work.id, trackID: track.id, workTitle: work.title, trackTitle: track.displayTitle,
                                  subtitle: work.subtitle.isEmpty ? nil : work.subtitle, filePath: path,
-                                 fileType: track.fileType, durationMS: track.durationMS, category: track.category)
+                                 fileType: track.fileType, durationMS: track.durationMS, category: track.category,
+                                 networkSourceID: path.isEmpty ? network?.sourceID : nil)
     }
 
     // MARK: - 分组
@@ -1311,7 +1324,8 @@ final class LibraryStore: ObservableObject {
         for track in tracks where timedIDs.contains(track.id) {
             if let cached = track.durationMS, cached > 0 {
                 durations[track.id] = cached
-            } else if let ms = await Self.durationMS(of: track.resolvedFilePath ?? track.filePath), ms > 0 {
+            } else if !track.filePath.hasPrefix("network-track:"),
+                      let ms = await Self.durationMS(of: track.resolvedFilePath ?? track.filePath), ms > 0 {
                 durations[track.id] = ms
             }
         }

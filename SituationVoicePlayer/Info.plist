@@ -24,6 +24,11 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+    <!-- User-entered NAS HTTP addresses are gated by each source's explicit plaintext opt-in. -->
+    <key>NSAppTransportSecurity</key>
+    <dict><key>NSAllowsArbitraryLoads</key><true/></dict>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>连接你添加的电脑或 NAS，共享目录只在你选择导入或播放时访问。</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
         D11000000000000000000001 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = D11000000000000000000002 /* ZIPFoundation */; };
 F11700000000000000000001 = {isa = PBXBuildFile; productRef = F11700000000000000000002; };
+EA2826000000000000000011 = {isa = PBXBuildFile; productRef = EA2826000000000000000021; };
+EA2826000000000000000012 = {isa = PBXBuildFile; productRef = EA2826000000000000000022; };
+EA2826000000000000000013 = {isa = PBXBuildFile; productRef = EA2826000000000000000023; };
+EA2826000000000000000014 = {isa = PBXBuildFile; productRef = EA2826000000000000000024; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,11 @@ F11700000000000000000001 = {isa = PBXBuildFile; productRef = F117000000000000000
 			files = (
                 D11000000000000000000001 /* ZIPFoundation in Frameworks */,
                 F11700000000000000000001,
+                EA2826000000000000000011,
+                EA2826000000000000000012,
+                EA2826000000000000000013,
+                EA2826000000000000000014,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +79,7 @@ F11700000000000000000001 = {isa = PBXBuildFile; productRef = F117000000000000000
 				B1000000000000000000014 /* ../hibiki/Sources/HibikiCore */,
 			);
 			name = SituationVoicePlayer;
-			packageProductDependencies = (D11000000000000000000002 /* ZIPFoundation */, F11700000000000000000002);
+			packageProductDependencies = (D11000000000000000000002 /* ZIPFoundation */, F11700000000000000000002, EA2826000000000000000021, EA2826000000000000000022, EA2826000000000000000023, EA2826000000000000000024);
 			productName = SituationVoicePlayer;
 			productReference = B1000000000000000000007 /* SituationVoicePlayer.app */;
 			productType = "com.apple.product-type.application";
@@ -105,7 +114,7 @@ F11700000000000000000001 = {isa = PBXBuildFile; productRef = F117000000000000000
 			mainGroup = B1000000000000000000005;
 			minimizedProjectReferenceProxies = 1;
 			productRefGroup = B1000000000000000000006 /* Products */;
-			packageReferences = (D11000000000000000000003 /* ZIPFoundation 0.9.20 */, F11700000000000000000003);
+			packageReferences = (D11000000000000000000003 /* ZIPFoundation 0.9.20 */, F11700000000000000000003, EA2826000000000000000001, EA2826000000000000000002);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -198,7 +207,7 @@ F11700000000000000000001 = {isa = PBXBuildFile; productRef = F117000000000000000
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -210,7 +219,7 @@ F11700000000000000000001 = {isa = PBXBuildFile; productRef = F117000000000000000
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.4;
+				MARKETING_VERSION = 0.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.gloriaguuuu.simo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -225,7 +234,7 @@ F11700000000000000000001 = {isa = PBXBuildFile; productRef = F117000000000000000
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -237,7 +246,7 @@ F11700000000000000000001 = {isa = PBXBuildFile; productRef = F117000000000000000
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.4;
+				MARKETING_VERSION = 0.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.gloriaguuuu.simo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -279,6 +288,8 @@ F11700000000000000000001 = {isa = PBXBuildFile; productRef = F117000000000000000
 
 /* Begin XCLocalSwiftPackageReference section */
 F11700000000000000000003 = {isa = XCLocalSwiftPackageReference; relativePath = ../ThirdParty/Lame; };
+EA2826000000000000000001 = {isa = XCLocalSwiftPackageReference; relativePath = "../Prototypes/ResourceAccess"; };
+EA2826000000000000000002 = {isa = XCLocalSwiftPackageReference; relativePath = "../Prototypes/ResourceAccessAMSMB2"; };
 /* End XCLocalSwiftPackageReference section */
 /* Begin XCSwiftPackageProductDependency section */
 F11700000000000000000002 = {isa = XCSwiftPackageProductDependency; package = F11700000000000000000003; productName = CLame; };
@@ -287,6 +298,10 @@ F11700000000000000000002 = {isa = XCSwiftPackageProductDependency; package = F11
             package = D11000000000000000000003 /* ZIPFoundation 0.9.20 */;
             productName = ZIPFoundation;
         };
+EA2826000000000000000021 = {isa = XCSwiftPackageProductDependency; package = EA2826000000000000000001; productName = ResourceAccessCore; };
+EA2826000000000000000022 = {isa = XCSwiftPackageProductDependency; package = EA2826000000000000000001; productName = ResourceAccessHTTP; };
+EA2826000000000000000023 = {isa = XCSwiftPackageProductDependency; package = EA2826000000000000000001; productName = ResourceAccessSMB; };
+EA2826000000000000000024 = {isa = XCSwiftPackageProductDependency; package = EA2826000000000000000002; productName = ResourceAccessAMSMB2; };
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B100000000000000000000C /* Project object */;

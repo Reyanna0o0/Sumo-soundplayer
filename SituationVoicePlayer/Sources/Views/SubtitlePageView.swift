@@ -350,10 +350,10 @@ struct SubtitlePageView: View {
                         nearbyIndex: subtitles.currentCue?.index ?? subtitles.upcomingCue?.index ?? 0,
                         style: subtitles.style, pageMidY: pageMidY, horizontalInset: horizontalInset, durationMS: player.durationMS, resetToken: clipSavedToken,
                         followPlayback: $followPlayback, isResizing: resizingReader, viewportFocusFraction: viewportFocusFraction,
-                        allowsSelection: !isSavedClip,
+                        allowsSelection: !isSavedClip && player.hasCompleteLocalAudio,
                         onSeek: seekTo,
                         onConfirm: { first, last, start, end in
-                            guard isCurrentTrack, let item = player.currentItem else { return }
+                            guard isCurrentTrack, player.hasCompleteLocalAudio, let item = player.currentItem else { return }
                             clipSaved = false
                             onClipRequest(SubtitleClipDraft(item: item, first: first, last: last,
                                 durationMS: player.durationMS, startMS: start, endMS: end))
@@ -418,6 +418,10 @@ struct SubtitlePageView: View {
     /// 波形只用于播放定位；字幕时间由逐句编辑面板确认保存。
     private var timelineHeader: some View {
         VStack(alignment: .leading, spacing: 2) {
+            if player.isNetworkAudio {
+                Text("网络试听暂不生成波形，需要完整本地文件。")
+                    .font(.caption).foregroundStyle(.secondary).padding(.horizontal)
+            } else {
             WaveformView(
                 timeline: WaveformTimeline(data: player.waveform),
                 positionMS: player.positionMS,
@@ -429,6 +433,7 @@ struct SubtitlePageView: View {
             )
             .padding(.horizontal, 10)
             .padding(.top, 4)
+            }
 
         }
     }
@@ -930,7 +935,10 @@ struct SubtitlePageView: View {
 
     private func beginExport(format: SubtitleFormat?) {
         guard isCurrentPlayback, let item = player.currentItem else { return }
-        let name = URL(fileURLWithPath: item.filePath).deletingPathExtension().lastPathComponent
+        let name = item.isNetworkAudio ? item.trackTitle
+            : URL(fileURLWithPath: item.filePath).deletingPathExtension().lastPathComponent
+        // SubtitleEditorController applies SubtitleExporter.sanitizeFileName;
+        // a network reference has no local file path to derive a name from.
         do {
             let url: URL
             if isSavedClip { url = try exportClipSubtitles(format: format, name: item.trackTitle) }

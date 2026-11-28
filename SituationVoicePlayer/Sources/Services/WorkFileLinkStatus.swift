@@ -172,20 +172,26 @@ final class WorkFileLinkStatusCache: ObservableObject {
         guard let repo = store.repository, let assets = try? WorkAssetImporter.directory(),
               let tracks = try? repo.tracks(workID: work.id),
               let attachments = try? repo.attachmentRecords(workID: work.id) else { return .unknown }
-        var references = tracks.map { track -> WorkFileLinkProbe.Reference in
+        // Remote availability is checked by the network adapter at playback time;
+        // a disconnected NAS is not a missing local folder and must not trigger local relinking.
+        let isNetworkSource = store.sources.contains { $0.id == work.sourceID && [.smb, .http, .webdav].contains($0.type) }
+        var references = tracks.compactMap { track -> WorkFileLinkProbe.Reference? in
             if let asset = track.assetRelativePath { return .owned(asset) }
+            guard !isNetworkSource else { return nil }
             let relative = track.relativePath.flatMap { $0.isEmpty ? nil : $0 }
             return .source(relative: relative ?? track.fileName, legacyAbsolute: relative == nil ? track.filePath : nil)
         }
-        references += attachments.filter { $0.attachment.kind == .video }.map { record in
-            record.assetRelativePath.map(WorkFileLinkProbe.Reference.owned)
-                ?? .attachment(relative: record.attachment.relativePath)
+        references += attachments.filter { $0.attachment.kind == .video }.compactMap { record in
+            if let asset = record.assetRelativePath { return .owned(asset) }
+            return isNetworkSource ? nil : .attachment(relative: record.attachment.relativePath)
         }
+        if isNetworkSource && references.isEmpty { return .unknown }
         let snapshot = WorkFileLinkProbe.Snapshot(assetsRoot: assets.path, appHome: NSHomeDirectory(),
             source: store.attachmentSource(for: work), references: references)
         let operation = Task.detached(priority: .utility) { WorkFileLinkProbe.inspect(snapshot) }
         pending[work.id] = Pending(key: key, task: operation)
-        let result = await operation.value
+        let inspected = await operation.value
+        let result: WorkFileLinkProbe.Result = isNetworkSource && inspected == .available ? .unknown : inspected
         guard pending[work.id]?.key == key else { return .unknown }
         pending[work.id] = nil
         guard store.contentRevision == key.contentRevision, refreshRevision == key.refreshRevision else { return .unknown }

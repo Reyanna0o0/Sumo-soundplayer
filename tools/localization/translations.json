@@ -12535,5 +12535,1097 @@
     "ja": "スピーカー保護で消音中",
     "ko": "스피커 보호로 음소거 중",
     "zh-Hant": "外放保護已靜音"
+  },
+  "HTTP 请填写一个音频文件的直接地址，不支持网页列表。": {
+    "en": "For HTTP, enter a direct audio file URL. Web page listings are not supported.",
+    "ja": "HTTP では音声ファイルの直接 URL を入力してください。Web ページの一覧には対応していません。",
+    "ko": "HTTP에는 오디오 파일의 직접 주소를 입력하세요. 웹 페이지 목록은 지원하지 않습니다.",
+    "zh-Hant": "HTTP 請填寫一個音頻文件的直接地址，不支持網頁列表。"
+  },
+  "HTTPS 使用系统证书验证。HTTP 不加密，仅在你信任的网络中启用。": {
+    "en": "HTTPS uses system certificate validation. HTTP is unencrypted; enable it only on networks you trust.",
+    "ja": "HTTPS はシステムの証明書検証を使用します。HTTP は暗号化されないため、信頼できるネットワークでのみ有効にしてください。",
+    "ko": "HTTPS는 시스템 인증서 검증을 사용합니다. HTTP는 암호화되지 않으므로 신뢰하는 네트워크에서만 활성화하세요.",
+    "zh-Hant": "HTTPS 使用系統證書驗證。HTTP 不加密，僅在你信任的網絡中啓用。"
+  },
+  "https://服务器/选定目录/": {
+    "en": "https://server/chosen-folder/",
+    "ja": "https://サーバー/選択フォルダ/",
+    "ko": "https://서버/선택한폴더/",
+    "zh-Hant": "https://服務器/選定目錄/"
+  },
+  "https://服务器/音频.mp3": {
+    "en": "https://server/audio.mp3",
+    "ja": "https://サーバー/音声.mp3",
+    "ko": "https://서버/오디오.mp3",
+    "zh-Hant": "https://服務器/音頻.mp3"
+  },
+  "NAS 与网络来源": {
+    "en": "NAS and network sources",
+    "ja": "NAS とネットワーク接続先",
+    "ko": "NAS 및 네트워크 소스",
+    "zh-Hant": "NAS 與網絡來源"
+  },
+  "smb://服务器/共享名/目录": {
+    "en": "smb://server/share/folder",
+    "ja": "smb://サーバー/共有名/フォルダ",
+    "ko": "smb://서버/공유이름/폴더",
+    "zh-Hant": "smb://服務器/共享名/目錄"
+  },
+  "不安全的文件路径": {
+    "en": "Unsafe file path",
+    "ja": "安全でないファイルパス",
+    "ko": "안전하지 않은 파일 경로",
+    "zh-Hant": "不安全的文件路徑"
+  },
+  "不是厮磨媒体库数据库": {
+    "en": "Not a Simo library database",
+    "ja": "厮磨のライブラリデータベースではありません",
+    "ko": "Simo 라이브러리 데이터베이스가 아님",
+    "zh-Hant": "不是廝磨媒體庫數據庫"
+  },
+  "不是普通文件": {
+    "en": "Not a regular file",
+    "ja": "通常のファイルではありません",
+    "ko": "일반 파일이 아님",
+    "zh-Hant": "不是普通文件"
+  },
+  "个人音声沿用创作者的本地头像和封面，可在创作者资料中修改。": {
+    "en": "Personal Audio uses the creator's local avatar and cover. Change them in the creator profile.",
+    "ja": "個人音声では制作者のローカル画像を使用します。アイコンと表紙は制作者情報で変更できます。",
+    "ko": "개인 음성은 창작자의 기기 내 프로필 사진과 표지를 사용합니다. 창작자 정보에서 변경할 수 있습니다.",
+    "zh-Hant": "個人音聲沿用創作者的本地頭像和封面，可在創作者資料中修改。"
+  },
+  "个文件": {
+    "en": "files",
+    "ja": "ファイル",
+    "ko": "개 파일",
+    "zh-Hant": "個文件"
+  },
+  "从备份恢复": {
+    "en": "Restore from backup",
+    "ja": "バックアップから復元",
+    "ko": "백업에서 복원",
+    "zh-Hant": "從備份恢復"
+  },
+  "作为一个作品导入…": {
+    "en": "Import as one work…",
+    "ja": "1作品として取り込む…",
+    "ko": "작품 하나로 가져오기…",
+    "zh-Hant": "作為一個作品導入…"
+  },
+  "保存作品资料和音频位置，播放时从来源读取。此次导入不会下载完整音频。": {
+    "en": "Saves work details and audio locations. Audio is read from the source during playback; this import does not download full files.",
+    "ja": "作品情報と音声の場所を保存し、再生時に接続先から読み込みます。取り込み時に音声全体はダウンロードしません。",
+    "ko": "작품 정보와 오디오 위치를 저장하고 재생할 때 소스에서 읽습니다. 이번 가져오기는 전체 오디오를 다운로드하지 않습니다.",
+    "zh-Hant": "保存作品資料和音頻位置，播放時從來源讀取。此次導入不會下載完整音頻。"
+  },
+  "保留已导入的作品、字幕、收听记录和封面。重新填写凭据并连接后可继续访问原文件。": {
+    "en": "Imported works, subtitles, listening history and covers are kept. Enter credentials again and reconnect to access the original files.",
+    "ja": "取り込んだ作品・字幕・再生履歴・表紙は保持します。認証情報を入力して再接続すると元のファイルにアクセスできます。",
+    "ko": "가져온 작품, 자막, 청취 기록 및 표지를 보존합니다. 인증 정보를 다시 입력하고 연결하면 원본 파일에 접근할 수 있습니다.",
+    "zh-Hant": "保留已導入的作品、字幕、收聽記錄和封面。重新填寫憑據並連接後可繼續訪問原文件。"
+  },
+  "修改连接地址会重新绑定现有来源，保留作品与音轨编号。新位置应包含相同的原文件；不会自动添加目录内的其他作品。": {
+    "en": "Changing the address rebinds this source while retaining work and track IDs. The new location should contain the original files; other works are not added automatically.",
+    "ja": "アドレス変更は作品・音声の ID を保ったまま接続先を再関連付けします。新しい場所には同じ元ファイルが必要です。他の作品は自動追加しません。",
+    "ko": "주소를 바꾸면 작품과 트랙 ID를 유지하여 소스를 다시 연결합니다. 새 위치에 같은 원본 파일이 있어야 하며 다른 작품은 자동 추가하지 않습니다.",
+    "zh-Hant": "修改連接地址會重新綁定現有來源，保留作品與音軌編號。新位置應包含相同的原文件；不會自動添加目錄內的其他作品。"
+  },
+  "偏好设置保存失败": {
+    "en": "Could not save preferences",
+    "ja": "設定を保存できませんでした",
+    "ko": "환경설정 저장 실패",
+    "zh-Hant": "偏好設置保存失敗"
+  },
+  "偏好设置包含不支持的内容": {
+    "en": "Preferences contain unsupported data",
+    "ja": "設定に非対応のデータがあります",
+    "ko": "환경설정에 지원하지 않는 데이터가 있음",
+    "zh-Hant": "偏好設置包含不支持的內容"
+  },
+  "偏好设置过大": {
+    "en": "Preferences exceed size limit",
+    "ja": "設定のサイズが上限を超えています",
+    "ko": "환경설정 크기 한도 초과",
+    "zh-Hant": "偏好設置過大"
+  },
+  "停用并清除凭据": {
+    "en": "Disable and clear credentials",
+    "ja": "無効化して認証情報を消去",
+    "ko": "비활성화하고 인증 정보 지우기",
+    "zh-Hant": "停用並清除憑據"
+  },
+  "停用网络来源？": {
+    "en": "Disable network source?",
+    "ja": "ネットワーク接続先を無効にしますか？",
+    "ko": "네트워크 소스를 비활성화할까요?",
+    "zh-Hant": "停用網絡來源？"
+  },
+  "允许此来源使用 HTTP": {
+    "en": "Allow HTTP for this source",
+    "ja": "この接続先で HTTP を許可",
+    "ko": "이 소스의 HTTP 사용 허용",
+    "zh-Hant": "允許此來源使用 HTTP"
+  },
+  "准备恢复": {
+    "en": "Prepare restore",
+    "ja": "復元を準備",
+    "ko": "복원 준비",
+    "zh-Hant": "準備恢復"
+  },
+  "刷新": {
+    "en": "Refresh",
+    "ja": "更新",
+    "ko": "새로 고침",
+    "zh-Hant": "刷新"
+  },
+  "协议": {
+    "en": "Protocol",
+    "ja": "プロトコル",
+    "ko": "프로토콜",
+    "zh-Hant": "協議"
+  },
+  "压缩写入位置异常": {
+    "en": "Unexpected archive write position",
+    "ja": "圧縮ファイルの書き込み位置が不正です",
+    "ko": "압축 파일 쓰기 위치가 올바르지 않음",
+    "zh-Hant": "壓縮寫入位置異常"
+  },
+  "取消全部选择": {
+    "en": "Clear selection",
+    "ja": "選択をすべて解除",
+    "ko": "모두 선택 해제",
+    "zh-Hant": "取消全部選擇"
+  },
+  "取消尚未开始的恢复": {
+    "en": "Cancel restore before it starts",
+    "ja": "未開始の復元を取り消す",
+    "ko": "시작되지 않은 복원 취소",
+    "zh-Hant": "取消尚未開始的恢復"
+  },
+  "取消待恢复操作": {
+    "en": "Cancel pending restore",
+    "ja": "保留中の復元を取り消す",
+    "ko": "대기 중인 복원 취소",
+    "zh-Hant": "取消待恢復操作"
+  },
+  "另一次恢复尚未结束": {
+    "en": "Another restore is unfinished",
+    "ja": "別の復元がまだ完了していません",
+    "ko": "다른 복원이 아직 완료되지 않음",
+    "zh-Hant": "另一次恢復尚未結束"
+  },
+  "只浏览你指定的共享目录，不扫描整个服务器。": {
+    "en": "Only browses your chosen shared folder, without scanning the whole server.",
+    "ja": "指定した共有フォルダだけを閲覧し、サーバー全体は走査しません。",
+    "ko": "지정한 공유 폴더만 탐색하며 서버 전체를 검색하지 않습니다.",
+    "zh-Hant": "只瀏覽你指定的共享目錄，不掃描整個服務器。"
+  },
+  "回滚偏好设置失败": {
+    "en": "Could not roll back preferences",
+    "ja": "設定を元に戻せませんでした",
+    "ko": "환경설정을 되돌리지 못함",
+    "zh-Hant": "回滾偏好設置失敗"
+  },
+  "地址格式不正确。请填写无账号、查询参数的目录地址；HTTP 请填写 MP3、M4A 或 WAV 文件地址。": {
+    "en": "Invalid address. Use a folder URL without credentials or query parameters; HTTP requires a direct MP3, M4A or WAV file URL.",
+    "ja": "アドレスが正しくありません。認証情報・クエリを含まないフォルダの URL を入力してください。HTTP は MP3・M4A・WAV ファイルの直接 URL が必要です。",
+    "ko": "주소 형식이 올바르지 않습니다. 계정 정보나 쿼리 매개변수가 없는 폴더 주소를 입력하세요. HTTP에는 MP3, M4A 또는 WAV 파일의 직접 주소가 필요합니다.",
+    "zh-Hant": "地址格式不正確。請填寫無賬號、查詢參數的目錄地址；HTTP 請填寫 MP3、M4A 或 WAV 文件地址。"
+  },
+  "域（可选）": {
+    "en": "Domain (optional)",
+    "ja": "ドメイン（任意）",
+    "ko": "도메인(선택 사항)",
+    "zh-Hant": "域（可選）"
+  },
+  "备份 App 内的媒体、作品资料、播放位置、字幕、收藏和设置。外部文件夹与 NAS 的音频不复制；新手机需要重新连接来源并输入密码。": {
+    "en": "Back up in-app media, work details, playback positions, subtitles, favorites and settings. Audio in external folders or NAS sources is not copied; reconnect sources and enter passwords on the new device.",
+    "ja": "App 内のメディア・作品情報・再生位置・字幕・お気に入り・設定をバックアップします。外部フォルダや NAS の音声はコピーしません。新端末で接続先とパスワードの再設定が必要です。",
+    "ko": "앱 내부 미디어, 작품 정보, 재생 위치, 자막, 즐겨찾기 및 설정을 백업합니다. 외부 폴더와 NAS 오디오는 복사하지 않으며 새 기기에서 소스에 다시 연결하고 비밀번호를 입력해야 합니다.",
+    "zh-Hant": "備份 App 內的媒體、作品資料、播放位置、字幕、收藏和設置。外部文件夾與 NAS 的音頻不複製；新手機需要重新連接來源並輸入密碼。"
+  },
+  "备份准备状态已改变": {
+    "en": "Backup preparation state changed",
+    "ja": "バックアップの準備状態が変わりました",
+    "ko": "백업 준비 상태가 변경됨",
+    "zh-Hant": "備份準備狀態已改變"
+  },
+  "备份展开大小超过上限": {
+    "en": "Expanded backup exceeds size limit",
+    "ja": "バックアップの展開サイズが上限を超えています",
+    "ko": "백업의 압축 해제 크기가 한도를 초과함",
+    "zh-Hant": "備份展開大小超過上限"
+  },
+  "备份已准备好恢复": {
+    "en": "Backup ready to restore",
+    "ja": "復元の準備ができました",
+    "ko": "백업 복원 준비 완료",
+    "zh-Hant": "備份已準備好恢復"
+  },
+  "备份文件大小不受支持": {
+    "en": "Unsupported backup size",
+    "ja": "バックアップのサイズに対応していません",
+    "ko": "지원하지 않는 백업 파일 크기",
+    "zh-Hant": "備份文件大小不受支持"
+  },
+  "备份文件未加密，请保存在可信的位置。导出期间请保持 App 打开。缓存和钥匙串密码不包含在备份中。": {
+    "en": "The backup is unencrypted; keep it in a trusted location. Keep the app open during export. Caches and Keychain passwords are excluded.",
+    "ja": "バックアップは暗号化されません。信頼できる場所に保存し、書き出し中は App を開いたままにしてください。キャッシュとキーチェーンのパスワードは含みません。",
+    "ko": "백업 파일은 암호화되지 않으므로 신뢰할 수 있는 위치에 보관하세요. 내보내는 동안 앱을 열어 두세요. 캐시와 키체인 비밀번호는 포함하지 않습니다.",
+    "zh-Hant": "備份文件未加密，請保存在可信的位置。導出期間請保持 App 打開。緩存和鑰匙串密碼不包含在備份中。"
+  },
+  "备份无法使用：{#0}": {
+    "en": "Cannot use backup: {#0}",
+    "ja": "バックアップを使用できません：{#0}",
+    "ko": "백업을 사용할 수 없음: {#0}",
+    "zh-Hant": "備份無法使用：{#0}"
+  },
+  "备份期间资料发生变化，请停止编辑或导入后重新备份。": {
+    "en": "Data changed during backup. Stop editing or importing, then create a new backup.",
+    "ja": "バックアップ中にデータが変わりました。編集や取り込みを停止して再度バックアップしてください。",
+    "ko": "백업 중 데이터가 변경되었습니다. 편집이나 가져오기를 중단한 뒤 다시 백업하세요.",
+    "zh-Hant": "備份期間資料發生變化，請停止編輯或導入後重新備份。"
+  },
+  "备份的数据版本不受当前厮磨支持，请使用相同或更新的兼容版本。": {
+    "en": "This backup's data version is unsupported. Use the same or a newer compatible version of Simo.",
+    "ja": "このバックアップのデータ形式には未対応です。同じか、それより新しい対応版の厮磨を使用してください。",
+    "ko": "현재 Simo에서 이 백업의 데이터 버전을 지원하지 않습니다. 같은 버전 또는 더 새로운 호환 버전을 사용하세요.",
+    "zh-Hant": "備份的數據版本不受當前廝磨支持，請使用相同或更新的兼容版本。"
+  },
+  "外部文件夹与 NAS 音频不包含在备份中。恢复后请重新连接；密码不会恢复。": {
+    "en": "External folder and NAS audio is excluded. Reconnect after restoring; passwords are not restored.",
+    "ja": "外部フォルダや NAS の音声は含まれません。復元後に再接続してください。パスワードは復元されません。",
+    "ko": "외부 폴더와 NAS 오디오는 백업에 포함하지 않습니다. 복원 후 다시 연결하세요. 비밀번호는 복원되지 않습니다.",
+    "zh-Hant": "外部文件夾與 NAS 音頻不包含在備份中。恢復後請重新連接；密碼不會恢復。"
+  },
+  "外部文件夹和 NAS 音频不包含在备份中；只保留来源记录。来源可用性未验证，恢复后可能需要重新授权、关联或输入密码。": {
+    "en": "External folder and NAS audio is excluded; only source records are kept. Availability is unverified. You may need to authorize, relink or enter passwords after restoring.",
+    "ja": "外部フォルダと NAS の音声は含まず、接続先の記録だけを保持します。利用可否は未確認です。復元後に再認証・再関連付け・パスワード入力が必要な場合があります。",
+    "ko": "외부 폴더와 NAS 오디오는 제외하고 소스 기록만 보존합니다. 소스 사용 가능 여부는 검증하지 않았으며 복원 후 재인증, 다시 연결 또는 비밀번호 입력이 필요할 수 있습니다.",
+    "zh-Hant": "外部文件夾和 NAS 音頻不包含在備份中；只保留來源記錄。來源可用性未驗證，恢復後可能需要重新授權、關聯或輸入密碼。"
+  },
+  "媒体与数据": {
+    "en": "Media and data",
+    "ja": "メディアとデータ",
+    "ko": "미디어 및 데이터",
+    "zh-Hant": "媒體與數據"
+  },
+  "密码": {
+    "en": "Password",
+    "ja": "パスワード",
+    "ko": "비밀번호",
+    "zh-Hant": "密碼"
+  },
+  "导入完成": {
+    "en": "Import complete",
+    "ja": "取り込み完了",
+    "ko": "가져오기 완료",
+    "zh-Hant": "導入完成"
+  },
+  "导入未完成": {
+    "en": "Import not completed",
+    "ja": "取り込み未完了",
+    "ko": "가져오기 미완료",
+    "zh-Hant": "導入未完成"
+  },
+  "导入网络作品": {
+    "en": "Import network work",
+    "ja": "ネットワーク作品の取り込み",
+    "ko": "네트워크 작품 가져오기",
+    "zh-Hant": "導入網絡作品"
+  },
+  "导出整库备份": {
+    "en": "Export library backup",
+    "ja": "ライブラリのバックアップを書き出す",
+    "ko": "전체 라이브러리 백업 내보내기",
+    "zh-Hant": "導出整庫備份"
+  },
+  "导出目标已存在": {
+    "en": "Export destination already exists",
+    "ja": "書き出し先がすでに存在します",
+    "ko": "내보내기 대상이 이미 있음",
+    "zh-Hant": "導出目標已存在"
+  },
+  "封面会复制到手机，来源离线时仍可显示。": {
+    "en": "The cover is copied to your device and stays visible when the source is offline.",
+    "ja": "表紙は端末にコピーされ、接続先がオフラインでも表示できます。",
+    "ko": "표지를 기기에 복사하여 소스가 오프라인이어도 표시합니다.",
+    "zh-Hant": "封面會複製到手機，來源離線時仍可顯示。"
+  },
+  "展开数据超过声明大小": {
+    "en": "Expanded data exceeds declared size",
+    "ja": "展開データが記載されたサイズを超えています",
+    "ko": "압축 해제 데이터가 명시된 크기를 초과함",
+    "zh-Hant": "展開數據超過聲明大小"
+  },
+  "已保存的来源": {
+    "en": "Saved sources",
+    "ja": "保存した接続先",
+    "ko": "저장한 소스",
+    "zh-Hant": "已保存的來源"
+  },
+  "已保留原始配置。其他可用来源和本地作品不受影响，请先保全备份后再排查。": {
+    "en": "The original settings are preserved. Other working sources and local works are unaffected. Preserve a backup before troubleshooting.",
+    "ja": "元の設定は保持しています。他の利用可能な接続先やローカル作品には影響しません。バックアップを確保してから確認してください。",
+    "ko": "원래 설정을 보존했습니다. 다른 사용 가능한 소스와 기기 내 작품에는 영향이 없습니다. 백업을 확보한 뒤 문제를 확인하세요.",
+    "zh-Hant": "已保留原始配置。其他可用來源和本地作品不受影響，請先保全備份後再排查。"
+  },
+  "已停用 · 作品保留": {
+    "en": "Disabled · works kept",
+    "ja": "無効 · 作品は保持",
+    "ko": "비활성화됨 · 작품 보존",
+    "zh-Hant": "已停用 · 作品保留"
+  },
+  "已取消待恢复操作，当前资料未被替换。": {
+    "en": "Pending restore cancelled. Your current data was not replaced.",
+    "ja": "保留中の復元を取り消しました。現在のデータは置き換えていません。",
+    "ko": "대기 중인 복원을 취소했습니다. 현재 데이터는 교체되지 않았습니다.",
+    "zh-Hant": "已取消待恢復操作，當前資料未被替換。"
+  },
+  "已完整验证备份。确认后请关闭并重新打开 App，届时替换当前资料并保留原库用于失败回滚。": {
+    "en": "The backup has been fully checked. After confirming, close and reopen the app to replace the current data. The original library is kept for rollback if restoration fails.",
+    "ja": "バックアップの検証が完了しました。確認後 App を閉じて開き直すと現在のデータを置き換えます。失敗時に戻せるよう元のライブラリを保持します。",
+    "ko": "백업 검증을 완료했습니다. 확인 후 앱을 닫았다가 다시 열면 현재 데이터를 교체합니다. 복원 실패 시 되돌릴 수 있도록 원래 라이브러리를 보존합니다.",
+    "zh-Hant": "已完整驗證備份。確認後請關閉並重新打開 App，屆時替換當前資料並保留原庫用於失敗回滾。"
+  },
+  "已导入到{#0}。来源离线时仍可查看作品资料；音频播放需要连接来源。": {
+    "en": "Imported into {#0}. Work details remain available offline; playing audio requires a connection to the source.",
+    "ja": "{#0}に取り込みました。オフラインでも作品情報を閲覧できますが、再生には接続先への接続が必要です。",
+    "ko": "{#0}에 가져왔습니다. 오프라인에서도 작품 정보는 볼 수 있지만 오디오 재생에는 소스 연결이 필요합니다.",
+    "zh-Hant": "已導入到{#0}。來源離線時仍可查看作品資料；音頻播放需要連接來源。"
+  },
+  "已选择 {#0} 个音频": {
+    "en": "{#0} audio files selected",
+    "ja": "音声 {#0} 件を選択中",
+    "ko": "오디오 {#0}개 선택됨",
+    "zh-Hant": "已選擇 {#0} 個音頻"
+  },
+  "已选音频 · {#0}": {
+    "en": "Selected audio · {#0}",
+    "ja": "選択した音声 · {#0}",
+    "ko": "선택한 오디오 · {#0}",
+    "zh-Hant": "已選音頻 · {#0}"
+  },
+  "当前目录没有 MP3、M4A 或 WAV 文件。": {
+    "en": "No MP3, M4A or WAV files in this folder.",
+    "ja": "このフォルダに MP3・M4A・WAV ファイルはありません。",
+    "ko": "이 폴더에 MP3, M4A 또는 WAV 파일이 없습니다.",
+    "zh-Hant": "當前目錄沒有 MP3、M4A 或 WAV 文件。"
+  },
+  "待恢复标记无效": {
+    "en": "Invalid pending restore marker",
+    "ja": "復元待機情報が無効です",
+    "ko": "대기 중인 복원 표시가 유효하지 않음",
+    "zh-Hant": "待恢復標記無效"
+  },
+  "待恢复清单已改变": {
+    "en": "Pending restore manifest changed",
+    "ja": "復元予定の一覧が変わりました",
+    "ko": "복원할 목록이 변경됨",
+    "zh-Hant": "待恢復清單已改變"
+  },
+  "恢复事务标记无效": {
+    "en": "Invalid restore transaction marker",
+    "ja": "復元処理の状態記録が無効です",
+    "ko": "복원 트랜잭션 표시가 유효하지 않음",
+    "zh-Hant": "恢復事務標記無效"
+  },
+  "恢复尚未完成": {
+    "en": "Restore is not complete",
+    "ja": "復元はまだ完了していません",
+    "ko": "복원이 아직 완료되지 않음",
+    "zh-Hant": "恢復尚未完成"
+  },
+  "恢复数据库无法打开": {
+    "en": "Cannot open restored database",
+    "ja": "復元用データベースを開けません",
+    "ko": "복원 데이터베이스를 열 수 없음",
+    "zh-Hant": "恢複數據庫無法打開"
+  },
+  "恢复正在执行": {
+    "en": "Restore in progress",
+    "ja": "復元中です",
+    "ko": "복원 진행 중",
+    "zh-Hant": "恢復正在執行"
+  },
+  "所选文件中有已经导入的音轨，请保留原作品，或取消选择这些文件。": {
+    "en": "Some selected tracks are already imported. Keep the original work or deselect these files.",
+    "ja": "選択した音声の一部は取り込み済みです。元の作品を保持するか、そのファイルの選択を外してください。",
+    "ko": "선택한 파일 중 이미 가져온 트랙이 있습니다. 원래 작품을 보존하거나 해당 파일의 선택을 해제하세요.",
+    "zh-Hant": "所選文件中有已經導入的音軌，請保留原作品，或取消選擇這些文件。"
+  },
+  "所选目录或文件超出本次读取上限，请选择更小的目录。": {
+    "en": "The selected folder or file exceeds the reading limit. Choose a smaller folder.",
+    "ja": "選択したフォルダまたはファイルが読み込み上限を超えています。小さいフォルダを選んでください。",
+    "ko": "선택한 폴더나 파일이 읽기 한도를 초과합니다. 더 작은 폴더를 선택하세요.",
+    "zh-Hant": "所選目錄或文件超出本次讀取上限，請選擇更小的目錄。"
+  },
+  "找不到所选目录或文件，请检查地址或重新绑定来源。": {
+    "en": "The selected folder or file was not found. Check the address or rebind the source.",
+    "ja": "選択したフォルダやファイルが見つかりません。アドレスを確認するか接続先を再関連付けしてください。",
+    "ko": "선택한 폴더나 파일을 찾을 수 없습니다. 주소를 확인하거나 소스를 다시 연결하세요.",
+    "zh-Hant": "找不到所選目錄或文件，請檢查地址或重新綁定來源。"
+  },
+  "操作已取消。": {
+    "en": "Action cancelled.",
+    "ja": "操作をキャンセルしました。",
+    "ko": "작업을 취소했습니다.",
+    "zh-Hant": "操作已取消。"
+  },
+  "操作期间来源已改变，请重新连接后再试。": {
+    "en": "The source changed during this action. Reconnect and retry.",
+    "ja": "操作中に接続先が変わりました。再接続してやり直してください。",
+    "ko": "작업 중 소스가 변경되었습니다. 다시 연결한 뒤 시도하세요.",
+    "zh-Hant": "操作期間來源已改變，請重新連接後再試。"
+  },
+  "数据库快照失败，请稍后再试": {
+    "en": "Database snapshot failed. Try again later",
+    "ja": "データベースのスナップショット作成に失敗しました。再試行してください",
+    "ko": "데이터베이스 스냅샷 생성에 실패했습니다. 나중에 다시 시도하세요",
+    "zh-Hant": "數據庫快照失敗，請稍後再試"
+  },
+  "数据库无法读取": {
+    "en": "Cannot read database",
+    "ja": "データベースを読み込めません",
+    "ko": "데이터베이스를 읽을 수 없음",
+    "zh-Hant": "數據庫無法讀取"
+  },
+  "数据库检查失败": {
+    "en": "Database check failed",
+    "ja": "データベースの検証に失敗しました",
+    "ko": "데이터베이스 검사 실패",
+    "zh-Hant": "數據庫檢查失敗"
+  },
+  "数据库版本与清单不符": {
+    "en": "Database version does not match manifest",
+    "ja": "データベースのバージョンが一覧と一致しません",
+    "ko": "데이터베이스 버전이 목록과 일치하지 않음",
+    "zh-Hant": "數據庫版本與清單不符"
+  },
+  "数据库结构无效": {
+    "en": "Invalid database structure",
+    "ja": "データベースの構造が無効です",
+    "ko": "데이터베이스 구조가 유효하지 않음",
+    "zh-Hant": "數據庫結構無效"
+  },
+  "整库备份与恢复": {
+    "en": "Library backup and restore",
+    "ja": "ライブラリのバックアップと復元",
+    "ko": "전체 라이브러리 백업 및 복원",
+    "zh-Hant": "整庫備份與恢復"
+  },
+  "文件": {
+    "en": "Files",
+    "ja": "ファイル",
+    "ko": "파일",
+    "zh-Hant": "文件"
+  },
+  "文件与目录路径冲突": {
+    "en": "File and folder paths conflict",
+    "ja": "ファイルとフォルダのパスが競合しています",
+    "ko": "파일과 폴더 경로가 충돌함",
+    "zh-Hant": "文件與目錄路徑衝突"
+  },
+  "文件大小与清单不一致": {
+    "en": "File size does not match manifest",
+    "ja": "ファイルのサイズが一覧と一致しません",
+    "ko": "파일 크기가 목록과 일치하지 않음",
+    "zh-Hant": "文件大小與清單不一致"
+  },
+  "文件完整性校验失败": {
+    "en": "File integrity check failed",
+    "ja": "ファイルの整合性確認に失敗しました",
+    "ko": "파일 무결성 검사 실패",
+    "zh-Hant": "文件完整性校驗失敗"
+  },
+  "文件数量或类型不受支持；不允许符号链接": {
+    "en": "Unsupported file count or type; symbolic links are not allowed",
+    "ja": "ファイル数または種類に対応していません。シンボリックリンクは使用できません",
+    "ko": "파일 수 또는 유형을 지원하지 않습니다. 심볼릭 링크는 허용하지 않습니다",
+    "zh-Hant": "文件數量或類型不受支持；不允許符號鏈接"
+  },
+  "文件数量超过上限": {
+    "en": "Too many files",
+    "ja": "ファイル数が上限を超えています",
+    "ko": "파일 수 한도 초과",
+    "zh-Hant": "文件數量超過上限"
+  },
+  "新位置的文件与原记录不一致，未重新绑定，请确认选择的是原文件。": {
+    "en": "The file at the new location differs from the saved record. Rebinding was cancelled; select the original file.",
+    "ja": "新しい場所のファイルが元の記録と異なるため再関連付けしませんでした。元のファイルを確認してください。",
+    "ko": "새 위치의 파일이 기존 기록과 달라 다시 연결하지 않았습니다. 원본 파일을 선택했는지 확인하세요.",
+    "zh-Hant": "新位置的文件與原記錄不一致，未重新綁定，請確認選擇的是原文件。"
+  },
+  "无法创建安全暂存文件": {
+    "en": "Cannot create a safe staging file",
+    "ja": "安全な一時保存ファイルを作成できません",
+    "ko": "안전한 임시 파일을 만들 수 없음",
+    "zh-Hant": "無法創建安全暫存文件"
+  },
+  "无法完成操作": {
+    "en": "Could not complete action",
+    "ja": "操作を完了できません",
+    "ko": "작업을 완료할 수 없음",
+    "zh-Hant": "無法完成操作"
+  },
+  "无法建立数据库快照": {
+    "en": "Cannot create database snapshot",
+    "ja": "データベースのスナップショットを作成できません",
+    "ko": "데이터베이스 스냅샷을 만들 수 없음",
+    "zh-Hant": "無法建立數據庫快照"
+  },
+  "无法读取文件": {
+    "en": "Cannot read file",
+    "ja": "ファイルを読み込めません",
+    "ko": "파일을 읽을 수 없음",
+    "zh-Hant": "無法讀取文件"
+  },
+  "无法读取这张图片，请选择其他封面。": {
+    "en": "Cannot read this image. Please choose another cover.",
+    "ja": "この画像を読み込めません。別の表紙を選んでください。",
+    "ko": "이 이미지를 읽을 수 없습니다. 다른 표지를 선택하세요.",
+    "zh-Hant": "無法讀取這張圖片，請選擇其他封面。"
+  },
+  "无法重建本地来源路径": {
+    "en": "Cannot rebuild local source paths",
+    "ja": "ローカル接続先のパスを再構築できません",
+    "ko": "기기 내 소스 경로를 다시 만들 수 없음",
+    "zh-Hant": "無法重建本地來源路徑"
+  },
+  "暂存数据库无效": {
+    "en": "Invalid staged database",
+    "ja": "一時保存データベースが無効です",
+    "ko": "임시 저장 데이터베이스가 유효하지 않음",
+    "zh-Hant": "暫存數據庫無效"
+  },
+  "暂存文件完整性检查失败": {
+    "en": "Staged file integrity check failed",
+    "ja": "一時保存ファイルの整合性確認に失敗しました",
+    "ko": "임시 저장 파일 무결성 검사 실패",
+    "zh-Hant": "暫存文件完整性檢查失敗"
+  },
+  "暂存文件已改变": {
+    "en": "Staged file changed",
+    "ja": "一時保存ファイルが変わりました",
+    "ko": "임시 저장 파일이 변경됨",
+    "zh-Hant": "暫存文件已改變"
+  },
+  "暂存目录无效": {
+    "en": "Invalid staging folder",
+    "ja": "一時保存フォルダが無効です",
+    "ko": "임시 저장 폴더가 유효하지 않음",
+    "zh-Hant": "暫存目錄無效"
+  },
+  "暂时无法完成操作，请检查网络与来源设置后重试。": {
+    "en": "Cannot complete this action now. Check the network and source settings, then retry.",
+    "ja": "現在操作を完了できません。ネットワークと接続先の設定を確認して再試行してください。",
+    "ko": "지금 작업을 완료할 수 없습니다. 네트워크와 소스 설정을 확인한 뒤 다시 시도하세요.",
+    "zh-Hant": "暫時無法完成操作，請檢查網絡與來源設置後重試。"
+  },
+  "服务器不支持加密时连接会失败，不会自动降低要求。": {
+    "en": "If encryption is unsupported, the connection fails without lowering this requirement.",
+    "ja": "暗号化に非対応の場合は接続に失敗します。自動で要件を下げることはありません。",
+    "ko": "서버가 암호화를 지원하지 않으면 연결이 실패하며 요구 조건을 자동으로 낮추지 않습니다.",
+    "zh-Hant": "服務器不支持加密時連接會失敗，不會自動降低要求。"
+  },
+  "服务器暂不支持所需读取方式，请检查协议、文件格式或服务器设置。": {
+    "en": "The server does not support the required reading method. Check the protocol, format or server settings.",
+    "ja": "サーバーが必要な読み込み方式に対応していません。プロトコル・形式・サーバー設定を確認してください。",
+    "ko": "서버가 필요한 읽기 방식을 지원하지 않습니다. 프로토콜, 파일 형식 또는 서버 설정을 확인하세요.",
+    "zh-Hant": "服務器暫不支持所需讀取方式，請檢查協議、文件格式或服務器設置。"
+  },
+  "服务器返回的文件资料不符合预期，请稍后重试。": {
+    "en": "The server returned unexpected file information. Try again later.",
+    "ja": "サーバーのファイル情報が想定と異なります。時間をおいて再試行してください。",
+    "ko": "서버가 예상과 다른 파일 정보를 반환했습니다. 나중에 다시 시도하세요.",
+    "zh-Hant": "服務器返回的文件資料不符合預期，請稍後重試。"
+  },
+  "未命名来源": {
+    "en": "Unnamed source",
+    "ja": "名前のない接続先",
+    "ko": "이름 없는 소스",
+    "zh-Hant": "未命名來源"
+  },
+  "本地来源与清单不一致": {
+    "en": "Local source does not match manifest",
+    "ja": "ローカル接続先が一覧と一致しません",
+    "ko": "기기 내 소스가 목록과 일치하지 않음",
+    "zh-Hant": "本地來源與清單不一致"
+  },
+  "本地来源位置无效": {
+    "en": "Invalid local source location",
+    "ja": "ローカル接続先の場所が無効です",
+    "ko": "기기 내 소스 위치가 유효하지 않음",
+    "zh-Hant": "本地來源位置無效"
+  },
+  "本地来源结构无效": {
+    "en": "Invalid local source structure",
+    "ja": "ローカル接続先の構造が無効です",
+    "ko": "기기 내 소스 구조가 유효하지 않음",
+    "zh-Hant": "本地來源結構無效"
+  },
+  "本地来源路径保存失败": {
+    "en": "Could not save local source path",
+    "ja": "ローカル接続先のパスを保存できませんでした",
+    "ko": "기기 내 소스 경로 저장 실패",
+    "zh-Hant": "本地來源路徑保存失敗"
+  },
+  "本机可用空间不足，请先留出备份或恢复所需的空间。": {
+    "en": "Not enough device storage. Free up space for backup or restore first.",
+    "ja": "端末の空き容量が不足しています。バックアップや復元に必要な容量を確保してください。",
+    "ko": "기기의 저장 공간이 부족합니다. 먼저 백업이나 복원에 필요한 공간을 확보하세요.",
+    "zh-Hant": "本機可用空間不足，請先留出備份或恢復所需的空間。"
+  },
+  "来源名称": {
+    "en": "Source name",
+    "ja": "接続先の名前",
+    "ko": "소스 이름",
+    "zh-Hant": "來源名稱"
+  },
+  "来源暂时离线，请确认设备和网络连接后重试。": {
+    "en": "The source is offline. Check the device and network, then retry.",
+    "ja": "接続先がオフラインです。機器とネットワークを確認して再試行してください。",
+    "ko": "소스가 오프라인입니다. 기기와 네트워크 연결을 확인한 뒤 다시 시도하세요.",
+    "zh-Hant": "來源暫時離線，請確認設備和網絡連接後重試。"
+  },
+  "来源离线时仍可浏览已导入的作品资料和缓存封面。停用来源会清除登录凭据并保留作品，编辑后可重新连接。": {
+    "en": "Imported details and cached covers remain browsable offline. Disabling a source clears its credentials and keeps works; edit it to reconnect.",
+    "ja": "オフラインでも作品情報と保存済み表紙を閲覧できます。接続先を無効にすると認証情報だけを消去し、作品は保持します。編集して再接続できます。",
+    "ko": "오프라인에서도 가져온 작품 정보와 저장한 표지를 볼 수 있습니다. 소스를 비활성화하면 인증 정보는 지우고 작품은 보존합니다. 편집하여 다시 연결할 수 있습니다.",
+    "zh-Hant": "來源離線時仍可瀏覽已導入的作品資料和緩存封面。停用來源會清除登錄憑據並保留作品，編輯後可重新連接。"
+  },
+  "核对并重新绑定": {
+    "en": "Check and rebind",
+    "ja": "確認して再関連付け",
+    "ko": "확인 후 다시 연결",
+    "zh-Hant": "核對並重新綁定"
+  },
+  "正在处理备份，请保持 App 打开": {
+    "en": "Processing backup; keep the app open",
+    "ja": "バックアップを処理中です。App を開いたままにしてください",
+    "ko": "백업을 처리 중입니다. 앱을 열어 두세요",
+    "zh-Hant": "正在處理備份，請保持 App 打開"
+  },
+  "正在备份或准备恢复，请完成后再修改网络来源或导入作品。": {
+    "en": "Backup or restore preparation is in progress. Wait until it finishes before editing sources or importing works.",
+    "ja": "バックアップまたは復元準備中です。完了してから接続先の編集や作品の取り込みを行ってください。",
+    "ko": "백업 또는 복원 준비 중입니다. 완료된 뒤 소스를 편집하거나 작품을 가져오세요.",
+    "zh-Hant": "正在備份或準備恢復，請完成後再修改網絡來源或導入作品。"
+  },
+  "正在导入或保存资料，请完成后再备份或恢复。": {
+    "en": "Import or saving is in progress. Wait until it finishes before backup or restore.",
+    "ja": "取り込みまたは保存中です。完了してからバックアップや復元を行ってください。",
+    "ko": "가져오기 또는 저장 중입니다. 완료된 뒤 백업하거나 복원하세요.",
+    "zh-Hant": "正在導入或保存資料，請完成後再備份或恢復。"
+  },
+  "正在核对所选音频…": {
+    "en": "Checking selected audio…",
+    "ja": "選択した音声を確認中…",
+    "ko": "선택한 오디오를 확인하는 중…",
+    "zh-Hant": "正在核對所選音頻…"
+  },
+  "正在等待网络数据，可暂停或重新连接": {
+    "en": "Waiting for network data; you can pause or reconnect",
+    "ja": "データ待機中です。一時停止または再接続できます",
+    "ko": "네트워크 데이터를 기다리는 중이며 일시 정지하거나 다시 연결할 수 있습니다",
+    "zh-Hant": "正在等待網絡數據，可暫停或重新連接"
+  },
+  "正在读取目录…": {
+    "en": "Reading folder…",
+    "ja": "フォルダを読み込み中…",
+    "ko": "폴더를 읽는 중…",
+    "zh-Hant": "正在讀取目錄…"
+  },
+  "正在连接并核对文件…": {
+    "en": "Connecting and checking files…",
+    "ja": "接続してファイルを確認中…",
+    "ko": "연결 및 파일 확인 중…",
+    "zh-Hant": "正在連接並核對文件…"
+  },
+  "正在连接网络音频": {
+    "en": "Connecting to network audio",
+    "ja": "ネットワーク音声に接続中",
+    "ko": "네트워크 오디오에 연결 중",
+    "zh-Hant": "正在連接網絡音頻"
+  },
+  "此账号没有读取所选目录或文件的权限。": {
+    "en": "This account cannot read the selected folder or file.",
+    "ja": "このアカウントには選択したフォルダやファイルを読む権限がありません。",
+    "ko": "이 계정에는 선택한 폴더나 파일을 읽을 권한이 없습니다.",
+    "zh-Hant": "此賬號沒有讀取所選目錄或文件的權限。"
+  },
+  "此音轨尚无完整本地文件，暂不能摘选或导出。": {
+    "en": "This track has no complete local file yet, so excerpts and export are unavailable.",
+    "ja": "この音声には完全なローカルファイルがないため、抜粋や書き出しは利用できません。",
+    "ko": "이 트랙의 전체 파일이 기기에 없어 발췌하거나 내보낼 수 없습니다.",
+    "zh-Hant": "此音軌尚無完整本地文件，暫不能摘選或導出。"
+  },
+  "没有读取此文件的权限，请检查共享权限。": {
+    "en": "No permission to read this file. Check sharing permissions.",
+    "ja": "このファイルを読む権限がありません。共有権限を確認してください。",
+    "ko": "이 파일을 읽을 권한이 없습니다. 공유 권한을 확인하세요.",
+    "zh-Hant": "沒有讀取此文件的權限，請檢查共享權限。"
+  },
+  "沿用现有媒体库分类；导入后可在作品详情继续编辑资料、分组和顺序。": {
+    "en": "Uses the existing library categories. Edit details, groups and order in the work after importing.",
+    "ja": "既存のライブラリ分類を使用します。取り込み後、作品の詳細画面で情報・グループ・順序を編集できます。",
+    "ko": "기존 라이브러리 분류를 사용합니다. 가져온 뒤 작품 상세에서 정보, 그룹 및 순서를 편집할 수 있습니다.",
+    "zh-Hant": "沿用現有媒體庫分類；導入後可在作品詳情繼續編輯資料、分組和順序。"
+  },
+  "添加网络来源": {
+    "en": "Add network source",
+    "ja": "ネットワーク接続先を追加",
+    "ko": "네트워크 소스 추가",
+    "zh-Hant": "添加網絡來源"
+  },
+  "清单与文件内容不一致": {
+    "en": "Manifest does not match file contents",
+    "ja": "一覧とファイルの内容が一致しません",
+    "ko": "목록과 파일 내용이 일치하지 않음",
+    "zh-Hant": "清單與文件內容不一致"
+  },
+  "清单校验失败": {
+    "en": "Manifest validation failed",
+    "ja": "一覧の検証に失敗しました",
+    "ko": "목록 검증 실패",
+    "zh-Hant": "清單校驗失敗"
+  },
+  "清单过大": {
+    "en": "Manifest exceeds size limit",
+    "ja": "一覧のサイズが上限を超えています",
+    "ko": "목록 크기 한도 초과",
+    "zh-Hant": "清單過大"
+  },
+  "点文件夹进入，勾选音频后作为一个作品导入。只读取当前这一层，不自动递归扫描。": {
+    "en": "Open a folder and select audio to import as one work. Only this folder level is read; subfolders are not scanned automatically.",
+    "ja": "フォルダを開き、音声を選んで1作品として取り込みます。表示中の階層だけを読み込み、下位フォルダは自動走査しません。",
+    "ko": "폴더를 열고 오디오를 선택하여 작품 하나로 가져오세요. 현재 폴더만 읽으며 하위 폴더는 자동 검색하지 않습니다.",
+    "zh-Hant": "點文件夾進入，勾選音頻後作為一個作品導入。只讀取當前這一層，不自動遞歸掃描。"
+  },
+  "用户名（可选）": {
+    "en": "Username (optional)",
+    "ja": "ユーザー名（任意）",
+    "ko": "사용자 이름(선택 사항)",
+    "zh-Hant": "用戶名（可選）"
+  },
+  "用户名和密码保存在本机钥匙串中，不写入作品资料或备份。留空用户名使用服务器允许的匿名访问。": {
+    "en": "Credentials are kept in this device's Keychain, outside work details and backups. Leave the username blank for server-supported anonymous access.",
+    "ja": "認証情報はこの端末のキーチェーンに保存し、作品情報やバックアップには含めません。匿名アクセスにはユーザー名を空欄にします。サーバー側の許可が必要です。",
+    "ko": "인증 정보는 이 기기의 키체인에 저장하며 작품 정보나 백업에는 포함하지 않습니다. 서버가 익명 접근을 허용하면 사용자 이름을 비워 두세요.",
+    "zh-Hant": "用戶名和密碼保存在本機鑰匙串中，不寫入作品資料或備份。留空用戶名使用服務器允許的匿名訪問。"
+  },
+  "登录凭据": {
+    "en": "Credentials",
+    "ja": "認証情報",
+    "ko": "로그인 정보",
+    "zh-Hant": "登錄憑據"
+  },
+  "目标目录不安全": {
+    "en": "Unsafe destination folder",
+    "ja": "安全でない保存先フォルダ",
+    "ko": "안전하지 않은 대상 폴더",
+    "zh-Hant": "目標目錄不安全"
+  },
+  "确认替换当前媒体库": {
+    "en": "Confirm replacing current library",
+    "ja": "現在のライブラリの置き換えを確認",
+    "ko": "현재 라이브러리 교체 확인",
+    "zh-Hant": "確認替換當前媒體庫"
+  },
+  "确认重新绑定来源？": {
+    "en": "Rebind this source?",
+    "ja": "接続先を再関連付けしますか？",
+    "ko": "소스를 다시 연결할까요?",
+    "zh-Hant": "確認重新綁定來源？"
+  },
+  "移除所选封面": {
+    "en": "Remove selected cover",
+    "ja": "選んだ表紙を解除",
+    "ko": "선택한 표지 제거",
+    "zh-Hant": "移除所選封面"
+  },
+  "管理网络来源…": {
+    "en": "Manage network sources…",
+    "ja": "ネットワーク接続先を管理…",
+    "ko": "네트워크 소스 관리…",
+    "zh-Hant": "管理網絡來源…"
+  },
+  "编辑或重新绑定": {
+    "en": "Edit or rebind",
+    "ja": "編集・再関連付け",
+    "ko": "편집 또는 다시 연결",
+    "zh-Hant": "編輯或重新綁定"
+  },
+  "编辑来源": {
+    "en": "Edit source",
+    "ja": "接続先を編集",
+    "ko": "소스 편집",
+    "zh-Hant": "編輯來源"
+  },
+  "编辑网络来源": {
+    "en": "Edit network source",
+    "ja": "ネットワーク接続先を編集",
+    "ko": "네트워크 소스 편집",
+    "zh-Hant": "編輯網絡來源"
+  },
+  "缺少有效清单": {
+    "en": "Valid manifest missing",
+    "ja": "有効な一覧がありません",
+    "ko": "유효한 목록이 없음",
+    "zh-Hant": "缺少有效清單"
+  },
+  "网络文件内容或来源已变化，未自动继承原播放位置。请重新选择来源。": {
+    "en": "The network file or source has changed, so the old position was not resumed automatically. Select the source again.",
+    "ja": "ファイルの内容または接続先が変わったため、元の再生位置は自動で引き継いでいません。接続先を選び直してください。",
+    "ko": "네트워크 파일 내용이나 소스가 변경되어 이전 위치를 자동으로 이어받지 않았습니다. 소스를 다시 선택하세요.",
+    "zh-Hant": "網絡文件內容或來源已變化，未自動繼承原播放位置。請重新選擇來源。"
+  },
+  "网络文件已移动或不存在，当前音轨和位置已保留。": {
+    "en": "The network file has moved or is missing. The current track and position are kept.",
+    "ja": "ネットワーク上のファイルが移動したか見つかりません。現在の音声と再生位置は保持しています。",
+    "ko": "네트워크 파일이 이동되었거나 없습니다. 현재 트랙과 재생 위치는 보존했습니다.",
+    "zh-Hant": "網絡文件已移動或不存在，當前音軌和位置已保留。"
+  },
+  "网络来源": {
+    "en": "Network sources",
+    "ja": "ネットワーク接続先",
+    "ko": "네트워크 소스",
+    "zh-Hant": "網絡來源"
+  },
+  "网络来源已停用或暂不可用，请在设置中检查连接。": {
+    "en": "The source is disabled or unavailable. Check its connection in Settings.",
+    "ja": "接続先が無効か利用できません。設定で接続を確認してください。",
+    "ko": "소스가 비활성화되었거나 사용할 수 없습니다. 설정에서 연결을 확인하세요.",
+    "zh-Hant": "網絡來源已停用或暫不可用，請在設置中檢查連接。"
+  },
+  "网络来源配置": {
+    "en": "Network source settings",
+    "ja": "ネットワーク接続先の設定",
+    "ko": "네트워크 소스 설정",
+    "zh-Hant": "網絡來源配置"
+  },
+  "网络来源配置无法读取。为保护现有资料，暂不覆盖配置；本地媒体库仍可使用。": {
+    "en": "Network source settings cannot be read and will not be overwritten. Your local library remains available.",
+    "ja": "接続先の設定を読み込めません。既存の情報を保護するため上書きしません。ローカルライブラリは引き続き使えます。",
+    "ko": "네트워크 소스 설정을 읽을 수 없어 덮어쓰지 않습니다. 기기 내 라이브러리는 계속 사용할 수 있습니다.",
+    "zh-Hant": "網絡來源配置無法讀取。為保護現有資料，暫不覆蓋配置；本地媒體庫仍可使用。"
+  },
+  "网络来源需要重新登录，请在设置中检查账号后重新连接。": {
+    "en": "The source needs sign-in again. Check its account in Settings and reconnect.",
+    "ja": "接続先への再ログインが必要です。設定でアカウントを確認して再接続してください。",
+    "ko": "소스에 다시 로그인해야 합니다. 설정에서 계정을 확인한 뒤 다시 연결하세요.",
+    "zh-Hant": "網絡來源需要重新登錄，請在設置中檢查賬號後重新連接。"
+  },
+  "网络试听暂不支持摘选和音频导出，需要完整本地文件。": {
+    "en": "Excerpts and audio export require a complete local file and are unavailable during network playback.",
+    "ja": "抜粋と音声の書き出しには完全なローカルファイルが必要です。ネットワーク再生では利用できません。",
+    "ko": "네트워크 재생 중에는 발췌 및 오디오 내보내기를 지원하지 않습니다. 기기에 전체 파일이 필요합니다.",
+    "zh-Hant": "網絡試聽暫不支持摘選和音頻導出，需要完整本地文件。"
+  },
+  "网络读取或定位超时，当前位置已保留，可检查网络后重新连接。": {
+    "en": "Network reading or seeking timed out. Your position is kept; check the network and reconnect.",
+    "ja": "ネットワークの読み込みまたは位置移動がタイムアウトしました。現在位置は保持しています。接続を確認して再接続してください。",
+    "ko": "네트워크 읽기 또는 탐색 시간이 초과되었습니다. 현재 위치는 보존했으니 네트워크를 확인한 뒤 다시 연결하세요.",
+    "zh-Hant": "網絡讀取或定位超時，當前位置已保留，可檢查網絡後重新連接。"
+  },
+  "网络音频暂时无法播放，当前位置已保留，可检查连接后重试。": {
+    "en": "Network audio is temporarily unavailable. Your position is kept; check the connection and retry.",
+    "ja": "ネットワーク音声を現在再生できません。現在位置は保持しています。接続を確認して再試行してください。",
+    "ko": "네트워크 오디오를 일시적으로 재생할 수 없습니다. 현재 위치는 보존했으니 연결을 확인한 뒤 다시 시도하세요.",
+    "zh-Hant": "網絡音頻暫時無法播放，當前位置已保留，可檢查連接後重試。"
+  },
+  "要求 SMB 连接加密": {
+    "en": "Require SMB encryption",
+    "ja": "SMB 暗号化を必須にする",
+    "ko": "SMB 암호화 필수",
+    "zh-Hant": "要求 SMB 連接加密"
+  },
+  "请从 App 切换器关闭厮磨，然后重新打开。重开前当前资料不会被替换，请不要继续编辑媒体库。": {
+    "en": "Close Simo from the app switcher, then reopen it. Current data is not replaced until reopening. Please stop editing the library.",
+    "ja": "App スイッチャーから厮磨を終了し、開き直してください。再起動するまで現在のデータは置き換えません。ライブラリの編集を中止してください。",
+    "ko": "앱 전환기에서 Simo를 종료한 뒤 다시 여세요. 다시 열기 전까지 현재 데이터는 교체되지 않습니다. 라이브러리 편집을 중단해 주세요.",
+    "zh-Hant": "請從 App 切換器關閉廝磨，然後重新打開。重開前當前資料不會被替換，請不要繼續編輯媒體庫。"
+  },
+  "请先确认新位置包含同一批原文件，再重新绑定。": {
+    "en": "Confirm the new location contains the same original files before rebinding.",
+    "ja": "同じ元ファイルが新しい場所にあることを確認してから再関連付けしてください。",
+    "ko": "새 위치에 같은 원본 파일이 있는지 확인한 뒤 다시 연결하세요.",
+    "zh-Hant": "請先確認新位置包含同一批原文件，再重新綁定。"
+  },
+  "请勿卸载 App。原库和恢复记录仍保存在本机，恢复进行中时不能直接取消。": {
+    "en": "Do not uninstall the app. The original library and restore records remain on this device. An active restore cannot be cancelled directly.",
+    "ja": "App を削除しないでください。元のライブラリと復元記録は端末に残っています。進行中の復元は直接キャンセルできません。",
+    "ko": "앱을 삭제하지 마세요. 원래 라이브러리와 복원 기록은 기기에 보존되어 있습니다. 진행 중인 복원은 바로 취소할 수 없습니다.",
+    "zh-Hant": "請勿卸載 App。原庫和恢復記錄仍保存在本機，恢復進行中時不能直接取消。"
+  },
+  "请确认新位置存放同一批原文件。会检查已导入文件是否存在及已知的大小或内容差异；大小相同不能证明内容完全一致。原作品资料和播放记录保留。": {
+    "en": "Confirm the new location contains the same original files. Imported files are checked for presence and known size or content differences; equal size does not prove identical content. Work details and playback history are kept.",
+    "ja": "新しい場所に同じ元ファイルがあることを確認してください。取り込み済みファイルの存在と既知のサイズ・内容差を確認しますが、同サイズでも内容の一致は保証できません。作品情報と再生履歴は保持します。",
+    "ko": "새 위치에 같은 원본 파일이 있는지 확인하세요. 가져온 파일의 존재 여부와 알려진 크기 또는 내용 차이를 확인하지만 같은 크기가 동일한 내용을 증명하지는 않습니다. 작품 정보와 재생 기록은 보존합니다.",
+    "zh-Hant": "請確認新位置存放同一批原文件。會檢查已導入文件是否存在及已知的大小或內容差異；大小相同不能證明內容完全一致。原作品資料和播放記錄保留。"
+  },
+  "请选择 1 至 500 个 MP3、M4A 或 WAV 音频文件。": {
+    "en": "Select 1 to 500 MP3, M4A or WAV audio files.",
+    "ja": "MP3・M4A・WAV の音声を1〜500件選んでください。",
+    "ko": "MP3, M4A 또는 WAV 오디오 파일을 1~500개 선택하세요.",
+    "zh-Hant": "請選擇 1 至 500 個 MP3、M4A 或 WAV 音頻文件。"
+  },
+  "读取未完成": {
+    "en": "Could not finish reading",
+    "ja": "読み込みが完了しませんでした",
+    "ko": "읽기를 완료하지 못함",
+    "zh-Hant": "讀取未完成"
+  },
+  "资料已处于安全状态。请关闭并重新打开厮磨以加载媒体库。": {
+    "en": "The data is in a safe state. Close and reopen Simo to load the library.",
+    "ja": "データは安全な状態です。厮磨を閉じて開き直し、ライブラリを読み込んでください。",
+    "ko": "데이터는 안전한 상태입니다. Simo를 닫았다가 다시 열어 라이브러리를 불러오세요.",
+    "zh-Hant": "資料已處於安全狀態。請關閉並重新打開廝磨以加載媒體庫。"
+  },
+  "资料目录中存在符号链接": {
+    "en": "Data folder contains symbolic links",
+    "ja": "データフォルダにシンボリックリンクがあります",
+    "ko": "데이터 폴더에 심볼릭 링크가 있음",
+    "zh-Hant": "資料目錄中存在符號鏈接"
+  },
+  "资料目录包含不支持的文件类型": {
+    "en": "Data folder contains unsupported file types",
+    "ja": "データフォルダに非対応のファイルがあります",
+    "ko": "데이터 폴더에 지원하지 않는 파일 유형이 있음",
+    "zh-Hant": "資料目錄包含不支持的文件類型"
+  },
+  "返回上级": {
+    "en": "Up one folder",
+    "ja": "上のフォルダへ",
+    "ko": "상위 폴더로",
+    "zh-Hant": "返回上級"
+  },
+  "还没有网络来源": {
+    "en": "No network sources yet",
+    "ja": "ネットワーク接続先はまだありません",
+    "ko": "아직 네트워크 소스가 없습니다",
+    "zh-Hant": "還沒有網絡來源"
+  },
+  "这些来源的配置暂时无法读取": {
+    "en": "These source settings cannot be read",
+    "ja": "設定を読み込めない接続先",
+    "ko": "설정을 읽을 수 없는 소스",
+    "zh-Hant": "這些來源的配置暫時無法讀取"
+  },
+  "连接 NAS、电脑共享目录或网络音频后，手动选择作品导入个人音声或社团作品。只有选中的文件会加入媒体库。": {
+    "en": "Connect to a NAS, shared computer folder or network audio, then manually import selected files into Personal Audio or Indie Releases. Only selected files are added.",
+    "ja": "NAS・パソコンの共有フォルダ・ネットワーク音声に接続し、選んだファイルだけを個人音声またはサークル作品へ取り込みます。",
+    "ko": "NAS, 컴퓨터 공유 폴더 또는 네트워크 오디오에 연결한 뒤 개인 음성이나 서클 작품으로 직접 가져오세요. 선택한 파일만 추가됩니다.",
+    "zh-Hant": "連接 NAS、電腦共享目錄或網絡音頻後，手動選擇作品導入個人音聲或社團作品。只有選中的文件會加入媒體庫。"
+  },
+  "连接位置": {
+    "en": "Connection location",
+    "ja": "接続先の場所",
+    "ko": "연결 위치",
+    "zh-Hant": "連接位置"
+  },
+  "连接你添加的电脑或 NAS，共享目录只在你选择导入或播放时访问。": {
+    "en": "Connect to computers or NAS sources you add. Shared folders are accessed only when you choose to import or play media.",
+    "ja": "追加したパソコンや NAS に接続します。共有フォルダには、読み込みや再生を選んだときだけアクセスします。",
+    "ko": "추가한 컴퓨터나 NAS에 연결합니다. 가져오기 또는 재생을 선택할 때만 공유 폴더에 접근합니다.",
+    "zh-Hant": "連接你加入的電腦或 NAS，只在你選擇匯入或播放時存取共享目錄。"
+  },
+  "连接并保存": {
+    "en": "Connect and save",
+    "ja": "接続して保存",
+    "ko": "연결 및 저장",
+    "zh-Hant": "連接並保存"
+  },
+  "连接未完成": {
+    "en": "Connection not completed",
+    "ja": "接続未完了",
+    "ko": "연결 미완료",
+    "zh-Hant": "連接未完成"
+  },
+  "连接超时，请检查网络后重试。": {
+    "en": "Connection timed out. Check the network and retry.",
+    "ja": "接続がタイムアウトしました。ネットワークを確認して再試行してください。",
+    "ko": "연결 시간이 초과되었습니다. 네트워크를 확인한 뒤 다시 시도하세요.",
+    "zh-Hant": "連接超時，請檢查網絡後重試。"
+  },
+  "连接需要授权，请检查用户名和密码。": {
+    "en": "Authorization is required. Check the username and password.",
+    "ja": "接続には認証が必要です。ユーザー名とパスワードを確認してください。",
+    "ko": "연결에 인증이 필요합니다. 사용자 이름과 비밀번호를 확인하세요.",
+    "zh-Hant": "連接需要授權，請檢查用戶名和密碼。"
+  },
+  "选择可跨当前来源内的目录保留。作品的名称、库与创作者将在下一步确认。": {
+    "en": "Selections are kept across folders in this source. Confirm the work name, library and creator next.",
+    "ja": "この接続先内ではフォルダを移動しても選択を保持します。作品名・ライブラリ・制作者は次の画面で確認します。",
+    "ko": "이 소스 안에서 폴더를 이동해도 선택이 유지됩니다. 다음 단계에서 작품명, 라이브러리 및 창작자를 확인하세요.",
+    "zh-Hant": "選擇可跨當前來源內的目錄保留。作品的名稱、庫與創作者將在下一步確認。"
+  },
+  "选择本地封面…": {
+    "en": "Choose a local cover…",
+    "ja": "端末の表紙を選択…",
+    "ko": "기기의 표지 선택…",
+    "zh-Hant": "選擇本地封面…"
+  },
+  "部分 App 内媒体或图片已缺失，请修复后重新备份": {
+    "en": "Some in-app media or images are missing. Repair them before creating a new backup",
+    "ja": "App 内のメディアや画像の一部が見つかりません。修復後に再度バックアップしてください",
+    "ko": "일부 앱 내부 미디어나 이미지가 없습니다. 복구한 뒤 다시 백업하세요",
+    "zh-Hant": "部分 App 內媒體或圖片已缺失，請修復後重新備份"
+  },
+  "重复或大小写冲突的路径": {
+    "en": "Duplicate or case-conflicting paths",
+    "ja": "重複または大文字・小文字が競合するパス",
+    "ko": "중복되거나 대소문자가 충돌하는 경로",
+    "zh-Hant": "重復或大小寫衝突的路徑"
+  },
+  "重新连接并恢复位置": {
+    "en": "Reconnect and resume position",
+    "ja": "再接続して再生位置を復元",
+    "ko": "다시 연결하고 위치 복원",
+    "zh-Hant": "重新連接並恢復位置"
+  },
+  "重试恢复或回滚": {
+    "en": "Retry restore or rollback",
+    "ja": "復元またはロールバックを再試行",
+    "ko": "복원 또는 되돌리기 재시도",
+    "zh-Hant": "重試恢復或回滾"
+  },
+  "AMSMB2 项目": {
+    "en": "AMSMB2 project",
+    "ja": "AMSMB2 プロジェクト",
+    "ko": "AMSMB2 프로젝트",
+    "zh-Hant": "AMSMB2 項目"
+  },
+  "SMB 共享：AMSMB2 / libsmb2": {
+    "en": "SMB sharing: AMSMB2 / libsmb2",
+    "ja": "SMB 共有：AMSMB2 / libsmb2",
+    "ko": "SMB 공유: AMSMB2 / libsmb2",
+    "zh-Hant": "SMB 共享：AMSMB2 / libsmb2"
+  },
+  "完整源码、本地修补记录和重建说明随项目提供。": {
+    "en": "The project includes complete source, local patch records and rebuild instructions.",
+    "ja": "完全なソース、本プロジェクトでの修正記録、再ビルド手順を同梱しています。",
+    "ko": "프로젝트에 전체 소스, 자체 수정 기록 및 다시 빌드하는 방법을 포함합니다.",
+    "zh-Hant": "完整源碼、本地修補記錄和重建說明隨項目提供。"
+  },
+  "数据库结构检查失败": {
+    "en": "Database structure check failed",
+    "ja": "データベース構造の検証に失敗しました",
+    "ko": "데이터베이스 구조 검사 실패",
+    "zh-Hant": "資料庫結構檢查失敗"
+  },
+  "数据库结构与版本不一致": {
+    "en": "Database structure does not match its version",
+    "ja": "データベースの構造がバージョンと一致しません",
+    "ko": "데이터베이스 구조가 버전과 일치하지 않음",
+    "zh-Hant": "資料庫結構與版本不一致"
+  },
+  "网络试听暂不生成波形，需要完整本地文件。": {
+    "en": "Waveforms require a complete local file and are unavailable during network playback.",
+    "ja": "波形の生成には完全なローカルファイルが必要です。ネットワーク再生では利用できません。",
+    "ko": "파형 생성에는 기기의 전체 파일이 필요하며 네트워크 재생 중에는 사용할 수 없습니다.",
+    "zh-Hant": "網路試聽暫不產生波形，需要完整的本機檔案。"
   }
 }

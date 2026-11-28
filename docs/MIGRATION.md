@@ -2,6 +2,17 @@
 
 系统“快速开始”、备份恢复和侧载签名解决的是不同问题。厮磨目前没有已验收的一键整库备份／恢复流程，不能保证只做 iPhone 之间的数据迁移就能继续使用。
 
+## 开发候选中的整库备份
+
+NAS 与备份开发候选新增设置 → 整库备份与恢复，操作与验收范围见 [NAS 与整库备份](NAS_AND_BACKUP.md)。此说明不改变已发布 0.1.4 的功能状态。
+
+备份范围为 App 内数据与媒体；外部文件夹和 NAS 音频留在原处，新机重新授权/连接。备份先校验、确认后于下次冷启动替换资料，不合并两套库。确认新机作品、字幕、列表、摘选、统计与音频完整前保留旧机。
+
+- **繁體中文**：開發候選新增「整庫備份與恢復」。包含 App 內資料與媒體；外部資料夾與 NAS 在新機重新連接。先驗證再確認，於下次啟動取代資料庫，不合併。確認新機完整後才處理舊機。
+- **English**: The development candidate adds full-library backup and restore in Settings. It includes app-owned data and media; reconnect external folders and NAS sources on the new device. Validation precedes confirmation, and replacement occurs on the next cold launch. Libraries are not merged. Keep the old installation until recovery is verified.
+- **日本語**：開発候補版では設定からライブラリ全体のバックアップと復元ができます。App 内のデータとメディアが対象で、外部フォルダや NAS は新端末で再接続します。検証と確認の後、次回起動時にライブラリを置き換えます。統合はしません。復元確認までは旧端末を保管してください。
+- **한국어**: 개발 후보 버전의 설정에 전체 라이브러리 백업 및 복원이 추가됩니다. 앱 내부 데이터와 미디어를 포함하며 외부 폴더와 NAS는 새 기기에서 다시 연결합니다. 검증과 확인 후 다음 완전한 재실행 때 라이브러리를 교체하며 병합하지 않습니다. 복원이 확인될 때까지 기존 설치를 보관하세요.
+
 ## 旧手机暂时不要卸载
 
 先保留旧手机、原 App 和现有备份。不要把卸载重装、抹掉设备或清理数据当作第一步。记录安装方式、App 版本、系统版本及准确错误提示。

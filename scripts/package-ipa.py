@@ -18,6 +18,19 @@ if info.get("DTPlatformName") != "iphoneos":
     raise SystemExit("Only an iPhoneOS device build can be packaged as an IPA.")
 if list(app.rglob("embedded.mobileprovision")) or list(app.rglob("_CodeSignature")):
     raise SystemExit("Expected a fresh unsigned build without profiles or signature directories.")
+# A dynamic SMB product must be present and must not inherit the App's identity
+# from a global Xcode PRODUCT_BUNDLE_IDENTIFIER override.
+smb_framework = app / "Frameworks/AMSMB2.framework"
+if not (smb_framework / "AMSMB2").is_file():
+    raise SystemExit("Missing embedded AMSMB2 dynamic framework.")
+identifiers = {info["CFBundleIdentifier"]}
+for framework_info in (app / "Frameworks").glob("*.framework/Info.plist"):
+    with framework_info.open("rb") as handle:
+        framework = plistlib.load(handle)
+    identifier = framework.get("CFBundleIdentifier")
+    if not identifier or identifier in identifiers:
+        raise SystemExit("Invalid or duplicate embedded framework identifier: " + framework_info.parent.name)
+    identifiers.add(identifier)
 version, build = info["CFBundleShortVersionString"], info["CFBundleVersion"]
 output = ROOT / "dist"
 output.mkdir(exist_ok=True)
@@ -29,6 +42,11 @@ with tempfile.TemporaryDirectory(prefix=".simo-ipa-", dir=output) as temporary:
     # Keep the local build's symbols for debugging, but omit its source-path map from the IPA.
     executable = payload / app.name / info["CFBundleExecutable"]
     subprocess.run(["xcrun", "strip", "-S", str(executable)], check=True)
+    for framework in (payload / app.name / "Frameworks").glob("*.framework"):
+        with (framework / "Info.plist").open("rb") as handle:
+            framework_info = plistlib.load(handle)
+        binary = framework / framework_info["CFBundleExecutable"]
+        subprocess.run(["xcrun", "strip", "-S", str(binary)], check=True)
     # Write a new archive; never append to an older package.
     archive = Path(temporary) / ipa.name
     subprocess.run(["ditto", "-c", "-k", "--norsrc", "--keepParent", str(payload), str(archive)], check=True)

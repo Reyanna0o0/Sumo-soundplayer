@@ -5,9 +5,17 @@ struct HibikiApp: App {
     @UIApplicationDelegateAdaptor(CallOrientationAppDelegate.self) private var orientationDelegate
     @Environment(\.scenePhase) private var scenePhase
 
+    init() {
+        // Switch complete, prevalidated backups before any library or preference owner is created.
+        LibraryBackupLaunchGate.applyPendingRestoreBeforeAppInitialization()
+    }
+
     var body: some Scene {
         WindowGroup {
             Group {
+            if case .failed(let message) = LibraryBackupLaunchGate.lastResult {
+                LibraryBackupLaunchFailureView(message: message)
+            } else {
             #if DEBUG
             // 调试用启动参数：方便在没有 UI 自动化时单独验证某个页面
             //   -coreCheck   直接打开内核自检
@@ -24,6 +32,7 @@ struct HibikiApp: App {
             #else
             RootView()
             #endif
+            }
             }
             .environment(\.locale, AppLanguageSelection.shared.locale)
             .onChange(of: scenePhase) { _, phase in

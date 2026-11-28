@@ -51,6 +51,9 @@ public struct PlaybackQueueItem: Identifiable, Equatable, Hashable, Sendable {
     public var subtitle: String?
     /// 解析好的绝对路径（入队时算好，避免播放时再查库）
     public var filePath: String
+    /// Network audio is resolved by stable track ID, never by interpreting filePath as a URL.
+    public var networkSourceID: UUID?
+    public var isNetworkAudio: Bool { networkSourceID != nil && !isVideo && !isSavedClip }
     public var fileType: String
     public var durationMS: Int?
     public var category: TrackCategory
@@ -66,7 +69,8 @@ public struct PlaybackQueueItem: Identifiable, Equatable, Hashable, Sendable {
         fileType: String,
         durationMS: Int? = nil,
         category: TrackCategory = .main,
-        attachmentID: Int64? = nil
+        attachmentID: Int64? = nil,
+        networkSourceID: UUID? = nil
     ) {
         self.id = id
         self.workID = workID
@@ -76,6 +80,7 @@ public struct PlaybackQueueItem: Identifiable, Equatable, Hashable, Sendable {
         self.trackTitle = trackTitle
         self.subtitle = subtitle
         self.filePath = filePath
+        self.networkSourceID = networkSourceID
         self.fileType = fileType
         self.durationMS = durationMS
         self.category = category
@@ -190,8 +195,9 @@ public struct PlaybackQueue: Equatable, Sendable {
             guard !old.isSavedClip, !old.isVideo,
                   let source = sources[old.trackID], source.workID == old.workID,
                   source.trackID == old.trackID, !source.isVideo,
-                  !source.filePath.isEmpty else { continue }
+                  !source.filePath.isEmpty || source.isNetworkAudio else { continue }
             items[index].filePath = source.filePath
+            items[index].networkSourceID = source.networkSourceID
             items[index].fileType = source.fileType
             items[index].durationMS = source.durationMS
             items[index].trackTitle = source.trackTitle

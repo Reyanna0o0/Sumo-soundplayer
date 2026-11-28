@@ -10,6 +10,7 @@ struct RootView: View {
     @StateObject private var subtitles = SubtitleController()
     @StateObject private var pictureInPicture = AppPictureInPictureCoordinator()
     @StateObject private var launch = LaunchExperience.shared
+    @ObservedObject private var backup = LibraryBackupCoordinator.shared
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.colorScheme) private var colorScheme
     @AppStorage(CoverPrivacy.settingKey) private var privacyEnabled = false
@@ -96,6 +97,14 @@ struct RootView: View {
                     .zIndex(100)
             }
         }
+        .disabled(backup.isBusy || backup.restoreReady)
+        .overlay {
+            if backup.isBusy || backup.restoreReady {
+                LibraryBackupBlockingView()
+                    .ignoresSafeArea()
+                    .zIndex(200)
+            }
+        }
         .onChange(of: selection) { _, tab in
             if tab == .statistics { player.flushListeningStatistics() }
         }
@@ -130,6 +139,9 @@ struct RootView: View {
             if CommandLine.arguments.contains("-openPlayer") {
                 player.isPlayerSheetPresented = true
             }
+            #endif
+            #if DEBUG && targetEnvironment(simulator)
+            await NetworkPlaybackRuntimeChecks.runIfRequested(player: player, store: store, subtitles: subtitles)
             #endif
         }
     }

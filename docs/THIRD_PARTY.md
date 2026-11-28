@@ -7,6 +7,7 @@ HibikiCore 是本项目维护的业务源码，不是外购的完整播放器。
 | LAME | 已保存摘选编码为 MP3；4.0 | LGPL v2 或后续版本；`ThirdParty/Lame/lame-4.0/` 保存完整未修改上游源码，本地适配位于同级 `Package.swift`、`config/`、`include/` |
 | FFmpeg | 有限 AVI 读取和 MOV 重封装；n8.0.1 | 附带完整 `ThirdParty/FFmpeg/ffmpeg-n8.0.1.tar.gz`；当前构建未启用 GPL / nonfree，许可副本位于 `VideoSupport/LICENSE-FFmpeg.txt` |
 | Depth Anything V2 Small | 图片深度估计；F16 Core ML | Apache 2.0；模型完整放在 App Resources，许可、NOTICE 和原模型说明位于 `ThirdParty/DepthAnythingV2/` |
+| AMSMB2 / libsmb2 | SMB 共享目录与按范围读取；AMSMB2 4.0.3，保留已验证的本地修补 | LGPL 2.1 系列及各文件既有许可；完整源码、上游逐文件校验与修补 diff 在 `Prototypes/Vendor/AMSMB2/`，使用动态 framework |
 | ZIPFoundation | 普通 ZIP 解包；0.9.20 | MIT；通过 SwiftPM 精确锁定，App 资源内保留许可副本 |
 
 来源：
@@ -17,6 +18,8 @@ HibikiCore 是本项目维护的业务源码，不是外购的完整播放器。
 - [ZIPFoundation 0.9.20](https://github.com/weichsel/ZIPFoundation/tree/22787ffb59de99e5dc1fbfe80b19c97a904ad48d)，精确 revision 写在共享 `Package.resolved`。
 
 `scripts/verify-resources.py` 校验上述本地材料。应用设置中的“开源许可”展示随包文本。
+
+AMSMB2 动态 framework 随安装包嵌入。其 wrapper 固定上游提交 `1726aaaf7adf63d7d1d2a0c5d1b0e635028215c0`，libsmb2 固定 `aff9fa6ba9f41cfd3c15d184554601ec3f6d8d03`。`SUMO_PATCH.md` / `SUMO_PATCH.diff` 记录认证状态与回调生命周期修补，`SUMO_SOURCE_FILES.json` 校验交付源码。协议桥接包按本地路径引用，可直接修改后通过同一 Xcode 工程重建和重新签名安装。
 
 LAME 和 FFmpeg 采用静态链接。本仓库包含 App 对应源码、LAME 源码和适配、FFmpeg 完整源归档与构建选项，以及[替换组件后重新构建和链接的方法](BUILD.md#修改第三方组件后重建)。应用 [LICENSE 第 5 条](../LICENSE) 明确保留适用 LGPL 所要求的为自身使用修改作品、调试修改、替换组件和重新链接的权利；这些权利不受应用新增的商业审批要求限制。第三方组件自身继续按上游许可使用，不要求另外向本项目维护者申请商业授权。
 

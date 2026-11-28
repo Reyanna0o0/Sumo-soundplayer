@@ -17,6 +17,8 @@ expected.update({model + name: digest for name, digest in {
 provenance = json.loads((ROOT / "ThirdParty/Lame/provenance.json").read_text())
 expected.update({"ThirdParty/Lame/" + name: digest
                  for name, digest in provenance["sourceFiles"].items()})
+smb = json.loads((ROOT / "Prototypes/Vendor/AMSMB2/SUMO_SOURCE_FILES.json").read_text())
+expected.update({"Prototypes/Vendor/AMSMB2/" + name: digest for name, digest in smb["sha256"].items()})
 errors = []
 for name, digest in expected.items():
     path = ROOT / name
@@ -24,6 +26,8 @@ for name, digest in expected.items():
         errors.append("Missing or changed upstream material: " + name)
 for upstream, bundled in [
     ("ThirdParty/Lame/lame-4.0/COPYING", "LAME-COPYING.txt"),
+    ("Prototypes/Vendor/AMSMB2/LICENSE", "AMSMB2-LICENSE.txt"),
+    ("Prototypes/Vendor/AMSMB2/Dependencies/libsmb2/COPYING", "libsmb2-COPYING.txt"),
     ("ThirdParty/DepthAnythingV2/LICENSE", "DepthAnything-LICENSE.txt"),
     ("SituationVoicePlayer/VideoSupport/LICENSE-FFmpeg.txt", "FFmpeg-LICENSE.txt"),
 ]:
@@ -38,4 +42,4 @@ if len(pins) != 1 or pins[0]["identity"] != "zipfoundation" or pins[0]["state"] 
     errors.append("Unexpected ZIPFoundation dependency lock")
 if errors:
     raise SystemExit("\n".join(errors))
-print(f"Verified {len(expected)} upstream files, 3 license copies and ZIPFoundation lock.")
+print(f"Verified {len(expected)} upstream files, 5 license copies and ZIPFoundation lock.")

@@ -59,6 +59,8 @@ public enum PlayerCoverMode: String, CaseIterable, Hashable, Sendable {
 /// 存储源类型
 public enum SourceType: String, Codable, Sendable, CaseIterable {
     case local
+    case smb
+    case http
     case webdav
     case openlist
     case baidu
@@ -66,6 +68,8 @@ public enum SourceType: String, Codable, Sendable, CaseIterable {
     public var displayName: String {
         switch self {
         case .local: return InterfaceLocalization.text("本地文件夹")
+        case .smb: return "SMB"
+        case .http: return "HTTP / HTTPS"
         case .webdav: return "WebDAV"
         case .openlist: return "OpenList"
         case .baidu: return InterfaceLocalization.text("百度网盘")
@@ -75,6 +79,8 @@ public enum SourceType: String, Codable, Sendable, CaseIterable {
     public var iconName: String {
         switch self {
         case .local: return "folder"
+        case .smb: return "externaldrive.connected.to.line.below"
+        case .http: return "link"
         case .webdav: return "externaldrive.connected.to.line.below"
         case .openlist: return "cloud"
         case .baidu: return "cloud.fill"

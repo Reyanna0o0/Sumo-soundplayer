@@ -15,3 +15,7 @@ SituationVoicePlayer/VideoSupport/lib/
 *.p8
 *.key
 __pycache__/
+
+# Standalone resource and backup regression packages.
+Prototypes/**/.build/
+tests/**/.build/

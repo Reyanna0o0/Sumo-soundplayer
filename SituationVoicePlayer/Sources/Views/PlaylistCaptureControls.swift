@@ -8,6 +8,11 @@ struct PlaylistCaptureControls: View {
     @State private var status: String?
     var body: some View {
         if let item = player.currentItem, !item.isSavedClip {
+            if item.isNetworkAudio {
+                Text("网络试听暂不支持摘选和音频导出，需要完整本地文件。")
+                    .font(.caption).foregroundStyle(AppTheme.secondary)
+                    .accessibilityIdentifier("networkLocalFileRequired")
+            } else {
             VStack(spacing: 4) {
                 HStack(spacing: 12) {
                     if let start = player.clipStartMS {
@@ -55,6 +60,7 @@ struct PlaylistCaptureControls: View {
             }
             .onChange(of: item.id) { status = nil }
             .onChange(of: savedToken) { status = L10n.text("已保存到摘选") }
+            }
         }
     }
 }

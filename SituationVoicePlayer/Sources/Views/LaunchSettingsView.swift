@@ -64,7 +64,11 @@ private struct OpeningVoiceSourceSheet: View {
     @State private var search = ""
 
     private var matchingWorks: [WorkRecord] {
-        works.filter { search.isEmpty || $0.title.localizedCaseInsensitiveContains(search) }
+        works.filter { work in
+            guard search.isEmpty || work.title.localizedCaseInsensitiveContains(search) else { return false }
+            let isNetworkSource = store.sources.contains { $0.id == work.sourceID && [.smb, .http, .webdav].contains($0.type) }
+            return !isNetworkSource || store.tracks(for: work).contains { !$0.isVideo && $0.resolvedFilePath != nil }
+        }
     }
 
     var body: some View {
@@ -83,7 +87,7 @@ private struct OpeningVoiceSourceSheet: View {
                 Section("媒体库音频") {
                     ForEach(matchingWorks) { work in
                         NavigationLink(work.title) {
-                            List(store.groupedTracks(for: work).flatMap(\.tracks).filter { !$0.isVideo }) { track in
+                            List(store.groupedTracks(for: work).flatMap(\.tracks).filter { !$0.isVideo && $0.resolvedFilePath != nil }) { track in
                                 Button(track.displayTitle) {
                                     select(.init(kind: .track, id: track.id, title: track.displayTitle))
                                 }.appListRows().accessibilityIdentifier("openingVoiceTrack-\(track.id)")

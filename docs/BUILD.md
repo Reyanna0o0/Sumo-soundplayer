@@ -25,9 +25,9 @@ bash scripts/test-import-regression.sh
 
 也可以从 [build 36 下载页](https://github.com/Reyanna0o0/Simo-soundplayer/releases/tag/v0.1.3) 获取 `simo-0.1.3-build36-source.zip`，解压后在 `Sumo-soundplayer-0.1.3/` 目录执行上方的核验与构建命令。源码包包含应用源码、第三方源材料和许可，不包含个人签名证书。
 
-资源检查覆盖 LAME 上游文件、FFmpeg 归档、模型、三份许可副本和 ZIPFoundation 锁定版本。`test-media-picker.sh` 在 Mac 上检查选择会话的取消、重复回调、目标隔离和图片数据读取；它不代替 iOS 系统图库界面或云端资源实测。
+资源检查覆盖 LAME 与 AMSMB2 上游/修补源文件、FFmpeg 归档、模型、五份许可副本和 ZIPFoundation 锁定版本。`test-media-picker.sh` 在 Mac 上检查选择会话的取消、重复回调、目标隔离和图片数据读取；它不代替 iOS 系统图库界面或云端资源实测。
 
-当前发布为 `v0.1.3`，本次重新构建仍使用应用版本 `0.1.3` / build `36`。发布附件直接更新；请核对构建 JSON 中的源码提交和同一发布页的新 SHA-256，不要只看应用版本号或同名文件。[本次重建说明](RELEASE_BUILD36.md)
+此分支现在构建 NAS 与备份开发候选 `0.1.5` / build `38`，尚不表示已公开发布或通过家庭 NAS 真机验收。请以当前分支的 Xcode 配置、构建 JSON 和 SHA-256 为准。上面的 build 36 下载链接是历史源码示例，[历史重建说明](RELEASE_BUILD36.md)不描述此候选的新功能。
 
 ## 生成未签名 IPA
 
@@ -73,3 +73,9 @@ FFmpeg 完整源归档位于 `ThirdParty/FFmpeg/`，构建脚本和全部 config
 默认构建在静态库已存在时会复用它们；修改桥接代码、FFmpeg 或切换工具链后请主动运行 `prepare.sh`。要完全从附带归档重新开始，可删除**当前克隆目录内**的 `.build-support/` 与 `SituationVoicePlayer/VideoSupport/lib/` 后再构建，这也会删除在临时解压目录内做的修改，操作前先保存补丁。
 
 完整构建材料用于重建与重新链接，不代表源码目录相同就能得到逐字节一致的二进制。编译器版本、路径和签名均可能影响产物。
+
+## NAS 与备份候选的额外验证
+
+NAS 适配器和完整 AMSMB2 动态库源码已作为本地 Swift 包纳入工程，不需要部署自建后端。运行 `python3 scripts/verify-resources.py` 会同时检查 NAS SDK 源文件及许可副本。`bash scripts/build.sh ipa` 生成供自行签名的设备包；确认 `.app/Frameworks/AMSMB2.framework` 被嵌入。
+
+核心回归：`bash scripts/test-core.sh`；网络播放策略：`bash scripts/test-network-playback.sh`；网络导入事务：`swift test --package-path tests/NetworkLibraryRegression --disable-sandbox`；备份校验和启动事务：`swift test --package-path tests/LibraryBackupCore --disable-sandbox`。只使用合成数据，不将真实资料库纳入测试或源码。网络播放 runtime 检查仅在 Debug 模拟器构建内启用，见 `tests/NetworkPlaybackPolicyChecks.swift` 与 `NetworkPlaybackRuntimeChecks.swift`；Release 真机包不含此入口。

@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-25",
+  "mainPackageSMBTests": {
+    "command": "swift test --filter SMBResourceAdapterTests --scratch-path /private/tmp/sumo-resource-access-smb-build",
+    "passed": 18,
+    "failed": 0,
+    "testSuite": "SMBResourceAdapterTests"
+  },
+  "optionalBridgeTests": {
+    "command": "swift test --scratch-path /private/tmp/sumo-resource-access-amsmb2-build",
+    "passed": 3,
+    "skipped": 1,
+    "failed": 0,
+    "note": "Default run skips opt-in network fixture test. Separate attempted protocol test failed."
+  },
+  "compiler": "Apple Swift 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)",
+  "iOSBuild": {
+    "command": "xcodebuild -scheme ResourceAccessAMSMB2 -destination 'generic/platform=iOS' -derivedDataPath /private/tmp/sumo-resource-access-amsmb2-ios-build -clonedSourcePackagesDirPath /private/tmp/sumo-resource-access-amsmb2-ios-packages -skipPackagePluginValidation build CODE_SIGNING_ALLOWED=NO",
+    "result": "BUILD SUCCEEDED",
+    "log": "ios-build.log",
+    "installedOnDevice": false
+  },
+  "dependencies": {
+    "AMSMB2": {
+      "release": "4.0.3",
+      "commit": "1726aaaf7adf63d7d1d2a0c5d1b0e635028215c0"
+    },
+    "libsmb2": {
+      "commit": "aff9fa6ba9f41cfd3c15d184554601ec3f6d8d03"
+    }
+  },
+  "protocolSmoke": {
+    "result": "FAILED in initial directory metadata; actual byte-read assertions not reached",
+    "evidence": "SmokeEvidence/summary.json",
+    "listener": "127.0.0.1:14455",
+    "listenerStopped": true,
+    "systemFileSharingChanged": false
+  },
+  "formalAppModified": false,
+  "diagnosticsFollowup": {
+    "date": "2026-11-25",
+    "summary": "DIAGNOSTICS.md",
+    "initialFailureResolved": "Successful stat was overridden by disconnect EBADF -> generic -1 -> EPERM -> permissionDenied",
+    "changes": [
+      "Per-stage opt-in redacted diagnostics",
+      "Successful read-only result survives non-cancellation disconnect failure",
+      "Primary failures and cancellation preserved",
+      "Generic EPERM no longer classified as permissionDenied"
+    ],
+    "swiftTests": {
+      "total": 19,
+      "passed": 18,
+      "failed": 1,
+      "skipped": 0,
+      "failedTest": "testLoopbackSMB2ProtocolFixtureWrongPasswordClassification",
+      "reason": "Server rejects wrong credentials, SDK loses authentication-specific error and returns generic EPERM"
+    },
+    "loopbackPositiveReads": "passed with original error-body fixture and normalized error-body fixture",
+    "loopbackMissingAndDenied": "passed with standards-correct error bodies; original fixture failures retained",
+    "independentClient": {
+      "name": "smbprotocol",
+      "version": "1.17.0",
+      "originalFixturePassed": 12,
+      "normalizedFixturePassed": 13,
+      "additionalInvalidClosePassed": 1,
+      "secondServerImplementation": false
+    },
+    "fixtureNormalization": "Opt-in CLOSE INVALID_HANDLE and SESSION_SETUP LOGON_FAILURE error bodies only; statuses/authentication/signing retained",
+    "iOSBuild": "BUILD SUCCEEDED, unsigned, no install",
+    "permanentSDKModification": false,
+    "sdkSourceRestoredAndVerified": true,
+    "formalAppModified": false,
+    "verifiedUnchangedFormalFiles": 265,
+    "loopbackServiceStopped": true,
+    "fullNASOrPlaybackValidation": false
+  },
+  "localVendorFix": {
+    "date": "2026-11-25",
+    "upstreamAMSMB2": "1726aaaf7adf63d7d1d2a0c5d1b0e635028215c0",
+    "upstreamLibsmb2": "aff9fa6ba9f41cfd3c15d184554601ec3f6d8d03",
+    "source": "../Vendor/AMSMB2",
+    "sourceFiles": 219,
+    "modifiedOrAddedSourceFiles": 5,
+    "patchSHA256": "dc47d6fbec65bd30394d6cfc877ffbb9a9afe86112e1480d3554601a070941eb",
+    "patchReproductionVerifiedFiles": 219,
+    "defaultPublicAPIUnchanged": true,
+    "diagnosticAddition": "optional ntStatus: UInt32",
+    "swiftTests": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "command": "SUMO_SMB_LOOPBACK_SMOKE=1 SUMO_SMB_LOOPBACK_PORT=14465 SUMO_SMB_DIAGNOSTICS=1 swift test --scratch-path /private/tmp/sumo-resource-access-amsmb2-vendor-build",
+      "log": "/private/tmp/sumo-smb-vendor-fix-20261125/test-final.log"
+    },
+    "addressSanitizer": {
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "leakDetection": false,
+      "command": "SUMO_SMB_LOOPBACK_SMOKE=1 SUMO_SMB_LOOPBACK_PORT=14465 ASAN_OPTIONS=detect_leaks=0 swift test --sanitize=address --scratch-path /private/tmp/sumo-resource-access-amsmb2-vendor-asan --filter AMSMB2TransportTests",
+      "log": "/private/tmp/sumo-smb-vendor-fix-20261125/address-sanitizer-final.log"
+    },
+    "iOSBuild": {
+      "result": "BUILD SUCCEEDED",
+      "signed": false,
+      "installed": false,
+      "command": "xcodebuild -scheme ResourceAccessAMSMB2 -destination 'generic/platform=iOS' -derivedDataPath /private/tmp/sumo-resource-access-amsmb2-vendor-ios-build -skipPackagePluginValidation build CODE_SIGNING_ALLOWED=NO",
+      "binary": "PackageFrameworks/AMSMB2.framework/AMSMB2",
+      "observedMachOType": "ARM64 DYLIB",
+      "log": "/private/tmp/sumo-smb-vendor-fix-20261125/ios-build-final.log"
+    },
+    "observedResults": {
+      "wrongPassword": "authorizationRequired; NSPOSIXErrorDomain code61; NTSTATUS 0xC000006D; one connection attempt; no stat",
+      "correctedPassword": "same credential reference, new connection, metadata succeeds; disconnect succeeds",
+      "missing": "notFound; ENOENT2",
+      "explicitServerDenial": "permissionDenied; EACCES13",
+      "unavailableBoundPort": "timedOut; ETIMEDOUT60; no NTSTATUS; no authentication classification; no post-timeout crash",
+      "genericRefusalUnitTest": "ECONNREFUSED without verified NTSTATUS maps unavailable",
+      "positiveReads": "directory, Unicode with spaces, nonzero offset exact bytes, EOF, probe; successful disconnect"
+    },
+    "historicalFailuresPreserved": true,
+    "networkTimeoutCrashDebugLog": "/private/tmp/sumo-smb-vendor-fix-20261125/refused-backtrace.log",
+    "signingAndAuthenticationUnchanged": true,
+    "clientGuestRetry": false,
+    "serverGuestMappingValidated": false,
+    "fixture": {
+      "implementation": "Impacket0.13.0",
+      "normalizedErrorResponses": true,
+      "listener": "127.0.0.1:14465",
+      "stopped": true,
+      "stopVerification": "lsof returned no listener"
+    },
+    "realNASValidated": false,
+    "SMB3EncryptionValidated": false,
+    "iPhoneLANValidated": false,
+    "formalAppModified": false,
+    "evidenceDirectory": "/private/tmp/sumo-smb-vendor-fix-20261125"
+  }
+}

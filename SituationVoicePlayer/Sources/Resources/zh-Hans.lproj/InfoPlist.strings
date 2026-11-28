@@ -1,3 +1,4 @@
 // Interface text only. Generated from tools/localization/translations.json.
+"NSLocalNetworkUsageDescription" = "连接你添加的电脑或 NAS，共享目录只在你选择导入或播放时访问。";
 "NSMotionUsageDescription" = "根据手机轻微倾斜移动通话背景图片，呈现空间感；动作数据只在本机即时使用。";
 "NSPhotoLibraryAddUsageDescription" = "将你选择的收听报告图片保存到相册。";

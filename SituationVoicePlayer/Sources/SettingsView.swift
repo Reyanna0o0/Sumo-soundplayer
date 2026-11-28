@@ -72,6 +72,18 @@ struct SettingsView: View {
                 } header: { Text("统计").dynamicTypeSize(...DynamicTypeSize.xxxLarge) }
 
                 Section {
+                    NavigationLink {
+                        NetworkSourcesView(store: store).environment(\.dynamicTypeSize, dynamicTypeSize)
+                    } label: { Label("NAS 与网络来源", systemImage: "externaldrive.connected.to.line.below") }
+                    .accessibilityIdentifier("networkSourcesSettingsEntry")
+                    NavigationLink {
+                        LibraryBackupSettingsView().environment(\.dynamicTypeSize, dynamicTypeSize)
+                    } label: { Label("整库备份与恢复", systemImage: "externaldrive.badge.timemachine") }
+                    .accessibilityIdentifier("libraryBackupSettingsEntry")
+                } header: { Text("媒体与数据") }
+                .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+
+                Section {
                     Toggle("完全模拟通话按键名称", isOn: $realisticCallLabels)
                         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                         .accessibilityIdentifier("realisticCallLabels")
@@ -191,6 +203,15 @@ struct SettingsView: View {
                                 Link("ZIPFoundation 项目", destination: URL(string: "https://github.com/weichsel/ZIPFoundation")!)
                                 Text(Bundle.main.url(forResource: "ZIPFoundation-LICENSE", withExtension: "txt")
                                     .flatMap { try? String(contentsOf: $0, encoding: .utf8) } ?? "MIT License")
+                                    .font(.caption).textSelection(.enabled)
+                                Text("SMB 共享：AMSMB2 / libsmb2").font(.headline)
+                                Link("AMSMB2 项目", destination: URL(string: "https://github.com/amosavian/AMSMB2")!)
+                                Text("完整源码、本地修补记录和重建说明随项目提供。")
+                                Text(Bundle.main.url(forResource: "AMSMB2-LICENSE", withExtension: "txt")
+                                    .flatMap { try? String(contentsOf: $0, encoding: .utf8) } ?? "LGPL 2.1")
+                                    .font(.caption).textSelection(.enabled)
+                                Text(Bundle.main.url(forResource: "libsmb2-COPYING", withExtension: "txt")
+                                    .flatMap { try? String(contentsOf: $0, encoding: .utf8) } ?? "LGPL 2.1 or later")
                                     .font(.caption).textSelection(.enabled)
                                 Text("AVI 兼容：FFmpeg").font(.headline)
                                 Link("FFmpeg 项目与许可", destination: URL(string: "https://ffmpeg.org/legal.html")!)
